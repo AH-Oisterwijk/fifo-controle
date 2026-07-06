@@ -15,7 +15,7 @@
     .fifo-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
     .fifo-header h1{font-size:30px;line-height:1;margin:0 0 4px;font-weight:800}
     .fifo-header p{margin:0;color:var(--muted);font-size:14px}
-    .fifo-refresh{width:44px;height:44px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:22px;cursor:pointer}
+    .fifo-header-actions{display:flex;gap:8px;align-items:center}.fifo-refresh{width:44px;height:44px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:22px;cursor:pointer}.fifo-reset{height:44px;border-radius:999px;border:1px solid #fecaca;background:#fff;color:#991b1b;font-size:14px;font-weight:900;padding:0 14px;cursor:pointer}
     .fifo-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:14px 0;box-shadow:var(--shadow)}
     .fifo-control label{display:block;font-size:14px;font-weight:700;margin-bottom:6px}
     .fifo-control select,.fifo-control input{width:100%;max-width:360px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:18px;background:#fff}
@@ -38,7 +38,7 @@
     .fifo-is-good .fifo-status-pill{background:#dcfce7;color:#14532d}.fifo-is-bad .fifo-status-pill{background:#fee2e2;color:#7f1d1d}.fifo-is-empty .fifo-status-pill{background:#f1f5f9;color:#334155}
     .fifo-product-card h3{font-size:16px;line-height:1.25;min-height:42px;margin:12px 0;color:#111827}
     .fifo-nasa-row{display:flex;justify-content:space-between;align-items:baseline;margin:8px 0 10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:8px 10px}
-    .fifo-nasa-row span{font-size:12px;color:var(--muted);text-transform:uppercase;font-weight:800}.fifo-nasa-row strong{font-size:26px;letter-spacing:.04em}.fifo-edit-nasa{margin:-2px 0 10px}.fifo-edit-nasa button{width:100%;border:1px solid #cbd5e1;background:#fff;color:#334155;border-radius:12px;padding:9px 10px;font-size:13px;font-weight:900;cursor:pointer}.fifo-nasa-edit{margin:8px 0 12px;border:1px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:10px}.fifo-nasa-edit label{display:block;font-size:13px;font-weight:900;margin-bottom:6px}.fifo-nasa-edit input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:20px;font-weight:900;letter-spacing:.04em;background:#fff}.fifo-nasa-edit-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.fifo-nasa-edit-actions button{border:0;border-radius:12px;padding:11px 8px;font-size:13px;font-weight:900;cursor:pointer}.fifo-nasa-edit-actions button[data-action='SaveNasa']{background:#dbeafe;color:#1e3a8a}.fifo-nasa-edit-actions button[data-action='CancelNasa']{background:#fff;border:1px solid #cbd5e1;color:#334155}.fifo-nasa-note{font-size:12px;color:#64748b;margin-top:6px}
+    .fifo-nasa-row span{font-size:12px;color:var(--muted);text-transform:uppercase;font-weight:800}.fifo-nasa-row strong{font-size:26px;letter-spacing:.04em}.fifo-product-tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:-2px 0 10px}.fifo-product-tools button{width:100%;border:1px solid #cbd5e1;background:#fff;color:#334155;border-radius:12px;padding:9px 8px;font-size:13px;font-weight:900;cursor:pointer}.fifo-product-tools button[data-action='RandomProduct']{background:#eef2ff;color:#1e3a8a;border-color:#c7d2fe}.fifo-nasa-edit{margin:8px 0 12px;border:1px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:10px}.fifo-nasa-edit label{display:block;font-size:13px;font-weight:900;margin-bottom:6px}.fifo-nasa-edit input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:20px;font-weight:900;letter-spacing:.04em;background:#fff}.fifo-nasa-edit-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.fifo-nasa-edit-actions button{border:0;border-radius:12px;padding:11px 8px;font-size:13px;font-weight:900;cursor:pointer}.fifo-nasa-edit-actions button[data-action='SaveNasa']{background:#dbeafe;color:#1e3a8a}.fifo-nasa-edit-actions button[data-action='CancelNasa']{background:#fff;border:1px solid #cbd5e1;color:#334155}.fifo-nasa-note{font-size:12px;color:#64748b;margin-top:6px}
     .fifo-qr{display:grid;place-items:center;margin:8px auto 12px}.fifo-qr svg{width:160px;height:160px;display:block;border:8px solid #fff}
     .fifo-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
     .fifo-actions button,.fifo-comment button,.toolbtn{border:0;border-radius:12px;padding:12px 8px;font-size:14px;font-weight:900;cursor:pointer}
@@ -61,7 +61,7 @@
         <h1>FIFO Controle</h1>
         <p id="dateLabel"></p>
       </div>
-      <button class="fifo-refresh" id="refreshBtn" title="Ververs">↻</button>
+      <div class="fifo-header-actions"><button class="fifo-reset" id="resetBtn" title="Reset controle">Reset</button><button class="fifo-refresh" id="refreshBtn" title="Ververs">↻</button></div>
     </section>
 <section class="fifo-card fifo-control">
       <label for="leader">Shiftleider</label>
@@ -206,7 +206,7 @@ function todayKey(){
 }
 function pad(n){return n<10?'0'+n:String(n)}
 function selectionStorageKey(dayKey){
-  return 'fifo_controle_productie_v9_selection_' + productsVersion + '_' + dayKey;
+  return 'fifo_controle_productie_v10_selection_' + productsVersion + '_' + dayKey;
 }
 function loadDay(dayKey){
   if(!productsCsvLoaded){
@@ -280,15 +280,18 @@ function renderCard(item){
     <div class="fifo-card-top"><span class="fifo-sub">${esc(item.Subafdeling)}</span><span class="fifo-status-pill">${esc(item.Status || 'Open')}</span></div>
     <h3>${esc(item.Productnaam)}</h3>
     <div class="fifo-nasa-row"><span>Nasa</span><strong>${esc(item.Nasa)}</strong></div>
-    <div class="fifo-edit-nasa"><button data-action="EditNasa">Nasa aanpassen</button></div>
+    <div class="fifo-product-tools">
+      <button data-action="RandomProduct">Ander willekeurig product</button>
+      <button data-action="ChooseProduct">Zelf een product kiezen</button>
+    </div>
     <div class="fifo-nasa-edit ${item.EditingNasa?'':'fifo-hidden'}">
-      <label>Nieuw Nasa-nummer</label>
-      <input type="text" inputmode="numeric" pattern="[0-9]*" value="${esc(item.Nasa)}" aria-label="Nieuw Nasa-nummer">
+      <label>Zelf gekozen Nasa-nummer</label>
+      <input type="text" inputmode="numeric" pattern="[0-9]*" value="${esc(item.Nasa)}" aria-label="Zelf gekozen Nasa-nummer">
       <div class="fifo-nasa-edit-actions">
         <button data-action="SaveNasa">Opslaan Nasa</button>
         <button data-action="CancelNasa">Annuleren</button>
       </div>
-      <div class="fifo-nasa-note">Als het Nasa-nummer in products.csv staat, wordt de productnaam automatisch bijgewerkt.</div>
+      <div class="fifo-nasa-note">Het Nasa-nummer moet in products.csv staan, actief zijn en bij dit hoofdblok horen. Dubbelen binnen hetzelfde blok worden geweigerd.</div>
     </div>
     <div class="fifo-qr">${qrSvg(item.Nasa)}</div>
     <div class="fifo-actions">
@@ -304,33 +307,114 @@ function renderCard(item){
 function saveSelection(){
   localStorage.setItem(selectionStorageKey(document.getElementById('dateInput').value), JSON.stringify(selection));
 }
+function duplicateInSameAfdeling(nasa, afdeling, exceptId){
+  return selection.find(x => x.Id !== exceptId && x.Afdeling === afdeling && String(x.Nasa) === String(nasa));
+}
+function activeProductsForAfdeling(afdeling){
+  return products.filter(p => p.Actief !== false && p.Afdeling === afdeling);
+}
+function activeProductsForSubafdeling(subafdeling){
+  return products.filter(p => p.Actief !== false && norm(p.Subafdeling) === norm(subafdeling));
+}
+function setItemProduct(item, product, reason){
+  if(!item.OrigineelNasa) item.OrigineelNasa = item.Nasa;
+  if(!item.OrigineleProductnaam) item.OrigineleProductnaam = item.Productnaam;
+
+  item.Nasa = product.Nasa;
+  item.Productnaam = product.Productnaam;
+  item.Afdeling = product.Afdeling;
+  item.Subafdeling = product.Subafdeling || item.Subafdeling;
+  item.AangepastNasa = true;
+  item.AanpassingType = reason || 'Handmatig';
+  item.Status = 'Open';
+  item.Toelichting = '';
+  item.TijdGecheckt = '';
+  item.Shiftleider = '';
+  delete item.EditingNasa;
+}
+function pickRandomReplacement(item){
+  const usedInAfdeling = new Set(selection
+    .filter(x => x.Id !== item.Id && x.Afdeling === item.Afdeling)
+    .map(x => String(x.Nasa)));
+
+  let pool = activeProductsForSubafdeling(item.Subafdeling)
+    .filter(p => p.Afdeling === item.Afdeling && p.Nasa !== item.Nasa && !usedInAfdeling.has(String(p.Nasa)));
+
+  // Noodfallback binnen hetzelfde hoofdblok als de subafdeling te weinig alternatieven heeft.
+  if(!pool.length){
+    pool = activeProductsForAfdeling(item.Afdeling)
+      .filter(p => p.Nasa !== item.Nasa && !usedInAfdeling.has(String(p.Nasa)));
+  }
+
+  if(!pool.length){
+    alert('Geen ander uniek actief product beschikbaar voor dit blok.');
+    return;
+  }
+
+  const product = pool[Math.floor(Math.random() * pool.length)];
+  setItemProduct(item, product, 'Willekeurig');
+  saveSelection();
+  render();
+}
+function resetControle(){
+  if(!confirm('Weet je zeker dat je de volledige FIFO-controle wilt resetten? Alle statussen, fouttoelichtingen en aangepaste Nasa-nummers worden gewist.')){
+    return;
+  }
+  const dayKey = document.getElementById('dateInput').value;
+  localStorage.removeItem(selectionStorageKey(dayKey));
+  selection = generateSelection(dayKey);
+  saveSelection();
+  render();
+}
 function handleClick(e){
   const btn = e.currentTarget, card = btn.closest('.fifo-product-card'), id = Number(card.dataset.id), action = btn.dataset.action;
   const item = selection.find(x=>x.Id===id);
   if(!item) return;
 
-  if(action==='EditNasa'){
+  if(action==='RandomProduct'){
+    pickRandomReplacement(item);
+    return;
+  }
+
+  if(action==='ChooseProduct'){
     item.EditingNasa = true;
     render();
     return;
   }
+
   if(action==='CancelNasa'){
     delete item.EditingNasa;
     render();
     return;
   }
+
   if(action==='SaveNasa'){
     const input = card.querySelector('.fifo-nasa-edit input');
     const newNasa = String(input && input.value || '').replace(/\D/g,'');
-    if(!newNasa){ alert('Vul een geldig Nasa-nummer in.'); return; }
+    if(!newNasa){
+      alert('Vul een geldig Nasa-nummer in.');
+      return;
+    }
+
+    const duplicate = duplicateInSameAfdeling(newNasa, item.Afdeling, item.Id);
+    if(duplicate){
+      alert(`Dit Nasa-nummer staat al in een ander slot van ${item.Afdeling}. Kies een ander product.`);
+      return;
+    }
+
+    const match = products.find(p => p.Actief !== false && String(p.Nasa) === newNasa);
+    if(!match){
+      alert('Dit Nasa-nummer staat niet actief in products.csv. Pas products.csv aan of kies een ander product.');
+      return;
+    }
+
+    if(match.Afdeling !== item.Afdeling){
+      alert(`Dit product hoort bij ${match.Afdeling}, niet bij ${item.Afdeling}. Kies een product binnen hetzelfde blok.`);
+      return;
+    }
+
     if(newNasa !== item.Nasa){
-      if(!item.OrigineelNasa) item.OrigineelNasa = item.Nasa;
-      if(!item.OrigineleProductnaam) item.OrigineleProductnaam = item.Productnaam;
-      item.Nasa = newNasa;
-      item.AangepastNasa = true;
-      const match = products.find(p => p.Nasa === newNasa);
-      item.Productnaam = match ? match.Productnaam : 'Handmatig ingevoerd Nasa-nummer';
-      item.TijdGecheckt = item.TijdGecheckt || new Date().toISOString();
+      setItemProduct(item, match, 'Handmatig');
     }
     delete item.EditingNasa;
     saveSelection();
@@ -449,12 +533,21 @@ function buildSummary(record){
   }
   return lines.join('\\n');
 }
+function departmentItems(record, afdeling){
+  return record.Producten.filter(p => p.Afdeling === afdeling);
+}
 function buildDepartmentText(record, afdeling){
-  const items = record.Producten.filter(p => p.Afdeling === afdeling);
+  return buildDepartmentScore(record, afdeling);
+}
+function buildDepartmentScore(record, afdeling){
+  const items = departmentItems(record, afdeling);
   const meetellend = items.filter(p => p.Status !== 'Niet gevuld');
   const correct = meetellend.filter(p => p.Status === 'Goed');
-  const nasas = correct.map(p => p.Nasa).join(',');
-  return `${correct.length}/${meetellend.length} (${nasas})`;
+  return `${correct.length}/${meetellend.length}`;
+}
+function departmentNasa(record, afdeling, index){
+  const item = departmentItems(record, afdeling)[index - 1];
+  return item ? item.Nasa : '';
 }
 function departmentCounts(record, afdeling){
   const items = record.Producten.filter(p => p.Afdeling === afdeling);
@@ -474,13 +567,42 @@ function makeFormsUrl(record){
   if(!template) return '';
   const replacements = {
     '__SHIFTLEIDER__': record.Shiftleider || '',
+    '__DATUM__': record.DagKey || '',
     '__DAGKEY__': record.DagKey || '',
     '__DATUMTIJD__': record.DatumTijd || '',
-    '__ZUIVEL__': buildDepartmentText(record, 'Zuivel'),
-    '__KAAS_VLEESWAREN__': buildDepartmentText(record, 'Kaas/Vleeswaren'),
-    '__VLEES_VIS_KIP_VEGA__': buildDepartmentText(record, 'Vlees/Vis/Kip/Vega'),
-    '__MAALTIJDEN_SAPPEN__': buildDepartmentText(record, 'Maaltijden/Sappen'),
-    '__PANKLAAR__': buildDepartmentText(record, 'Panklaar'),
+
+    '__ZUIVEL_NASA_1__': departmentNasa(record, 'Zuivel', 1),
+    '__ZUIVEL_NASA_2__': departmentNasa(record, 'Zuivel', 2),
+    '__ZUIVEL_NASA_3__': departmentNasa(record, 'Zuivel', 3),
+    '__ZUIVEL_NASA_4__': departmentNasa(record, 'Zuivel', 4),
+    '__ZUIVEL_SCORE__': buildDepartmentScore(record, 'Zuivel'),
+    '__ZUIVEL__': buildDepartmentScore(record, 'Zuivel'),
+
+    '__KAAS_VLEESWAREN_NASA_1__': departmentNasa(record, 'Kaas/Vleeswaren', 1),
+    '__KAAS_VLEESWAREN_NASA_2__': departmentNasa(record, 'Kaas/Vleeswaren', 2),
+    '__KAAS_VLEESWAREN_NASA_3__': departmentNasa(record, 'Kaas/Vleeswaren', 3),
+    '__KAAS_VLEESWAREN_SCORE__': buildDepartmentScore(record, 'Kaas/Vleeswaren'),
+    '__KAAS_VLEESWAREN__': buildDepartmentScore(record, 'Kaas/Vleeswaren'),
+
+    '__VLEES_VIS_KIP_VEGA_NASA_1__': departmentNasa(record, 'Vlees/Vis/Kip/Vega', 1),
+    '__VLEES_VIS_KIP_VEGA_NASA_2__': departmentNasa(record, 'Vlees/Vis/Kip/Vega', 2),
+    '__VLEES_VIS_KIP_VEGA_NASA_3__': departmentNasa(record, 'Vlees/Vis/Kip/Vega', 3),
+    '__VLEES_VIS_KIP_VEGA_NASA_4__': departmentNasa(record, 'Vlees/Vis/Kip/Vega', 4),
+    '__VLEES_VIS_KIP_VEGA_SCORE__': buildDepartmentScore(record, 'Vlees/Vis/Kip/Vega'),
+    '__VLEES_VIS_KIP_VEGA__': buildDepartmentScore(record, 'Vlees/Vis/Kip/Vega'),
+
+    '__MAALTIJDEN_SAPPEN_NASA_1__': departmentNasa(record, 'Maaltijden/Sappen', 1),
+    '__MAALTIJDEN_SAPPEN_NASA_2__': departmentNasa(record, 'Maaltijden/Sappen', 2),
+    '__MAALTIJDEN_SAPPEN_NASA_3__': departmentNasa(record, 'Maaltijden/Sappen', 3),
+    '__MAALTIJDEN_SAPPEN_SCORE__': buildDepartmentScore(record, 'Maaltijden/Sappen'),
+    '__MAALTIJDEN_SAPPEN__': buildDepartmentScore(record, 'Maaltijden/Sappen'),
+
+    '__PANKLAAR_NASA_1__': departmentNasa(record, 'Panklaar', 1),
+    '__PANKLAAR_NASA_2__': departmentNasa(record, 'Panklaar', 2),
+    '__PANKLAAR_NASA_3__': departmentNasa(record, 'Panklaar', 3),
+    '__PANKLAAR_SCORE__': buildDepartmentScore(record, 'Panklaar'),
+    '__PANKLAAR__': buildDepartmentScore(record, 'Panklaar'),
+
     '__SAMENVATTING__': buildSummary(record),
     '__JSON__': JSON.stringify(record)
   };
@@ -574,6 +696,7 @@ document.getElementById('dateLabel').textContent=new Date().toLocaleDateString('
 document.getElementById('leader').value=localStorage.getItem('fifo_controle_leader')||'';
 document.getElementById('leader').addEventListener('change',e=>localStorage.setItem('fifo_controle_leader',e.target.value));
 document.getElementById('refreshBtn').onclick=()=>loadDay(document.getElementById('dateInput').value);
+document.getElementById('resetBtn').onclick=resetControle;
 document.querySelectorAll('.formsLogBtn').forEach(btn => btn.addEventListener('click', logToForms));
 document.getElementById('continueFormsBtn').addEventListener('click', continueToForms);
 document.getElementById('backToControlBtn').addEventListener('click', backToControl);
