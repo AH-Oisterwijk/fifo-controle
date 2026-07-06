@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FIFO Controle</title>
+  <style>
+    :root{
+      --bg:#f6f7fb;--card:#fff;--text:#172033;--muted:#64748b;--line:#dbe3ef;
+      --blue:#2563eb;--green:#16a34a;--red:#dc2626;--gray:#94a3b8;--shadow:0 8px 26px rgba(15,23,42,.08)
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Segoe UI,system-ui,-apple-system,sans-serif}
+    .fifo-app{max-width:1180px;margin:0 auto;padding:12px}
+    .fifo-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
+    .fifo-header h1{font-size:30px;line-height:1;margin:0 0 4px;font-weight:800}
+    .fifo-header p{margin:0;color:var(--muted);font-size:14px}
+    .fifo-refresh{width:44px;height:44px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:22px;cursor:pointer}
+    .fifo-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:14px 0;box-shadow:var(--shadow)}
+    .fifo-control label{display:block;font-size:14px;font-weight:700;margin-bottom:6px}
+    .fifo-control select,.fifo-control input{width:100%;max-width:360px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:18px;background:#fff}
+    .fifo-progress-row{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;color:#475569}
+    .fifo-progress{height:14px;background:#e5eaf2;border-radius:999px;overflow:hidden}
+    .fifo-progress div{height:100%;width:0;background:var(--blue);border-radius:999px;transition:width .25s ease}
+    .fifo-mini-stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;color:#475569;font-size:13px}
+    .fifo-mini-stats span{background:#f8fafc;border:1px solid #e2e8f0;border-radius:999px;padding:6px 10px}
+    .fifo-message{border-radius:14px;padding:12px 14px;margin:12px 0;border:1px solid #bfdbfe;background:#eff6ff;color:#1e3a8a;font-size:14px}
+    .fifo-success{border-color:#bbf7d0;background:#f0fdf4;color:#14532d}.fifo-error{border-color:#fecaca;background:#fef2f2;color:#7f1d1d}.fifo-hidden{display:none!important}
+    .fifo-group{margin:20px 0}
+    .fifo-group-title{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px}
+    .fifo-group-title h2{margin:0;font-size:21px}.fifo-group-title span{font-weight:800;color:#475569;background:#eef2ff;border-radius:999px;padding:5px 10px}
+    .fifo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .fifo-product-card{background:#fff;border:2px solid var(--line);border-radius:20px;padding:14px;box-shadow:var(--shadow);transition:border-color .2s,transform .15s}
+    .fifo-is-good{border-color:var(--green)}.fifo-is-bad{border-color:var(--red)}.fifo-is-empty{border-color:var(--gray);opacity:.92}
+    .fifo-card-top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+    .fifo-sub{font-size:12px;font-weight:900;color:#475569;text-transform:uppercase;letter-spacing:.05em}
+    .fifo-status-pill{font-size:12px;font-weight:900;color:#1f2937;background:#f1f5f9;border-radius:999px;padding:5px 9px;white-space:nowrap}
+    .fifo-is-good .fifo-status-pill{background:#dcfce7;color:#14532d}.fifo-is-bad .fifo-status-pill{background:#fee2e2;color:#7f1d1d}.fifo-is-empty .fifo-status-pill{background:#f1f5f9;color:#334155}
+    .fifo-product-card h3{font-size:16px;line-height:1.25;min-height:42px;margin:12px 0;color:#111827}
+    .fifo-nasa-row{display:flex;justify-content:space-between;align-items:baseline;margin:8px 0 10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:8px 10px}
+    .fifo-nasa-row span{font-size:12px;color:var(--muted);text-transform:uppercase;font-weight:800}.fifo-nasa-row strong{font-size:26px;letter-spacing:.04em}.fifo-edit-nasa{margin:-2px 0 10px}.fifo-edit-nasa button{width:100%;border:1px solid #cbd5e1;background:#fff;color:#334155;border-radius:12px;padding:9px 10px;font-size:13px;font-weight:900;cursor:pointer}.fifo-nasa-edit{margin:8px 0 12px;border:1px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:10px}.fifo-nasa-edit label{display:block;font-size:13px;font-weight:900;margin-bottom:6px}.fifo-nasa-edit input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:20px;font-weight:900;letter-spacing:.04em;background:#fff}.fifo-nasa-edit-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.fifo-nasa-edit-actions button{border:0;border-radius:12px;padding:11px 8px;font-size:13px;font-weight:900;cursor:pointer}.fifo-nasa-edit-actions button[data-action='SaveNasa']{background:#dbeafe;color:#1e3a8a}.fifo-nasa-edit-actions button[data-action='CancelNasa']{background:#fff;border:1px solid #cbd5e1;color:#334155}.fifo-nasa-note{font-size:12px;color:#64748b;margin-top:6px}
+    .fifo-qr{display:grid;place-items:center;margin:8px auto 12px}.fifo-qr svg{width:160px;height:160px;display:block;border:8px solid #fff}
+    .fifo-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+    .fifo-actions button,.fifo-comment button,.toolbtn{border:0;border-radius:12px;padding:12px 8px;font-size:14px;font-weight:900;cursor:pointer}
+    .fifo-actions button[data-action="Goed"]{background:#dcfce7;color:#14532d}
+    .fifo-actions button[data-action="Fout"]{background:#fee2e2;color:#7f1d1d}
+    .fifo-actions button[data-action="Niet gevuld"]{background:#f1f5f9;color:#334155}
+    .fifo-comment{margin-top:10px;border-top:1px solid #e2e8f0;padding-top:10px}
+    .fifo-comment label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}
+    .fifo-comment textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:12px;padding:10px;resize:vertical;font-family:inherit}
+    .fifo-comment button,.toolbtn.primary{margin-top:8px;background:var(--blue);color:#fff;width:100%}
+    .toolrow{display:flex;gap:10px;flex-wrap:wrap}.toolbtn{background:#fff;border:1px solid var(--line);color:#172033}.toolbtn.danger{background:#fee2e2;color:#7f1d1d}.fifo-submit-card{position:sticky;bottom:0;z-index:4;margin-top:24px;border-color:#bfdbfe}.fifo-bottom-submit{margin:26px 0 40px}.fifo-small-note{font-size:13px;color:#64748b;margin:8px 0 0}.fifo-submit-page{max-width:720px;margin:0 auto;padding:18px}.fifo-submit-page h1{font-size:30px;margin:0 0 8px}.fifo-submit-page p{color:#475569;line-height:1.45}.fifo-submit-summary{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:12px;margin:12px 0;font-size:14px;white-space:pre-wrap}.fifo-submit-actions{display:grid;gap:10px;margin-top:16px}.fifo-submit-actions .toolbtn{width:100%;font-size:16px;padding:14px}.fifo-submit-actions .secondary{background:#fff;color:#172033}.fifo-submit-error{background:#fef2f2;border:1px solid #fecaca;color:#7f1d1d;border-radius:14px;padding:12px;margin:12px 0}
+    @media(max-width:640px){.fifo-app{padding:8px}.fifo-header h1{font-size:24px}.fifo-card{padding:13px;border-radius:16px}.fifo-grid{grid-template-columns:1fr}.fifo-qr svg{width:190px;height:190px}.fifo-nasa-row strong{font-size:30px}.fifo-actions button{font-size:13px;padding:14px 4px}.fifo-control select,.fifo-control input{max-width:none;width:100%}}
+  </style>
+  <script src="config.js"></script>
+</head>
+<body>
+  <div class="fifo-app" id="controlPage">
+    <section class="fifo-header">
+      <div>
+        <h1>FIFO Controle</h1>
+        <p id="dateLabel"></p>
+      </div>
+      <button class="fifo-refresh" id="refreshBtn" title="Ververs">↻</button>
+    </section>
+<section class="fifo-card fifo-control">
+      <label for="leader">Shiftleider</label>
+      <select id="leader">
+        <option value="">Kies naam</option>
+        <option>Bob</option><option>Daan</option><option>Debbie</option><option>Gijs</option><option>Givet</option><option>Jip</option><option>Lars</option><option>Naomi</option><option>Paul</option><option>Pieter</option><option>Renee</option><option>Sander</option>
+      </select>
+    </section>
+
+    <input id="dateInput" type="hidden">
+
+    <section class="fifo-card">
+      <div class="fifo-progress-row">
+        <strong>Voortgang</strong>
+        <span id="progressText">0/17</span>
+      </div>
+      <div class="fifo-progress"><div id="progressBar"></div></div>
+      <div class="fifo-mini-stats" id="stats"></div>
+    </section>
+    <section class="fifo-card fifo-submit-card">
+      <button class="toolbtn primary formsLogBtn">Opslaan FIFO Controle</button>
+      <p class="fifo-small-note">Opent Microsoft Forms met deze controle vooraf ingevuld. Controleer daar kort en klik op Verzenden.</p>
+    </section>
+
+    <section id="content"></section>
+
+    <section class="fifo-card fifo-bottom-submit">
+      <button class="toolbtn primary formsLogBtn">Opslaan FIFO Controle</button>
+    </section>
+  </div>
+
+  <div class="fifo-submit-page fifo-hidden" id="submitPage">
+    <section class="fifo-card">
+      <h1>FIFO Controle</h1>
+      <p>
+        Je bent teruggekomen vanuit Microsoft Forms. Controleer of de controle daar is verzonden.
+        Wil je opnieuw naar Microsoft Forms, klik dan op <strong>Opslaan FIFO Controle</strong>.
+        Wil je nog iets aanpassen, klik dan op <strong>Terug</strong>.
+      </p>
+      <div id="submitError" class="fifo-submit-error fifo-hidden"></div>
+      <div id="submitSummary" class="fifo-submit-summary"></div>
+      <div class="fifo-submit-actions">
+        <button class="toolbtn primary" id="continueFormsBtn">Opslaan FIFO Controle</button>
+        <button class="toolbtn secondary" id="backToControlBtn">Terug</button>
+      </div>
+    </section>
+  </div>
+
+<script>
+const leaders = ['Bob','Daan','Debbie','Gijs','Givet','Jip','Lars','Naomi','Paul','Pieter','Renee','Sander'];
+const subCounts = [
+  {subafdeling:'Zuivel', afdeling:'Zuivel', count:4},
+  {subafdeling:'Kaas/Vleeswaren', afdeling:'Kaas/Vleeswaren', count:3},
+  {subafdeling:'Vis', afdeling:'Vlees/Vis/Kip/Vega', count:1},
+  {subafdeling:'Vlees', afdeling:'Vlees/Vis/Kip/Vega', count:1},
+  {subafdeling:'Kip', afdeling:'Vlees/Vis/Kip/Vega', count:1},
+  {subafdeling:'Vega', afdeling:'Vlees/Vis/Kip/Vega', count:1},
+  {subafdeling:'Maaltijden', afdeling:'Maaltijden/Sappen', count:2},
+  {subafdeling:'Sappen', afdeling:'Maaltijden/Sappen', count:1},
+  {subafdeling:'Panklaar', afdeling:'Panklaar', count:3}
+];
+let products = [];
+let productsVersion = 'no-products';
+let productsCsvLoaded = false;
+async function loadProductsCsv(){
+  try{
+    const res = await fetch('products.csv?v=' + Date.now(), {cache:'no-store'});
+    if(!res.ok) throw new Error('products.csv niet gevonden of niet bereikbaar');
+    const text = await res.text();
+    const parsed = parseProductsCsv(text);
+    if(!parsed.length) throw new Error('products.csv bevat geen geldige productregels');
+    products = parsed;
+    productsVersion = simpleHash(text);
+    productsCsvLoaded = true;
+    return true;
+  }catch(e){
+    products = [];
+    productsCsvLoaded = false;
+    showProductsCsvError(e && e.message ? e.message : String(e));
+    return false;
+  }
+}
+function showProductsCsvError(message){
+  document.getElementById('progressText').textContent = '0/0';
+  document.getElementById('progressBar').style.width = '0%';
+  document.getElementById('stats').innerHTML = '';
+  document.getElementById('content').innerHTML = `<section class="fifo-card fifo-error">
+    <strong>products.csv kon niet worden gelezen.</strong>
+    <p>De app gebruikt geen ingebouwde fallback meer. Daardoor zie je deze fout meteen als GitHub Pages of je browser het CSV-bestand niet goed kan laden.</p>
+    <p><strong>Fout:</strong> ${esc(message)}</p>
+    <p>Controleer of <code>products.csv</code> in dezelfde map/root staat als <code>index.html</code>, of test lokaal via <code>python3 -m http.server 8080</code> en niet via dubbelklikken op index.html.</p>
+  </section>`;
+}
+function simpleHash(text){
+  let h = 2166136261;
+  text = String(text || '');
+  for(let i=0;i<text.length;i++){
+    h ^= text.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return (h >>> 0).toString(36);
+}
+function parseProductsCsv(text){
+  const lines = String(text || '').split(/\r?\n/).filter(l=>l.trim());
+  if(!lines.length) return [];
+  const rows = lines.map(parseCsvLine);
+  const header = rows[0].map(h=>norm(h));
+  const hasHeader = header.includes('nasa') && header.includes('productnaam');
+  const dataRows = hasHeader ? rows.slice(1) : rows;
+  const idx = (name, fallback) => hasHeader ? header.indexOf(norm(name)) : fallback;
+  const iNasa=idx('Nasa',0), iName=idx('Productnaam',1), iAfd=idx('Afdeling',2), iSub=idx('Subafdeling',3), iAct=idx('Actief',4), iGew=idx('Gewicht',5);
+  return dataRows.map((r,i)=>({
+    Id:i+1,
+    Nasa:String(r[iNasa]||'').replace(/\D/g,''),
+    Productnaam:String(r[iName]||'').trim(),
+    Afdeling:String(r[iAfd]||'').trim(),
+    Subafdeling:String(r[iSub]||r[iAfd]||'').trim(),
+    Actief: !['nee','false','0','no'].includes(norm(r[iAct] || 'ja')),
+    Gewicht: Number(r[iGew] || 1) || 1
+  })).filter(p=>p.Nasa && p.Productnaam && p.Actief);
+}
+function parseCsvLine(line){
+  const sep = line.includes(';') ? ';' : ',';
+  const out=[]; let cur='', quote=false;
+  for(let i=0;i<line.length;i++){
+    const ch=line[i];
+    if(ch==='"'){
+      if(quote && line[i+1]==='"'){ cur+='"'; i++; }
+      else quote=!quote;
+    } else if(ch===sep && !quote){ out.push(cur.trim()); cur=''; }
+    else cur += ch;
+  }
+  out.push(cur.trim());
+  return out;
+}
+let selection = [];
+let selectionWarnings = [];
+
+function todayKey(){
+  const d = new Date();
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+}
+function pad(n){return n<10?'0'+n:String(n)}
+function selectionStorageKey(dayKey){
+  return 'fifo_controle_productie_v9_selection_' + productsVersion + '_' + dayKey;
+}
+function loadDay(dayKey){
+  if(!productsCsvLoaded){
+    showProductsCsvError('products.csv is nog niet geladen.');
+    return;
+  }
+  selectionWarnings = [];
+  const key = selectionStorageKey(dayKey);
+  const saved = localStorage.getItem(key);
+  if(saved){
+    selection = JSON.parse(saved);
+    validateCurrentPools();
+  }
+  else {
+    selection = generateSelection(dayKey);
+    localStorage.setItem(key, JSON.stringify(selection));
+  }
+  render();
+}
+function validateCurrentPools(){
+  subCounts.forEach(rule=>{
+    const pool = products.filter(p=>p.Actief !== false && norm(p.Subafdeling)===norm(rule.subafdeling));
+    if(pool.length < rule.count){
+      selectionWarnings.push(`${rule.subafdeling}: ${pool.length}/${rule.count} actieve producten in products.csv`);
+    }
+  });
+}
+function generateSelection(dayKey){
+  let output = [], volgorde = 1;
+  selectionWarnings = [];
+  subCounts.forEach(rule=>{
+    const pool = products.filter(p=>p.Actief !== false && norm(p.Subafdeling)===norm(rule.subafdeling));
+    if(pool.length < rule.count){
+      selectionWarnings.push(`${rule.subafdeling}: ${pool.length}/${rule.count} actieve producten in products.csv`);
+    }
+    pickWeighted(pool, rule.count, `${dayKey}-${rule.subafdeling}`).forEach(p=>{
+      output.push({Id:volgorde,DagKey:dayKey,Nasa:p.Nasa,Productnaam:p.Productnaam,Afdeling:rule.afdeling,Subafdeling:rule.subafdeling,Volgorde:volgorde++,Status:'Open',Shiftleider:'',TijdGecheckt:'',Toelichting:''});
+    });
+  });
+  return output;
+}
+function pickWeighted(pool,count,seed){
+  return pool.map(p=>{
+    const weight=Math.max(1,Math.min(10,Number(p.Gewicht||1)));
+    const random=seededRandom(`${seed}-${p.Nasa}`);
+    return {p, score: random / weight};
+  }).sort((a,b)=>a.score-b.score).slice(0,count).map(x=>x.p);
+}
+function norm(s){return String(s||'').toLowerCase().replace(/\s+/g,' ').trim()}
+function seededRandom(seed){
+  let h=2166136261;
+  for(let i=0;i<seed.length;i++){h^=seed.charCodeAt(i);h=Math.imul(h,16777619);}
+  h += h << 13; h ^= h >>> 7; h += h << 3; h ^= h >>> 17; h += h << 5;
+  return ((h>>>0)%1000000)/1000000;
+}
+function render(){
+  const groups = ['Zuivel','Kaas/Vleeswaren','Vlees/Vis/Kip/Vega','Maaltijden/Sappen','Panklaar'].map(a=>({afdeling:a,items:selection.filter(x=>x.Afdeling===a)})).filter(g=>g.items.length);
+  const warningHtml = selectionWarnings.length ? `<section class="fifo-message fifo-error"><strong>Let op:</strong> ${selectionWarnings.map(esc).join(' · ')}</section>` : '';
+  document.getElementById('content').innerHTML = warningHtml + groups.map(g=>renderGroup(g.afdeling,g.items)).join('');
+  document.querySelectorAll('.fifo-product-card button').forEach(btn=>btn.addEventListener('click',handleClick));
+  updateProgress();
+}
+function renderGroup(afdeling,items){
+  const done = items.filter(x=>x.Status && x.Status !== 'Open').length;
+  return `<section class="fifo-group"><div class="fifo-group-title"><h2>${esc(afdeling)}</h2><span>${done}/${items.length}</span></div><div class="fifo-grid">${items.map(renderCard).join('')}</div></section>`;
+}
+function renderCard(item){
+  const cls = item.Status==='Goed'?'fifo-is-good':item.Status==='Fout'?'fifo-is-bad':item.Status==='Niet gevuld'?'fifo-is-empty':'fifo-is-open';
+  const fault = item.Status==='Fout';
+  return `<article class="fifo-product-card ${cls}" data-id="${item.Id}">
+    <div class="fifo-card-top"><span class="fifo-sub">${esc(item.Subafdeling)}</span><span class="fifo-status-pill">${esc(item.Status || 'Open')}</span></div>
+    <h3>${esc(item.Productnaam)}</h3>
+    <div class="fifo-nasa-row"><span>Nasa</span><strong>${esc(item.Nasa)}</strong></div>
+    <div class="fifo-edit-nasa"><button data-action="EditNasa">Nasa aanpassen</button></div>
+    <div class="fifo-nasa-edit ${item.EditingNasa?'':'fifo-hidden'}">
+      <label>Nieuw Nasa-nummer</label>
+      <input type="text" inputmode="numeric" pattern="[0-9]*" value="${esc(item.Nasa)}" aria-label="Nieuw Nasa-nummer">
+      <div class="fifo-nasa-edit-actions">
+        <button data-action="SaveNasa">Opslaan Nasa</button>
+        <button data-action="CancelNasa">Annuleren</button>
+      </div>
+      <div class="fifo-nasa-note">Als het Nasa-nummer in products.csv staat, wordt de productnaam automatisch bijgewerkt.</div>
+    </div>
+    <div class="fifo-qr">${qrSvg(item.Nasa)}</div>
+    <div class="fifo-actions">
+      <button data-action="Goed">Goed</button><button data-action="Fout">Fout</button><button data-action="Niet gevuld">Niet gevuld</button>
+    </div>
+    <div class="fifo-comment ${fault?'':'fifo-hidden'}">
+      <label>Toelichting fout</label>
+      <textarea placeholder="Bijv. nieuw stond vóór oud; vak hersteld">${esc(item.Toelichting||'')}</textarea>
+      <button data-action="SaveComment">Toelichting opslaan</button>
+    </div>
+  </article>`;
+}
+function saveSelection(){
+  localStorage.setItem(selectionStorageKey(document.getElementById('dateInput').value), JSON.stringify(selection));
+}
+function handleClick(e){
+  const btn = e.currentTarget, card = btn.closest('.fifo-product-card'), id = Number(card.dataset.id), action = btn.dataset.action;
+  const item = selection.find(x=>x.Id===id);
+  if(!item) return;
+
+  if(action==='EditNasa'){
+    item.EditingNasa = true;
+    render();
+    return;
+  }
+  if(action==='CancelNasa'){
+    delete item.EditingNasa;
+    render();
+    return;
+  }
+  if(action==='SaveNasa'){
+    const input = card.querySelector('.fifo-nasa-edit input');
+    const newNasa = String(input && input.value || '').replace(/\D/g,'');
+    if(!newNasa){ alert('Vul een geldig Nasa-nummer in.'); return; }
+    if(newNasa !== item.Nasa){
+      if(!item.OrigineelNasa) item.OrigineelNasa = item.Nasa;
+      if(!item.OrigineleProductnaam) item.OrigineleProductnaam = item.Productnaam;
+      item.Nasa = newNasa;
+      item.AangepastNasa = true;
+      const match = products.find(p => p.Nasa === newNasa);
+      item.Productnaam = match ? match.Productnaam : 'Handmatig ingevoerd Nasa-nummer';
+      item.TijdGecheckt = item.TijdGecheckt || new Date().toISOString();
+    }
+    delete item.EditingNasa;
+    saveSelection();
+    render();
+    return;
+  }
+
+  const leader = document.getElementById('leader').value;
+  if(!leader){ alert('Kies eerst een shiftleider.'); return; }
+  if(action==='SaveComment'){
+    item.Toelichting = card.querySelector('textarea').value || '';
+  } else {
+    item.Status = action;
+    item.Shiftleider = leader;
+    item.TijdGecheckt = new Date().toISOString();
+    if(action==='Fout') item.Toelichting = item.Toelichting || '';
+  }
+  saveSelection();
+  render();
+}
+function updateProgress(){
+  const total=selection.length||17, done=selection.filter(x=>x.Status && x.Status!=='Open').length;
+  document.getElementById('progressText').textContent=`${done}/${total}`;
+  document.getElementById('progressBar').style.width=`${Math.round(done/total*100)}%`;
+  const goed=selection.filter(x=>x.Status==='Goed').length, fout=selection.filter(x=>x.Status==='Fout').length, niet=selection.filter(x=>x.Status==='Niet gevuld').length;
+  document.getElementById('stats').innerHTML=`<span>Goed: <strong>${goed}</strong></span><span>Fout: <strong>${fout}</strong></span><span>Niet gevuld: <strong>${niet}</strong></span>`;
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+// Small QR generator, numeric version-1 L
+function qrSvg(nasa){
+  const m=makeQrMatrixNumeric(nasa), border=4, size=m.length, total=size+border*2, paths=[];
+  for(let y=0;y<size;y++) for(let x=0;x<size;x++) if(m[y][x]) paths.push(`M${x+border},${y+border}h1v1h-1z`);
+  return `<svg viewBox="0 0 ${total} ${total}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#fff"/><path d="${paths.join('')}" fill="#000"/></svg>`;
+}
+function makeQrMatrixNumeric(input){
+  const text=String(input||'').replace(/\D/g,''); if(!text||text.length>41) throw Error('bad qr');
+  const size=21,dataCodewords=19,ecCodewords=7,bits=[];
+  const appendBits=(val,len)=>{for(let i=len-1;i>=0;i--)bits.push((val>>>i)&1)};
+  appendBits(1,4); appendBits(text.length,10);
+  for(let i=0;i<text.length;i+=3){const chunk=text.substring(i,i+3); appendBits(parseInt(chunk,10), chunk.length===3?10:chunk.length===2?7:4);}
+  const cap=dataCodewords*8; appendBits(0,Math.min(4,cap-bits.length)); while(bits.length%8!==0)bits.push(0);
+  const data=[]; for(let i=0;i<bits.length;i+=8){let b=0; for(let j=0;j<8;j++)b=(b<<1)|bits[i+j]; data.push(b);}
+  for(let pad=0;data.length<dataCodewords;pad^=1)data.push(pad?0x11:0xEC);
+  const full=data.concat(rsRemainder(data,ecCodewords));
+  const modules=Array.from({length:size},()=>Array(size).fill(false)), isFunc=Array.from({length:size},()=>Array(size).fill(false));
+  const setFunc=(x,y,dark)=>{if(x>=0&&x<size&&y>=0&&y<size){modules[y][x]=!!dark;isFunc[y][x]=true}};
+  const finder=(cx,cy)=>{for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++){const x=cx+dx,y=cy+dy;if(x<0||x>=size||y<0||y>=size)continue;const dist=Math.max(Math.abs(dx),Math.abs(dy));setFunc(x,y,dist!==2&&dist!==4);}};
+  finder(3,3); finder(size-4,3); finder(3,size-4);
+  for(let i=8;i<size-8;i++){setFunc(i,6,i%2===0);setFunc(6,i,i%2===0);}
+  setFunc(8,size-8,true);
+  for(let i=0;i<9;i++){if(i!==6){setFunc(8,i,false);setFunc(i,8,false);}}
+  for(let i=0;i<8;i++){setFunc(size-1-i,8,false);setFunc(8,size-1-i,false);}
+  let bitIndex=0;
+  for(let right=size-1;right>=1;right-=2){if(right===6)right--;for(let vert=0;vert<size;vert++){const y=((right+1)&2)===0?size-1-vert:vert;for(let j=0;j<2;j++){const x=right-j;if(!isFunc[y][x]){const bit=bitIndex<full.length*8?((full[bitIndex>>>3]>>>(7-(bitIndex&7)))&1):0;const mask=((x+y)&1)===0;modules[y][x]=!!(bit^(mask?1:0));bitIndex++;}}}}
+  drawFormatBits(modules,isFunc,0); return modules;
+}
+function drawFormatBits(modules,isFunc,mask){
+  const data=(1<<3)|mask; let rem=data; for(let i=0;i<10;i++)rem=(rem<<1)^(((rem>>>9)&1)*0x537);
+  const bits=((data<<10)|rem)^0x5412, set=(x,y,i)=>{modules[y][x]=((bits>>>i)&1)!==0;isFunc[y][x]=true};
+  for(let i=0;i<=5;i++)set(8,i,i); set(8,7,6); set(8,8,7); set(7,8,8);
+  for(let i=9;i<15;i++)set(14-i,8,i); for(let i=0;i<8;i++)set(20-i,8,i); for(let i=8;i<15;i++)set(8,6+i,i); modules[13][8]=true; isFunc[13][8]=true;
+}
+function gfMul(x,y){let z=0;for(let i=7;i>=0;i--){z=(z<<1)^(((z>>>7)&1)*0x11D);z^=((y>>>i)&1)*x;}return z&255;}
+function rsDivisor(degree){const result=Array(degree).fill(0); result[degree-1]=1; let root=1; for(let i=0;i<degree;i++){for(let j=0;j<degree;j++){result[j]=gfMul(result[j],root); if(j+1<degree)result[j]^=result[j+1];} root=gfMul(root,2);} return result;}
+function rsRemainder(data,degree){const divisor=rsDivisor(degree), result=Array(degree).fill(0); data.forEach(b=>{const factor=b^result.shift(); result.push(0); for(let i=0;i<degree;i++)result[i]^=gfMul(divisor[i],factor);}); return result;}
+
+
+function formatDateTime(d){
+  return d.toLocaleString('nl-NL',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+}
+function buildLogRecord(){
+  const leader = document.getElementById('leader').value || '';
+  const dayKey = document.getElementById('dateInput').value || todayKey();
+  const done = selection.filter(x=>x.Status && x.Status!=='Open').length;
+  const goed = selection.filter(x=>x.Status==='Goed').length;
+  const fout = selection.filter(x=>x.Status==='Fout').length;
+  const niet = selection.filter(x=>x.Status==='Niet gevuld').length;
+  return {
+    DatumTijd: formatDateTime(new Date()),
+    DagKey: dayKey,
+    Shiftleider: leader,
+    AantalTotaal: selection.length,
+    AantalAfgerond: done,
+    AantalGoed: goed,
+    AantalFout: fout,
+    AantalNietGevuld: niet,
+    Producten: selection.map(x=>({
+      Subafdeling:x.Subafdeling,
+      Afdeling:x.Afdeling,
+      Nasa:x.Nasa,
+      OrigineelNasa:x.OrigineelNasa || '',
+      AangepastNasa: !!x.AangepastNasa,
+      Productnaam:x.Productnaam,
+      OrigineleProductnaam:x.OrigineleProductnaam || '',
+      Status:x.Status,
+      Toelichting:x.Toelichting || ''
+    }))
+  };
+}
+function formatProductLine(p){
+  const nasa = p.AangepastNasa && p.OrigineelNasa ? `${p.Nasa} (aangepast van ${p.OrigineelNasa})` : p.Nasa;
+  const name = p.AangepastNasa && p.OrigineleProductnaam ? `${p.Productnaam} (oorspronkelijk: ${p.OrigineleProductnaam})` : p.Productnaam;
+  return `${p.Subafdeling} | ${nasa} | ${name} | ${p.Status || 'Open'}${p.Toelichting ? ' | ' + p.Toelichting : ''}`;
+}
+function buildSummary(record){
+  const lines = [];
+  lines.push(`FIFO Controle`);
+  lines.push(`Datum: ${record.DagKey}`);
+  lines.push(`Shiftleider: ${record.Shiftleider || '-'}`);
+  lines.push(`Voortgang: ${record.AantalAfgerond}/${record.AantalTotaal}`);
+  lines.push(`Goed: ${record.AantalGoed} | Fout: ${record.AantalFout} | Niet gevuld: ${record.AantalNietGevuld}`);
+  lines.push('');
+  for(const p of record.Producten){
+    lines.push(formatProductLine(p));
+  }
+  return lines.join('\\n');
+}
+function buildDepartmentText(record, afdeling){
+  const items = record.Producten.filter(p => p.Afdeling === afdeling);
+  const meetellend = items.filter(p => p.Status !== 'Niet gevuld');
+  const correct = meetellend.filter(p => p.Status === 'Goed');
+  const nasas = correct.map(p => p.Nasa).join(',');
+  return `${correct.length}/${meetellend.length} (${nasas})`;
+}
+function departmentCounts(record, afdeling){
+  const items = record.Producten.filter(p => p.Afdeling === afdeling);
+  return {
+    correct: items.filter(p => p.Status === 'Goed').length,
+    fout: items.filter(p => p.Status === 'Fout').length,
+    nietGevuld: items.filter(p => p.Status === 'Niet gevuld').length,
+    open: items.filter(p => !p.Status || p.Status === 'Open').length,
+    totaal: items.length
+  };
+}
+function configuredFormsUrl(){
+  return (window.FIFO_FORMS_URL_TEMPLATE || '').trim();
+}
+function makeFormsUrl(record){
+  const template = configuredFormsUrl();
+  if(!template) return '';
+  const replacements = {
+    '__SHIFTLEIDER__': record.Shiftleider || '',
+    '__DAGKEY__': record.DagKey || '',
+    '__DATUMTIJD__': record.DatumTijd || '',
+    '__ZUIVEL__': buildDepartmentText(record, 'Zuivel'),
+    '__KAAS_VLEESWAREN__': buildDepartmentText(record, 'Kaas/Vleeswaren'),
+    '__VLEES_VIS_KIP_VEGA__': buildDepartmentText(record, 'Vlees/Vis/Kip/Vega'),
+    '__MAALTIJDEN_SAPPEN__': buildDepartmentText(record, 'Maaltijden/Sappen'),
+    '__PANKLAAR__': buildDepartmentText(record, 'Panklaar'),
+    '__SAMENVATTING__': buildSummary(record),
+    '__JSON__': JSON.stringify(record)
+  };
+  let url = template;
+  Object.keys(replacements).forEach(key=>{
+    url = url.split(key).join(encodeURIComponent(replacements[key]));
+  });
+  return url;
+}
+let pendingFormsUrl = '';
+
+function prepareSubmitPage(record, formsUrl, errorMessage){
+  document.getElementById('controlPage').classList.add('fifo-hidden');
+  document.getElementById('submitPage').classList.remove('fifo-hidden');
+
+  const summaryLines = [];
+  summaryLines.push(`Shiftleider: ${record.Shiftleider}`);
+  summaryLines.push(`Datum+tijd: ${record.DatumTijd}`);
+  summaryLines.push(`Voortgang: ${record.AantalAfgerond}/${record.AantalTotaal}`);
+  summaryLines.push(`Goed: ${record.AantalGoed} | Fout: ${record.AantalFout} | Niet gevuld: ${record.AantalNietGevuld}`);
+  summaryLines.push('');
+  summaryLines.push('Afdelingen:');
+  summaryLines.push(buildDepartmentText(record, 'Zuivel').split('\\n')[0]);
+  summaryLines.push(buildDepartmentText(record, 'Kaas/Vleeswaren').split('\\n')[0]);
+  summaryLines.push(buildDepartmentText(record, 'Vlees/Vis/Kip/Vega').split('\\n')[0]);
+  summaryLines.push(buildDepartmentText(record, 'Maaltijden/Sappen').split('\\n')[0]);
+  summaryLines.push(buildDepartmentText(record, 'Panklaar').split('\\n')[0]);
+  document.getElementById('submitSummary').textContent = summaryLines.join('\\n');
+
+  const err = document.getElementById('submitError');
+  if(errorMessage){
+    pendingFormsUrl = '';
+    err.textContent = errorMessage;
+    err.classList.remove('fifo-hidden');
+    document.getElementById('continueFormsBtn').disabled = true;
+  } else {
+    pendingFormsUrl = formsUrl;
+    err.classList.add('fifo-hidden');
+    document.getElementById('continueFormsBtn').disabled = false;
+  }
+}
+
+function logToForms(){
+  const leader = document.getElementById('leader').value;
+  if(!leader){ alert('Kies eerst een shiftleider.'); return; }
+
+  const open = selection.filter(x=>!x.Status || x.Status==='Open').length;
+  if(open && !confirm(`Er staan nog ${open} producten open. Toch opslaan?`)) return;
+
+  const record = buildLogRecord();
+  const template = configuredFormsUrl();
+
+  if(!template){
+    prepareSubmitPage(record, '', 'De Microsoft Forms-koppeling ontbreekt nog. Plak eerst de prefilled Forms-link in config.js en upload die opnieuw.');
+    window.scrollTo({top:0, behavior:'smooth'});
+    return;
+  }
+
+  const url = makeFormsUrl(record);
+  prepareSubmitPage(record, url, '');
+  window.location.href = url;
+}
+
+function continueToForms(){
+  if(!pendingFormsUrl){
+    alert('Er is nog geen Forms-link klaargezet.');
+    return;
+  }
+  window.location.href = pendingFormsUrl;
+}
+
+function backToControl(){
+  document.getElementById('submitPage').classList.add('fifo-hidden');
+  document.getElementById('controlPage').classList.remove('fifo-hidden');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+async function copySummary(){
+  const record = buildLogRecord();
+  const txt = buildSummary(record) + '\\n\\n---JSON---\\n' + JSON.stringify(record);
+  try{
+    await navigator.clipboard.writeText(txt);
+    alert('Samenvatting gekopieerd.');
+  } catch(e){
+    alert(txt);
+  }
+}
+
+document.getElementById('dateInput').value=todayKey();
+document.getElementById('dateLabel').textContent=new Date().toLocaleDateString('nl-NL',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
+document.getElementById('leader').value=localStorage.getItem('fifo_controle_leader')||'';
+document.getElementById('leader').addEventListener('change',e=>localStorage.setItem('fifo_controle_leader',e.target.value));
+document.getElementById('refreshBtn').onclick=()=>loadDay(document.getElementById('dateInput').value);
+document.querySelectorAll('.formsLogBtn').forEach(btn => btn.addEventListener('click', logToForms));
+document.getElementById('continueFormsBtn').addEventListener('click', continueToForms);
+document.getElementById('backToControlBtn').addEventListener('click', backToControl);
+(async function initApp(){
+  const ok = await loadProductsCsv();
+  if(ok) loadDay(document.getElementById('dateInput').value);
+})();
+</script>
+</body>
+</html>
