@@ -15,7 +15,7 @@
     .fifo-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
     .fifo-header h1{font-size:30px;line-height:1;margin:0 0 4px;font-weight:800}
     .fifo-header p{margin:0;color:var(--muted);font-size:14px}
-    .fifo-header-actions{display:flex;gap:8px;align-items:center}.fifo-refresh{width:44px;height:44px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:22px;cursor:pointer}.fifo-reset{height:44px;border-radius:999px;border:1px solid #fecaca;background:#fff;color:#991b1b;font-size:14px;font-weight:900;padding:0 14px;cursor:pointer}
+    .fifo-header-actions{display:flex;gap:8px;align-items:center}.fifo-refresh{width:44px;height:44px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:22px;cursor:pointer}.fifo-reset{margin-top:10px;width:100%;border:1px solid #fecaca;background:#fff;color:#991b1b;border-radius:12px;padding:12px 8px;font-size:14px;font-weight:900;cursor:pointer}
     .fifo-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:14px 0;box-shadow:var(--shadow)}
     .fifo-control label{display:block;font-size:14px;font-weight:700;margin-bottom:6px}
     .fifo-control select,.fifo-control input{width:100%;max-width:360px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:18px;background:#fff}
@@ -41,14 +41,11 @@
     .fifo-nasa-row span{font-size:12px;color:var(--muted);text-transform:uppercase;font-weight:800}.fifo-nasa-row strong{font-size:26px;letter-spacing:.04em}.fifo-product-tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:-2px 0 10px}.fifo-product-tools button{width:100%;border:1px solid #cbd5e1;background:#fff;color:#334155;border-radius:12px;padding:9px 8px;font-size:13px;font-weight:900;cursor:pointer}.fifo-product-tools button[data-action='RandomProduct']{background:#eef2ff;color:#1e3a8a;border-color:#c7d2fe}.fifo-nasa-edit{margin:8px 0 12px;border:1px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:10px}.fifo-nasa-edit label{display:block;font-size:13px;font-weight:900;margin-bottom:6px}.fifo-nasa-edit input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:20px;font-weight:900;letter-spacing:.04em;background:#fff}.fifo-nasa-edit-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.fifo-nasa-edit-actions button{border:0;border-radius:12px;padding:11px 8px;font-size:13px;font-weight:900;cursor:pointer}.fifo-nasa-edit-actions button[data-action='SaveNasa']{background:#dbeafe;color:#1e3a8a}.fifo-nasa-edit-actions button[data-action='CancelNasa']{background:#fff;border:1px solid #cbd5e1;color:#334155}.fifo-nasa-note{font-size:12px;color:#64748b;margin-top:6px}
     .fifo-qr{display:grid;place-items:center;margin:8px auto 12px}.fifo-qr svg{width:160px;height:160px;display:block;border:8px solid #fff}
     .fifo-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-    .fifo-actions button,.fifo-comment button,.toolbtn{border:0;border-radius:12px;padding:12px 8px;font-size:14px;font-weight:900;cursor:pointer}
+    .fifo-actions button,.toolbtn{border:0;border-radius:12px;padding:12px 8px;font-size:14px;font-weight:900;cursor:pointer}
     .fifo-actions button[data-action="Goed"]{background:#dcfce7;color:#14532d}
     .fifo-actions button[data-action="Fout"]{background:#fee2e2;color:#7f1d1d}
     .fifo-actions button[data-action="Niet gevuld"]{background:#f1f5f9;color:#334155}
-    .fifo-comment{margin-top:10px;border-top:1px solid #e2e8f0;padding-top:10px}
-    .fifo-comment label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}
-    .fifo-comment textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:12px;padding:10px;resize:vertical;font-family:inherit}
-    .fifo-comment button,.toolbtn.primary{margin-top:8px;background:var(--blue);color:#fff;width:100%}
+    .toolbtn.primary{margin-top:8px;background:var(--blue);color:#fff;width:100%}
     .toolrow{display:flex;gap:10px;flex-wrap:wrap}.toolbtn{background:#fff;border:1px solid var(--line);color:#172033}.toolbtn.danger{background:#fee2e2;color:#7f1d1d}.fifo-submit-card{position:sticky;bottom:0;z-index:4;margin-top:24px;border-color:#bfdbfe}.fifo-bottom-submit{margin:26px 0 40px}.fifo-small-note{font-size:13px;color:#64748b;margin:8px 0 0}.fifo-submit-page{max-width:720px;margin:0 auto;padding:18px}.fifo-submit-page h1{font-size:30px;margin:0 0 8px}.fifo-submit-page p{color:#475569;line-height:1.45}.fifo-submit-summary{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:12px;margin:12px 0;font-size:14px;white-space:pre-wrap}.fifo-submit-actions{display:grid;gap:10px;margin-top:16px}.fifo-submit-actions .toolbtn{width:100%;font-size:16px;padding:14px}.fifo-submit-actions .secondary{background:#fff;color:#172033}.fifo-submit-error{background:#fef2f2;border:1px solid #fecaca;color:#7f1d1d;border-radius:14px;padding:12px;margin:12px 0}
     @media(max-width:640px){.fifo-app{padding:8px}.fifo-header h1{font-size:24px}.fifo-card{padding:13px;border-radius:16px}.fifo-grid{grid-template-columns:1fr}.fifo-qr svg{width:190px;height:190px}.fifo-nasa-row strong{font-size:30px}.fifo-actions button{font-size:13px;padding:14px 4px}.fifo-control select,.fifo-control input{max-width:none;width:100%}}
   </style>
@@ -61,7 +58,7 @@
         <h1>FIFO Controle</h1>
         <p id="dateLabel"></p>
       </div>
-      <div class="fifo-header-actions"><button class="fifo-reset" id="resetBtn" title="Reset controle">Reset</button><button class="fifo-refresh" id="refreshBtn" title="Ververs">↻</button></div>
+      <div class="fifo-header-actions"><button class="fifo-refresh" id="refreshBtn" title="Ververs">↻</button></div>
     </section>
 <section class="fifo-card fifo-control">
       <label for="leader">Shiftleider</label>
@@ -83,6 +80,7 @@
     </section>
     <section class="fifo-card fifo-submit-card">
       <button class="toolbtn primary formsLogBtn">Opslaan FIFO Controle</button>
+      <button class="fifo-reset resetBtn" title="Reset controle">Reset controle</button>
       <p class="fifo-small-note">Opent Microsoft Forms met deze controle vooraf ingevuld. Controleer daar kort en klik op Verzenden.</p>
     </section>
 
@@ -90,6 +88,7 @@
 
     <section class="fifo-card fifo-bottom-submit">
       <button class="toolbtn primary formsLogBtn">Opslaan FIFO Controle</button>
+      <button class="fifo-reset resetBtn" title="Reset controle">Reset controle</button>
     </section>
   </div>
 
@@ -206,7 +205,7 @@ function todayKey(){
 }
 function pad(n){return n<10?'0'+n:String(n)}
 function selectionStorageKey(dayKey){
-  return 'fifo_controle_productie_v10_selection_' + productsVersion + '_' + dayKey;
+  return 'fifo_controle_productie_v11_selection_' + productsVersion + '_' + dayKey;
 }
 function loadDay(dayKey){
   if(!productsCsvLoaded){
@@ -243,7 +242,7 @@ function generateSelection(dayKey){
       selectionWarnings.push(`${rule.subafdeling}: ${pool.length}/${rule.count} actieve producten in products.csv`);
     }
     pickWeighted(pool, rule.count, `${dayKey}-${rule.subafdeling}`).forEach(p=>{
-      output.push({Id:volgorde,DagKey:dayKey,Nasa:p.Nasa,Productnaam:p.Productnaam,Afdeling:rule.afdeling,Subafdeling:rule.subafdeling,Volgorde:volgorde++,Status:'Open',Shiftleider:'',TijdGecheckt:'',Toelichting:''});
+      output.push({Id:volgorde,DagKey:dayKey,Nasa:p.Nasa,Productnaam:p.Productnaam,Afdeling:rule.afdeling,Subafdeling:rule.subafdeling,Volgorde:volgorde++,Status:'Open',Shiftleider:'',TijdGecheckt:''});
     });
   });
   return output;
@@ -275,7 +274,6 @@ function renderGroup(afdeling,items){
 }
 function renderCard(item){
   const cls = item.Status==='Goed'?'fifo-is-good':item.Status==='Fout'?'fifo-is-bad':item.Status==='Niet gevuld'?'fifo-is-empty':'fifo-is-open';
-  const fault = item.Status==='Fout';
   return `<article class="fifo-product-card ${cls}" data-id="${item.Id}">
     <div class="fifo-card-top"><span class="fifo-sub">${esc(item.Subafdeling)}</span><span class="fifo-status-pill">${esc(item.Status || 'Open')}</span></div>
     <h3>${esc(item.Productnaam)}</h3>
@@ -296,11 +294,6 @@ function renderCard(item){
     <div class="fifo-qr">${qrSvg(item.Nasa)}</div>
     <div class="fifo-actions">
       <button data-action="Goed">Goed</button><button data-action="Fout">Fout</button><button data-action="Niet gevuld">Niet gevuld</button>
-    </div>
-    <div class="fifo-comment ${fault?'':'fifo-hidden'}">
-      <label>Toelichting fout</label>
-      <textarea placeholder="Bijv. nieuw stond vóór oud; vak hersteld">${esc(item.Toelichting||'')}</textarea>
-      <button data-action="SaveComment">Toelichting opslaan</button>
     </div>
   </article>`;
 }
@@ -327,7 +320,6 @@ function setItemProduct(item, product, reason){
   item.AangepastNasa = true;
   item.AanpassingType = reason || 'Handmatig';
   item.Status = 'Open';
-  item.Toelichting = '';
   item.TijdGecheckt = '';
   item.Shiftleider = '';
   delete item.EditingNasa;
@@ -357,7 +349,7 @@ function pickRandomReplacement(item){
   render();
 }
 function resetControle(){
-  if(!confirm('Weet je zeker dat je de volledige FIFO-controle wilt resetten? Alle statussen, fouttoelichtingen en aangepaste Nasa-nummers worden gewist.')){
+  if(!confirm('Weet je zeker dat je de volledige FIFO-controle wilt resetten? Alle statussen en aangepaste Nasa-nummers worden gewist.')){
     return;
   }
   const dayKey = document.getElementById('dateInput').value;
@@ -424,14 +416,11 @@ function handleClick(e){
 
   const leader = document.getElementById('leader').value;
   if(!leader){ alert('Kies eerst een shiftleider.'); return; }
-  if(action==='SaveComment'){
-    item.Toelichting = card.querySelector('textarea').value || '';
-  } else {
-    item.Status = action;
-    item.Shiftleider = leader;
-    item.TijdGecheckt = new Date().toISOString();
-    if(action==='Fout') item.Toelichting = item.Toelichting || '';
-  }
+
+  item.Status = action;
+  item.Shiftleider = leader;
+  item.TijdGecheckt = new Date().toISOString();
+
   saveSelection();
   render();
 }
@@ -510,15 +499,14 @@ function buildLogRecord(){
       AangepastNasa: !!x.AangepastNasa,
       Productnaam:x.Productnaam,
       OrigineleProductnaam:x.OrigineleProductnaam || '',
-      Status:x.Status,
-      Toelichting:x.Toelichting || ''
+      Status:x.Status
     }))
   };
 }
 function formatProductLine(p){
   const nasa = p.AangepastNasa && p.OrigineelNasa ? `${p.Nasa} (aangepast van ${p.OrigineelNasa})` : p.Nasa;
   const name = p.AangepastNasa && p.OrigineleProductnaam ? `${p.Productnaam} (oorspronkelijk: ${p.OrigineleProductnaam})` : p.Productnaam;
-  return `${p.Subafdeling} | ${nasa} | ${name} | ${p.Status || 'Open'}${p.Toelichting ? ' | ' + p.Toelichting : ''}`;
+  return `${p.Subafdeling} | ${nasa} | ${name} | ${p.Status || 'Open'}`;
 }
 function buildSummary(record){
   const lines = [];
@@ -696,8 +684,8 @@ document.getElementById('dateLabel').textContent=new Date().toLocaleDateString('
 document.getElementById('leader').value=localStorage.getItem('fifo_controle_leader')||'';
 document.getElementById('leader').addEventListener('change',e=>localStorage.setItem('fifo_controle_leader',e.target.value));
 document.getElementById('refreshBtn').onclick=()=>loadDay(document.getElementById('dateInput').value);
-document.getElementById('resetBtn').onclick=resetControle;
 document.querySelectorAll('.formsLogBtn').forEach(btn => btn.addEventListener('click', logToForms));
+document.querySelectorAll('.resetBtn').forEach(btn => btn.addEventListener('click', resetControle));
 document.getElementById('continueFormsBtn').addEventListener('click', continueToForms);
 document.getElementById('backToControlBtn').addEventListener('click', backToControl);
 (async function initApp(){

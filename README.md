@@ -1,4 +1,4 @@
-# FIFO Controle productie v2
+# FIFO Controle productie v8
 
 ## Wat is nieuw
 
@@ -28,7 +28,7 @@ README.md
 Voor Power Automate / Excel:
 
 ```text
-fifo_shift_overdracht_v2.ts
+fifo_shift_overdracht_v3.ts
 POWER_AUTOMATE_STAPPEN_V2.md
 ```
 
@@ -116,4 +116,19 @@ Open daarna:
 
 ```text
 http://localhost:8080/
+```
+
+
+## Aanpassing v9
+
+- Fouttoelichting is volledig verwijderd uit de HTML.
+- De resetknop staat niet meer bovenaan.
+- De resetknop staat nu onder beide knoppen **Opslaan FIFO Controle**.
+- Het Excel/Office Script schrijft bij een uitgevoerde controle geen `Uitgevoerd!` meer vóór de afdelingstekens.
+- `Niet uitgevoerd :(` is ongewijzigd.
+
+Nieuwe Office Script-versie:
+
+```text
+fifo_shift_overdracht_v3.ts
 ```
