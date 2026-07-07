@@ -289,7 +289,7 @@ function renderCard(item){
         <button data-action="SaveNasa">Opslaan Nasa</button>
         <button data-action="CancelNasa">Annuleren</button>
       </div>
-      <div class="fifo-nasa-note">Het Nasa-nummer moet in products.csv staan, actief zijn en bij dit hoofdblok horen. Dubbelen binnen hetzelfde blok worden geweigerd.</div>
+      <div class="fifo-nasa-note">Als het Nasa-nummer in products.csv staat, wordt de productnaam automatisch bijgewerkt. Staat het niet in products.csv, dan blijft het als handmatig gekozen Nasa staan. Dubbelen binnen hetzelfde blok worden geweigerd.</div>
     </div>
     <div class="fifo-qr">${qrSvg(item.Nasa)}</div>
     <div class="fifo-actions">
@@ -395,18 +395,27 @@ function handleClick(e){
     }
 
     const match = products.find(p => p.Actief !== false && String(p.Nasa) === newNasa);
-    if(!match){
-      alert('Dit Nasa-nummer staat niet actief in products.csv. Pas products.csv aan of kies een ander product.');
-      return;
-    }
 
-    if(match.Afdeling !== item.Afdeling){
-      alert(`Dit product hoort bij ${match.Afdeling}, niet bij ${item.Afdeling}. Kies een product binnen hetzelfde blok.`);
+    if(match && match.Afdeling !== item.Afdeling){
+      alert(`Dit product hoort bij ${match.Afdeling}, niet bij ${item.Afdeling}. Kies een product binnen hetzelfde blok of voer een ander Nasa-nummer handmatig in.`);
       return;
     }
 
     if(newNasa !== item.Nasa){
-      setItemProduct(item, match, 'Handmatig');
+      if(match){
+        setItemProduct(item, match, 'Handmatig');
+      } else {
+        if(!item.OrigineelNasa) item.OrigineelNasa = item.Nasa;
+        if(!item.OrigineleProductnaam) item.OrigineleProductnaam = item.Productnaam;
+
+        item.Nasa = newNasa;
+        item.Productnaam = 'Handmatig gekozen product';
+        item.AangepastNasa = true;
+        item.AanpassingType = 'Handmatig';
+        item.Status = 'Open';
+        item.TijdGecheckt = '';
+        item.Shiftleider = '';
+      }
     }
     delete item.EditingNasa;
     saveSelection();
