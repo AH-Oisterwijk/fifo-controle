@@ -40,7 +40,7 @@
     .fifo-nasa-row{display:flex;justify-content:space-between;align-items:baseline;margin:8px 0 10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:8px 10px}
     .fifo-nasa-row span{font-size:12px;color:var(--muted);text-transform:uppercase;font-weight:800}.fifo-nasa-row strong{font-size:26px;letter-spacing:.04em}.fifo-product-tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:-2px 0 10px}.fifo-product-tools button{width:100%;border:1px solid #cbd5e1;background:#fff;color:#334155;border-radius:12px;padding:9px 8px;font-size:13px;font-weight:900;cursor:pointer}.fifo-product-tools button[data-action='RandomProduct']{background:#eef2ff;color:#1e3a8a;border-color:#c7d2fe}.fifo-nasa-edit{margin:8px 0 12px;border:1px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:10px}.fifo-nasa-edit label{display:block;font-size:13px;font-weight:900;margin-bottom:6px}.fifo-nasa-edit input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:20px;font-weight:900;letter-spacing:.04em;background:#fff}.fifo-nasa-edit-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.fifo-nasa-edit-actions button{border:0;border-radius:12px;padding:11px 8px;font-size:13px;font-weight:900;cursor:pointer}.fifo-nasa-edit-actions button[data-action='SaveNasa']{background:#dbeafe;color:#1e3a8a}.fifo-nasa-edit-actions button[data-action='CancelNasa']{background:#fff;border:1px solid #cbd5e1;color:#334155}.fifo-nasa-note{font-size:12px;color:#64748b;margin-top:6px}
     .fifo-qr{display:grid;place-items:center;margin:8px auto 12px}.fifo-qr svg{width:160px;height:160px;display:block;border:8px solid #fff}
-    .fifo-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+    .fifo-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
     .fifo-actions button,.toolbtn{border:0;border-radius:12px;padding:12px 8px;font-size:14px;font-weight:900;cursor:pointer}
     .fifo-actions button[data-action="Goed"]{background:#dcfce7;color:#14532d}
     .fifo-actions button[data-action="Fout"]{background:#fee2e2;color:#7f1d1d}
@@ -293,7 +293,7 @@ function renderCard(item){
     </div>
     <div class="fifo-qr">${qrSvg(item.Nasa)}</div>
     <div class="fifo-actions">
-      <button data-action="Goed">Goed</button><button data-action="Fout">Fout</button><button data-action="Niet gevuld">Niet gevuld</button>
+      <button data-action="Goed">Goed</button><button data-action="Fout">Fout</button><!-- Tijdelijk uitgecomment: <button data-action="Niet gevuld">Niet gevuld</button> -->
     </div>
   </article>`;
 }
