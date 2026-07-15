@@ -740,6 +740,17 @@ function buildLogRecord(){
       }))
   };
 }
+function buildFormsRecord(record){
+  return {
+    DatumTijd: record.DatumTijd,
+    DagKey: record.DagKey,
+    Shiftleider: record.Shiftleider,
+    Scores: record.Scores,
+    AfdelingStatussen: record.AfdelingStatussen,
+    AfdelingenNietGevuld: record.AfdelingenNietGevuld,
+    Waarschuwingen: record.Waarschuwingen
+  };
+}
 function formatProductLine(p){
   const nasa = p.AangepastNasa && p.OrigineelNasa ? `${p.Nasa} (aangepast van ${p.OrigineelNasa})` : p.Nasa;
   const name = p.AangepastNasa && p.OrigineleProductnaam ? `${p.Productnaam} (oorspronkelijk: ${p.OrigineleProductnaam})` : p.Productnaam;
@@ -797,20 +808,28 @@ function configuredFormsUrl(){
 function makeFormsUrl(record){
   const template = configuredFormsUrl();
   if(!template) return '';
-  const payload = JSON.stringify(record);
+
+  const payload = JSON.stringify(buildFormsRecord(record));
+  const encodedDateForForms = encodeURIComponent(`"${record.DagKey || ''}"`);
+
+  let url = template;
+
+  url = url.split('%22__DATUM__%22').join(encodedDateForForms);
+  url = url.split('"__DATUM__"').join(encodedDateForForms);
+
   const replacements = {
-    '__SHIFTLEIDER__': record.Shiftleider || '',
-    '__DATUM__': record.DagKey || '',
+    '__DATUM__': encodedDateForForms,
     '__DAGKEY__': record.DagKey || '',
     '__DATUMTIJD__': record.DatumTijd || '',
     '__CONTROLE_DATA__': payload,
     '__JSON__': payload,
     '__SAMENVATTING__': buildSummary(record)
   };
-  let url = template;
+
   Object.keys(replacements).forEach(key=>{
     url = url.split(key).join(encodeURIComponent(replacements[key]));
   });
+
   return url;
 }
 let pendingFormsUrl = '';
