@@ -1,110 +1,139 @@
-# FIFO Controle productie v8
+# FIFO Controle
 
-## Wat is nieuw
+Statische GitHub Pages-site voor FIFO-controles.
 
-- Microsoft Forms kan nu ook zonder HTML gebruikt worden:
-  - Nasa-velden per afdeling zijn optioneel.
-  - Scorevelden per afdeling zijn verplicht.
-  - Scoreformat: `x/y`.
-- De HTML vult alle Nasa-velden en scorevelden vooraf in.
-- Per productkaart:
-  - `Ander willekeurig product`
-  - `Zelf een product kiezen`
-- Handmatig gekozen Nasa's mogen niet dubbel voorkomen binnen hetzelfde hoofdblok.
-- De resetknop bovenaan wist statussen, fouttoelichtingen en aangepaste Nasa's na bevestiging.
-- `Niet gevuld` telt niet mee in de score-noemer.
+De pagina leest CSV-bestanden uit de map `data/`, vult Microsoft Forms vooraf in en Power Automate verwerkt de Forms-inzending in `Shift Overdracht.xlsx`.
 
 ## Bestanden
 
-Upload naar GitHub Pages:
-
 ```text
 index.html
-products.csv
 config.js
 README.md
+POWER_AUTOMATE_SETUP.md
+fifo_shift_overdracht.ts
+fifo_export_personen.ts
+data/products.csv
+data/medewerkers.csv
+data/shiftleiders.csv
 ```
 
-Voor Power Automate / Excel:
+## CSV-bestanden
+
+De HTML leest deze bestanden:
 
 ```text
-fifo_shift_overdracht_v3.ts
-POWER_AUTOMATE_STAPPEN_V2.md
+data/products.csv
+data/medewerkers.csv
+data/shiftleiders.csv
 ```
 
-## products.csv
+### data/products.csv
 
 Kolommen:
 
-```csv
+```text
 Nasa;Productnaam;Afdeling;Subafdeling;Actief
 ```
 
-Voorbeeld:
+### data/medewerkers.csv
 
-```csv
-106375;ah bio halfv melk 1 lt;Zuivel;Zuivel;Ja
-```
-
-Afdeling moet één van deze zijn:
+Kolom:
 
 ```text
-Zuivel
-Kaas/Vleeswaren
-Vlees/Vis/Kip/Vega
-Maaltijden/Sappen
-Panklaar
+Medewerkers
 ```
 
-Subafdeling moet één van deze zijn:
+### data/shiftleiders.csv
+
+Kolom:
 
 ```text
-Zuivel
-Kaas/Vleeswaren
-Vis
-Vlees
-Kip
-Vega
-Maaltijden
-Sappen
-Panklaar
+Shiftleiders / Managers
 ```
 
-## Scorelogica
+`medewerkers.csv` en `shiftleiders.csv` kunnen automatisch vanuit `Shift Overdracht.xlsx` worden bijgewerkt met Power Automate.
 
-Voor Forms/Excel wordt per afdeling alleen `x/y` ingevuld.
+## Microsoft Forms
 
-Voorbeeld:
-
-- 4 producten gevraagd
-- 3 goed
-- 1 niet gevuld
-
-Resultaat:
+Gebruik één formulier met deze velden:
 
 ```text
-3/3
+Datum
+Controle data
 ```
 
-Als er 1 fout is en 1 niet gevuld:
+Aanbevolen veldtypes:
 
 ```text
-2/3
+Datum = datum
+Controle data = lang antwoord / lange tekst
 ```
 
-## Prefilled Forms-link
-
-Zie `POWER_AUTOMATE_STAPPEN_V2.md` voor alle placeholders.
-
-De link plak je in:
+Maak een prefilled Forms-link en gebruik daarin deze placeholders:
 
 ```text
-config.js
+__DATUM__
+__CONTROLE_DATA__
+```
+
+Plak de volledige link in `config.js`.
+
+## Shift Overdracht
+
+Het Office Script schrijft per dag naar de juiste cel:
+
+```text
+Maandag    B20
+Dinsdag    C20
+Woensdag   D20
+Donderdag  E20
+Vrijdag    F20
+Zaterdag   G20
+Zondag     H20
+```
+
+De week-sheet wordt bepaald met ISO-weeknummer, bijvoorbeeld:
+
+```text
+WK21-2026
+```
+
+Mogelijke teksten in de cel:
+
+```text
+FIFO gecontroleerd: alles goed 😃
+FIFO gecontroleerd: fout bij Zuivel
+FIFO gecontroleerd: niet gevuld bij Panklaar
+FIFO gecontroleerd: fout bij Zuivel | niet gevuld bij Panklaar
+Niet uitgevoerd 🙁
+```
+
+## Waarschuwingen
+
+Bij een product met status **Fout** kan in de HTML worden aangevinkt:
+
+```text
+Medewerker aanspreken
+```
+
+Als dit is aangevinkt, moet een medewerker gekozen worden. Power Automate zet deze regel vervolgens in:
+
+```text
+Sheet: Lijst waarschuwingen
+Tabel: Tabel_waarschuwingen
+```
+
+Met vaste waarden:
+
+```text
+Reden = Niet FIFO
+Officieel (Schriftelijk) = Nee
 ```
 
 ## Lokaal testen
 
-Gebruik niet dubbelklikken op `index.html`, want dan kan de browser `products.csv` vaak niet lezen.
+Gebruik niet dubbelklikken op `index.html`.
 
 Gebruik:
 
@@ -116,19 +145,4 @@ Open daarna:
 
 ```text
 http://localhost:8080/
-```
-
-
-## Aanpassing v9
-
-- Fouttoelichting is volledig verwijderd uit de HTML.
-- De resetknop staat niet meer bovenaan.
-- De resetknop staat nu onder beide knoppen **Opslaan FIFO Controle**.
-- Het Excel/Office Script schrijft bij een uitgevoerde controle geen `Uitgevoerd!` meer vóór de afdelingstekens.
-- `Niet uitgevoerd :(` is ongewijzigd.
-
-Nieuwe Office Script-versie:
-
-```text
-fifo_shift_overdracht_v3.ts
 ```

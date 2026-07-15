@@ -29,6 +29,19 @@
     .fifo-group{margin:20px 0}
     .fifo-group-title{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px}
     .fifo-group-title h2{margin:0;font-size:21px}.fifo-group-title span{font-weight:800;color:#475569;background:#eef2ff;border-radius:999px;padding:5px 10px}
+    .fifo-dept-control{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 2px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:10px 12px}
+    .fifo-dept-control-text{font-size:13px;color:#475569;font-weight:800}
+    .fifo-dept-control-text strong{display:block;color:#172033;font-size:14px}
+    .fifo-switch{position:relative;display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none;font-size:13px;font-weight:900;color:#334155}
+    .fifo-switch input{position:absolute;opacity:0;width:1px;height:1px}
+    .fifo-slider{width:50px;height:28px;border-radius:999px;background:#cbd5e1;position:relative;transition:.2s}
+    .fifo-slider:before{content:"";position:absolute;width:22px;height:22px;left:3px;top:3px;background:#fff;border-radius:999px;box-shadow:0 2px 5px rgba(15,23,42,.25);transition:.2s}
+    .fifo-switch input:checked + .fifo-slider{background:#16a34a}
+    .fifo-switch input:checked + .fifo-slider:before{transform:translateX(22px)}
+    .fifo-dept-notfilled .fifo-dept-control{border-color:#cbd5e1;background:#f8fafc}
+    .fifo-dept-notfilled .fifo-grid{opacity:.72}
+    .fifo-dept-notfilled .fifo-product-card{background:#f8fafc}
+    .fifo-product-card button:disabled,.fifo-product-card select:disabled{opacity:.55;cursor:not-allowed}
     .fifo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
     .fifo-product-card{background:#fff;border:2px solid var(--line);border-radius:20px;padding:14px;box-shadow:var(--shadow);transition:border-color .2s,transform .15s}
     .fifo-is-good{border-color:var(--green)}.fifo-is-bad{border-color:var(--red)}.fifo-is-empty{border-color:var(--gray);opacity:.92}
@@ -39,6 +52,11 @@
     .fifo-product-card h3{font-size:16px;line-height:1.25;min-height:42px;margin:12px 0;color:#111827}
     .fifo-nasa-row{display:flex;justify-content:space-between;align-items:baseline;margin:8px 0 10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:8px 10px}
     .fifo-nasa-row span{font-size:12px;color:var(--muted);text-transform:uppercase;font-weight:800}.fifo-nasa-row strong{font-size:26px;letter-spacing:.04em}.fifo-product-tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:-2px 0 10px}.fifo-product-tools button{width:100%;border:1px solid #cbd5e1;background:#fff;color:#334155;border-radius:12px;padding:9px 8px;font-size:13px;font-weight:900;cursor:pointer}.fifo-product-tools button[data-action='RandomProduct']{background:#eef2ff;color:#1e3a8a;border-color:#c7d2fe}.fifo-nasa-edit{margin:8px 0 12px;border:1px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:10px}.fifo-nasa-edit label{display:block;font-size:13px;font-weight:900;margin-bottom:6px}.fifo-nasa-edit input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:20px;font-weight:900;letter-spacing:.04em;background:#fff}.fifo-nasa-edit-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.fifo-nasa-edit-actions button{border:0;border-radius:12px;padding:11px 8px;font-size:13px;font-weight:900;cursor:pointer}.fifo-nasa-edit-actions button[data-action='SaveNasa']{background:#dbeafe;color:#1e3a8a}.fifo-nasa-edit-actions button[data-action='CancelNasa']{background:#fff;border:1px solid #cbd5e1;color:#334155}.fifo-nasa-note{font-size:12px;color:#64748b;margin-top:6px}
+    .fifo-warning-panel{margin:10px 0 12px;border:1px solid #fde68a;background:#fffbeb;border-radius:14px;padding:10px}
+    .fifo-warning-panel label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:900;color:#92400e}
+    .fifo-warning-panel input[type='checkbox']{width:18px;height:18px}
+    .fifo-warning-panel select{width:100%;margin-top:8px;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:15px;background:#fff}
+    .fifo-warning-note{font-size:12px;color:#92400e;margin-top:7px}
     .fifo-qr{display:grid;place-items:center;margin:8px auto 12px}.fifo-qr svg{width:160px;height:160px;display:block;border:8px solid #fff}
     .fifo-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
     .fifo-actions button,.toolbtn{border:0;border-radius:12px;padding:12px 8px;font-size:14px;font-weight:900;cursor:pointer}
@@ -61,10 +79,9 @@
       <div class="fifo-header-actions"><button class="fifo-refresh" id="refreshBtn" title="Ververs">↻</button></div>
     </section>
 <section class="fifo-card fifo-control">
-      <label for="leader">Shiftleider</label>
+      <label for="leader">Shiftleider / Manager</label>
       <select id="leader">
-        <option value="">Kies naam</option>
-        <option>Bob</option><option>Daan</option><option>Debbie</option><option>Gijs</option><option>Givet</option><option>Jip</option><option>Lars</option><option>Naomi</option><option>Paul</option><option>Pieter</option><option>Renee</option><option>Sander</option>
+        <option value="">Shiftleiders worden geladen...</option>
       </select>
     </section>
 
@@ -81,6 +98,7 @@
     <section class="fifo-card fifo-submit-card">
       <button class="toolbtn primary formsLogBtn">Opslaan FIFO Controle</button>
       <button class="fifo-reset resetBtn" title="Reset controle">Reset controle</button>
+      <p class="fifo-small-note">Opent Microsoft Forms met deze controle vooraf ingevuld. Controleer daar kort en klik op Verzenden.</p>
     </section>
 
     <section id="content"></section>
@@ -109,7 +127,8 @@
   </div>
 
 <script>
-const leaders = ['Bob','Daan','Debbie','Gijs','Givet','Jip','Lars','Naomi','Paul','Pieter','Renee','Sander'];
+let leaders = [];
+let medewerkers = [];
 const subCounts = [
   {subafdeling:'Zuivel', afdeling:'Zuivel', count:4},
   {subafdeling:'Kaas/Vleeswaren', afdeling:'Kaas/Vleeswaren', count:3},
@@ -124,34 +143,80 @@ const subCounts = [
 let products = [];
 let productsVersion = 'no-products';
 let productsCsvLoaded = false;
-async function loadProductsCsv(){
+async function loadDataFiles(){
   try{
-    const res = await fetch('products.csv?v=' + Date.now(), {cache:'no-store'});
-    if(!res.ok) throw new Error('products.csv niet gevonden of niet bereikbaar');
-    const text = await res.text();
-    const parsed = parseProductsCsv(text);
-    if(!parsed.length) throw new Error('products.csv bevat geen geldige productregels');
-    products = parsed;
-    productsVersion = simpleHash(text);
+    const [productText, medewerkerText, shiftleiderText] = await Promise.all([
+      fetchTextFile('data/products.csv'),
+      fetchTextFile('data/medewerkers.csv'),
+      fetchTextFile('data/shiftleiders.csv')
+    ]);
+
+    const parsedProducts = parseProductsCsv(productText);
+    if(!parsedProducts.length) throw new Error('data/products.csv bevat geen geldige actieve productregels');
+
+    products = parsedProducts;
+    medewerkers = parseNamesCsv(medewerkerText, 'Medewerkers');
+    leaders = parseNamesCsv(shiftleiderText, 'Shiftleiders / Managers');
+
+    if(!medewerkers.length) throw new Error('data/medewerkers.csv bevat geen medewerkers');
+    if(!leaders.length) throw new Error('data/shiftleiders.csv bevat geen shiftleiders/managers');
+
+    populateLeaderDropdown();
+    productsVersion = simpleHash(productText + '\n' + medewerkerText + '\n' + shiftleiderText);
     productsCsvLoaded = true;
     return true;
   }catch(e){
     products = [];
+    medewerkers = [];
+    leaders = [];
     productsCsvLoaded = false;
-    showProductsCsvError(e && e.message ? e.message : String(e));
+    showDataFilesError(e && e.message ? e.message : String(e));
     return false;
   }
 }
-function showProductsCsvError(message){
+async function fetchTextFile(path){
+  const res = await fetch(path + '?v=' + Date.now(), {cache:'no-store'});
+  if(!res.ok) throw new Error(path + ' niet gevonden of niet bereikbaar');
+  return await res.text();
+}
+function showDataFilesError(message){
+  document.getElementById('leader').innerHTML = '<option value="">Datafout</option>';
   document.getElementById('progressText').textContent = '0/0';
   document.getElementById('progressBar').style.width = '0%';
   document.getElementById('stats').innerHTML = '';
   document.getElementById('content').innerHTML = `<section class="fifo-card fifo-error">
-    <strong>products.csv kon niet worden gelezen.</strong>
-    <p>De app gebruikt geen ingebouwde fallback meer. Daardoor zie je deze fout meteen als GitHub Pages of je browser het CSV-bestand niet goed kan laden.</p>
+    <strong>CSV-data kon niet worden gelezen.</strong>
+    <p>De app gebruikt geen ingebouwde fallback. Daardoor zie je deze fout meteen als GitHub Pages of je browser een CSV-bestand niet goed kan laden.</p>
     <p><strong>Fout:</strong> ${esc(message)}</p>
-    <p>Controleer of <code>products.csv</code> in dezelfde map/root staat als <code>index.html</code>, of test lokaal via <code>python3 -m http.server 8080</code> en niet via dubbelklikken op index.html.</p>
+    <p>Controleer of deze bestanden bestaan: <code>data/products.csv</code>, <code>data/medewerkers.csv</code> en <code>data/shiftleiders.csv</code>.</p>
+    <p>Test lokaal via <code>python3 -m http.server 8080</code> en niet via dubbelklikken op index.html.</p>
   </section>`;
+}
+function populateLeaderDropdown(){
+  const select = document.getElementById('leader');
+  const saved = localStorage.getItem('fifo_controle_leader') || '';
+  select.innerHTML = '<option value="">Kies shiftleider / manager</option>' + leaders.map(name => `<option>${esc(name)}</option>`).join('');
+  if(saved && leaders.includes(saved)) select.value = saved;
+}
+function parseNamesCsv(text, expectedColumn){
+  const lines = String(text || '').split(/\r?\n/).filter(l=>l.trim());
+  if(!lines.length) return [];
+  const rows = lines.map(parseCsvLine);
+  const header = rows[0].map(h=>norm(h));
+  const colIndex = header.indexOf(norm(expectedColumn));
+  const idx = colIndex >= 0 ? colIndex : 0;
+  const dataRows = colIndex >= 0 ? rows.slice(1) : rows;
+  const seen = new Set();
+  const names = [];
+  for(const row of dataRows){
+    const name = String(row[idx] || '').trim();
+    if(!name) continue;
+    const key = norm(name);
+    if(seen.has(key)) continue;
+    seen.add(key);
+    names.push(name);
+  }
+  return names.sort((a,b)=>a.localeCompare(b,'nl'));
 }
 function simpleHash(text){
   let h = 2166136261;
@@ -196,31 +261,76 @@ function parseCsvLine(line){
   return out;
 }
 let selection = [];
+let departmentStates = defaultDepartmentStates();
 let selectionWarnings = [];
+const departmentOrder = ['Zuivel','Kaas/Vleeswaren','Vlees/Vis/Kip/Vega','Maaltijden/Sappen','Panklaar'];
 
 function todayKey(){
   const d = new Date();
   return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
 }
 function pad(n){return n<10?'0'+n:String(n)}
+function defaultDepartmentStates(){
+  return {
+    'Zuivel':'Gevuld',
+    'Kaas/Vleeswaren':'Gevuld',
+    'Vlees/Vis/Kip/Vega':'Gevuld',
+    'Maaltijden/Sappen':'Gevuld',
+    'Panklaar':'Gevuld'
+  };
+}
+function isDepartmentNotFilled(afdeling){
+  return departmentStates && departmentStates[afdeling] === 'Niet gevuld vandaag';
+}
+function setDepartmentNotFilled(afdeling, notFilled){
+  departmentStates[afdeling] = notFilled ? 'Niet gevuld vandaag' : 'Gevuld';
+
+  selection
+    .filter(item => item.Afdeling === afdeling)
+    .forEach(item => {
+      if(notFilled){
+        item.Status = 'Niet gevuld';
+        item.Shiftleider = '';
+        item.TijdGecheckt = '';
+        item.MedewerkerAanspreken = false;
+        item.MedewerkerNaam = '';
+        delete item.EditingNasa;
+      } else if(item.Status === 'Niet gevuld'){
+        item.Status = 'Open';
+        item.Shiftleider = '';
+        item.TijdGecheckt = '';
+      }
+    });
+
+  saveSelection();
+  render();
+}
 function selectionStorageKey(dayKey){
-  return 'fifo_controle_productie_v11_selection_' + productsVersion + '_' + dayKey;
+  return 'fifo_controle_selection_' + productsVersion + '_' + dayKey;
 }
 function loadDay(dayKey){
   if(!productsCsvLoaded){
-    showProductsCsvError('products.csv is nog niet geladen.');
+    showDataFilesError('CSV-data is nog niet geladen.');
     return;
   }
   selectionWarnings = [];
   const key = selectionStorageKey(dayKey);
   const saved = localStorage.getItem(key);
   if(saved){
-    selection = JSON.parse(saved);
+    const parsed = JSON.parse(saved);
+    if(Array.isArray(parsed)){
+      selection = parsed;
+      departmentStates = defaultDepartmentStates();
+    } else {
+      selection = parsed.selection || [];
+      departmentStates = Object.assign(defaultDepartmentStates(), parsed.departmentStates || {});
+    }
     validateCurrentPools();
   }
   else {
     selection = generateSelection(dayKey);
-    localStorage.setItem(key, JSON.stringify(selection));
+    departmentStates = defaultDepartmentStates();
+    saveSelection();
   }
   render();
 }
@@ -261,25 +371,44 @@ function seededRandom(seed){
   return ((h>>>0)%1000000)/1000000;
 }
 function render(){
-  const groups = ['Zuivel','Kaas/Vleeswaren','Vlees/Vis/Kip/Vega','Maaltijden/Sappen','Panklaar'].map(a=>({afdeling:a,items:selection.filter(x=>x.Afdeling===a)})).filter(g=>g.items.length);
+  const groups = departmentOrder.map(a=>({afdeling:a,items:selection.filter(x=>x.Afdeling===a)})).filter(g=>g.items.length);
   const warningHtml = selectionWarnings.length ? `<section class="fifo-message fifo-error"><strong>Let op:</strong> ${selectionWarnings.map(esc).join(' · ')}</section>` : '';
   document.getElementById('content').innerHTML = warningHtml + groups.map(g=>renderGroup(g.afdeling,g.items)).join('');
   document.querySelectorAll('.fifo-product-card button').forEach(btn=>btn.addEventListener('click',handleClick));
+  document.querySelectorAll('.fifo-warning-check').forEach(el=>el.addEventListener('change',handleWarningChange));
+  document.querySelectorAll('.fifo-medewerker-select').forEach(el=>el.addEventListener('change',handleWarningChange));
+  document.querySelectorAll('.fifo-dept-toggle').forEach(el=>el.addEventListener('change',handleDepartmentToggle));
   updateProgress();
 }
 function renderGroup(afdeling,items){
   const done = items.filter(x=>x.Status && x.Status !== 'Open').length;
-  return `<section class="fifo-group"><div class="fifo-group-title"><h2>${esc(afdeling)}</h2><span>${done}/${items.length}</span></div><div class="fifo-grid">${items.map(renderCard).join('')}</div></section>`;
+  const notFilled = isDepartmentNotFilled(afdeling);
+  const checked = notFilled ? '' : 'checked';
+  const label = notFilled ? 'Niet gevuld vandaag' : 'Gevuld vandaag';
+  return `<section class="fifo-group ${notFilled ? 'fifo-dept-notfilled' : ''}" data-afdeling="${esc(afdeling)}">
+    <div class="fifo-group-title"><h2>${esc(afdeling)}</h2><span>${done}/${items.length}</span></div>
+    <div class="fifo-dept-control">
+      <div class="fifo-dept-control-text"><strong>Afdelingstatus</strong>${esc(label)}</div>
+      <label class="fifo-switch" title="Zet uit als deze afdeling vandaag niet gevuld is">
+        <input class="fifo-dept-toggle" type="checkbox" data-afdeling="${esc(afdeling)}" ${checked}>
+        <span class="fifo-slider"></span>
+        <span>Gevuld</span>
+      </label>
+    </div>
+    <div class="fifo-grid">${items.map(item => renderCard(item, notFilled)).join('')}</div>
+  </section>`;
 }
-function renderCard(item){
+function renderCard(item, departmentNotFilled=false){
   const cls = item.Status==='Goed'?'fifo-is-good':item.Status==='Fout'?'fifo-is-bad':item.Status==='Niet gevuld'?'fifo-is-empty':'fifo-is-open';
+  const disabled = departmentNotFilled ? 'disabled' : '';
+  const statusText = departmentNotFilled ? 'Niet gevuld vandaag' : (item.Status || 'Open');
   return `<article class="fifo-product-card ${cls}" data-id="${item.Id}">
-    <div class="fifo-card-top"><span class="fifo-sub">${esc(item.Subafdeling)}</span><span class="fifo-status-pill">${esc(item.Status || 'Open')}</span></div>
+    <div class="fifo-card-top"><span class="fifo-sub">${esc(item.Subafdeling)}</span><span class="fifo-status-pill">${esc(statusText)}</span></div>
     <h3>${esc(item.Productnaam)}</h3>
     <div class="fifo-nasa-row"><span>Nasa</span><strong>${esc(item.Nasa)}</strong></div>
     <div class="fifo-product-tools">
-      <button data-action="RandomProduct">Ander willekeurig product</button>
-      <button data-action="ChooseProduct">Zelf een product kiezen</button>
+      <button data-action="RandomProduct" ${disabled}>Ander willekeurig product</button>
+      <button data-action="ChooseProduct" ${disabled}>Zelf een product kiezen</button>
     </div>
     <div class="fifo-nasa-edit ${item.EditingNasa?'':'fifo-hidden'}">
       <label>Zelf gekozen Nasa-nummer</label>
@@ -288,15 +417,33 @@ function renderCard(item){
         <button data-action="SaveNasa">Opslaan Nasa</button>
         <button data-action="CancelNasa">Annuleren</button>
       </div>
+      <div class="fifo-nasa-note">Als het Nasa-nummer in data/products.csv staat, wordt de productnaam automatisch bijgewerkt. Staat het niet in data/products.csv, dan blijft het als handmatig gekozen Nasa staan. Dubbelen binnen hetzelfde blok worden geweigerd.</div>
     </div>
     <div class="fifo-qr">${qrSvg(item.Nasa)}</div>
     <div class="fifo-actions">
-      <button data-action="Goed">Goed</button><button data-action="Fout">Fout</button><!-- Tijdelijk uitgecomment: <button data-action="Niet gevuld">Niet gevuld</button> -->
+      <button data-action="Goed" ${disabled}>Goed</button><button data-action="Fout" ${disabled}>Fout</button><!-- <button data-action="Niet gevuld">Niet gevuld</button> -->
     </div>
+    ${renderWarningPanel(item)}
   </article>`;
 }
+function renderWarningPanel(item){
+  if(item.Status !== 'Fout') return '';
+  const checked = item.MedewerkerAanspreken ? 'checked' : '';
+  const disabled = item.MedewerkerAanspreken ? '' : 'disabled';
+  const options = ['<option value="">Kies medewerker</option>']
+    .concat(medewerkers.map(name => `<option ${name === item.MedewerkerNaam ? 'selected' : ''}>${esc(name)}</option>`))
+    .join('');
+  return `<div class="fifo-warning-panel">
+    <label><input class="fifo-warning-check" type="checkbox" ${checked}> Medewerker aanspreken</label>
+    <select class="fifo-medewerker-select" ${disabled}>${options}</select>
+    <div class="fifo-warning-note">Alleen aanvinken als je deze fout wilt laten toevoegen aan Tabel_waarschuwingen.</div>
+  </div>`;
+}
 function saveSelection(){
-  localStorage.setItem(selectionStorageKey(document.getElementById('dateInput').value), JSON.stringify(selection));
+  localStorage.setItem(selectionStorageKey(document.getElementById('dateInput').value), JSON.stringify({
+    selection,
+    departmentStates
+  }));
 }
 function duplicateInSameAfdeling(nasa, afdeling, exceptId){
   return selection.find(x => x.Id !== exceptId && x.Afdeling === afdeling && String(x.Nasa) === String(nasa));
@@ -320,6 +467,8 @@ function setItemProduct(item, product, reason){
   item.Status = 'Open';
   item.TijdGecheckt = '';
   item.Shiftleider = '';
+  item.MedewerkerAanspreken = false;
+  item.MedewerkerNaam = '';
   delete item.EditingNasa;
 }
 function pickRandomReplacement(item){
@@ -353,6 +502,7 @@ function resetControle(){
   const dayKey = document.getElementById('dateInput').value;
   localStorage.removeItem(selectionStorageKey(dayKey));
   selection = generateSelection(dayKey);
+  departmentStates = defaultDepartmentStates();
   saveSelection();
   render();
 }
@@ -360,6 +510,10 @@ function handleClick(e){
   const btn = e.currentTarget, card = btn.closest('.fifo-product-card'), id = Number(card.dataset.id), action = btn.dataset.action;
   const item = selection.find(x=>x.Id===id);
   if(!item) return;
+  if(isDepartmentNotFilled(item.Afdeling)){
+    alert('Deze afdeling staat op "Niet gevuld vandaag". Zet de afdeling eerst terug op gevuld.');
+    return;
+  }
 
   if(action==='RandomProduct'){
     pickRandomReplacement(item);
@@ -413,6 +567,8 @@ function handleClick(e){
         item.Status = 'Open';
         item.TijdGecheckt = '';
         item.Shiftleider = '';
+        item.MedewerkerAanspreken = false;
+        item.MedewerkerNaam = '';
       }
     }
     delete item.EditingNasa;
@@ -428,15 +584,50 @@ function handleClick(e){
   item.Shiftleider = leader;
   item.TijdGecheckt = new Date().toISOString();
 
+  if(action !== 'Fout'){
+    item.MedewerkerAanspreken = false;
+    item.MedewerkerNaam = '';
+  } else {
+    item.MedewerkerAanspreken = !!item.MedewerkerAanspreken;
+    item.MedewerkerNaam = item.MedewerkerNaam || '';
+  }
+
   saveSelection();
   render();
+}
+function handleWarningChange(e){
+  const card = e.currentTarget.closest('.fifo-product-card');
+  const id = Number(card.dataset.id);
+  const item = selection.find(x=>x.Id===id);
+  if(!item) return;
+
+  const check = card.querySelector('.fifo-warning-check');
+  const select = card.querySelector('.fifo-medewerker-select');
+
+  item.MedewerkerAanspreken = !!(check && check.checked);
+  item.MedewerkerNaam = item.MedewerkerAanspreken && select ? select.value : '';
+
+  saveSelection();
+  render();
+}
+function handleDepartmentToggle(e){
+  const afdeling = e.currentTarget.dataset.afdeling;
+  const notFilled = !e.currentTarget.checked;
+  if(notFilled){
+    if(!confirm(`${afdeling} markeren als niet gevuld vandaag? Productstatussen en eventuele medewerker-aanspreken keuzes binnen deze afdeling worden gewist.`)){
+      e.currentTarget.checked = true;
+      return;
+    }
+  }
+  setDepartmentNotFilled(afdeling, notFilled);
 }
 function updateProgress(){
   const total=selection.length||17, done=selection.filter(x=>x.Status && x.Status!=='Open').length;
   document.getElementById('progressText').textContent=`${done}/${total}`;
   document.getElementById('progressBar').style.width=`${Math.round(done/total*100)}%`;
   const goed=selection.filter(x=>x.Status==='Goed').length, fout=selection.filter(x=>x.Status==='Fout').length, niet=selection.filter(x=>x.Status==='Niet gevuld').length;
-  document.getElementById('stats').innerHTML=`<span>Goed: <strong>${goed}</strong></span><span>Fout: <strong>${fout}</strong></span><span>Niet gevuld: <strong>${niet}</strong></span>`;
+  const deptNiet = departmentOrder.filter(isDepartmentNotFilled).length;
+  document.getElementById('stats').innerHTML=`<span>Goed: <strong>${goed}</strong></span><span>Fout: <strong>${fout}</strong></span><span>Niet gevuld productregels: <strong>${niet}</strong></span><span>Afdelingen niet gevuld: <strong>${deptNiet}</strong></span>`;
 }
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
@@ -482,6 +673,23 @@ function rsRemainder(data,degree){const divisor=rsDivisor(degree), result=Array(
 function formatDateTime(d){
   return d.toLocaleString('nl-NL',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
 }
+function buildScoreFromSelection(afdeling){
+  if(isDepartmentNotFilled(afdeling)) return '0/0';
+  const items = selection.filter(p => p.Afdeling === afdeling);
+  const meetellend = items.filter(p => p.Status !== 'Niet gevuld');
+  const correct = meetellend.filter(p => p.Status === 'Goed');
+  return `${correct.length}/${meetellend.length}`;
+}
+function buildAfdelingStatussen(){
+  const out = {};
+  departmentOrder.forEach(afdeling => {
+    out[afdeling] = {
+      Status: isDepartmentNotFilled(afdeling) ? 'Niet gevuld vandaag' : 'Gevuld',
+      Score: buildScoreFromSelection(afdeling)
+    };
+  });
+  return out;
+}
 function buildLogRecord(){
   const leader = document.getElementById('leader').value || '';
   const dayKey = document.getElementById('dateInput').value || todayKey();
@@ -498,6 +706,15 @@ function buildLogRecord(){
     AantalGoed: goed,
     AantalFout: fout,
     AantalNietGevuld: niet,
+    Scores: {
+      'Zuivel': buildScoreFromSelection('Zuivel'),
+      'Kaas/Vleeswaren': buildScoreFromSelection('Kaas/Vleeswaren'),
+      'Vlees/Vis/Kip/Vega': buildScoreFromSelection('Vlees/Vis/Kip/Vega'),
+      'Maaltijden/Sappen': buildScoreFromSelection('Maaltijden/Sappen'),
+      'Panklaar': buildScoreFromSelection('Panklaar')
+    },
+    AfdelingStatussen: buildAfdelingStatussen(),
+    AfdelingenNietGevuld: departmentOrder.filter(isDepartmentNotFilled),
     Producten: selection.map(x=>({
       Subafdeling:x.Subafdeling,
       Afdeling:x.Afdeling,
@@ -506,14 +723,28 @@ function buildLogRecord(){
       AangepastNasa: !!x.AangepastNasa,
       Productnaam:x.Productnaam,
       OrigineleProductnaam:x.OrigineleProductnaam || '',
-      Status:x.Status
-    }))
+      Status:x.Status,
+      MedewerkerAanspreken: !!x.MedewerkerAanspreken,
+      MedewerkerNaam: x.MedewerkerNaam || '',
+      AfdelingNietGevuld: isDepartmentNotFilled(x.Afdeling)
+    })),
+    Waarschuwingen: selection
+      .filter(x => x.Status === 'Fout' && x.MedewerkerAanspreken && x.MedewerkerNaam)
+      .map(x => ({
+        DatumGegeven: dayKey,
+        NaamMedewerker: x.MedewerkerNaam,
+        Reden: 'Niet FIFO',
+        Officieel: 'Nee',
+        ShiftleiderManager: leader,
+        Opmerkingen: `${x.Afdeling} | ${x.Subafdeling} | ${x.Nasa} | ${x.Productnaam}`
+      }))
   };
 }
 function formatProductLine(p){
   const nasa = p.AangepastNasa && p.OrigineelNasa ? `${p.Nasa} (aangepast van ${p.OrigineelNasa})` : p.Nasa;
   const name = p.AangepastNasa && p.OrigineleProductnaam ? `${p.Productnaam} (oorspronkelijk: ${p.OrigineleProductnaam})` : p.Productnaam;
-  return `${p.Subafdeling} | ${nasa} | ${name} | ${p.Status || 'Open'}`;
+  const warning = p.MedewerkerAanspreken && p.MedewerkerNaam ? ` | medewerker aanspreken: ${p.MedewerkerNaam}` : '';
+  return `${p.Subafdeling} | ${nasa} | ${name} | ${p.Status || 'Open'}${warning}`;
 }
 function buildSummary(record){
   const lines = [];
@@ -521,7 +752,9 @@ function buildSummary(record){
   lines.push(`Datum: ${record.DagKey}`);
   lines.push(`Shiftleider: ${record.Shiftleider || '-'}`);
   lines.push(`Voortgang: ${record.AantalAfgerond}/${record.AantalTotaal}`);
-  lines.push(`Goed: ${record.AantalGoed} | Fout: ${record.AantalFout} | Niet gevuld: ${record.AantalNietGevuld}`);
+  lines.push(`Goed: ${record.AantalGoed} | Fout: ${record.AantalFout} | Niet gevuld productregels: ${record.AantalNietGevuld}`);
+  lines.push(`Afdelingen niet gevuld: ${record.AfdelingenNietGevuld.length ? record.AfdelingenNietGevuld.join(', ') : '-'}`);
+  lines.push(`Waarschuwingen: ${record.Waarschuwingen.length}`);
   lines.push('');
   for(const p of record.Producten){
     lines.push(formatProductLine(p));
@@ -532,9 +765,13 @@ function departmentItems(record, afdeling){
   return record.Producten.filter(p => p.Afdeling === afdeling);
 }
 function buildDepartmentText(record, afdeling){
-  return buildDepartmentScore(record, afdeling);
+  const state = record.AfdelingStatussen && record.AfdelingStatussen[afdeling];
+  if(state && state.Status === 'Niet gevuld vandaag') return `${afdeling}: niet gevuld vandaag`;
+  return `${afdeling}: ${buildDepartmentScore(record, afdeling)}`;
 }
 function buildDepartmentScore(record, afdeling){
+  const state = record.AfdelingStatussen && record.AfdelingStatussen[afdeling];
+  if(state && state.Status === 'Niet gevuld vandaag') return '0/0';
   const items = departmentItems(record, afdeling);
   const meetellend = items.filter(p => p.Status !== 'Niet gevuld');
   const correct = meetellend.filter(p => p.Status === 'Goed');
@@ -560,46 +797,15 @@ function configuredFormsUrl(){
 function makeFormsUrl(record){
   const template = configuredFormsUrl();
   if(!template) return '';
+  const payload = JSON.stringify(record);
   const replacements = {
     '__SHIFTLEIDER__': record.Shiftleider || '',
     '__DATUM__': record.DagKey || '',
     '__DAGKEY__': record.DagKey || '',
     '__DATUMTIJD__': record.DatumTijd || '',
-
-    '__ZUIVEL_NASA_1__': departmentNasa(record, 'Zuivel', 1),
-    '__ZUIVEL_NASA_2__': departmentNasa(record, 'Zuivel', 2),
-    '__ZUIVEL_NASA_3__': departmentNasa(record, 'Zuivel', 3),
-    '__ZUIVEL_NASA_4__': departmentNasa(record, 'Zuivel', 4),
-    '__ZUIVEL_SCORE__': buildDepartmentScore(record, 'Zuivel'),
-    '__ZUIVEL__': buildDepartmentScore(record, 'Zuivel'),
-
-    '__KAAS_VLEESWAREN_NASA_1__': departmentNasa(record, 'Kaas/Vleeswaren', 1),
-    '__KAAS_VLEESWAREN_NASA_2__': departmentNasa(record, 'Kaas/Vleeswaren', 2),
-    '__KAAS_VLEESWAREN_NASA_3__': departmentNasa(record, 'Kaas/Vleeswaren', 3),
-    '__KAAS_VLEESWAREN_SCORE__': buildDepartmentScore(record, 'Kaas/Vleeswaren'),
-    '__KAAS_VLEESWAREN__': buildDepartmentScore(record, 'Kaas/Vleeswaren'),
-
-    '__VLEES_VIS_KIP_VEGA_NASA_1__': departmentNasa(record, 'Vlees/Vis/Kip/Vega', 1),
-    '__VLEES_VIS_KIP_VEGA_NASA_2__': departmentNasa(record, 'Vlees/Vis/Kip/Vega', 2),
-    '__VLEES_VIS_KIP_VEGA_NASA_3__': departmentNasa(record, 'Vlees/Vis/Kip/Vega', 3),
-    '__VLEES_VIS_KIP_VEGA_NASA_4__': departmentNasa(record, 'Vlees/Vis/Kip/Vega', 4),
-    '__VLEES_VIS_KIP_VEGA_SCORE__': buildDepartmentScore(record, 'Vlees/Vis/Kip/Vega'),
-    '__VLEES_VIS_KIP_VEGA__': buildDepartmentScore(record, 'Vlees/Vis/Kip/Vega'),
-
-    '__MAALTIJDEN_SAPPEN_NASA_1__': departmentNasa(record, 'Maaltijden/Sappen', 1),
-    '__MAALTIJDEN_SAPPEN_NASA_2__': departmentNasa(record, 'Maaltijden/Sappen', 2),
-    '__MAALTIJDEN_SAPPEN_NASA_3__': departmentNasa(record, 'Maaltijden/Sappen', 3),
-    '__MAALTIJDEN_SAPPEN_SCORE__': buildDepartmentScore(record, 'Maaltijden/Sappen'),
-    '__MAALTIJDEN_SAPPEN__': buildDepartmentScore(record, 'Maaltijden/Sappen'),
-
-    '__PANKLAAR_NASA_1__': departmentNasa(record, 'Panklaar', 1),
-    '__PANKLAAR_NASA_2__': departmentNasa(record, 'Panklaar', 2),
-    '__PANKLAAR_NASA_3__': departmentNasa(record, 'Panklaar', 3),
-    '__PANKLAAR_SCORE__': buildDepartmentScore(record, 'Panklaar'),
-    '__PANKLAAR__': buildDepartmentScore(record, 'Panklaar'),
-
-    '__SAMENVATTING__': buildSummary(record),
-    '__JSON__': JSON.stringify(record)
+    '__CONTROLE_DATA__': payload,
+    '__JSON__': payload,
+    '__SAMENVATTING__': buildSummary(record)
   };
   let url = template;
   Object.keys(replacements).forEach(key=>{
@@ -617,7 +823,8 @@ function prepareSubmitPage(record, formsUrl, errorMessage){
   summaryLines.push(`Shiftleider: ${record.Shiftleider}`);
   summaryLines.push(`Datum+tijd: ${record.DatumTijd}`);
   summaryLines.push(`Voortgang: ${record.AantalAfgerond}/${record.AantalTotaal}`);
-  summaryLines.push(`Goed: ${record.AantalGoed} | Fout: ${record.AantalFout} | Niet gevuld: ${record.AantalNietGevuld}`);
+  summaryLines.push(`Goed: ${record.AantalGoed} | Fout: ${record.AantalFout} | Niet gevuld productregels: ${record.AantalNietGevuld}`);
+  summaryLines.push(`Afdelingen niet gevuld: ${record.AfdelingenNietGevuld.length ? record.AfdelingenNietGevuld.join(', ') : '-'}`);
   summaryLines.push('');
   summaryLines.push('Afdelingen:');
   summaryLines.push(buildDepartmentText(record, 'Zuivel').split('\\n')[0]);
@@ -644,7 +851,13 @@ function logToForms(){
   const leader = document.getElementById('leader').value;
   if(!leader){ alert('Kies eerst een shiftleider.'); return; }
 
-  const open = selection.filter(x=>!x.Status || x.Status==='Open').length;
+  const missingWarningNames = selection.filter(x => x.Status === 'Fout' && x.MedewerkerAanspreken && !x.MedewerkerNaam);
+  if(missingWarningNames.length){
+    alert('Kies eerst een medewerker bij elke aangevinkte optie "Medewerker aanspreken".');
+    return;
+  }
+
+  const open = selection.filter(x=>(!x.Status || x.Status==='Open') && !isDepartmentNotFilled(x.Afdeling)).length;
   if(open && !confirm(`Er staan nog ${open} producten open. Toch opslaan?`)) return;
 
   const record = buildLogRecord();
@@ -696,7 +909,7 @@ document.querySelectorAll('.resetBtn').forEach(btn => btn.addEventListener('clic
 document.getElementById('continueFormsBtn').addEventListener('click', continueToForms);
 document.getElementById('backToControlBtn').addEventListener('click', backToControl);
 (async function initApp(){
-  const ok = await loadProductsCsv();
+  const ok = await loadDataFiles();
   if(ok) loadDay(document.getElementById('dateInput').value);
 })();
 </script>
