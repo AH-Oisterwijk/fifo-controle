@@ -806,7 +806,7 @@ function configuredFormsUrl(){
   return (window.FIFO_FORMS_URL_TEMPLATE || '').trim();
 }
 function makeFormsUrl(record){
-  const payload = JSON.stringify(buildFormsRecord(record));
+  const payload = 'FIFO_JSON:' + JSON.stringify(buildFormsRecord(record));
 
   const baseUrl = window.FIFO_FORMS_BASE_URL || configuredFormsUrl();
   const dateField = window.FIFO_FORMS_DATE_FIELD || '';
