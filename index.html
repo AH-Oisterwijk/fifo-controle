@@ -805,38 +805,29 @@ function departmentCounts(record, afdeling){
 function configuredFormsUrl(){
   return (window.FIFO_FORMS_URL_TEMPLATE || '').trim();
 }
+function hasFormsConfig(){
+  return !!configuredFormsUrl();
+}
 function makeFormsUrl(record){
-  const payload = 'FIFO_JSON:' + JSON.stringify(buildFormsRecord(record));
-
-  const baseUrl = window.FIFO_FORMS_BASE_URL || configuredFormsUrl();
-  const dateField = window.FIFO_FORMS_DATE_FIELD || '';
-  const dataField = window.FIFO_FORMS_DATA_FIELD || '';
-
-  if(baseUrl && dateField && dataField){
-    const url = new URL(baseUrl, window.location.href);
-    url.searchParams.set(dateField, `"${record.DagKey || ''}"`);
-    url.searchParams.set(dataField, payload);
-    return url.toString();
-  }
-
   const template = configuredFormsUrl();
   if(!template) return '';
 
+  const payload = 'FIFO_JSON:' + JSON.stringify(buildFormsRecord(record));
   const encodedPayload = encodeURIComponent(payload);
   const encodedDateForForms = encodeURIComponent(`"${record.DagKey || ''}"`);
 
   let url = template;
 
+  // Datumveld in Microsoft Forms gebruikt in prefilled links meestal quotes:
+  // "2026-01-02" wordt dan %222026-01-02%22.
   url = url.split('%22__DATUM__%22').join(encodedDateForForms);
   url = url.split('"__DATUM__"').join(encodedDateForForms);
   url = url.split('__DATUM__').join(encodedDateForForms);
 
+  // Controle data wordt als gewone tekst meegestuurd.
+  // FIFO_JSON: voorkomt dat Microsoft Forms de JSON als object behandelt.
   url = url.split('__CONTROLE_DATA__').join(encodedPayload);
   url = url.split('__JSON__').join(encodedPayload);
-
-  // Extra vangnet voor oude per ongeluk opgeslagen testwaardes.
-  url = url.replace(/%5Bobject%20Object%5D/gi, encodedPayload);
-  url = url.replace(/\[object Object\]/g, encodedPayload);
 
   return url;
 }
