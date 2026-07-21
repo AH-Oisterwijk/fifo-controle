@@ -740,15 +740,59 @@ function buildLogRecord(){
       }))
   };
 }
+function encodeAfdelingCode(afdeling){
+  const value = String(afdeling || '');
+  if(value === 'Zuivel') return 'Z';
+  if(value === 'Kaas/Vleeswaren') return 'K';
+  if(value === 'Vlees/Vis/Kip/Vega') return 'V';
+  if(value === 'Maaltijden/Sappen') return 'M';
+  if(value === 'Panklaar') return 'P';
+  return value;
+}
+function encodeStatusCode(status, afdelingNietGevuld){
+  if(afdelingNietGevuld) return 'A';
+  const value = String(status || '');
+  if(value === 'Goed') return 'G';
+  if(value === 'Fout') return 'F';
+  if(value === 'Niet gevuld') return 'N';
+  return value;
+}
+function compactScores(scores){
+  const out = {};
+  Object.entries(scores || {}).forEach(([afdeling, score]) => {
+    out[encodeAfdelingCode(afdeling)] = String(score || '');
+  });
+  return out;
+}
+function compactAfdelingStatussen(statussen){
+  const out = {};
+  Object.entries(statussen || {}).forEach(([afdeling, value]) => {
+    out[encodeAfdelingCode(afdeling)] = value && value.Status === 'Niet gevuld vandaag' ? 'N' : 'G';
+  });
+  return out;
+}
 function buildFormsRecord(record){
   return {
-    DatumTijd: record.DatumTijd,
-    DagKey: record.DagKey,
-    Shiftleider: record.Shiftleider,
-    Scores: record.Scores,
-    AfdelingStatussen: record.AfdelingStatussen,
-    AfdelingenNietGevuld: record.AfdelingenNietGevuld,
-    Waarschuwingen: record.Waarschuwingen
+    v: 3,
+    d: record.DagKey,
+    dt: record.DatumTijd,
+    s: record.Shiftleider,
+    sc: compactScores(record.Scores),
+    st: compactAfdelingStatussen(record.AfdelingStatussen),
+    ng: (record.AfdelingenNietGevuld || []).map(encodeAfdelingCode),
+    p: (record.Producten || []).map(p => [
+      encodeAfdelingCode(p.Afdeling),
+      p.Nasa || '',
+      encodeStatusCode(p.Status, !!p.AfdelingNietGevuld),
+      p.MedewerkerNaam || '',
+      p.AfdelingNietGevuld ? 1 : 0
+    ]),
+    w: (record.Waarschuwingen || []).map(w => [
+      w.DatumGegeven || record.DagKey || '',
+      w.NaamMedewerker || '',
+      w.ShiftleiderManager || record.Shiftleider || '',
+      w.Opmerkingen || ''
+    ])
   };
 }
 function formatProductLine(p){
