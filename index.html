@@ -748,6 +748,15 @@ function buildFormsRecord(record){
     Scores: record.Scores,
     AfdelingStatussen: record.AfdelingStatussen,
     AfdelingenNietGevuld: record.AfdelingenNietGevuld,
+    Producten: (record.Producten || []).map(p => ({
+      A: p.Afdeling,
+      S: p.Subafdeling,
+      N: p.Nasa,
+      P: p.Productnaam,
+      T: p.Status,
+      M: p.MedewerkerNaam || '',
+      G: !!p.AfdelingNietGevuld
+    })),
     Waarschuwingen: record.Waarschuwingen
   };
 }
