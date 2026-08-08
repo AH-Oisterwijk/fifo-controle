@@ -80,6 +80,21 @@
     .fifo-actions button[data-action="Goed"].fifo-action-selected{background:#16a34a;color:#fff;border-color:#15803d}
     .fifo-actions button[data-action="Fout"].fifo-action-selected{background:#dc2626;color:#fff;border-color:#b91c1c}
 
+
+    .fifo-fillbar{display:flex;justify-content:space-between;gap:14px;align-items:center;background:#f8fafc;border:1px solid #dbe3ef;border-radius:14px;padding:12px 14px;margin:0 0 10px}
+    .fifo-fillbar strong{display:block;color:#0f172a}
+    .fifo-fillbar small{display:block;color:#64748b;margin-top:2px}
+    .fifo-check-options{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+    .fifo-check-option{display:inline-flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid #cbd5e1;border-radius:999px;background:#ffffff;font-weight:800;color:#334155;cursor:pointer;user-select:none}
+    .fifo-check-option input{width:18px;height:18px;accent-color:#16a34a}
+    .fifo-check-option:has(input:not(:checked)){background:#f1f5f9;color:#64748b;border-color:#cbd5e1}
+    .fifo-check-option:has(input:not(:checked)) span:after{content:" niet gevuld";font-weight:700;color:#dc2626}
+    .fifo-check-option:has(input:checked){background:#ecfdf5;color:#166534;border-color:#86efac}
+    .fifo-check-option:has(input:checked) span:after{content:" gevuld";font-weight:700;color:#15803d}
+    .fifo-dept-control .fifo-switch{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #cbd5e1;border-radius:999px;background:#fff;font-weight:800}
+    .fifo-dept-control .fifo-switch input{position:static;opacity:1;width:18px;height:18px;accent-color:#16a34a}
+    .fifo-dept-control .fifo-switch .fifo-slider{display:none}
+
     @media(max-width:640px){.fifo-app{padding:8px}.fifo-header h1{font-size:24px}.fifo-card{padding:13px;border-radius:16px}.fifo-grid{grid-template-columns:1fr}.fifo-qr svg{width:190px;height:190px}.fifo-nasa-row strong{font-size:30px}.fifo-actions button{font-size:13px;padding:14px 4px}.fifo-control select,.fifo-control input{max-width:none;width:100%}}
   </style>
   <script src="config.js"></script>
@@ -439,7 +454,10 @@ function renderGroup(afdeling,items){
   const done = items.filter(x=>x.Status && x.Status !== 'Open').length;
   const groupKeys = fillGroupKeysForDepartment(afdeling);
   const anyNotFilled = groupKeys.some(isFillGroupNotFilled);
-  const controls = groupKeys.map(key => renderFillControl(key, groupKeys.length > 1 ? 'Subafdelingstatus' : 'Afdelingstatus')).join('');
+  const controls = groupKeys.length > 1
+    ? renderCombinedFillControl(afdeling, groupKeys)
+    : renderFillControl(groupKeys[0], 'Afdelingstatus');
+
   return `<section class="fifo-group ${anyNotFilled ? 'fifo-dept-notfilled' : ''}" data-afdeling="${esc(afdeling)}">
     <div class="fifo-group-title"><h2>${esc(afdeling)}</h2><span>${done}/${items.length}</span></div>
     <div class="fifo-dept-control-list">${controls}</div>
@@ -449,15 +467,32 @@ function renderGroup(afdeling,items){
 function renderFillControl(groupKey, title){
   const notFilled = isFillGroupNotFilled(groupKey);
   const checked = notFilled ? '' : 'checked';
-  const label = notFilled ? 'Niet gevuld vandaag' : 'Gevuld vandaag';
   return `<div class="fifo-dept-control">
-      <div class="fifo-dept-control-text"><strong>${esc(title)}</strong>${esc(groupKey)}: ${esc(label)}</div>
-      <label class="fifo-switch" title="Zet uit als dit blok vandaag niet gevuld is">
+      <div class="fifo-dept-control-text"><strong>${esc(title)}</strong>${esc(groupKey)}</div>
+      <label class="fifo-switch" title="Vink aan als dit blok vandaag gevuld is">
         <input class="fifo-dept-toggle" type="checkbox" data-afdeling="${esc(groupKey)}" ${checked}>
-        <span class="fifo-slider"></span>
-        <span>Gevuld</span>
+        <span>${notFilled ? 'Niet gevuld vandaag' : 'Gevuld vandaag'}</span>
       </label>
     </div>`;
+}
+
+function renderCombinedFillControl(afdeling, groupKeys){
+  const options = groupKeys.map(key => {
+    const notFilled = isFillGroupNotFilled(key);
+    const checked = notFilled ? '' : 'checked';
+    return `<label class="fifo-check-option" title="Vink aan als ${esc(key)} vandaag gevuld is">
+      <input class="fifo-dept-toggle" type="checkbox" data-afdeling="${esc(key)}" ${checked}>
+      <span>${esc(key)}</span>
+    </label>`;
+  }).join('');
+
+  return `<div class="fifo-fillbar">
+    <div>
+      <strong>${esc(afdeling)} gevuld?</strong>
+      <small>Vink de subafdelingen aan die vandaag gevuld zijn.</small>
+    </div>
+    <div class="fifo-check-options">${options}</div>
+  </div>`;
 }
 
 function renderCard(item, groupNotFilled=false){
@@ -499,7 +534,7 @@ function renderWarningPanel(item){
   return `<div class="fifo-warning-panel">
     <label><input class="fifo-warning-check" type="checkbox" ${checked}> Medewerker aanspreken</label>
     <select class="fifo-medewerker-select" ${disabled}>${options}</select>
-    <div class="fifo-warning-note">Alleen aanvinken als je deze fout wilt laten toevoegen aan Tabel_waarschuwingen.</div>
+    <div class="fifo-warning-note">Alleen aanvinken als de medewerker ook daadwerkelijk is aangesproken! wilt laten toevoegen aan Tabel_waarschuwingen.</div>
   </div>`;
 }
 function saveSelection(){
