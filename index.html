@@ -95,6 +95,11 @@
     .fifo-dept-control .fifo-switch input{position:static;opacity:1;width:18px;height:18px;accent-color:#16a34a}
     .fifo-dept-control .fifo-switch .fifo-slider{display:none}
 
+
+    .fifo-fillbar.fifo-fillbar-single{justify-content:space-between}
+    .fifo-fillbar.fifo-fillbar-single .fifo-check-options{min-width:180px}
+    .fifo-fillbar .fifo-check-option{box-shadow:0 1px 2px rgba(15,23,42,.06)}
+
     @media(max-width:640px){.fifo-app{padding:8px}.fifo-header h1{font-size:24px}.fifo-card{padding:13px;border-radius:16px}.fifo-grid{grid-template-columns:1fr}.fifo-qr svg{width:190px;height:190px}.fifo-nasa-row strong{font-size:30px}.fifo-actions button{font-size:13px;padding:14px 4px}.fifo-control select,.fifo-control input{max-width:none;width:100%}}
   </style>
   <script src="config.js"></script>
@@ -456,7 +461,7 @@ function renderGroup(afdeling,items){
   const anyNotFilled = groupKeys.some(isFillGroupNotFilled);
   const controls = groupKeys.length > 1
     ? renderCombinedFillControl(afdeling, groupKeys)
-    : renderFillControl(groupKeys[0], 'Afdelingstatus');
+    : renderFillControl(groupKeys[0], afdeling);
 
   return `<section class="fifo-group ${anyNotFilled ? 'fifo-dept-notfilled' : ''}" data-afdeling="${esc(afdeling)}">
     <div class="fifo-group-title"><h2>${esc(afdeling)}</h2><span>${done}/${items.length}</span></div>
@@ -464,16 +469,22 @@ function renderGroup(afdeling,items){
     <div class="fifo-grid">${items.map(item => renderCard(item, isItemNotFilledByToggle(item))).join('')}</div>
   </section>`;
 }
-function renderFillControl(groupKey, title){
+function renderFillControl(groupKey, afdeling){
   const notFilled = isFillGroupNotFilled(groupKey);
   const checked = notFilled ? '' : 'checked';
-  return `<div class="fifo-dept-control">
-      <div class="fifo-dept-control-text"><strong>${esc(title)}</strong>${esc(groupKey)}</div>
-      <label class="fifo-switch" title="Vink aan als dit blok vandaag gevuld is">
+
+  return `<div class="fifo-fillbar fifo-fillbar-single">
+    <div>
+      <strong>${esc(afdeling)} gevuld?</strong>
+      <small>Vink aan als dit vandaag gevuld is.</small>
+    </div>
+    <div class="fifo-check-options">
+      <label class="fifo-check-option" title="Vink aan als ${esc(groupKey)} vandaag gevuld is">
         <input class="fifo-dept-toggle" type="checkbox" data-afdeling="${esc(groupKey)}" ${checked}>
-        <span>${notFilled ? 'Niet gevuld vandaag' : 'Gevuld vandaag'}</span>
+        <span>${esc(groupKey)}</span>
       </label>
-    </div>`;
+    </div>
+  </div>`;
 }
 
 function renderCombinedFillControl(afdeling, groupKeys){
@@ -534,7 +545,7 @@ function renderWarningPanel(item){
   return `<div class="fifo-warning-panel">
     <label><input class="fifo-warning-check" type="checkbox" ${checked}> Medewerker aanspreken</label>
     <select class="fifo-medewerker-select" ${disabled}>${options}</select>
-    <div class="fifo-warning-note">Alleen aanvinken als de medewerker ook daadwerkelijk is aangesproken! wilt laten toevoegen aan Tabel_waarschuwingen.</div>
+    <div class="fifo-warning-note">Alleen aanvinken als de medewerker ook daadwerkelijk is aangesproken!</div>
   </div>`;
 }
 function saveSelection(){
