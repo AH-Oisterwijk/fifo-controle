@@ -65,6 +65,21 @@
     .fifo-actions button[data-action="Niet gevuld"]{background:#f1f5f9;color:#334155}
     .toolbtn.primary{margin-top:8px;background:var(--blue);color:#fff;width:100%}
     .toolrow{display:flex;gap:10px;flex-wrap:wrap}.toolbtn{background:#fff;border:1px solid var(--line);color:#172033}.toolbtn.danger{background:#fee2e2;color:#7f1d1d}.fifo-submit-card{position:sticky;bottom:0;z-index:4;margin-top:24px;border-color:#bfdbfe}.fifo-bottom-submit{margin:26px 0 40px}.fifo-small-note{font-size:13px;color:#64748b;margin:8px 0 0}.fifo-submit-page{max-width:720px;margin:0 auto;padding:18px}.fifo-submit-page h1{font-size:30px;margin:0 0 8px}.fifo-submit-page p{color:#475569;line-height:1.45}.fifo-submit-summary{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:12px;margin:12px 0;font-size:14px;white-space:pre-wrap}.fifo-submit-actions{display:grid;gap:10px;margin-top:16px}.fifo-submit-actions .toolbtn{width:100%;font-size:16px;padding:14px}.fifo-submit-actions .secondary{background:#fff;color:#172033}.fifo-submit-error{background:#fef2f2;border:1px solid #fecaca;color:#7f1d1d;border-radius:14px;padding:12px;margin:12px 0}
+
+    .fifo-dept-control-list{display:grid;gap:8px;margin:0 2px 12px}
+    .fifo-dept-control-list .fifo-dept-control{margin:0}
+    .fifo-product-card{position:relative;overflow:hidden}
+    .fifo-is-good{border-color:#16a34a;background:#f0fdf4;box-shadow:0 10px 28px rgba(22,163,74,.18)}
+    .fifo-is-bad{border-color:#dc2626;background:#fef2f2;box-shadow:0 10px 28px rgba(220,38,38,.18)}
+    .fifo-is-good:before,.fifo-is-bad:before,.fifo-is-empty:before{content:"";position:absolute;left:0;right:0;top:0;height:7px}
+    .fifo-is-good:before{background:#16a34a}
+    .fifo-is-bad:before{background:#dc2626}
+    .fifo-is-empty:before{background:#94a3b8}
+    .fifo-actions button{border:2px solid transparent;transition:transform .12s ease,box-shadow .12s ease,filter .12s ease}
+    .fifo-actions button.fifo-action-selected{transform:translateY(2px);box-shadow:inset 0 4px 10px rgba(15,23,42,.28);filter:saturate(1.12);outline:3px solid rgba(37,99,235,.18)}
+    .fifo-actions button[data-action="Goed"].fifo-action-selected{background:#16a34a;color:#fff;border-color:#15803d}
+    .fifo-actions button[data-action="Fout"].fifo-action-selected{background:#dc2626;color:#fff;border-color:#b91c1c}
+
     @media(max-width:640px){.fifo-app{padding:8px}.fifo-header h1{font-size:24px}.fifo-card{padding:13px;border-radius:16px}.fifo-grid{grid-template-columns:1fr}.fifo-qr svg{width:190px;height:190px}.fifo-nasa-row strong{font-size:30px}.fifo-actions button{font-size:13px;padding:14px 4px}.fifo-control select,.fifo-control input{max-width:none;width:100%}}
   </style>
   <script src="config.js"></script>
@@ -96,15 +111,14 @@
       <div class="fifo-mini-stats" id="stats"></div>
     </section>
     <section class="fifo-card fifo-submit-card">
-      <button class="toolbtn primary formsLogBtn">Opslaan FIFO Controle</button>
+      <button class="toolbtn primary formsLogBtn">Naar Microsoft Forms om op te slaan</button>
       <button class="fifo-reset resetBtn" title="Reset controle">Reset controle</button>
-      <p class="fifo-small-note">Opent Microsoft Forms met deze controle vooraf ingevuld. Controleer daar kort en klik op Verzenden.</p>
     </section>
 
     <section id="content"></section>
 
     <section class="fifo-card fifo-bottom-submit">
-      <button class="toolbtn primary formsLogBtn">Opslaan FIFO Controle</button>
+      <button class="toolbtn primary formsLogBtn">Naar Microsoft Forms om op te slaan</button>
       <button class="fifo-reset resetBtn" title="Reset controle">Reset controle</button>
     </section>
   </div>
@@ -114,13 +128,13 @@
       <h1>FIFO Controle</h1>
       <p>
         Je bent teruggekomen vanuit Microsoft Forms. Controleer of de controle daar is verzonden.
-        Wil je opnieuw naar Microsoft Forms, klik dan op <strong>Opslaan FIFO Controle</strong>.
+        Wil je opnieuw naar Microsoft Forms, klik dan op <strong>Naar Microsoft Forms om op te slaan</strong>.
         Wil je nog iets aanpassen, klik dan op <strong>Terug</strong>.
       </p>
       <div id="submitError" class="fifo-submit-error fifo-hidden"></div>
       <div id="submitSummary" class="fifo-submit-summary"></div>
       <div class="fifo-submit-actions">
-        <button class="toolbtn primary" id="continueFormsBtn">Opslaan FIFO Controle</button>
+        <button class="toolbtn primary" id="continueFormsBtn">Naar Microsoft Forms om op te slaan</button>
         <button class="toolbtn secondary" id="backToControlBtn">Terug</button>
       </div>
     </section>
@@ -265,6 +279,41 @@ let departmentStates = defaultDepartmentStates();
 let selectionWarnings = [];
 const departmentOrder = ['Zuivel','Kaas/Vleeswaren','Vlees/Vis/Kip/Vega','Maaltijden/Sappen','Panklaar'];
 
+const subdepartmentFillGroups = {
+  'Vlees/Vis/Kip/Vega': ['Vlees','Vis','Kip','Vega'],
+  'Maaltijden/Sappen': ['Maaltijden','Sappen']
+};
+
+function fillGroupKeysForDepartment(afdeling){
+  return subdepartmentFillGroups[afdeling] || [afdeling];
+}
+function itemFillGroupKey(item){
+  const keys = fillGroupKeysForDepartment(item.Afdeling);
+  const match = keys.find(key => norm(key) === norm(item.Subafdeling));
+  return match || item.Afdeling;
+}
+function isFillGroupNotFilled(groupKey){
+  return departmentStates && departmentStates[groupKey] === 'Niet gevuld vandaag';
+}
+function isItemNotFilledByToggle(item){
+  return isFillGroupNotFilled(itemFillGroupKey(item));
+}
+function getNotFilledGroups(){
+  return Object.keys(departmentStates || {}).filter(key => departmentStates[key] === 'Niet gevuld vandaag');
+}
+function migrateDepartmentStates(){
+  const vleesState = departmentStates['Vlees/Vis/Kip/Vega'];
+  if(vleesState === 'Niet gevuld vandaag'){
+    ['Vlees','Vis','Kip','Vega'].forEach(key => departmentStates[key] = 'Niet gevuld vandaag');
+  }
+
+  const maaltijdState = departmentStates['Maaltijden/Sappen'];
+  if(maaltijdState === 'Niet gevuld vandaag'){
+    ['Maaltijden','Sappen'].forEach(key => departmentStates[key] = 'Niet gevuld vandaag');
+  }
+}
+
+
 function todayKey(){
   const d = new Date();
   return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
@@ -274,19 +323,23 @@ function defaultDepartmentStates(){
   return {
     'Zuivel':'Gevuld',
     'Kaas/Vleeswaren':'Gevuld',
-    'Vlees/Vis/Kip/Vega':'Gevuld',
-    'Maaltijden/Sappen':'Gevuld',
+    'Vlees':'Gevuld',
+    'Vis':'Gevuld',
+    'Kip':'Gevuld',
+    'Vega':'Gevuld',
+    'Maaltijden':'Gevuld',
+    'Sappen':'Gevuld',
     'Panklaar':'Gevuld'
   };
 }
 function isDepartmentNotFilled(afdeling){
-  return departmentStates && departmentStates[afdeling] === 'Niet gevuld vandaag';
+  return isFillGroupNotFilled(afdeling);
 }
-function setDepartmentNotFilled(afdeling, notFilled){
-  departmentStates[afdeling] = notFilled ? 'Niet gevuld vandaag' : 'Gevuld';
+function setDepartmentNotFilled(groupKey, notFilled){
+  departmentStates[groupKey] = notFilled ? 'Niet gevuld vandaag' : 'Gevuld';
 
   selection
-    .filter(item => item.Afdeling === afdeling)
+    .filter(item => itemFillGroupKey(item) === groupKey)
     .forEach(item => {
       if(notFilled){
         item.Status = 'Niet gevuld';
@@ -324,12 +377,14 @@ function loadDay(dayKey){
     } else {
       selection = parsed.selection || [];
       departmentStates = Object.assign(defaultDepartmentStates(), parsed.departmentStates || {});
+      migrateDepartmentStates();
     }
     validateCurrentPools();
   }
   else {
     selection = generateSelection(dayKey);
     departmentStates = defaultDepartmentStates();
+    migrateDepartmentStates();
     saveSelection();
   }
   render();
@@ -382,26 +437,35 @@ function render(){
 }
 function renderGroup(afdeling,items){
   const done = items.filter(x=>x.Status && x.Status !== 'Open').length;
-  const notFilled = isDepartmentNotFilled(afdeling);
+  const groupKeys = fillGroupKeysForDepartment(afdeling);
+  const anyNotFilled = groupKeys.some(isFillGroupNotFilled);
+  const controls = groupKeys.map(key => renderFillControl(key, groupKeys.length > 1 ? 'Subafdelingstatus' : 'Afdelingstatus')).join('');
+  return `<section class="fifo-group ${anyNotFilled ? 'fifo-dept-notfilled' : ''}" data-afdeling="${esc(afdeling)}">
+    <div class="fifo-group-title"><h2>${esc(afdeling)}</h2><span>${done}/${items.length}</span></div>
+    <div class="fifo-dept-control-list">${controls}</div>
+    <div class="fifo-grid">${items.map(item => renderCard(item, isItemNotFilledByToggle(item))).join('')}</div>
+  </section>`;
+}
+function renderFillControl(groupKey, title){
+  const notFilled = isFillGroupNotFilled(groupKey);
   const checked = notFilled ? '' : 'checked';
   const label = notFilled ? 'Niet gevuld vandaag' : 'Gevuld vandaag';
-  return `<section class="fifo-group ${notFilled ? 'fifo-dept-notfilled' : ''}" data-afdeling="${esc(afdeling)}">
-    <div class="fifo-group-title"><h2>${esc(afdeling)}</h2><span>${done}/${items.length}</span></div>
-    <div class="fifo-dept-control">
-      <div class="fifo-dept-control-text"><strong>Afdelingstatus</strong>${esc(label)}</div>
-      <label class="fifo-switch" title="Zet uit als deze afdeling vandaag niet gevuld is">
-        <input class="fifo-dept-toggle" type="checkbox" data-afdeling="${esc(afdeling)}" ${checked}>
+  return `<div class="fifo-dept-control">
+      <div class="fifo-dept-control-text"><strong>${esc(title)}</strong>${esc(groupKey)}: ${esc(label)}</div>
+      <label class="fifo-switch" title="Zet uit als dit blok vandaag niet gevuld is">
+        <input class="fifo-dept-toggle" type="checkbox" data-afdeling="${esc(groupKey)}" ${checked}>
         <span class="fifo-slider"></span>
         <span>Gevuld</span>
       </label>
-    </div>
-    <div class="fifo-grid">${items.map(item => renderCard(item, notFilled)).join('')}</div>
-  </section>`;
+    </div>`;
 }
-function renderCard(item, departmentNotFilled=false){
+
+function renderCard(item, groupNotFilled=false){
   const cls = item.Status==='Goed'?'fifo-is-good':item.Status==='Fout'?'fifo-is-bad':item.Status==='Niet gevuld'?'fifo-is-empty':'fifo-is-open';
-  const disabled = departmentNotFilled ? 'disabled' : '';
-  const statusText = departmentNotFilled ? 'Niet gevuld vandaag' : (item.Status || 'Open');
+  const disabled = groupNotFilled ? 'disabled' : '';
+  const statusText = groupNotFilled ? 'Niet gevuld vandaag' : (item.Status || 'Open');
+  const goedSelected = item.Status === 'Goed' ? 'fifo-action-selected' : '';
+  const foutSelected = item.Status === 'Fout' ? 'fifo-action-selected' : '';
   return `<article class="fifo-product-card ${cls}" data-id="${item.Id}">
     <div class="fifo-card-top"><span class="fifo-sub">${esc(item.Subafdeling)}</span><span class="fifo-status-pill">${esc(statusText)}</span></div>
     <h3>${esc(item.Productnaam)}</h3>
@@ -417,11 +481,10 @@ function renderCard(item, departmentNotFilled=false){
         <button data-action="SaveNasa">Opslaan Nasa</button>
         <button data-action="CancelNasa">Annuleren</button>
       </div>
-      <div class="fifo-nasa-note">Als het Nasa-nummer in data/products.csv staat, wordt de productnaam automatisch bijgewerkt. Staat het niet in data/products.csv, dan blijft het als handmatig gekozen Nasa staan. Dubbelen binnen hetzelfde blok worden geweigerd.</div>
     </div>
     <div class="fifo-qr">${qrSvg(item.Nasa)}</div>
     <div class="fifo-actions">
-      <button data-action="Goed" ${disabled}>Goed</button><button data-action="Fout" ${disabled}>Fout</button><!-- <button data-action="Niet gevuld">Niet gevuld</button> -->
+      <button class="${goedSelected}" data-action="Goed" ${disabled}>Goed</button><button class="${foutSelected}" data-action="Fout" ${disabled}>Fout</button><!-- <button data-action="Niet gevuld">Niet gevuld</button> -->
     </div>
     ${renderWarningPanel(item)}
   </article>`;
@@ -510,8 +573,8 @@ function handleClick(e){
   const btn = e.currentTarget, card = btn.closest('.fifo-product-card'), id = Number(card.dataset.id), action = btn.dataset.action;
   const item = selection.find(x=>x.Id===id);
   if(!item) return;
-  if(isDepartmentNotFilled(item.Afdeling)){
-    alert('Deze afdeling staat op "Niet gevuld vandaag". Zet de afdeling eerst terug op gevuld.');
+  if(isItemNotFilledByToggle(item)){
+    alert('Dit blok staat op "Niet gevuld vandaag". Zet het eerst terug op gevuld.');
     return;
   }
 
@@ -611,23 +674,22 @@ function handleWarningChange(e){
   render();
 }
 function handleDepartmentToggle(e){
-  const afdeling = e.currentTarget.dataset.afdeling;
+  const groupKey = e.currentTarget.dataset.afdeling;
   const notFilled = !e.currentTarget.checked;
   if(notFilled){
-    if(!confirm(`${afdeling} markeren als niet gevuld vandaag? Productstatussen en eventuele medewerker-aanspreken keuzes binnen deze afdeling worden gewist.`)){
+    if(!confirm(`${groupKey} markeren als niet gevuld vandaag? Productstatussen en eventuele medewerker-aanspreken keuzes binnen dit blok worden gewist.`)){
       e.currentTarget.checked = true;
       return;
     }
   }
-  setDepartmentNotFilled(afdeling, notFilled);
+  setDepartmentNotFilled(groupKey, notFilled);
 }
 function updateProgress(){
   const total=selection.length||17, done=selection.filter(x=>x.Status && x.Status!=='Open').length;
   document.getElementById('progressText').textContent=`${done}/${total}`;
   document.getElementById('progressBar').style.width=`${Math.round(done/total*100)}%`;
   const goed=selection.filter(x=>x.Status==='Goed').length, fout=selection.filter(x=>x.Status==='Fout').length, niet=selection.filter(x=>x.Status==='Niet gevuld').length;
-  const deptNiet = departmentOrder.filter(isDepartmentNotFilled).length;
-  document.getElementById('stats').innerHTML=`<span>Goed: <strong>${goed}</strong></span><span>Fout: <strong>${fout}</strong></span><span>Niet gevuld productregels: <strong>${niet}</strong></span><span>Afdelingen niet gevuld: <strong>${deptNiet}</strong></span>`;
+  document.getElementById('stats').innerHTML=`<span>Goed: <strong>${goed}</strong></span><span>Fout: <strong>${fout}</strong></span><span>Niet gevuld: <strong>${niet}</strong></span>`;
 }
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
@@ -715,6 +777,7 @@ function buildLogRecord(){
     },
     AfdelingStatussen: buildAfdelingStatussen(),
     AfdelingenNietGevuld: departmentOrder.filter(isDepartmentNotFilled),
+    NietGevuldGroepen: getNotFilledGroups(),
     Producten: selection.map(x=>({
       Subafdeling:x.Subafdeling,
       Afdeling:x.Afdeling,
@@ -807,8 +870,7 @@ function buildSummary(record){
   lines.push(`Datum: ${record.DagKey}`);
   lines.push(`Shiftleider: ${record.Shiftleider || '-'}`);
   lines.push(`Voortgang: ${record.AantalAfgerond}/${record.AantalTotaal}`);
-  lines.push(`Goed: ${record.AantalGoed} | Fout: ${record.AantalFout} | Niet gevuld productregels: ${record.AantalNietGevuld}`);
-  lines.push(`Afdelingen niet gevuld: ${record.AfdelingenNietGevuld.length ? record.AfdelingenNietGevuld.join(', ') : '-'}`);
+  lines.push(`Goed: ${record.AantalGoed} | Fout: ${record.AantalFout} | Niet gevuld: ${record.AantalNietGevuld}`);
   lines.push(`Waarschuwingen: ${record.Waarschuwingen.length}`);
   lines.push('');
   for(const p of record.Producten){
@@ -885,8 +947,7 @@ function prepareSubmitPage(record, formsUrl, errorMessage){
   summaryLines.push(`Shiftleider: ${record.Shiftleider}`);
   summaryLines.push(`Datum+tijd: ${record.DatumTijd}`);
   summaryLines.push(`Voortgang: ${record.AantalAfgerond}/${record.AantalTotaal}`);
-  summaryLines.push(`Goed: ${record.AantalGoed} | Fout: ${record.AantalFout} | Niet gevuld productregels: ${record.AantalNietGevuld}`);
-  summaryLines.push(`Afdelingen niet gevuld: ${record.AfdelingenNietGevuld.length ? record.AfdelingenNietGevuld.join(', ') : '-'}`);
+  summaryLines.push(`Goed: ${record.AantalGoed} | Fout: ${record.AantalFout} | Niet gevuld: ${record.AantalNietGevuld}`);
   summaryLines.push('');
   summaryLines.push('Afdelingen:');
   summaryLines.push(buildDepartmentText(record, 'Zuivel').split('\\n')[0]);
@@ -919,7 +980,7 @@ function logToForms(){
     return;
   }
 
-  const open = selection.filter(x=>(!x.Status || x.Status==='Open') && !isDepartmentNotFilled(x.Afdeling)).length;
+  const open = selection.filter(x=>(!x.Status || x.Status==='Open') && !isItemNotFilledByToggle(x)).length;
   if(open && !confirm(`Er staan nog ${open} producten open. Toch opslaan?`)) return;
 
   const record = buildLogRecord();
