@@ -736,7 +736,7 @@ function buildLogRecord(){
         Reden: 'Niet FIFO',
         Officieel: 'Nee',
         ShiftleiderManager: leader,
-        Opmerkingen: `${x.Afdeling} | ${x.Subafdeling} | ${x.Nasa} | ${x.Productnaam}`
+        Opmerkingen: `${x.Productnaam || 'Onbekend product'} (${x.Nasa || '-'})`
       }))
   };
 }
