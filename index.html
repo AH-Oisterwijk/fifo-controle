@@ -168,7 +168,8 @@
 let leaders = [];
 let medewerkers = [];
 const subCounts = [
-  {subafdeling:'Zuivel', afdeling:'Zuivel', count:4},
+  {subafdeling:'Zuivel', afdeling:'Zuivel', count:3},
+  {subafdeling:'Boter', afdeling:'Zuivel', count:1},
   {subafdeling:'Kaas/Vleeswaren', afdeling:'Kaas/Vleeswaren', count:3},
   {subafdeling:'Vis', afdeling:'Vlees/Vis/Kip/Vega', count:1},
   {subafdeling:'Vlees', afdeling:'Vlees/Vis/Kip/Vega', count:1},
@@ -273,16 +274,21 @@ function parseProductsCsv(text){
   const hasHeader = header.includes('nasa') && header.includes('productnaam');
   const dataRows = hasHeader ? rows.slice(1) : rows;
   const idx = (name, fallback) => hasHeader ? header.indexOf(norm(name)) : fallback;
-  const iNasa=idx('Nasa',0), iName=idx('Productnaam',1), iAfd=idx('Afdeling',2), iSub=idx('Subafdeling',3), iAct=idx('Actief',4), iGew=idx('Gewicht',5);
-  return dataRows.map((r,i)=>({
-    Id:i+1,
-    Nasa:String(r[iNasa]||'').replace(/\D/g,''),
-    Productnaam:String(r[iName]||'').trim(),
-    Afdeling:String(r[iAfd]||'').trim(),
-    Subafdeling:String(r[iSub]||r[iAfd]||'').trim(),
-    Actief: !['nee','false','0','no'].includes(norm(r[iAct] || 'ja')),
-    Gewicht: Number(r[iGew] || 1) || 1
-  })).filter(p=>p.Nasa && p.Productnaam && p.Actief);
+  const iNasa=idx('Nasa',0), iName=idx('Productnaam',1), iAfd=idx('Afdeling',2), iSub=idx('Subafdeling',3), iAct=idx('Actief',4), iGew=idx('Gewicht',5), iKans=idx('Kans14',6);
+  return dataRows.map((r,i)=>{
+    const kans14 = Math.max(1, Math.min(14, Number(r[iKans] || 0) || 1));
+    const gewicht = Math.max(1, Number(r[iGew] || 0) || (kans14 * kans14));
+    return {
+      Id:i+1,
+      Nasa:String(r[iNasa]||'').replace(/\D/g,''),
+      Productnaam:String(r[iName]||'').trim(),
+      Afdeling:String(r[iAfd]||'').trim(),
+      Subafdeling:String(r[iSub]||r[iAfd]||'').trim(),
+      Actief: !['nee','false','0','no'].includes(norm(r[iAct] || 'ja')),
+      Gewicht: gewicht,
+      Kans14: kans14
+    };
+  }).filter(p=>p.Nasa && p.Productnaam && p.Actief);
 }
 function parseCsvLine(line){
   const sep = line.includes(';') ? ';' : ',';
@@ -304,6 +310,7 @@ let selectionWarnings = [];
 const departmentOrder = ['Zuivel','Kaas/Vleeswaren','Vlees/Vis/Kip/Vega','Maaltijden/Sappen','Panklaar'];
 
 const subdepartmentFillGroups = {
+  'Zuivel': ['Zuivel','Boter'],
   'Vlees/Vis/Kip/Vega': ['Vlees','Vis','Kip','Vega'],
   'Maaltijden/Sappen': ['Maaltijden','Sappen']
 };
@@ -326,6 +333,11 @@ function getNotFilledGroups(){
   return Object.keys(departmentStates || {}).filter(key => departmentStates[key] === 'Niet gevuld vandaag');
 }
 function migrateDepartmentStates(){
+  const zuivelState = departmentStates['Zuivel'];
+  if(zuivelState === 'Niet gevuld vandaag' && !departmentStates['Boter']){
+    ['Zuivel','Boter'].forEach(key => departmentStates[key] = 'Niet gevuld vandaag');
+  }
+
   const vleesState = departmentStates['Vlees/Vis/Kip/Vega'];
   if(vleesState === 'Niet gevuld vandaag'){
     ['Vlees','Vis','Kip','Vega'].forEach(key => departmentStates[key] = 'Niet gevuld vandaag');
@@ -346,6 +358,7 @@ function pad(n){return n<10?'0'+n:String(n)}
 function defaultDepartmentStates(){
   return {
     'Zuivel':'Gevuld',
+    'Boter':'Gevuld',
     'Kaas/Vleeswaren':'Gevuld',
     'Vlees':'Gevuld',
     'Vis':'Gevuld',
@@ -357,7 +370,8 @@ function defaultDepartmentStates(){
   };
 }
 function isDepartmentNotFilled(afdeling){
-  return isFillGroupNotFilled(afdeling);
+  const keys = fillGroupKeysForDepartment(afdeling);
+  return keys.length > 0 && keys.every(isFillGroupNotFilled);
 }
 function setDepartmentNotFilled(groupKey, notFilled){
   departmentStates[groupKey] = notFilled ? 'Niet gevuld vandaag' : 'Gevuld';
@@ -435,12 +449,29 @@ function generateSelection(dayKey){
   });
   return output;
 }
+function productWeight(product){
+  return Math.max(1, Number(product && product.Gewicht || 1));
+}
+function weightedScore(random, weight){
+  const r = Math.max(0.000001, Math.min(0.999999, Number(random) || 0.000001));
+  return -Math.log(r) / Math.max(1, weight);
+}
 function pickWeighted(pool,count,seed){
   return pool.map(p=>{
-    const weight=Math.max(1,Math.min(10,Number(p.Gewicht||1)));
-    const random=seededRandom(`${seed}-${p.Nasa}`);
-    return {p, score: random / weight};
+    const weight = productWeight(p);
+    const random = seededRandom(`${seed}-${p.Nasa}`);
+    return {p, score: weightedScore(random, weight)};
   }).sort((a,b)=>a.score-b.score).slice(0,count).map(x=>x.p);
+}
+function pickWeightedRandomOne(pool){
+  const total = pool.reduce((sum,p)=>sum + productWeight(p), 0);
+  if(total <= 0) return pool[Math.floor(Math.random() * pool.length)];
+  let r = Math.random() * total;
+  for(const product of pool){
+    r -= productWeight(product);
+    if(r <= 0) return product;
+  }
+  return pool[pool.length - 1];
 }
 function norm(s){return String(s||'').toLowerCase().replace(/\s+/g,' ').trim()}
 function seededRandom(seed){
@@ -569,6 +600,7 @@ function activeProductsForSubafdeling(subafdeling){
 function setItemProduct(item, product, reason){
   if(!item.OrigineelNasa) item.OrigineelNasa = item.Nasa;
   if(!item.OrigineleProductnaam) item.OrigineleProductnaam = item.Productnaam;
+  if(!Array.isArray(item.SkipHistory)) item.SkipHistory = [];
 
   item.Nasa = product.Nasa;
   item.Productnaam = product.Productnaam;
@@ -588,13 +620,32 @@ function pickRandomReplacement(item){
     .filter(x => x.Id !== item.Id && x.Afdeling === item.Afdeling)
     .map(x => String(x.Nasa)));
 
-  let pool = activeProductsForSubafdeling(item.Subafdeling)
+  let basePool = activeProductsForSubafdeling(item.Subafdeling)
     .filter(p => p.Afdeling === item.Afdeling && p.Nasa !== item.Nasa && !usedInAfdeling.has(String(p.Nasa)));
 
   // Noodfallback binnen hetzelfde hoofdblok als de subafdeling te weinig alternatieven heeft.
-  if(!pool.length){
-    pool = activeProductsForAfdeling(item.Afdeling)
+  if(!basePool.length){
+    basePool = activeProductsForAfdeling(item.Afdeling)
       .filter(p => p.Nasa !== item.Nasa && !usedInAfdeling.has(String(p.Nasa)));
+  }
+
+  if(!basePool.length){
+    alert('Geen ander uniek actief product beschikbaar voor dit blok.');
+    return;
+  }
+
+  if(!Array.isArray(item.SkipHistory)) item.SkipHistory = [];
+  const currentNasa = String(item.Nasa || '');
+  if(currentNasa && !item.SkipHistory.includes(currentNasa)) item.SkipHistory.push(currentNasa);
+
+  let skipped = new Set(item.SkipHistory.map(String));
+  let pool = basePool.filter(p => !skipped.has(String(p.Nasa)));
+
+  // Pas weer cyclen als alle mogelijke alternatieven voor dit slot al eens geskipt zijn.
+  if(!pool.length){
+    item.SkipHistory = currentNasa ? [currentNasa] : [];
+    skipped = new Set(item.SkipHistory.map(String));
+    pool = basePool.filter(p => !skipped.has(String(p.Nasa)));
   }
 
   if(!pool.length){
@@ -602,7 +653,7 @@ function pickRandomReplacement(item){
     return;
   }
 
-  const product = pool[Math.floor(Math.random() * pool.length)];
+  const product = pickWeightedRandomOne(pool);
   setItemProduct(item, product, 'Willekeurig');
   saveSelection();
   render();
@@ -838,7 +889,7 @@ function buildLogRecord(){
       Status:x.Status,
       MedewerkerAanspreken: !!x.MedewerkerAanspreken,
       MedewerkerNaam: x.MedewerkerNaam || '',
-      AfdelingNietGevuld: isDepartmentNotFilled(x.Afdeling)
+      AfdelingNietGevuld: isItemNotFilledByToggle(x)
     })),
     Waarschuwingen: selection
       .filter(x => x.Status === 'Fout' && x.MedewerkerAanspreken && x.MedewerkerNaam)
