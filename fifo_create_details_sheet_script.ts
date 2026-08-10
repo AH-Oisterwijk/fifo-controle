@@ -690,7 +690,7 @@ function buildDashboardSheet(
   sheet.getRange("K5").setFormula(`=LET(w,$K$3,g,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,w,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),t,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,w,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(w="","-",IF(t=0,"-",IF(g=t,"🟩 ","🟥 ")&g&"/"&t)))`);
 
   sheet.getRange("M5").setValue("Niet uitgevoerd");
-  sheet.getRange("N5").setFormula(`=LET(w,$K$3,x,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,w,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"MISSING"),IF(w="","-",IF(x=0,"🟩 0","🟥 "&x)))`);
+  sheet.getRange("N5").setFormula(`=LET(w,$K$3,x,COUNTIF($K$9:$K$15,"*Niet uitgevoerd*"),IF(w="","-",IF(x=0,"🟩 0","🟥 "&x)))`);
 
   sheet.getRange("J5:N5").getFormat().getFont().setBold(true);
   sheet.getRange("J3:J5").getFormat().getFill().setColor("#F2F2F2");
@@ -1577,6 +1577,37 @@ function scoreForAfdeling(payload: ControlePayload, afdeling: string): string {
   return "0/0";
 }
 
+function cleanFormsText(value: string | number | boolean | undefined | null): string {
+  return String(value ?? "").replace(/\+/g, " ").trim();
+}
+
+function formatWarningOpmerking(value: string | number | boolean | undefined | null): string {
+  const text = cleanFormsText(value);
+
+  if (!text) {
+    return "";
+  }
+
+  const parts = text.split("|").map(part => part.trim()).filter(part => part !== "");
+
+  // Oude opbouw was: Afdeling | Subafdeling | NASA | Productnaam
+  // Nieuwe gewenste opbouw is: Productnaam (NASA)
+  if (parts.length >= 4) {
+    const nasa = parts[2];
+    const productnaam = parts.slice(3).join(" | ").trim();
+
+    if (productnaam && nasa) {
+      return `${productnaam} (${nasa})`;
+    }
+
+    if (productnaam) {
+      return productnaam;
+    }
+  }
+
+  return text;
+}
+
 function addWaarschuwingen(
   workbook: ExcelScript.Workbook,
   password: string,
@@ -1619,8 +1650,8 @@ function addWaarschuwingen(
     let count = 0;
 
     for (const w of waarschuwingen) {
-      const naamMedewerker = String(w.NaamMedewerker || "").trim();
-      const shiftleiderManager = String(w.ShiftleiderManager || payload.Shiftleider || "").trim();
+      const naamMedewerker = cleanFormsText(w.NaamMedewerker);
+      const shiftleiderManager = cleanFormsText(w.ShiftleiderManager || payload.Shiftleider);
 
       if (!naamMedewerker) {
         continue;
@@ -1638,7 +1669,7 @@ function addWaarschuwingen(
       rowValues[columnIndexes["Reden"]] = "Niet FIFO";
       rowValues[columnIndexes["Officieel (Schriftelijk)"]] = "Nee";
       rowValues[columnIndexes["Shiftleider / Manager"]] = shiftleiderManager;
-      rowValues[columnIndexes["Opmerkingen (optioneel)"]] = String(w.Opmerkingen || "").trim();
+      rowValues[columnIndexes["Opmerkingen (optioneel)"]] = formatWarningOpmerking(w.Opmerkingen);
 
       bodyRange
         .getCell(emptyRowIndex, 0)
