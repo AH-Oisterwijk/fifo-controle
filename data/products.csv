@@ -1752,16 +1752,275 @@ Nasa;Productnaam;Afdeling;Subafdeling;Actief;Gewicht;Kans14
 882165;ah sap appel gember;Maaltijden/Sappen;Sappen;Ja;4;2
 661974;ah sm wortel mango;Maaltijden/Sappen;Sappen;Ja;4;2
 67197;ah 50% sap wort sin;Maaltijden/Sappen;Sappen;Ja;1;1
+67842;ah basilicum;Panklaar;Panklaar;Ja;196;14
+831597;ah bieslook;Panklaar;Panklaar;Ja;196;14
+730437;ah bio rucola;Panklaar;Panklaar;Ja;196;14
+828276;ah bio tauge;Panklaar;Panklaar;Ja;196;14
+622963;ah eikenbladsla mel groot;Panklaar;Panklaar;Ja;196;14
+558435;ah gesn kastanjechamp;Panklaar;Panklaar;Ja;196;14
+811636;ah groene asperges;Panklaar;Panklaar;Ja;196;14
+46987;ah ijsbergsla melange;Panklaar;Panklaar;Ja;196;14
+47028;ah jong bladsla rucol kvp;Panklaar;Panklaar;Ja;196;14
+576914;ah jonge bladsla rucola;Panklaar;Panklaar;Ja;196;14
+633950;ah jonge bladsla veldsla;Panklaar;Panklaar;Ja;196;14
+14346;ah koolmix;Panklaar;Panklaar;Ja;196;14
+510567;ah peen julienne;Panklaar;Panklaar;Ja;196;14
+809955;ah rauwk amsterdam ui;Panklaar;Panklaar;Ja;196;14
+649011;ah rauwk komkommer;Panklaar;Panklaar;Ja;196;14
+609630;ah rauwk radijs;Panklaar;Panklaar;Ja;196;14
+781270;ah rbak mexic groente;Panklaar;Panklaar;Ja;196;14
+555634;ah rucola;Panklaar;Panklaar;Ja;196;14
+689621;ah slamelange rode biet;Panklaar;Panklaar;Ja;196;14
+602895;ah bimi;Panklaar;Panklaar;Ja;169;13
+689796;ah bio pittig kiemgroente;Panklaar;Panklaar;Ja;169;13
+847352;ah bloemkoolroosjes;Panklaar;Panklaar;Ja;169;13
+545342;ah botersla;Panklaar;Panklaar;Ja;169;13
+845118;ah courgette spaghetti;Panklaar;Panklaar;Ja;169;13
+67843;ah dille;Panklaar;Panklaar;Ja;169;13
+738386;ah fijngesn ijsbergsla;Panklaar;Panklaar;Ja;169;13
+563896;ah geschrapte wortelt;Panklaar;Panklaar;Ja;169;13
+583659;ah ijsbergsla;Panklaar;Panklaar;Ja;169;13
+47035;ah jon bladsla veld kvp;Panklaar;Panklaar;Ja;169;13
+83750;ah kleine kastanjechamp;Panklaar;Panklaar;Ja;169;13
+831600;ah koriander;Panklaar;Panklaar;Ja;169;13
+831601;ah munt;Panklaar;Panklaar;Ja;169;13
+554635;ah pastasaus tom mascarp;Panklaar;Panklaar;Ja;169;13
+831603;ah platte peterselie;Panklaar;Panklaar;Ja;169;13
+67854;ah platte peterselie gvp;Panklaar;Panklaar;Ja;169;13
+502940;ah rbak provenc groente;Panklaar;Panklaar;Ja;169;13
+847347;ah spitskool;Panklaar;Panklaar;Ja;169;13
+831606;ah tijm;Panklaar;Panklaar;Ja;169;13
+817384;ah babyspinazie;Panklaar;Panklaar;Ja;144;12
+828280;ah bio spinazie;Panklaar;Panklaar;Ja;144;12
+532495;ah bio uiensnippers;Panklaar;Panklaar;Ja;144;12
+57884;ah bio waterkers;Panklaar;Panklaar;Ja;144;12
+844991;ah bloemkoolrijst;Panklaar;Panklaar;Ja;144;12
+817372;ah bloemkoolroosje kvp;Panklaar;Panklaar;Ja;144;12
+570008;ah broc wort bloemkl;Panklaar;Panklaar;Ja;144;12
+536500;ah eikenbladsla melange;Panklaar;Panklaar;Ja;144;12
+538674;ah groene aspergetips;Panklaar;Panklaar;Ja;144;12
+633946;ah ijsbergsla gvp;Panklaar;Panklaar;Ja;144;12
+67844;ah koriander gvp;Panklaar;Panklaar;Ja;144;12
+67845;ah munt gvp;Panklaar;Panklaar;Ja;144;12
 849228;ah ovenfriet z aardappel;Panklaar;Panklaar;Ja;144;12
+609632;ah rauwk paprika;Panklaar;Panklaar;Ja;144;12
+794408;ah romaine sla;Panklaar;Panklaar;Ja;144;12
+697601;ah slaverrijk sojabonen;Panklaar;Panklaar;Ja;144;12
+847344;ah sperziebonen;Panklaar;Panklaar;Ja;144;12
+847359;ah spinazie;Panklaar;Panklaar;Ja;144;12
+732694;ah bio gesneden shiitake;Panklaar;Panklaar;Ja;121;11
+106477;ah bio shiitake;Panklaar;Panklaar;Ja;121;11
+627240;ah bio witte kool;Panklaar;Panklaar;Ja;121;11
+839801;ah gesneden champignons;Panklaar;Panklaar;Ja;121;11
+851618;ah gesneden rode ui;Panklaar;Panklaar;Ja;121;11
+100746;ah gesneden uien gvp;Panklaar;Panklaar;Ja;121;11
+46102;ah ijsbergsla melange;Panklaar;Panklaar;Ja;121;11
+831599;ah ital kruidenmix;Panklaar;Panklaar;Ja;121;11
+737559;ah kool peen;Panklaar;Panklaar;Ja;121;11
+612266;ah krulslamelange;Panklaar;Panklaar;Ja;121;11
+749686;ah macaroni spag groente;Panklaar;Panklaar;Ja;121;11
+749689;ah nasi bami groente;Panklaar;Panklaar;Ja;121;11
+845555;ah ovengr prei peen champ;Panklaar;Panklaar;Ja;121;11
+98649;ah ovengr z aardap papr;Panklaar;Panklaar;Ja;121;11
+689619;ah pursoep tom oregano;Panklaar;Panklaar;Ja;121;11
+644402;ah rucola gvp;Panklaar;Panklaar;Ja;121;11
+622946;ah snijbonen;Panklaar;Panklaar;Ja;121;11
+817388;ah snijbonen kvp;Panklaar;Panklaar;Ja;121;11
+817389;ah sperziebonen kvp;Panklaar;Panklaar;Ja;121;11
+781312;ah wok jap peul kastchamp;Panklaar;Panklaar;Ja;121;11
+55868;ah aard ovensch rozem zz;Panklaar;Panklaar;Ja;100;10
+33720;ah basismix aziatisch;Panklaar;Panklaar;Ja;100;10
+666778;ah bio portobello;Panklaar;Panklaar;Ja;100;10
+627239;ah bio rode kool;Panklaar;Panklaar;Ja;100;10
+835265;ah bloemkool broccoli kvp;Panklaar;Panklaar;Ja;100;10
+621763;ah bloemkoolrijst kvp;Panklaar;Panklaar;Ja;100;10
+794420;ah fijn ijsbergsla;Panklaar;Panklaar;Ja;100;10
+839782;ah jap wokgr sojabonen;Panklaar;Panklaar;Ja;100;10
+21025;ah maiskolven;Panklaar;Panklaar;Ja;100;10
+749690;ah nasi groente;Panklaar;Panklaar;Ja;100;10
+611516;ah ovengr courg papr peen;Panklaar;Panklaar;Ja;100;10
+802195;ah paddenstoelen v pasta;Panklaar;Panklaar;Ja;100;10
+627977;ah pestosaus groen;Panklaar;Panklaar;Ja;100;10
+67853;ah peterselie;Panklaar;Panklaar;Ja;100;10
+91080;ah rbak hollandse groente;Panklaar;Panklaar;Ja;100;10
+831604;ah rozemarijn;Panklaar;Panklaar;Ja;100;10
+526266;ah rucola slamelange;Panklaar;Panklaar;Ja;100;10
+847346;ah spinazie kvp;Panklaar;Panklaar;Ja;100;10
+839867;ah sugar snaps;Panklaar;Panklaar;Ja;100;10
+817377;ah uienmix;Panklaar;Panklaar;Ja;100;10
+21012;ah witte champignons;Panklaar;Panklaar;Ja;100;10
+91084;ah wok chin groente;Panklaar;Panklaar;Ja;100;10
+33721;ah wok oosters;Panklaar;Panklaar;Ja;100;10
 57156;ah zoete aardappelblokjes;Panklaar;Panklaar;Ja;100;10
+21033;df bio tuinkers;Panklaar;Panklaar;Ja;100;10
+33725;ah bio oesterzwammen;Panklaar;Panklaar;Ja;81;9
+710802;ah bio oesterzwammen;Panklaar;Panklaar;Ja;81;9
+847350;ah bloemkool broccoli;Panklaar;Panklaar;Ja;81;9
+849227;ah broccoli rijst;Panklaar;Panklaar;Ja;81;9
+47261;ah jap wokgr pak shiitake;Panklaar;Panklaar;Ja;81;9
+689618;ah rbak ita groente fijng;Panklaar;Panklaar;Ja;81;9
+644400;ah rbak ita kast cham kvp;Panklaar;Panklaar;Ja;81;9
+622962;ah rucola slamelange gvp;Panklaar;Panklaar;Ja;81;9
+800468;ah salie;Panklaar;Panklaar;Ja;81;9
+67908;ah slaver spitsk wortel;Panklaar;Panklaar;Ja;81;9
+67909;ah slaver venkel courgett;Panklaar;Panklaar;Ja;81;9
+846713;ah snoepgr worteltjes;Panklaar;Panklaar;Ja;81;9
+46932;ah terra puroep broc spin;Panklaar;Panklaar;Ja;81;9
+512438;ah wok chin groente kvp;Panklaar;Panklaar;Ja;81;9
+815501;ah wortelen;Panklaar;Panklaar;Ja;81;9
+531327;ah bio kastanjechamp;Panklaar;Panklaar;Ja;64;8
+578249;ah bio milde kiemtrio;Panklaar;Panklaar;Ja;64;8
+739974;ah gele wortel nasi;Panklaar;Panklaar;Ja;64;8
+839802;ah gesn kastanjechamp;Panklaar;Panklaar;Ja;64;8
+507065;ah haricots verts;Panklaar;Panklaar;Ja;64;8
+45908;ah hf kriel rozem zeezout;Panklaar;Panklaar;Ja;64;8
+540287;ah krieltjes;Panklaar;Panklaar;Ja;64;8
+749687;ah mac spag groente kvp;Panklaar;Panklaar;Ja;64;8
+729095;ah mini krieltjes;Panklaar;Panklaar;Ja;64;8
+33724;ah paddenstoelen mix;Panklaar;Panklaar;Ja;64;8
+605569;ah rbak ita groente gvp;Panklaar;Panklaar;Ja;64;8
+67906;ah slaver bloemkool mango;Panklaar;Panklaar;Ja;64;8
+67907;ah slaver broccoli paprik;Panklaar;Panklaar;Ja;64;8
+39814;ah tauge gvp;Panklaar;Panklaar;Ja;64;8
+531033;ah terra pl pasta napol;Panklaar;Panklaar;Ja;64;8
+689649;ah terra pursoep pomp wor;Panklaar;Panklaar;Ja;64;8
+60443;ah veldsla;Panklaar;Panklaar;Ja;64;8
+535883;ah witte champignons;Panklaar;Panklaar;Ja;64;8
+644403;ah wok thai groente kvp;Panklaar;Panklaar;Ja;64;8
+98278;ah aardap partje provenc;Panklaar;Panklaar;Ja;49;7
+36099;ah basismix italiaans;Panklaar;Panklaar;Ja;49;7
+591623;ah bio alfalfa;Panklaar;Panklaar;Ja;49;7
+33723;ah bio bundelzwammen;Panklaar;Panklaar;Ja;49;7
+75574;ah broccoli roosjes kvp;Panklaar;Panklaar;Ja;49;7
+737555;ah flespompoen stukjes;Panklaar;Panklaar;Ja;49;7
+85977;ah geschoonde spruitjes;Panklaar;Panklaar;Ja;49;7
+583663;ah geschrapte wortel gvp;Panklaar;Panklaar;Ja;49;7
+617706;ah haricots verts;Panklaar;Panklaar;Ja;49;7
+809952;ah muskaat pomp stukjes;Panklaar;Panklaar;Ja;49;7
+825799;ah oregano;Panklaar;Panklaar;Ja;49;7
+721986;ah soepgr basis;Panklaar;Panklaar;Ja;49;7
+847355;ah soepgr fijne;Panklaar;Panklaar;Ja;49;7
+46946;ah wok thai groente groot;Panklaar;Panklaar;Ja;49;7
 622991;ah aardappel schijfjes;Panklaar;Panklaar;Ja;36;6
+847337;ah boerenkool kvp;Panklaar;Panklaar;Ja;36;6
+567103;ah gemengde salade gvp;Panklaar;Panklaar;Ja;36;6
+77602;ah kastanjechampignons;Panklaar;Panklaar;Ja;36;6
+583615;ah mini krieltjes;Panklaar;Panklaar;Ja;36;6
+69359;ah slaver peulvruch cajun;Panklaar;Panklaar;Ja;36;6
+581672;ah spaghetti all uovo;Panklaar;Panklaar;Ja;36;6
+74826;ah terra pursoep courg;Panklaar;Panklaar;Ja;36;6
+601049;ah verse franse friet;Panklaar;Panklaar;Ja;36;6
+797688;ah verse friet;Panklaar;Panklaar;Ja;36;6
+502942;ah wokgroente thais;Panklaar;Panklaar;Ja;36;6
+797335;bieze coleslaw;Panklaar;Panklaar;Ja;36;6
+56408;ah aard ovensch patatas b;Panklaar;Panklaar;Ja;25;5
 596472;ah aardappelpuree;Panklaar;Panklaar;Ja;25;5
 729693;ah bakaardappel papr knof;Panklaar;Panklaar;Ja;25;5
+715219;ah bio rode biet blokjes;Panklaar;Panklaar;Ja;25;5
+847353;ah broccoliroosjes;Panklaar;Panklaar;Ja;25;5
+604987;ah chin wokgroente gvp;Panklaar;Panklaar;Ja;25;5
+514236;ah fijngesn andijvie kvp;Panklaar;Panklaar;Ja;25;5
+817380;ah fijngesneden prei;Panklaar;Panklaar;Ja;25;5
+787961;ah geschilde bospeen;Panklaar;Panklaar;Ja;25;5
+84891;ah gesneden champignons;Panklaar;Panklaar;Ja;25;5
+91057;ah gesneden ui;Panklaar;Panklaar;Ja;25;5
+63444;ah groentefriet;Panklaar;Panklaar;Ja;25;5
+797847;ah klein aardap schijf kv;Panklaar;Panklaar;Ja;25;5
+581671;ah lasagne all uovo;Panklaar;Panklaar;Ja;25;5
+747629;ah mini krieltjes bistro;Panklaar;Panklaar;Ja;25;5
+45911;ah pastasaus arrabbiata;Panklaar;Panklaar;Ja;25;5
+811685;ah pastasaus pomod basil;Panklaar;Panklaar;Ja;25;5
+513034;ah ravioli formaggio pom;Panklaar;Panklaar;Ja;25;5
+91082;ah rbak ita groente;Panklaar;Panklaar;Ja;25;5
+847345;ah sperziebonen gvp;Panklaar;Panklaar;Ja;25;5
+587841;ah spinazie gvp;Panklaar;Panklaar;Ja;25;5
+657081;ah terra pl rav spinaci;Panklaar;Panklaar;Ja;25;5
+3340;ah terra pursoep pomp;Panklaar;Panklaar;Ja;25;5
+737558;ah terra pursoep zt aard;Panklaar;Panklaar;Ja;25;5
+882160;friethoes echt vers friet;Panklaar;Panklaar;Ja;25;5
+14350;friethoes franse friet;Panklaar;Panklaar;Ja;25;5
+586420;ah aardap partje toscaans;Panklaar;Panklaar;Ja;16;4
+20917;ah andijvie;Panklaar;Panklaar;Ja;16;4
+10018;ah bb kastanjechampignons;Panklaar;Panklaar;Ja;16;4
+797851;ah bbq minikriel kvp 200g;Panklaar;Panklaar;Ja;16;4
+67902;ah bbq ovensch champ papr;Panklaar;Panklaar;Ja;16;4
+689648;ah bio geraspte bietjes;Panklaar;Panklaar;Ja;16;4
+735672;ah capp prosciutto crudo;Panklaar;Panklaar;Ja;16;4
+47637;ah eiernoedels;Panklaar;Panklaar;Ja;16;4
+627245;ah fijngesn andijvie gvp;Panklaar;Panklaar;Ja;16;4
+855015;ah gnocchi;Panklaar;Panklaar;Ja;16;4
+729692;ah krieltjes kvp;Panklaar;Panklaar;Ja;16;4
+54942;ah luxe roerbk ita cavolo;Panklaar;Panklaar;Ja;16;4
+798683;ah mini krieltjes bbq;Panklaar;Panklaar;Ja;16;4
+728736;ah minikriel kruidenboter;Panklaar;Panklaar;Ja;16;4
+581673;ah pastasaus 5 kazen;Panklaar;Panklaar;Ja;16;4
+531032;ah pastasaus carbonara;Panklaar;Panklaar;Ja;16;4
+829216;ah pastasaus funghi;Panklaar;Panklaar;Ja;16;4
+839851;ah peulen;Panklaar;Panklaar;Ja;16;4
+596503;ah rbak ita kast champ;Panklaar;Panklaar;Ja;16;4
+69358;ah slaver linzen rozemar;Panklaar;Panklaar;Ja;16;4
+67913;ah slaverrijker couscous;Panklaar;Panklaar;Ja;16;4
+615835;ah tagliatel all uovo vvp;Panklaar;Panklaar;Ja;16;4
+527485;ah tagliatelle all uovo;Panklaar;Panklaar;Ja;16;4
+68087;ah tauge;Panklaar;Panklaar;Ja;16;4
+527483;ah tortel verdi ric spin;Panklaar;Panklaar;Ja;16;4
+797339;bieze 4 seizoenen rauwk;Panklaar;Panklaar;Ja;16;4
 737742;ah aardappel kruimig;Panklaar;Panklaar;Ja;9;3
 737743;ah aardappel vastkokend;Panklaar;Panklaar;Ja;9;3
 540286;ah aardappelpartjes;Panklaar;Panklaar;Ja;9;3
+797785;ah aardgratin naturel;Panklaar;Panklaar;Ja;9;3
 810984;ah bakaardappeltjes;Panklaar;Panklaar;Ja;9;3
+749688;ah bami groente;Panklaar;Panklaar;Ja;9;3
+67895;ah bbq ovensch asp venkel;Panklaar;Panklaar;Ja;9;3
+855028;ah bio tagliatel all uovo;Panklaar;Panklaar;Ja;9;3
+609635;ah fijne soepgroente gvp;Panklaar;Panklaar;Ja;9;3
+779669;ah gemengde salade;Panklaar;Panklaar;Ja;9;3
+67866;ah kastanjech knofl;Panklaar;Panklaar;Ja;9;3
+846705;ah kastanjechampignon;Panklaar;Panklaar;Ja;9;3
+658104;ah peen julienne;Panklaar;Panklaar;Ja;9;3
+847358;ah prei;Panklaar;Panklaar;Ja;9;3
+590730;ah ravioli 5 formaggi;Panklaar;Panklaar;Ja;9;3
+555434;ah ravioli ai funghi;Panklaar;Panklaar;Ja;9;3
+815503;ah salademix;Panklaar;Panklaar;Ja;9;3
+831605;ah selderij;Panklaar;Panklaar;Ja;9;3
+67867;ah shiitak teriyaki;Panklaar;Panklaar;Ja;9;3
+67868;ah shiitake spicy;Panklaar;Panklaar;Ja;9;3
+67904;ah slaver bonen aziatisch;Panklaar;Panklaar;Ja;9;3
+43828;ah soepgr boeren;Panklaar;Panklaar;Ja;9;3
+847360;ah spitskool;Panklaar;Panklaar;Ja;9;3
 27587;ah terra ter pl aardappel;Panklaar;Panklaar;Ja;9;3
+47636;ah udon noedels;Panklaar;Panklaar;Ja;9;3
+45913;ah woksaus teriyaki;Panklaar;Panklaar;Ja;9;3
+558434;ah zoete stoofpeer;Panklaar;Panklaar;Ja;9;3
+63443;ah zoetzure rode ui;Panklaar;Panklaar;Ja;9;3
+797336;bieze farmer;Panklaar;Panklaar;Ja;9;3
+797338;bieze komkommer;Panklaar;Panklaar;Ja;9;3
+55866;ah aard ovensch koreans;Panklaar;Panklaar;Ja;4;2
+797856;ah aardap partje schil kv;Panklaar;Panklaar;Ja;4;2
+42769;ah bio tagliatel volkoren;Panklaar;Panklaar;Ja;4;2
+67918;ah bio veldsla;Panklaar;Panklaar;Ja;4;2
+67876;ah bio zoetzure bietjes;Panklaar;Panklaar;Ja;4;2
+730219;ah gegrilde groentemix;Panklaar;Panklaar;Ja;4;2
+63445;ah groenteschijfjes;Panklaar;Panklaar;Ja;4;2
+65401;ah mezzelune con mozzarel;Panklaar;Panklaar;Ja;4;2
+581669;ah pappardelle all uovo;Panklaar;Panklaar;Ja;4;2
+846937;ah shanghai paksoi;Panklaar;Panklaar;Ja;4;2
+67912;ah slaver soba noedels;Panklaar;Panklaar;Ja;4;2
+67911;ah slaverr volkoren pasta;Panklaar;Panklaar;Ja;4;2
 647499;ah stamppot aardappelen;Panklaar;Panklaar;Ja;4;2
+798575;ah verse vlaamse friet;Panklaar;Panklaar;Ja;4;2
+46429;ah woksaus spicy korean;Panklaar;Panklaar;Ja;4;2
+704100;bieze witte kool rauwkost;Panklaar;Panklaar;Ja;4;2
+36109;friethoes vers kreukel fr;Panklaar;Panklaar;Ja;4;2
 67869;ah aardappelgrat asperge;Panklaar;Panklaar;Ja;1;1
+36110;ah bio kimchi;Panklaar;Panklaar;Ja;1;1
+42144;ah gegrilde paprikamix;Panklaar;Panklaar;Ja;1;1
+101008;ah hasselback;Panklaar;Panklaar;Ja;1;1
+57131;ah linguine volkoren bio;Panklaar;Panklaar;Ja;1;1
+75573;ah mezzelune ric tartufo;Panklaar;Panklaar;Ja;1;1
 36697;ah pofaardappelen;Panklaar;Panklaar;Ja;1;1
+47638;ah ramen noedels;Panklaar;Panklaar;Ja;1;1
+721313;ah ravioli brasato funghi;Panklaar;Panklaar;Ja;1;1
+67910;ah slaverrijker quinoa;Panklaar;Panklaar;Ja;1;1
+45912;ah woksaus sweet & sour;Panklaar;Panklaar;Ja;1;1
+29587;ah woksm knoflook;Panklaar;Panklaar;Ja;1;1
