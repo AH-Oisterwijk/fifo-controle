@@ -25,6 +25,42 @@ function buildAfdelingStatussen(){
   return out;
 }
 
+function buildCombinedWarnings(dayKey, leader){
+  const groups = new Map();
+
+  selection
+    .filter(x => x.Status === 'Fout' && x.MedewerkerAanspreken && x.MedewerkerNaam)
+    .forEach(x => {
+      const naamMedewerker = String(x.MedewerkerNaam || '').trim();
+      const key = norm(naamMedewerker);
+      if(!key) return;
+
+      if(!groups.has(key)){
+        groups.set(key, {
+          DatumGegeven: dayKey,
+          NaamMedewerker: naamMedewerker,
+          Reden: 'Niet FIFO',
+          Officieel: 'Nee',
+          ShiftleiderManager: leader,
+          Producten: []
+        });
+      }
+
+      const group = groups.get(key);
+      const product = `${x.Productnaam || 'Onbekend product'} (${x.Nasa || '-'})`;
+      if(!group.Producten.includes(product)) group.Producten.push(product);
+    });
+
+  return Array.from(groups.values()).map(group => ({
+    DatumGegeven: group.DatumGegeven,
+    NaamMedewerker: group.NaamMedewerker,
+    Reden: group.Reden,
+    Officieel: group.Officieel,
+    ShiftleiderManager: group.ShiftleiderManager,
+    Opmerkingen: group.Producten.join('; ')
+  }));
+}
+
 function buildLogRecord(){
   const leader = document.getElementById('leader').value || '';
   const dayKey = document.getElementById('dateInput').value || todayKey();
@@ -64,16 +100,7 @@ function buildLogRecord(){
       MedewerkerNaam: x.MedewerkerNaam || '',
       AfdelingNietGevuld: isItemNotFilledByToggle(x)
     })),
-    Waarschuwingen: selection
-      .filter(x => x.Status === 'Fout' && x.MedewerkerAanspreken && x.MedewerkerNaam)
-      .map(x => ({
-        DatumGegeven: dayKey,
-        NaamMedewerker: x.MedewerkerNaam,
-        Reden: 'Niet FIFO',
-        Officieel: 'Nee',
-        ShiftleiderManager: leader,
-        Opmerkingen: `${x.Productnaam || 'Onbekend product'} (${x.Nasa || '-'})`
-      }))
+    Waarschuwingen: buildCombinedWarnings(dayKey, leader)
   };
 }
 
