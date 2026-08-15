@@ -102,7 +102,7 @@ Betekenis:
 - `Subafdeling`: selectie- en gevuld/niet-gevuld-groep.
 - `Actief`: `Ja` voor producten die geselecteerd mogen worden.
 - `Kans14`: op hoeveel van de 14 geanalyseerde dagen het product binnenkwam, van 1 t/m 14.
-- `Gewicht`: selectieweging. De huidige productdata gebruikt in principe `Kans14²`, zodat frequent binnenkomende producten duidelijk vaker worden geselecteerd.
+- `Gewicht`: selectieweging. De huidige productdata gebruikt in principe `Kans14³`, zodat frequent binnenkomende producten duidelijk vaker worden geselecteerd.
 
 De eerste dagelijkse selectie is deterministisch per datum: dezelfde datum en dezelfde CSV-versie leveren dezelfde initiële selectie op.
 

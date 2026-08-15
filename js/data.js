@@ -119,7 +119,7 @@ function parseProductsCsv(text){
   const iNasa=idx('Nasa',0), iName=idx('Productnaam',1), iAfd=idx('Afdeling',2), iSub=idx('Subafdeling',3), iAct=idx('Actief',4), iGew=idx('Gewicht',5), iKans=idx('Kans14',6);
   return dataRows.map((r,i)=>{
     const kans14 = Math.max(1, Math.min(14, Number(r[iKans] || 0) || 1));
-    const gewicht = Math.max(1, Number(r[iGew] || 0) || (kans14 * kans14));
+    const gewicht = Math.max(1, Number(r[iGew] || 0) || (kans14 * kans14 * kans14));
     return {
       Id:i+1,
       Nasa:String(r[iNasa]||'').replace(/\D/g,''),
