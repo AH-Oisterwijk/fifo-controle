@@ -1,160 +1,2026 @@
-Nasa,Productnaam,Afdeling,Subafdeling,Actief
-106375,ah bio halfv melk 1 lt,Zuivel,Zuivel,Ja
-842195,ah bio halfv melk 1.5 lt,Zuivel,Zuivel,Ja
-512652,ah bio mag yogh 1 lt,Zuivel,Zuivel,Ja
-582138,ah bio yogh gr 10% 1 kg,Zuivel,Zuivel,Ja
-30360,ah bio yogh griekse st 2% 1 kg,Zuivel,Zuivel,Ja
-575360,ah halfv melk calci 1 lt,Zuivel,Zuivel,Ja
-27506,ah halfvolle melk 500 ml,Zuivel,Zuivel,Ja
-11945,ah magere melk 0% 1 lt,Zuivel,Zuivel,Ja
-815633,camp magere yoghurt 1000 ml,Zuivel,Zuivel,Ja
-582127,dzh magere kwark 50 500 gr,Zuivel,Zuivel,Ja
-809358,dzh yogh gr 10% 1 kg,Zuivel,Zuivel,Ja
-853187,dzh yogh gr 2% 1 kg,Zuivel,Zuivel,Ja
-28392,ah bio hv yoghurt 1 lt,Zuivel,Zuivel,Ja
-106374,ah bio volle melk 1 lt,Zuivel,Zuivel,Ja
-27504,ah halfv van yogh 1 lt,Zuivel,Zuivel,Ja
-823326,ah magere kwark 1 kg,Zuivel,Zuivel,Ja
-590142,ah volle kwark 500 gr,Zuivel,Zuivel,Ja
-27507,ah volle melk 500 ml,Zuivel,Zuivel,Ja
-702102,ah vrij van lactose kwark 500 gr,Zuivel,Zuivel,Ja
-856024,ah yoghurt griekse stijl 600 gr,Zuivel,Zuivel,Ja
-805084,camp grieks st yogh 1 kg,Zuivel,Zuivel,Ja
-804258,camp halfvolle melk 2400 ml,Zuivel,Zuivel,Ja
-831576,camp halfvolle yoghurt 1 lt,Zuivel,Zuivel,Ja
-845354,camp milde kwark vanille 500 gr,Zuivel,Zuivel,Ja
-28423,campina milde mag kwark 1 kg,Zuivel,Zuivel,Ja
-37889,dairly cottage cheese 20+ 200 gr,Kaas/Vleeswaren,Kaas/Vleeswaren,Ja
-570675,dzh halfvolle melk 1 lt,Zuivel,Zuivel,Ja
-11956,dzh vanille vla 1 lt,Zuivel,Zuivel,Ja
-581894,dzh volle kwark 500 500 gr,Zuivel,Zuivel,Ja
-600587,dzh volle melk 1 lt,Zuivel,Zuivel,Ja
-11406,dzh yogh gr 2% van 1 kg,Zuivel,Zuivel,Ja
-691592,pur natur yoghurt bio 1 kg,Zuivel,Zuivel,Ja
-715084,ah it buffel mozzarella 260 gr,Kaas/Vleeswaren,Kaas/Vleeswaren,Ja
-848774,ah mozzarella 200 gr,Kaas/Vleeswaren,Kaas/Vleeswaren,Ja
-699601,ah mozzarella tomaat s 210 gr,Maaltijden/Sappen,Maaltijden,Ja
-67362,ah orzo witte kaas m 270 gr,Maaltijden/Sappen,Maaltijden,Ja
-22546,ah oude kaas l 400 gr,Maaltijden/Sappen,Maaltijden,Ja
-826095,ah peulvr geitenkaas s 215 gr,Maaltijden/Sappen,Maaltijden,Ja
-623520,ah tomaat mozzarella l 450 gr,Maaltijden/Sappen,Maaltijden,Ja
-830900,garlan roomkaas kruid 150 gr,Kaas/Vleeswaren,Kaas/Vleeswaren,Ja
-611524,ah bio zalm op huid 175gr 1 kg,Vlees/Vis/Kip/Vega,Vis,Ja
-32917,ah geelvintonijn 1 kg,Vlees/Vis/Kip/Vega,Vis,Ja
-595406,ah grote garnalen l 450 gr,Maaltijden/Sappen,Maaltijden,Ja
-686936,ah sushi cali 219 gr,Vlees/Vis/Kip/Vega,Vis,Ja
-792694,ah tonijn m 235 gr,Maaltijden/Sappen,Maaltijden,Ja
-739693,ah zalm op huid 1 st 1 kg,Vlees/Vis/Kip/Vega,Vis,Ja
-47231,ah bio hamburger 4st 400 gr,Vlees/Vis/Kip/Vega,Vlees,Ja
-62822,ah bio rundergehaktball 12 st,Vlees/Vis/Kip/Vega,Vlees,Ja
-527528,ah grf kogelbiefstuk 1 kg,Vlees/Vis/Kip/Vega,Vlees,Ja
-646774,ah rundertartaar 4 stuks 4 st,Vlees/Vis/Kip/Vega,Vlees,Ja
-787893,ah varken braadw italiaan 6 st,Vlees/Vis/Kip/Vega,Vlees,Ja
-60848,ah bio hoh gehakt 300 gr,Vlees/Vis/Kip/Vega,Vlees,Ja
-60718,ah bio mager rundergehakt 300 gr,Vlees/Vis/Kip/Vega,Vlees,Ja
-847859,ah grf rundergehakt 500gr 500 gr,Vlees/Vis/Kip/Vega,Vlees,Ja
-646771,ah runder hamburger 200 gr,Vlees/Vis/Kip/Vega,Vlees,Ja
-807535,ah runder reepjes naturel 350 gr,Vlees/Vis/Kip/Vega,Vlees,Ja
-780699,ah rundervink 2st 200 gr,Vlees/Vis/Kip/Vega,Vlees,Ja
-792575,ah varken braadw catalaan 270 gr,Vlees/Vis/Kip/Vega,Vlees,Ja
-781314,ah varken schnitz gepan 300 gr,Vlees/Vis/Kip/Vega,Vlees,Ja
-787573,ah varkens boomstammetjes 400 gr,Vlees/Vis/Kip/Vega,Vlees,Ja
-833964,ah varkens wien schnitzel 1 kg,Vlees/Vis/Kip/Vega,Vlees,Ja
-68665,ah bbq sch kipsa sp 1 kg,Vlees/Vis/Kip/Vega,Kip,Ja
-561882,ah bio kipdijfilet 320gr 1 kg,Vlees/Vis/Kip/Vega,Kip,Ja
-517712,ah bio kipfilet 2 st 1 kg,Vlees/Vis/Kip/Vega,Kip,Ja
-843852,ah franse kipfilethaasjes 1 kg,Vlees/Vis/Kip/Vega,Kip,Ja
-616775,ah oven sch kip gr pesto 1 kg,Vlees/Vis/Kip/Vega,Kip,Ja
-805051,ah sch kip roerbak 500gr 500 gr,Vlees/Vis/Kip/Vega,Kip,Ja
-804301,ah sch kip shoa 650gr 650 gr,Vlees/Vis/Kip/Vega,Kip,Ja
-35045,ah sch kipfilethaasjes 200 gr,Vlees/Vis/Kip/Vega,Kip,Ja
-731212,ah sch kipflakes keb 225 gr,Vlees/Vis/Kip/Vega,Kip,Ja
-701237,ah sch kipgehakt 300 gr,Vlees/Vis/Kip/Vega,Kip,Ja
-35044,ah sch kipgehakt kvp 175 gr,Vlees/Vis/Kip/Vega,Kip,Ja
-805259,ah sch kipkaaschnitzl 2st 200 gr,Vlees/Vis/Kip/Vega,Kip,Ja
-731215,ah sch kipreepjes 1 kg,Vlees/Vis/Kip/Vega,Kip,Ja
-803213,ah sch krok kipsch 4st 500 gr,Vlees/Vis/Kip/Vega,Kip,Ja
-820010,ah stm kip rozemarijn 450 gr,Maaltijden/Sappen,Maaltijden,Ja
-63154,sch gebr kipfil italiaans 150 gr,Vlees/Vis/Kip/Vega,Kip,Ja
-91929,beyond burger 226 gr,Vlees/Vis/Kip/Vega,Vega,Ja
-14135,ah terra pl rk tofu 200 gr,Vlees/Vis/Kip/Vega,Vega,Ja
-83455,ah vega kaasschnitzel 200 gr,Vlees/Vis/Kip/Vega,Vega,Ja
-1211,vivera crisp chick burger 200 gr,Vlees/Vis/Kip/Vega,Vega,Ja
-69493,vivera veg gouda schnitzl 180 gr,Vlees/Vis/Kip/Vega,Vega,Ja
-2474,ah terra pl tofureep azia 180 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-9767,ah terra plant partydip 193 gr,Kaas/Vleeswaren,Kaas/Vleeswaren,Nee
-48318,ah vega kaasbite 185 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-69476,beyond korean bbq burger 200 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-75090,beyond meat bratwurst 180 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-707247,kips vega paté 125 gr,Kaas/Vleeswaren,Kaas/Vleeswaren,Nee
-32438,vega sl let it beef 160 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-848145,vega sl rul gehackt 200 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-32443,vivera gerookte tofu 280 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-48328,vivera kaasschnitzel vp 300 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-48330,vivera nuggets kaas 180 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-9685,vivera plant kruim gehakt 375 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-819570,vivera plant shoarma 175 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-718592,vivera plant spekjes 175 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-32439,vivera stevige tofu 280 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-32440,vivera zachte tofu 550 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-48325,ah terra bio tofu 500 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-32423,ah terra crispy tofu 160 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-848134,ah terra plant bal 200 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-55112,ah terra plant kruidenb 100 gr,Kaas/Vleeswaren,Kaas/Vleeswaren,Nee
-32427,ah terra tofu burger spin 160 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-48317,ah vega kaasschn onion 200 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-533380,ah vega kaasschntzl chili 200 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-35597,beyond jalapeno burger 200 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-26304,blue b plant kookr 250 ml,Zuivel,Zuivel,Nee
-63776,paturain plant based 140 gr,Kaas/Vleeswaren,Kaas/Vleeswaren,Nee
-707032,valess crispy sticks 160 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-748613,valess sate schnitzel 180 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-727778,vega sl aufwiederschnitze 180 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-836321,vega sl bratwurst 160 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-9686,vega sl cordon blij 180 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-78813,viv plant kipstukjes gvp 300 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-682003,vivera krok schnitzel 400 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-848146,vivera krokante schnitzel 200 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-48329,vivera nuggets southern 180 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-68568,vivera pl doner kebab 160 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-1212,vivera pl shoarma vp 300 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-819573,vivera plant kipstukjes 175 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-748559,vivera plantaardig gehakt 200 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-14140,vivera plantaardige gyros 300 gr,Vlees/Vis/Kip/Vega,Vega,Nee
-46158,ah couscous hummus s 200 gr,Maaltijden/Sappen,Maaltijden,Ja
-595301,ah kip caesar l 450 gr,Maaltijden/Sappen,Maaltijden,Ja
-39246,ah kip parelcouscous l 450 gr,Maaltijden/Sappen,Maaltijden,Ja
-749686,ah macaroni spag groente 450 gr,Panklaar,Panklaar,Ja
-16031,ah pasta kip avocado m 350 gr,Maaltijden/Sappen,Maaltijden,Ja
-1502,ah pasta kip kebab m 350 gr,Maaltijden/Sappen,Maaltijden,Ja
-832131,ah pasta pesto m 350 gr,Maaltijden/Sappen,Maaltijden,Ja
-832128,ah pasta tonijn m 350 gr,Maaltijden/Sappen,Maaltijden,Ja
-742258,ah pizza bianca 408 gr,Maaltijden/Sappen,Maaltijden,Ja
-582907,ah pizza funghi 405 gr,Maaltijden/Sappen,Maaltijden,Ja
-728827,ah pizza meatlovers 485 gr,Maaltijden/Sappen,Maaltijden,Ja
-742264,ah pizza salami pic 415 gr,Maaltijden/Sappen,Maaltijden,Ja
-888863,ah sushiwrap zalm 1 st,Maaltijden/Sappen,Maaltijden,Ja
-43839,ah v pizza moz pesto 445 gr,Maaltijden/Sappen,Maaltijden,Ja
-830740,ah varkens nasi/bami 1 kg,Vlees/Vis/Kip/Vega,Vlees,Ja
-46308,ah vers maaltijd roti kip 450 gr,Maaltijden/Sappen,Maaltijden,Ja
-744786,ah vers soep oosterse kip 500 gr,Maaltijden/Sappen,Maaltijden,Ja
-570234,ah vers soep tomaat 500 gr,Maaltijden/Sappen,Maaltijden,Ja
-807454,ah wrap caesar kip bacon 2 st,Maaltijden/Sappen,Maaltijden,Ja
-574595,ah wrap gerookte zalm 2 st,Maaltijden/Sappen,Maaltijden,Ja
-520310,ah sap sinaasappel 1000 ml,Maaltijden/Sappen,Sappen,Ja
-501090,ah sap sinaasappel 500 ml,Maaltijden/Sappen,Sappen,Ja
-15939,ah sm appel aardbei 250 ml,Maaltijden/Sappen,Sappen,Ja
-733037,ah sm mango ananas 250 ml,Maaltijden/Sappen,Sappen,Ja
-733038,ah sm sinaas mango 250 ml,Maaltijden/Sappen,Sappen,Ja
-12761,ah terra sm ananas 250 ml,Maaltijden/Sappen,Sappen,Ja
-12762,ah terra sm appel 250 ml,Maaltijden/Sappen,Sappen,Ja
-817372,ah bloemkoolroosje kvp 200 gr,Panklaar,Panklaar,Ja
-847352,ah bloemkoolroosjes 400 gr,Panklaar,Panklaar,Ja
-46987,ah ijsbergsla melange 100 gr,Panklaar,Panklaar,Ja
-46102,ah ijsbergsla melange 200 gr,Panklaar,Panklaar,Ja
-14346,ah koolmix 150 gr,Panklaar,Panklaar,Ja
-510567,ah peen julienne 150 gr,Panklaar,Panklaar,Ja
-91080,ah rbak hollandse groente 400 gr,Panklaar,Panklaar,Ja
-781270,ah rbak mexic groente 400 gr,Panklaar,Panklaar,Ja
-502940,ah rbak provenc groente 400 gr,Panklaar,Panklaar,Ja
-847346,ah spinazie kvp 200 gr,Panklaar,Panklaar,Ja
+Nasa;Productnaam;Afdeling;Subafdeling;Actief;Gewicht;Kans14
+842195;ah bio halfv melk;Zuivel;Zuivel;Ja;2744;14
+647871;arla skyr naturel;Zuivel;Zuivel;Ja;2744;14
+804258;camp halfvolle melk;Zuivel;Zuivel;Ja;2744;14
+570675;dzh halfvolle melk;Zuivel;Zuivel;Ja;2744;14
+809358;dzh yogh gr 10%;Zuivel;Zuivel;Ja;2744;14
+575360;ah halfv melk calci;Zuivel;Zuivel;Ja;2197;13
+27506;ah halfvolle melk;Zuivel;Zuivel;Ja;2197;13
+722517;ah slagroom;Zuivel;Zuivel;Ja;2197;13
+748064;arla lac gr st yogh;Zuivel;Zuivel;Ja;2197;13
+600587;dzh volle melk;Zuivel;Zuivel;Ja;2197;13
+853187;dzh yogh gr 2%;Zuivel;Zuivel;Ja;2197;13
+106375;ah bio halfv melk;Zuivel;Zuivel;Ja;1728;12
+28392;ah bio hv yoghurt;Zuivel;Zuivel;Ja;1728;12
+106377;ah bio volle yogh;Zuivel;Zuivel;Ja;1728;12
+582138;ah bio yogh gr 10%;Zuivel;Zuivel;Ja;1728;12
+727636;alm choc slag;Zuivel;Zuivel;Ja;1728;12
+815635;camp yoghurt;Zuivel;Zuivel;Ja;1728;12
+11956;dzh vanille vla;Zuivel;Zuivel;Ja;1728;12
+809402;mu breaker aardbei;Zuivel;Zuivel;Ja;1728;12
+106374;ah bio volle melk;Zuivel;Zuivel;Ja;1331;11
+27504;ah halfv van yogh;Zuivel;Zuivel;Ja;1331;11
+531306;ah magere kwark;Zuivel;Zuivel;Ja;1331;11
+540176;ah vanille vla;Zuivel;Zuivel;Ja;1331;11
+590142;ah volle kwark;Zuivel;Zuivel;Ja;1331;11
+11944;ah volle melk;Zuivel;Zuivel;Ja;1331;11
+27507;ah volle melk;Zuivel;Zuivel;Ja;1331;11
+831576;camp halfvolle yoghurt;Zuivel;Zuivel;Ja;1331;11
+721113;camp yogh griek nat;Zuivel;Zuivel;Ja;1331;11
+16916;dodoni gr yogh 5%;Zuivel;Zuivel;Ja;1331;11
+643482;dzh magere kwark;Zuivel;Zuivel;Ja;1331;11
+512652;ah bio mag yogh;Zuivel;Zuivel;Ja;1000;10
+794430;ah bio slagroom;Zuivel;Zuivel;Ja;1000;10
+806313;ah karnemelk;Zuivel;Zuivel;Ja;1000;10
+856024;ah yoghurt griekse stijl;Zuivel;Zuivel;Ja;1000;10
+512423;alm marac/perz;Zuivel;Zuivel;Ja;1000;10
+807769;arla bio hv yoghurt;Zuivel;Zuivel;Ja;1000;10
+76312;arla kefir nat bio;Zuivel;Zuivel;Ja;1000;10
+804257;camp halfvolle melk;Zuivel;Zuivel;Ja;1000;10
+535015;camp slagr vla van;Zuivel;Zuivel;Ja;1000;10
+11946;dzh karnemelk;Zuivel;Zuivel;Ja;1000;10
+582127;dzh magere kwark;Zuivel;Zuivel;Ja;1000;10
+548234;dzh magere melk 1l;Zuivel;Zuivel;Ja;1000;10
+613159;muller milk banaan;Zuivel;Zuivel;Ja;1000;10
+567485;ah bio magere kwark;Zuivel;Zuivel;Ja;729;9
+751668;arla karnemelk bio;Zuivel;Zuivel;Ja;729;9
+815586;dan actimel aardbei;Zuivel;Zuivel;Ja;729;9
+49609;mu breaker stracc;Zuivel;Zuivel;Ja;729;9
+691592;pur natur yoghurt bio;Zuivel;Zuivel;Ja;729;9
+99373;ah creme fraiche;Zuivel;Zuivel;Ja;512;8
+26322;ah griekse st hon;Zuivel;Zuivel;Ja;512;8
+540178;ah karnemelk;Zuivel;Zuivel;Ja;512;8
+11945;ah magere melk 0%;Zuivel;Zuivel;Ja;512;8
+768144;ah yoghurt griek stijl 5%;Zuivel;Zuivel;Ja;512;8
+601619;alm roomyogh wal ho;Zuivel;Zuivel;Ja;512;8
+741233;arla skyr vanille;Zuivel;Zuivel;Ja;512;8
+813638;betsie's geitenyogh;Zuivel;Zuivel;Ja;512;8
+30368;camp high pr gr 1,5% gvp;Zuivel;Zuivel;Ja;512;8
+815633;camp magere yoghurt;Zuivel;Zuivel;Ja;512;8
+809061;camp slagroom royal;Zuivel;Zuivel;Ja;512;8
+586044;camp vanille vla;Zuivel;Zuivel;Ja;512;8
+16915;dodoni gr yogh 5%;Zuivel;Zuivel;Ja;512;8
+72923;magere franse kwark natur;Zuivel;Zuivel;Ja;512;8
+5774;actimel dr naturel;Zuivel;Zuivel;Ja;343;7
+847732;ah bio kwark vol;Zuivel;Zuivel;Ja;343;7
+75654;ah skyr ijslandse stijl;Zuivel;Zuivel;Ja;343;7
+99375;ah sour cream;Zuivel;Zuivel;Ja;343;7
+748015;alm choco slag kara;Zuivel;Zuivel;Ja;343;7
+512424;alm roomyogh aardbei;Zuivel;Zuivel;Ja;343;7
+807696;alm volle kwark vanille;Zuivel;Zuivel;Ja;343;7
+583740;alm yogh sp sinaas;Zuivel;Zuivel;Ja;343;7
+87619;alpro mild&cr no su;Zuivel;Zuivel;Ja;343;7
+735934;arla lactofr hv mlk;Zuivel;Zuivel;Ja;343;7
+751664;arla vol melk bio;Zuivel;Zuivel;Ja;343;7
+30369;camp high pr gr 5% gvp;Zuivel;Zuivel;Ja;343;7
+804259;camp karnemelk;Zuivel;Zuivel;Ja;343;7
+67412;camp kwark vanil vp;Zuivel;Zuivel;Ja;343;7
+59035;camp vol yogh prot;Zuivel;Zuivel;Ja;343;7
+579536;camp zacht&l vanil;Zuivel;Zuivel;Ja;343;7
+28423;campina milde mag kwark;Zuivel;Zuivel;Ja;343;7
+30814;chocomel protein;Zuivel;Zuivel;Ja;343;7
+16921;dan lucht kw perz;Zuivel;Zuivel;Ja;343;7
+65398;dan luchtige kwark bosbes;Zuivel;Zuivel;Ja;343;7
+694382;danoontje aardbei;Zuivel;Zuivel;Ja;343;7
+16911;dodoni gr yogh 5%;Zuivel;Zuivel;Ja;343;7
+573255;dzh creme fraiche;Zuivel;Zuivel;Ja;343;7
+581894;dzh volle kwark;Zuivel;Zuivel;Ja;343;7
+3491;mu breaker vanille;Zuivel;Zuivel;Ja;343;7
+846105;ah bio halfvol melk;Zuivel;Zuivel;Ja;216;6
+846102;ah bio karnemelk;Zuivel;Zuivel;Ja;216;6
+30360;ah bio yogh griekse st 2%;Zuivel;Zuivel;Ja;216;6
+47199;ah biogarde magere kwark;Zuivel;Zuivel;Ja;216;6
+47195;ah biogarde stand naturel;Zuivel;Zuivel;Ja;216;6
+99369;ah creme fraiche;Zuivel;Zuivel;Ja;216;6
+66205;ah drink aard kers;Zuivel;Zuivel;Ja;216;6
+851111;ah hlfv kwark;Zuivel;Zuivel;Ja;216;6
+720377;ah kookroom;Zuivel;Zuivel;Ja;216;6
+540177;ah magere yoghurt;Zuivel;Zuivel;Ja;216;6
+41755;ah skyr ijsl stijl vanill;Zuivel;Zuivel;Ja;216;6
+594391;ah terra gurt 60%mv;Zuivel;Zuivel;Ja;216;6
+540175;ah vanille vla;Zuivel;Zuivel;Ja;216;6
+821412;ah yoghurt griek stijl 0%;Zuivel;Zuivel;Ja;216;6
+691523;ah yoghurt griekse st 10%;Zuivel;Zuivel;Ja;216;6
+727685;alm choc slag van;Zuivel;Zuivel;Ja;216;6
+92392;alm volle kwark citroen;Zuivel;Zuivel;Ja;216;6
+597746;alm volle kwark sinaasapp;Zuivel;Zuivel;Ja;216;6
+43255;alm yog mouss aardb;Zuivel;Zuivel;Ja;216;6
+751659;arla halfvmelk bio;Zuivel;Zuivel;Ja;216;6
+805380;arla lactofr hv mel;Zuivel;Zuivel;Ja;216;6
+807628;arla lactofree hf yoghurt;Zuivel;Zuivel;Ja;216;6
+835772;arla skyr naturel;Zuivel;Zuivel;Ja;216;6
+551435;camp choc/van dubvl;Zuivel;Zuivel;Ja;216;6
+805084;camp grieks st yogh;Zuivel;Zuivel;Ja;216;6
+76369;camp halfvolle melk;Zuivel;Zuivel;Ja;216;6
+687114;chocomel chilled;Zuivel;Zuivel;Ja;216;6
+535037;dan luchtige kw aardb/van;Zuivel;Zuivel;Ja;216;6
+821355;de boeren karnemelk;Zuivel;Zuivel;Ja;216;6
+16912;dodoni gr yogh 0%;Zuivel;Zuivel;Ja;216;6
+809755;mu breaker perzik;Zuivel;Zuivel;Ja;216;6
+798841;mu havermoutpap;Zuivel;Zuivel;Ja;216;6
+521008;optimel dr limoen;Zuivel;Zuivel;Ja;216;6
+16930;optimel protdr aard;Zuivel;Zuivel;Ja;216;6
+702163;zh boern yogh van muesli;Zuivel;Zuivel;Ja;216;6
+521236;ah bio creme fraich;Zuivel;Zuivel;Ja;125;5
+87310;ah bio halfvolle melk 2lt;Zuivel;Zuivel;Ja;125;5
+106376;ah bio karnemelk;Zuivel;Zuivel;Ja;125;5
+581636;ah bio mag melk;Zuivel;Zuivel;Ja;125;5
+88703;ah chocolade vla;Zuivel;Zuivel;Ja;125;5
+530940;ah cr fraiche light;Zuivel;Zuivel;Ja;125;5
+66374;ah drinkyogh passie;Zuivel;Zuivel;Ja;125;5
+26321;ah griekse st aardb;Zuivel;Zuivel;Ja;125;5
+575366;ah halfvolle yoghur;Zuivel;Zuivel;Ja;125;5
+687127;ah kefir weidem 1l;Zuivel;Zuivel;Ja;125;5
+30695;ah klein yogh perz;Zuivel;Zuivel;Ja;125;5
+26317;ah lv grieks 5% vet;Zuivel;Zuivel;Ja;125;5
+823326;ah magere kwark;Zuivel;Zuivel;Ja;125;5
+99353;ah opgeklopte slagroom;Zuivel;Zuivel;Ja;125;5
+36246;ah slagroom;Zuivel;Zuivel;Ja;125;5
+768136;alm 0% yogh marac/perzik;Zuivel;Zuivel;Ja;125;5
+43256;alm yog mous per ma;Zuivel;Zuivel;Ja;125;5
+509666;arla skyr kokos;Zuivel;Zuivel;Ja;125;5
+686811;betsie vol geitenme;Zuivel;Zuivel;Ja;125;5
+11073;breaker zero aardbe;Zuivel;Zuivel;Ja;125;5
+845350;camp mager naturel;Zuivel;Zuivel;Ja;125;5
+804995;camp mild kwark nat;Zuivel;Zuivel;Ja;125;5
+845354;camp milde kwark vanille;Zuivel;Zuivel;Ja;125;5
+579535;camp zacht&lu framb;Zuivel;Zuivel;Ja;125;5
+16914;dodoni gr yogh 0%;Zuivel;Zuivel;Ja;125;5
+598929;dzh chocoladevla;Zuivel;Zuivel;Ja;125;5
+11955;dzh magere yoghurt;Zuivel;Zuivel;Ja;125;5
+600590;dzh rijstdessert vanille;Zuivel;Zuivel;Ja;125;5
+600589;dzh roeryoghurt naturel;Zuivel;Zuivel;Ja;125;5
+11954;dzh volle yoghurt;Zuivel;Zuivel;Ja;125;5
+821359;eelder boer van vla;Zuivel;Zuivel;Ja;125;5
+620944;hp prot stracc;Zuivel;Zuivel;Ja;125;5
+26310;isey kyr air stracc;Zuivel;Zuivel;Ja;125;5
+852703;jersey volle melk;Zuivel;Zuivel;Ja;125;5
+45960;lindahls pr kv str;Zuivel;Zuivel;Ja;125;5
+740127;lindahls pr pud van;Zuivel;Zuivel;Ja;125;5
+43263;mu break zero peach;Zuivel;Zuivel;Ja;125;5
+809753;mu breaker banaan;Zuivel;Zuivel;Ja;125;5
+798840;mu griesmeelpap;Zuivel;Zuivel;Ja;125;5
+798842;mu rijstepap;Zuivel;Zuivel;Ja;125;5
+748017;muller milk strawb;Zuivel;Zuivel;Ja;125;5
+19317;muller shake van;Zuivel;Zuivel;Ja;125;5
+727562;oatly haver dr vol;Zuivel;Zuivel;Ja;125;5
+76365;optimel dr yog aard;Zuivel;Zuivel;Ja;125;5
+543258;optimel kwark aardbei;Zuivel;Zuivel;Ja;125;5
+65508;optimel kwark vanille;Zuivel;Zuivel;Ja;125;5
+748045;oreo cheesecakes;Zuivel;Zuivel;Ja;125;5
+822211;pur natur yoghurt nat bio;Zuivel;Zuivel;Ja;125;5
+30784;upfront limon gran;Zuivel;Zuivel;Ja;125;5
+780962;vifit aardbei;Zuivel;Zuivel;Ja;125;5
+541967;vifit drink perzik;Zuivel;Zuivel;Ja;125;5
+582878;activia aardbei;Zuivel;Zuivel;Ja;64;4
+582903;activia vijg;Zuivel;Zuivel;Ja;64;4
+54324;ah bio volle melk;Zuivel;Zuivel;Ja;64;4
+47196;ah biogarde roer naturel;Zuivel;Zuivel;Ja;64;4
+795084;ah chocolade mousse puur;Zuivel;Zuivel;Ja;64;4
+801921;ah creme brulee;Zuivel;Zuivel;Ja;64;4
+615967;ah dr yog framb 0%;Zuivel;Zuivel;Ja;64;4
+702136;ah griekse stijl;Zuivel;Zuivel;Ja;64;4
+73444;ah kl dess cappucc;Zuivel;Zuivel;Ja;64;4
+73447;ah kl yogh mango;Zuivel;Zuivel;Ja;64;4
+30692;ah klein vla vanil;Zuivel;Zuivel;Ja;64;4
+30694;ah klein yogh aardb;Zuivel;Zuivel;Ja;64;4
+721232;ah kookzuivel;Zuivel;Zuivel;Ja;64;4
+721424;ah lac vrij hv melk;Zuivel;Zuivel;Ja;64;4
+38699;ah terra soja gurt;Zuivel;Zuivel;Ja;64;4
+830163;alm chocolade mousse;Zuivel;Zuivel;Ja;64;4
+843121;alm hoekje chocoballs;Zuivel;Zuivel;Ja;64;4
+843120;alm hoekje kers;Zuivel;Zuivel;Ja;64;4
+853198;almhof hoekje venetie;Zuivel;Zuivel;Ja;64;4
+691342;alpro pl kwark man;Zuivel;Zuivel;Ja;64;4
+557834;alpro soya original;Zuivel;Zuivel;Ja;64;4
+61212;arla lactofr v yogh;Zuivel;Zuivel;Ja;64;4
+65501;arla lactofree magere kw;Zuivel;Zuivel;Ja;64;4
+727544;arla lv volle melk;Zuivel;Zuivel;Ja;64;4
+75653;arla skyr blueberry;Zuivel;Zuivel;Ja;64;4
+851044;arla skyr vanille;Zuivel;Zuivel;Ja;64;4
+691540;arla volle yogh bio;Zuivel;Zuivel;Ja;64;4
+811904;becel pro act origi;Zuivel;Zuivel;Ja;64;4
+11072;breaker zero banaan;Zuivel;Zuivel;Ja;64;4
+602514;camp zacht&lu ban;Zuivel;Zuivel;Ja;64;4
+567474;dan activia pruim;Zuivel;Zuivel;Ja;64;4
+21137;dan danoontje ban;Zuivel;Zuivel;Ja;64;4
+30672;danone yogh vanille;Zuivel;Zuivel;Ja;64;4
+574301;dzh halfvolle melk;Zuivel;Zuivel;Ja;64;4
+790149;dzh roomtoetje vani;Zuivel;Zuivel;Ja;64;4
+821358;eelder vl boer yogh;Zuivel;Zuivel;Ja;64;4
+693408;gm kiw aardb banaan;Zuivel;Zuivel;Ja;64;4
+545932;gu c&s carm cheese;Zuivel;Zuivel;Ja;64;4
+723535;hp prot perz pass;Zuivel;Zuivel;Ja;64;4
+16919;isey skyr fram gran;Zuivel;Zuivel;Ja;64;4
+729810;isey skyr vanille;Zuivel;Zuivel;Ja;64;4
+45961;lindahls pr kv fram;Zuivel;Zuivel;Ja;64;4
+798850;mu bolletje van vla;Zuivel;Zuivel;Ja;64;4
+809754;mu breaker kers;Zuivel;Zuivel;Ja;64;4
+60572;muller prodr banaan;Zuivel;Zuivel;Ja;64;4
+60571;muller prodr choc;Zuivel;Zuivel;Ja;64;4
+61779;muller shake aardb;Zuivel;Zuivel;Ja;64;4
+575365;optimel dr aard/ker;Zuivel;Zuivel;Ja;64;4
+751990;optimel drink framb;Zuivel;Zuivel;Ja;64;4
+628692;optimel mag kwark app/kan;Zuivel;Zuivel;Ja;64;4
+30830;optimel prot framb;Zuivel;Zuivel;Ja;64;4
+820312;pur nat yog fra bio;Zuivel;Zuivel;Ja;64;4
+819413;rolo dessert choc & karam;Zuivel;Zuivel;Ja;64;4
+43540;upfr eiw lim pas;Zuivel;Zuivel;Ja;64;4
+63105;yakult balance 8 pack;Zuivel;Zuivel;Ja;64;4
+63095;yakult original 8 pack;Zuivel;Zuivel;Ja;64;4
+830169;zh boer'n muesli bosvr;Zuivel;Zuivel;Ja;64;4
+30670;activia kefir mango;Zuivel;Zuivel;Ja;27;3
+30361;ah bio sour cream;Zuivel;Zuivel;Ja;27;3
+11953;ah chocolade vla;Zuivel;Zuivel;Ja;27;3
+751585;ah drinkyog ba/ki0%;Zuivel;Zuivel;Ja;27;3
+575379;ah halfv yogh van;Zuivel;Zuivel;Ja;27;3
+92154;ah halfvolle melk;Zuivel;Zuivel;Ja;27;3
+702442;ah koffie mousse;Zuivel;Zuivel;Ja;27;3
+30731;ah kwark yogh framb;Zuivel;Zuivel;Ja;27;3
+30741;ah mag kwark aardb;Zuivel;Zuivel;Ja;27;3
+30742;ah mag kwark vanil;Zuivel;Zuivel;Ja;27;3
+16908;ah magere yogh perz;Zuivel;Zuivel;Ja;27;3
+768104;ah magere yoghurt 0%;Zuivel;Zuivel;Ja;27;3
+738326;ah milj dessert;Zuivel;Zuivel;Ja;27;3
+30362;ah skyr ijsl stijl aardb;Zuivel;Zuivel;Ja;27;3
+694387;ah skyr ijslandse stijl;Zuivel;Zuivel;Ja;27;3
+590276;ah smikkeltoetje mega;Zuivel;Zuivel;Ja;27;3
+593350;ah super kwarksnack aardb;Zuivel;Zuivel;Ja;27;3
+69582;ah terra gurt bio;Zuivel;Zuivel;Ja;27;3
+60535;ah terra kl s aardb;Zuivel;Zuivel;Ja;27;3
+60537;ah terra kl s strac;Zuivel;Zuivel;Ja;27;3
+21121;ah terra pl choco mo;Zuivel;Zuivel;Ja;27;3
+737759;ah terra pl des tiram;Zuivel;Zuivel;Ja;27;3
+48427;ah terra pl yog aar;Zuivel;Zuivel;Ja;27;3
+781134;ah tiramisu;Zuivel;Zuivel;Ja;27;3
+788855;ah tiramisu;Zuivel;Zuivel;Ja;27;3
+829269;alpro almond unswee;Zuivel;Zuivel;Ja;27;3
+846741;alpro mild&cr kokos;Zuivel;Zuivel;Ja;27;3
+794356;alpro mild&cr van;Zuivel;Zuivel;Ja;27;3
+742126;alpro pl kwark ong;Zuivel;Zuivel;Ja;27;3
+695871;alpro pl var kw aar;Zuivel;Zuivel;Ja;27;3
+36124;alpro prot pud choc;Zuivel;Zuivel;Ja;27;3
+717952;alpro prot pud vani;Zuivel;Zuivel;Ja;27;3
+505650;alpro soja yofu perzik;Zuivel;Zuivel;Ja;27;3
+830176;alpro soya kers;Zuivel;Zuivel;Ja;27;3
+542670;arla skyr aardbei;Zuivel;Zuivel;Ja;27;3
+567488;bb finesse v koken;Zuivel;Zuivel;Ja;27;3
+59036;camp high pr gr 1,5% kvp;Zuivel;Zuivel;Ja;27;3
+853221;camp volle milde kwark;Zuivel;Zuivel;Ja;27;3
+605611;dan activia natuur;Zuivel;Zuivel;Ja;27;3
+807993;dan hipro prot bosv;Zuivel;Zuivel;Ja;27;3
+626830;dzh mousse choco;Zuivel;Zuivel;Ja;27;3
+790151;dzh roomtoetje choc;Zuivel;Zuivel;Ja;27;3
+702161;dzh tiramisu 2 pack;Zuivel;Zuivel;Ja;27;3
+11406;dzh yogh gr 2% van;Zuivel;Zuivel;Ja;27;3
+821360;eeld boer van yogh;Zuivel;Zuivel;Ja;27;3
+821357;eelder hv boer yogh;Zuivel;Zuivel;Ja;27;3
+730751;ehrmann dessert va;Zuivel;Zuivel;Ja;27;3
+671479;hipro pro dr bosbes;Zuivel;Zuivel;Ja;27;3
+804881;hp prot aardb framb;Zuivel;Zuivel;Ja;27;3
+741297;isey skyr aar w cho;Zuivel;Zuivel;Ja;27;3
+678945;isey skyr lem cake;Zuivel;Zuivel;Ja;27;3
+5769;isey skyr perzik;Zuivel;Zuivel;Ja;27;3
+53344;isey skyr perzik;Zuivel;Zuivel;Ja;27;3
+57850;kal halfv melk bio;Zuivel;Zuivel;Ja;27;3
+726554;lind prot snack coc;Zuivel;Zuivel;Ja;27;3
+60561;lindahls pr kv anan;Zuivel;Zuivel;Ja;27;3
+45959;lindahls pr kv van;Zuivel;Zuivel;Ja;27;3
+16928;lindahls pro+ cocoa;Zuivel;Zuivel;Ja;27;3
+84164;lindahls prot m van;Zuivel;Zuivel;Ja;27;3
+796541;mona griesmeel pudding;Zuivel;Zuivel;Ja;27;3
+31239;mona griesmeelpudding;Zuivel;Zuivel;Ja;27;3
+807761;mona van pud aardbei saus;Zuivel;Zuivel;Ja;27;3
+796539;mona vanillepudd aardbei;Zuivel;Zuivel;Ja;27;3
+16953;mu breaker appelt;Zuivel;Zuivel;Ja;27;3
+798846;mu havermoutpap;Zuivel;Zuivel;Ja;27;3
+798843;mu rijstepap;Zuivel;Zuivel;Ja;27;3
+587840;optimel dr mang/pas;Zuivel;Zuivel;Ja;27;3
+751658;optimel drinkyogurt;Zuivel;Zuivel;Ja;27;3
+805007;optimel kwark strac;Zuivel;Zuivel;Ja;27;3
+747259;optimel ma kwrk bos;Zuivel;Zuivel;Ja;27;3
+59952;optimel prot mango;Zuivel;Zuivel;Ja;27;3
+535026;optimel van yogh 0%;Zuivel;Zuivel;Ja;27;3
+564193;optimel vla van 0%;Zuivel;Zuivel;Ja;27;3
+825854;pur natur yog gran ap bio;Zuivel;Zuivel;Ja;27;3
+60574;tobl mousse choc;Zuivel;Zuivel;Ja;27;3
+30782;upfront limon appel;Zuivel;Zuivel;Ja;27;3
+31098;upfront shake vanil;Zuivel;Zuivel;Ja;27;3
+513883;vifit drink rode vr;Zuivel;Zuivel;Ja;27;3
+60559;xxl nutri fpud choc;Zuivel;Zuivel;Ja;27;3
+596250;yakult regular gvp;Zuivel;Zuivel;Ja;27;3
+804913;zh boer'n muesli aardbei;Zuivel;Zuivel;Ja;27;3
+30803;zh boer'n pv mues;Zuivel;Zuivel;Ja;27;3
+30804;zh boer'n yogh pv;Zuivel;Zuivel;Ja;27;3
+656588;zh vla vanille;Zuivel;Zuivel;Ja;27;3
+682778;zn boer'n yogh bos;Zuivel;Zuivel;Ja;27;3
+52558;activia mix & go gr;Zuivel;Zuivel;Ja;8;2
+712278;activia perzik 0%;Zuivel;Zuivel;Ja;8;2
+619241;ah bio van yogh;Zuivel;Zuivel;Ja;8;2
+694384;ah cheescake ny;Zuivel;Zuivel;Ja;8;2
+11943;ah halfvolle melk;Zuivel;Zuivel;Ja;8;2
+73445;ah kl yogh kokos;Zuivel;Zuivel;Ja;8;2
+30691;ah klein vla choco;Zuivel;Zuivel;Ja;8;2
+30730;ah kwark yogh van;Zuivel;Zuivel;Ja;8;2
+30743;ah mag kwark stracc;Zuivel;Zuivel;Ja;8;2
+540174;ah magere yoghurt;Zuivel;Zuivel;Ja;8;2
+664480;ah prot kwark frmbs;Zuivel;Zuivel;Ja;8;2
+662473;ah prot kwark przk;Zuivel;Zuivel;Ja;8;2
+787083;ah prot kwark przk;Zuivel;Zuivel;Ja;8;2
+556459;ah prot kwark vanil;Zuivel;Zuivel;Ja;8;2
+16945;ah protein pud van;Zuivel;Zuivel;Ja;8;2
+69595;ah roomyog sin mand;Zuivel;Zuivel;Ja;8;2
+63441;ah stroopwafel vla;Zuivel;Zuivel;Ja;8;2
+60544;ah terra gurt van;Zuivel;Zuivel;Ja;8;2
+60536;ah terra kl s perz;Zuivel;Zuivel;Ja;8;2
+52547;ah terra pl kwark;Zuivel;Zuivel;Ja;8;2
+839845;ah terra pl soja gurt ong;Zuivel;Zuivel;Ja;8;2
+11852;ah terra pl yog mng;Zuivel;Zuivel;Ja;8;2
+11207;ah terra pl yogh;Zuivel;Zuivel;Ja;8;2
+43262;ah terra soj kw van;Zuivel;Zuivel;Ja;8;2
+781133;ah tiramisu;Zuivel;Zuivel;Ja;8;2
+22596;ah trifle aardb;Zuivel;Zuivel;Ja;8;2
+540180;ah volle yoghurt;Zuivel;Zuivel;Ja;8;2
+701557;alm hoekje choc cook;Zuivel;Zuivel;Ja;8;2
+714667;alpro dessert vanilla;Zuivel;Zuivel;Ja;8;2
+853211;alpro pl kwark nat;Zuivel;Zuivel;Ja;8;2
+722482;alpro pl kwark van;Zuivel;Zuivel;Ja;8;2
+716500;alpro pl yoghurt;Zuivel;Zuivel;Ja;8;2
+751733;alpro soya bosbes;Zuivel;Zuivel;Ja;8;2
+60550;alpro yog aardb 4p;Zuivel;Zuivel;Ja;8;2
+825249;arla hv melk bio;Zuivel;Zuivel;Ja;8;2
+702115;arla lactofree creme;Zuivel;Zuivel;Ja;8;2
+694379;arla skyr naturel bio;Zuivel;Zuivel;Ja;8;2
+727484;arla volle melk bio;Zuivel;Zuivel;Ja;8;2
+843131;bros krakende mousse;Zuivel;Zuivel;Ja;8;2
+752033;dan activia vezels granen;Zuivel;Zuivel;Ja;8;2
+739694;dan hipro prot ban;Zuivel;Zuivel;Ja;8;2
+548259;dan stracciatella;Zuivel;Zuivel;Ja;8;2
+510033;dan vanille;Zuivel;Zuivel;Ja;8;2
+5779;danio duo karam;Zuivel;Zuivel;Ja;8;2
+702116;danone danoontje;Zuivel;Zuivel;Ja;8;2
+59032;danone skyr nat prot 0%;Zuivel;Zuivel;Ja;8;2
+26077;danone skyr naturel;Zuivel;Zuivel;Ja;8;2
+833633;danone twix mix;Zuivel;Zuivel;Ja;8;2
+826690;danoontje aardb app;Zuivel;Zuivel;Ja;8;2
+639760;dzh aardbeienyoghurt;Zuivel;Zuivel;Ja;8;2
+702107;dzh halfv yogh nat;Zuivel;Zuivel;Ja;8;2
+790143;dzh kinderkwark;Zuivel;Zuivel;Ja;8;2
+76377;eelder geitenmelk;Zuivel;Zuivel;Ja;8;2
+703195;ehrmann dessert ch;Zuivel;Zuivel;Ja;8;2
+713303;elke melk;Zuivel;Zuivel;Ja;8;2
+693406;gm framb blauwe bes;Zuivel;Zuivel;Ja;8;2
+52548;gu speculoos cheesecake;Zuivel;Zuivel;Ja;8;2
+564591;hipro pro kwark man;Zuivel;Zuivel;Ja;8;2
+11854;hipro prot banaan;Zuivel;Zuivel;Ja;8;2
+63247;hp mousse dark choc;Zuivel;Zuivel;Ja;8;2
+806362;hp prot mango;Zuivel;Zuivel;Ja;8;2
+804918;hp prot vanil cooki;Zuivel;Zuivel;Ja;8;2
+80987;iset skyr mand pie;Zuivel;Zuivel;Ja;8;2
+888642;isey air cherry ch;Zuivel;Zuivel;Ja;8;2
+740970;isey sky l gez cara;Zuivel;Zuivel;Ja;8;2
+698979;isey skyr bl be pie;Zuivel;Zuivel;Ja;8;2
+53604;isey skyr cher cheesecake;Zuivel;Zuivel;Ja;8;2
+69603;isey skyr mang&matcha lv;Zuivel;Zuivel;Ja;8;2
+882276;isey skyr toffee;Zuivel;Zuivel;Ja;8;2
+67115;kal volle melk bio;Zuivel;Zuivel;Ja;8;2
+639787;kinder melkschijfjes;Zuivel;Zuivel;Ja;8;2
+16910;lindahls pro+ aardb;Zuivel;Zuivel;Ja;8;2
+85539;mona toetje van de maand;Zuivel;Zuivel;Ja;8;2
+748037;mu breaker cc framb;Zuivel;Zuivel;Ja;8;2
+30718;mu prot perz fr yog;Zuivel;Zuivel;Ja;8;2
+687107;mu prot shake rasp;Zuivel;Zuivel;Ja;8;2
+727546;mu protein choc;Zuivel;Zuivel;Ja;8;2
+529595;mu protein dr aard;Zuivel;Zuivel;Ja;8;2
+542644;mu protein yog strb;Zuivel;Zuivel;Ja;8;2
+798859;mu rum/rozijn vla;Zuivel;Zuivel;Ja;8;2
+727542;mu vla hopjes;Zuivel;Zuivel;Ja;8;2
+60573;muller limited edit;Zuivel;Zuivel;Ja;8;2
+830159;neste bros melkchoc mous;Zuivel;Zuivel;Ja;8;2
+521009;optimel dr framboos;Zuivel;Zuivel;Ja;8;2
+60552;optimel dr vz fr bb;Zuivel;Zuivel;Ja;8;2
+768178;optimel drink framboos;Zuivel;Zuivel;Ja;8;2
+751991;optimel mango pass;Zuivel;Zuivel;Ja;8;2
+817794;optimel mango/passievr dr;Zuivel;Zuivel;Ja;8;2
+16932;optimel prot bosb;Zuivel;Zuivel;Ja;8;2
+16931;optimel prot prz pv;Zuivel;Zuivel;Ja;8;2
+60553;optimel yog vz aard;Zuivel;Zuivel;Ja;8;2
+60554;optimel yog vz mang;Zuivel;Zuivel;Ja;8;2
+768158;optimel yogh limit;Zuivel;Zuivel;Ja;8;2
+567482;optimel yoghbosvr0%;Zuivel;Zuivel;Ja;8;2
+31099;upfront shake aardb;Zuivel;Zuivel;Ja;8;2
+63113;yakult plus 8-pack;Zuivel;Zuivel;Ja;8;2
+564269;zh boer'n yogh nat;Zuivel;Zuivel;Ja;8;2
+5771;zh boer'n yogh van;Zuivel;Zuivel;Ja;8;2
+740564;zh vla duo ch van;Zuivel;Zuivel;Ja;8;2
+586238;zn boer'n yogh aard;Zuivel;Zuivel;Ja;8;2
+30530;activia kef nat bel;Zuivel;Zuivel;Ja;1;1
+30683;activia kefir bosb;Zuivel;Zuivel;Ja;1;1
+30671;activia kefir natur;Zuivel;Zuivel;Ja;1;1
+60545;activia vz r vru 4p;Zuivel;Zuivel;Ja;1;1
+60546;activia vz waln 4p;Zuivel;Zuivel;Ja;1;1
+76272;ah karnemelk;Zuivel;Zuivel;Ja;1;1
+69584;ah kefir framboos;Zuivel;Zuivel;Ja;1;1
+73446;ah kl yogh lem curd;Zuivel;Zuivel;Ja;1;1
+30732;ah kwark yogh perz;Zuivel;Zuivel;Ja;1;1
+30739;ah kwarkbar aardb;Zuivel;Zuivel;Ja;1;1
+30740;ah kwarkbar vanille;Zuivel;Zuivel;Ja;1;1
+694385;ah moelleux chocolate;Zuivel;Zuivel;Ja;1;1
+30736;ah prot dr choco;Zuivel;Zuivel;Ja;1;1
+678180;ah prot drink aardb;Zuivel;Zuivel;Ja;1;1
+70030;ah prot drinky aard;Zuivel;Zuivel;Ja;1;1
+70031;ah prot drinky ban;Zuivel;Zuivel;Ja;1;1
+66621;ah prot kwark frmbs;Zuivel;Zuivel;Ja;1;1
+75659;ah prot mousse choc;Zuivel;Zuivel;Ja;1;1
+37247;ah prot pud karaml;Zuivel;Zuivel;Ja;1;1
+69594;ah roomyog perz mar;Zuivel;Zuivel;Ja;1;1
+69581;ah terra gurt aardb;Zuivel;Zuivel;Ja;1;1
+30744;ah terra gurt bosvr;Zuivel;Zuivel;Ja;1;1
+69568;ah terra gurt perz;Zuivel;Zuivel;Ja;1;1
+60538;ah terra kl s vanil;Zuivel;Zuivel;Ja;1;1
+687135;ah terra pl amandr;Zuivel;Zuivel;Ja;1;1
+11851;ah terra pl crem fr;Zuivel;Zuivel;Ja;1;1
+57960;ah terra pl gur ong;Zuivel;Zuivel;Ja;1;1
+53400;ah terra pl gurt vanil;Zuivel;Zuivel;Ja;1;1
+579876;ah terra pl haverdr;Zuivel;Zuivel;Ja;1;1
+727622;ah terra pl kwarq soja;Zuivel;Zuivel;Ja;1;1
+701577;ah terra pl soja k;Zuivel;Zuivel;Ja;1;1
+43264;ah vol zuiveldrink;Zuivel;Zuivel;Ja;1;1
+61280;ah wit choc mousse;Zuivel;Zuivel;Ja;1;1
+727611;alpro aardbei soya;Zuivel;Zuivel;Ja;1;1
+69596;alpro m2g choc&ban;Zuivel;Zuivel;Ja;1;1
+69597;alpro m2g koffie&ka;Zuivel;Zuivel;Ja;1;1
+699387;alpro mild&cr natur;Zuivel;Zuivel;Ja;1;1
+667380;alpro pl g stl vet;Zuivel;Zuivel;Ja;1;1
+602679;alpro soja naturel;Zuivel;Zuivel;Ja;1;1
+60549;alpro yog bb muffin;Zuivel;Zuivel;Ja;1;1
+60562;arla cult kefir nat;Zuivel;Zuivel;Ja;1;1
+60563;arla cult kefir van;Zuivel;Zuivel;Ja;1;1
+751741;arla vn yog hv bio;Zuivel;Zuivel;Ja;1;1
+26304;blue b plant kookr;Zuivel;Zuivel;Ja;1;1
+26305;blue b plant slagr;Zuivel;Zuivel;Ja;1;1
+691558;bongasta schapenjog;Zuivel;Zuivel;Ja;1;1
+845352;camp milde kwark kokos;Zuivel;Zuivel;Ja;1;1
+781271;camp oranjevla le;Zuivel;Zuivel;Ja;1;1
+588678;camp vlaflip van;Zuivel;Zuivel;Ja;1;1
+702156;dan activia vanillesmaak;Zuivel;Zuivel;Ja;1;1
+510027;dan danio aardbei;Zuivel;Zuivel;Ja;1;1
+802405;dan mango kiwi;Zuivel;Zuivel;Ja;1;1
+510031;dan perzik;Zuivel;Zuivel;Ja;1;1
+97172;dan sprinkl'ins;Zuivel;Zuivel;Ja;1;1
+5777;danio duo choco bal;Zuivel;Zuivel;Ja;1;1
+728306;danio kers;Zuivel;Zuivel;Ja;1;1
+702117;danone danoontje;Zuivel;Zuivel;Ja;1;1
+700728;danone m&m mix;Zuivel;Zuivel;Ja;1;1
+856027;dzh yogh turkse stijl 8%;Zuivel;Zuivel;Ja;1;1
+741821;ehrmann des toffee;Zuivel;Zuivel;Ja;1;1
+30674;hipro prot banan pb;Zuivel;Zuivel;Ja;1;1
+30673;hipro prot caram;Zuivel;Zuivel;Ja;1;1
+56629;hipro prot pud car;Zuivel;Zuivel;Ja;1;1
+788550;hipro prot strac;Zuivel;Zuivel;Ja;1;1
+30370;isey skyr mango panna cot;Zuivel;Zuivel;Ja;1;1
+30716;mu chocfudge mousse;Zuivel;Zuivel;Ja;1;1
+798860;mu citroen vla;Zuivel;Zuivel;Ja;1;1
+798844;mu gortepap;Zuivel;Zuivel;Ja;1;1
+60564;mu prot milks choc;Zuivel;Zuivel;Ja;1;1
+60566;mu prot milks fudge;Zuivel;Zuivel;Ja;1;1
+43254;mu protein cr brule;Zuivel;Zuivel;Ja;1;1
+846752;mu protein kwark aard/cit;Zuivel;Zuivel;Ja;1;1
+856017;mu protein quark blueberr;Zuivel;Zuivel;Ja;1;1
+554692;mu protein yog mang;Zuivel;Zuivel;Ja;1;1
+30727;mu specials lem ch;Zuivel;Zuivel;Ja;1;1
+727560;oatly haverdr halfv;Zuivel;Zuivel;Ja;1;1
+60551;optimel dr vz mango;Zuivel;Zuivel;Ja;1;1
+16929;optimel protdr perz;Zuivel;Zuivel;Ja;1;1
+30808;xxl mousse caram;Zuivel;Zuivel;Ja;1;1
+30807;xxl mousse choco;Zuivel;Zuivel;Ja;1;1
+26302;xxl nutri fit strwb;Zuivel;Zuivel;Ja;1;1
+52871;xxl nutri yogh mang;Zuivel;Zuivel;Ja;1;1
+30806;xxl quark strawb;Zuivel;Zuivel;Ja;1;1
+60558;zv boer toet aard;Zuivel;Zuivel;Ja;1;1
+697208;dzh ongezout roomb;Zuivel;Boter;Ja;729;9
+581968;ah roomboter ongez kuip;Zuivel;Boter;Ja;343;7
+63710;becel light vp;Zuivel;Boter;Ja;343;7
+62741;becel romig;Zuivel;Boter;Ja;125;5
+26446;ah terra pl vloeib;Zuivel;Boter;Ja;64;4
+63714;bb vloeibaar voordeelpak;Zuivel;Boter;Ja;64;4
+83639;blue b halvarine z palm;Zuivel;Boter;Ja;64;4
+58493;ah bio grasboter ms ongez;Zuivel;Boter;Ja;27;3
+43314;ah halvarine pl;Zuivel;Boter;Ja;27;3
+795918;ah roomboter ongezouten;Zuivel;Boter;Ja;27;3
+609484;ah terra pl goed begin;Zuivel;Boter;Ja;27;3
+581972;ah terra pl smeerb light;Zuivel;Boter;Ja;27;3
+82440;alpro minarine;Zuivel;Boter;Ja;27;3
+12625;becel light;Zuivel;Boter;Ja;27;3
+63707;becel original;Zuivel;Boter;Ja;27;3
+63708;becel original vp;Zuivel;Boter;Ja;27;3
+538771;becel pro-activ;Zuivel;Boter;Ja;27;3
+581967;ah roomboter gez kuip;Zuivel;Boter;Ja;8;2
+795921;ah roomboter ongez;Zuivel;Boter;Ja;8;2
+581971;ah terra pl halv lekker;Zuivel;Boter;Ja;8;2
+26248;ah terra pl vl bal;Zuivel;Boter;Ja;8;2
+809776;becel keuken voord verp;Zuivel;Boter;Ja;8;2
+63709;becel light;Zuivel;Boter;Ja;8;2
+544370;becel pro-activ;Zuivel;Boter;Ja;8;2
+63711;becel romig;Zuivel;Boter;Ja;8;2
+1849;blue b koken bak braden;Zuivel;Boter;Ja;8;2
+503972;blue band goede start;Zuivel;Boter;Ja;8;2
+797158;bona;Zuivel;Boter;Ja;8;2
+27551;camp grasboter ongez;Zuivel;Boter;Ja;8;2
+551193;camp grasboter ongez;Zuivel;Boter;Ja;8;2
+809782;croma bakken & braden vrd;Zuivel;Boter;Ja;8;2
+697206;dzh roomboter gezouten;Zuivel;Boter;Ja;8;2
+833145;echte boter roomb ongez;Zuivel;Boter;Ja;8;2
+729760;ff smeren zonder palmolie;Zuivel;Boter;Ja;8;2
+697246;kerrygold boter ongez;Zuivel;Boter;Ja;8;2
+768489;lurpak smeerb gezouten;Zuivel;Boter;Ja;8;2
+581892;lurpak smeerb ongez;Zuivel;Boter;Ja;8;2
+768488;lurpak smeerbaar ongez;Zuivel;Boter;Ja;8;2
+37359;pres roomboter ong;Zuivel;Boter;Ja;8;2
+24400;ah bak en braad;Zuivel;Boter;Ja;1;1
+832108;ah bio roomboter gezout;Zuivel;Boter;Ja;1;1
+505412;ah bio roomboter ongez;Zuivel;Boter;Ja;1;1
+888899;ah roomboter gez halfv;Zuivel;Boter;Ja;1;1
+697202;ah roomboter gezouten;Zuivel;Boter;Ja;1;1
+795919;ah roomboter gezouten;Zuivel;Boter;Ja;1;1
+43315;ah smeerb light pl;Zuivel;Boter;Ja;1;1
+697204;ah smeerb roomb ongez;Zuivel;Boter;Ja;1;1
+581970;ah terra pl smeerb balans;Zuivel;Boter;Ja;1;1
+43313;ah terra pl smeerb romig;Zuivel;Boter;Ja;1;1
+54096;ah terra pl vloei;Zuivel;Boter;Ja;1;1
+63713;bb vloeibaar;Zuivel;Boter;Ja;1;1
+33286;becel met boter;Zuivel;Boter;Ja;1;1
+33287;becel met boter;Zuivel;Boter;Ja;1;1
+43316;becel met roomb palm vrij;Zuivel;Boter;Ja;1;1
+63712;becel omega 3+;Zuivel;Boter;Ja;1;1
+616765;becel pro-activ cal light;Zuivel;Boter;Ja;1;1
+83391;becel vlees&jus;Zuivel;Boter;Ja;1;1
+809770;becel vlees&jus fl;Zuivel;Boter;Ja;1;1
+809779;bertolli met olijf;Zuivel;Boter;Ja;1;1
+513951;bertolli smeerbaar;Zuivel;Boter;Ja;1;1
+74752;blue b koken bak braden;Zuivel;Boter;Ja;1;1
+1855;blue band halvarine vp;Zuivel;Boter;Ja;1;1
+31051;blue band romig ongez;Zuivel;Boter;Ja;1;1
+33992;blue band romig ongez;Zuivel;Boter;Ja;1;1
+521842;camp bg roomb ongz;Zuivel;Boter;Ja;1;1
+751574;camp grasboter gez kp;Zuivel;Boter;Ja;1;1
+609509;camp roomboter gezout;Zuivel;Boter;Ja;1;1
+809781;croma mild olijf;Zuivel;Boter;Ja;1;1
+884361;dzh roomboter ongezouten;Zuivel;Boter;Ja;1;1
+833154;echte boter cups ongez;Zuivel;Boter;Ja;1;1
+850170;echte boter roomb gez;Zuivel;Boter;Ja;1;1
+716524;ff bak zo palm;Zuivel;Boter;Ja;1;1
+14160;ff opgroeien zonder palm;Zuivel;Boter;Ja;1;1
+43310;ff smeren z palm light;Zuivel;Boter;Ja;1;1
+716525;ff smeren zonder palmolie;Zuivel;Boter;Ja;1;1
+84065;gouda halvarine;Zuivel;Boter;Ja;1;1
+716583;lurpak smeerb gezouten;Zuivel;Boter;Ja;1;1
+37349;pres roomb gez;Zuivel;Boter;Ja;1;1
+37357;pres roomb ong;Zuivel;Boter;Ja;1;1
+1850;zeeuws meisje plantaardig;Zuivel;Boter;Ja;1;1
+737348;ah burrata 50+ st;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1728;12
+76411;ah rundvleessalade 600g;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1331;11
+849722;ah bio cottage cheese;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1000;10
+65086;ah kruidenboter;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1000;10
+70493;ah terra pl humm nat;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1000;10
+8047;danone vital huttenkase;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1000;10
+634907;galbani mozzarella maxi;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1000;10
+67351;ah aardappelsalade 600g;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;729;9
+67352;ah huzarensalade 600g;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;729;9
+69733;ah mozzarella mini;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;729;9
+624131;ah rus eislaatje 200g;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;729;9
+5279;ah terra pl mort pistache;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;729;9
+43766;cottage cheese natu;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;729;9
+37889;dairly cottage cheese 20+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;729;9
+830900;garlan roomkaas kruid;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;729;9
+54184;zaanl bel 48+ vvp pl zb;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;729;9
+17602;ah mini burratine;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;512;8
+848774;ah mozzarella;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;512;8
+70499;ah terra pl humm pikant;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;512;8
+582905;ah terra pl humm zgdr tom;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;512;8
+80322;apetina kaasbl kr&sp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;512;8
+715904;galbani burrata;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;512;8
+801760;ah bio griekse feta;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;343;7
+715078;ah grieks feta;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;343;7
+715084;ah it buffel mozzarella;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;343;7
+545324;ah russisch ei schotel;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;343;7
+832099;ah zuivelspr naturel;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;343;7
+8045;danone vital huttenkase;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;343;7
+731959;eru goudkuipje nature gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;343;7
+846598;ah aardappel ei salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+761798;ah ei salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+610515;ah huzarenschotel;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+715079;ah it grana padano;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+69747;ah mozzarella light;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+797108;ah party dip;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+35846;ah rundvleessalade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+846593;ah rundvleessalade 400g;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+794347;ah rundvleesschotel;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+9781;ah terra pl bacon;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+19620;ah terra pl fil amer;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+742890;ah terra pl grillworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+749783;ah tzatziki;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+77962;ah zeezoutboter;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+779417;johma frisse tonyn salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+794126;johma kip samba salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;216;6
+849725;ah bio parmigiano reggia;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+69775;ah cottage appel;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+849721;ah cottage cheese;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+43767;ah cottage cheese bieslk;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+796244;ah geitenkaas hon;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+796243;ah geitenkaas nat;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+741567;ah grana padan dop 30+ fl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+846605;ah huzarenslaatje;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+801850;ah italiaanse ricotta;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+707340;ah jamòn serrano;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+801789;ah mascarpone 80+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+9782;ah terra pl boterhamw;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+634112;ah witte kaasbl in olie;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+840579;ah zuivelspr light;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+691149;beemster jb gvp pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+692674;carpaccio;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+506585;chavroux 45+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+589577;chovi allioli;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+7373;galbani mozz bufala mini;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+576899;galbani mozzarella;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+804947;joh surinaamse ei salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+631937;philadelphia kruiden;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+842513;philadelphia light;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+731956;salakis feta plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+846093;vs kipworst pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+13371;wahid kipfilet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;125;5
+825528;ah bio mozzarella;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+69774;ah burrata maxi;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+741546;ah extra bel 48+ st;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+783946;ah leverkaas;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+697661;ah scharrel kipfilet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+22103;ah smeerkaas naturel 15+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+22102;ah smeerkaas naturel 48+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+599111;ah smeltkaas cheddar plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+35853;ah surimi krab salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+17051;ah surimi salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+47350;ah terra gr sp tom cash;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+19621;ah terra pl fil amer pepr;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+609007;ah terra pl humm nat gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+742894;ah terra pl smeerleverw;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+886793;ah terra pl spread komkom;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+17049;ah tonijnsalade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+610519;ah zalmschotel;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+853909;beemster belegen 48+plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+731953;beemster jong vvp pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+571527;boursin cuis knofl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+43765;cottage cheese groo;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+64941;danish chef naturel;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+524701;dzj j bel stuk 48+ gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+7386;eru goudkuipje natu;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+623176;galbani mozzarella mini;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+809026;heks'nkaas;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+806867;heks'nkaas vgn;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+856476;johma gevuld eitje salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+804943;johma kip kerrie salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+70527;johma kip mango 175 gr;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+804944;johma tonijn salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+787039;johma zalm salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+622455;kips kl smeerleverworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+520009;maza hoemoes;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+856340;maza hoemoes less salt;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+741571;paturain kruiden;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+842514;phil original family pack;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+631936;philadelph bieslook;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+842512;philadelphia original;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+629941;west amb eierslaatje 140g;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+54183;zaanl jb 48+ vvp pl zb;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+800019;zv gerookte kipfilet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;64;4
+848728;ah brie 60+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+43768;ah cottage cheese sw ch;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+12604;ah ei truffel salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+838078;ah farmer salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+799450;ah filet americain ui;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+593927;ah fltd kipfilet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+83475;ah fltd rauweham;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+819932;ah geitenkaas 45+ rol;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+819933;ah geitenkaas schijfjes;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+810832;ah geraspte mozzarella;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+612984;ah gerookte kipfilet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+5830;ah gorgonzola 48+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+741544;ah goudse jong 48+ st;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+801775;ah grana padano poeder;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+69818;ah halloumi;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+796240;ah italiaanse mozzarella;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+707238;ah kipfilet pittig;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+779494;ah ontbijtspek;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+849834;ah pannenkoekenspek;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+788126;ah parmig reg 32+ flakes;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+603012;ah pasta kaas 45+ gemalen;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+603010;ah pizza kaas 40+ gemalen;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+60524;ah schar kipf fltdn bew;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+761802;ah sellerie salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+47354;ah terra pl filet amer ui;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+742886;ah terra pl ham;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+800065;ah terra pl pepersalami;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+63409;ah terra pl rosbief;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+69881;ah veg kipfilet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+102184;apetina witte kaas;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+731960;apetina witte kaas pl 40%;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+853941;beemster jong bel 48+plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+4240;castello blue 70+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+4235;danish chef kruiden;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+744604;dodoni feta;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+793716;dzh jong 48+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+707065;dzh jong belegen 48+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+574899;dzh kaas rasp pittig 45+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+708528;dzh mild 45+ rasp gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+804942;johma ei salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+804940;johma farmer salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+804945;johma krab salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+794125;johma oude kaassalade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+779414;johma pikante kip kerrie;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+707248;kips kleintje veg smrwrst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+707247;kips vega paté;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+825887;la vache qui rit naturel;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+838099;maza hoemoes kerrie;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+14760;milner jong 35+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+793902;monchou verse roomkaas;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+846099;vs boterhamworst pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+712704;wahid hamburgers;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+731239;wahid kipdij doner;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+808271;wahid kipfilet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+629939;west amb rundvleesslaatje;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+54162;zaanl j 48+ vvp pl zb gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+557443;zan gran padano dop;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;27;3
+590167;ah achterham gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+715203;ah bauernschinken;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+783945;ah berliner leverworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+639245;ah bio bel 50+ geraspt;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+849723;ah bio ricotta;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+69776;ah cottage perzik;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+807851;ah cremepate;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+706812;ah eitje preitje salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+54498;ah fil americn minder vet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+598119;ah flinterdunne salami;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+59375;ah gehakt;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+810834;ah geraspte gruyere;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+691138;ah goud jong bel 48+ rasp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+741545;ah goudse bel 48+ st;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+66796;ah goudse belegen 48+plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+66795;ah goudse extr bel 48+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+741551;ah goudse j bel 48+ st;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+66794;ah goudse jong bel 48+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+715077;ah grieks feta 2pack;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+799761;ah grillworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+76921;ah hamchef zuivelspr aard;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+76922;ah hamchef zuivelspr komk;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+43793;ah jong belegen 20+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+731985;ah kaas tex-mex rasp 45+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+761799;ah kip-kerriesalade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+43440;ah kipfilet min vet gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+707337;ah kipfilet tuinkruiden;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+789516;ah kipgrillworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+17052;ah kipsate salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+90909;ah knoflookboter;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+71405;ah kruiden roomkaas;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+634900;ah kruidenkaas light;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+752364;ah peper cervelaat;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+26903;ah pulled chicken teriyak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+93905;ah romige brie 60+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+22098;ah roomkaas bieslook;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+43789;ah roomkaas knof kruid;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+846606;ah rundvleesslaatje;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+629407;ah saks leverw;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+712989;ah salami;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+734225;ah salami;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+83517;ah schwartzwald;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+611670;ah slagersachterham;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+63412;ah terra hummus pesto;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+670801;ah terra pl avocadospread;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+742888;ah terra pl gehakt;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+85228;ah terra pl humm pap chip;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+737537;ah terra pl humm tom oljf;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+28855;ah terra pl kip kerrie;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+757577;ah terra pl spr pomp wort;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+9767;ah terra plant partydip;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+838060;ah tonijnsalade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+849847;ah tostiham;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+783928;ah wijncervelaat;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+715388;ah witte kaas 40+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+847100;ah zuivelspr knoflook;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+853898;beemster belegen 30+plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+804520;boursin sjalot&bies;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+627255;cheestring stripk 8-pak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+525026;dzh belegen 30+ stu;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+600553;dzh belegen 48+ stuk gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+587865;dzh belegen 48+ stuk kvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+524838;dzh j belegen st 48+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+707063;dzh jong 48+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+793718;dzh jong belegen 48+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+603017;dzh kaas geraspt mild 45+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+619166;dzh kaas mild geraspt 30+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+69732;eru kesbeke augurk;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+17611;eru naturel 15+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+83469;filet americain mager;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+83461;filet americain nat;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+39836;firat cheeseburgers;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+786858;galb mozzarella buf;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+783867;galbani mascarpone;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+783864;galbani ricotta;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+675289;joh kip pestosalade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+817014;joh kruidentuintje sal;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+779418;johma beenham salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+802210;johma ei salade xl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+834150;johma garnalen salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+749789;johma gevuld eitje sal xl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+10369;johma ham prei salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+749788;johma kip samba salade xl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+10365;johma kip zoete chili sal;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+28745;johma kip-kerrie sal vgn;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+804948;johma kipsate salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+856359;johma oude kaas pesto;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+28758;johma pl tonijnsalade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+749787;johma sellerie salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+644499;kips room paté;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+11682;kips theeworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+815858;leerdam lightlife 35+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+815859;leerdam original 45+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+813805;marhaba kalkoenbacon;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+70537;maza hoemoes chipotle;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+564268;maza hoemoes spicy mango;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+856339;maza hoemoes tom bas;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+14763;miler extra beleg 30+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+14762;milner belegen 35+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+14761;milner jong beleg 35+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+14759;milner komijn 30+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+35142;old amster orig 48+ pl vp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+817114;paturain knofl en kruiden;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+63776;paturain plant based;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+842511;philadel lactosevrij;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+885641;philadelphia extr protein;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+69710;philadelphia feta komk;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+4097;president brie 60+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+641224;violife blok greek white;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+857086;vs petit filet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+846097;vs spaanse worst pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+882522;wahid kipdijfilet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+629940;west amb zalmslaatje;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+629936;west rundvleesslaatje 4pk;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+54168;zaanl j 48+ vvp pl zb;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;8;2
+76690;ah achterham;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+43442;ah achterham dun min zout;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+802190;ah aioli;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+789518;ah ard boterhamworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+12610;ah asperge beenham salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+614047;ah bacon;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+55001;ah beenham mosterd;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+639993;ah bio jong 50+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+26751;ah boeren leverworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+43438;ah boterhamw minder vet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+47374;ah boterhamworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+789935;ah boterhamworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+801860;ah camembert;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+74829;ah casselerrib;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+596872;ah cervelaat;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+590166;ah cervelaat gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+600439;ah cheddar rasp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+707338;ah chorizo pamplona;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+68908;ah club sandwich;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+715202;ah coburger schinken;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+39342;ah cr red ched 48+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+807834;ah cremepate cranberry;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+82655;ah duitse theeworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+772036;ah filet americain peper;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+593638;ah fltd achterham;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+53753;ah gegrilde beenham;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+603013;ah geitenkaas bel 50+ gem;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+10318;ah geitenkaas jong 50+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+838019;ah gerookte zalm salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+727827;ah gou jbel 48+ st zb vvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+595685;ah goudse bel 48+ rasp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+597371;ah goudse bel 48+rasp gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+515132;ah goudse j 48+ rasp gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+589072;ah goudse j b 30+ gemalen;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+741549;ah goudse j bel 30+ st;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+574916;ah goudse jong 48+ pl gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+66797;ah goudse jong 48+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+727824;ah goudse jong 48+ st zb;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+69866;ah goudse oud 48+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+741547;ah goudse oud 48+ st;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+603016;ah goudse oud 48+rasp gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+17596;ah grillkaas;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+783943;ah grillworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+6099;ah grillworst kaas;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+47373;ah grillworst pikant;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+76920;ah hamchef smeerk 15+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+622364;ah hollandse gehaktballen;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+59004;ah kalkoenfilet min vet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+97269;ah katenspek;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+17050;ah kip karamba salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+838063;ah kip-kerriesalade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+590162;ah kipfilet gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+857090;ah kipfilet sweet chili;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+70805;ah kipgrillw minder vet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+838064;ah komkommersalade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+638560;ah leverworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+806075;ah leverworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+9888;ah mosterdkaas 48+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+789489;ah ontbijtspek klvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+796238;ah ovengratin kaas rasp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+22122;ah palingworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+732522;ah pancetta;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+28813;ah pasta hamkaas salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+587859;ah pepperoni;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+838083;ah pittige kip karamba;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+732523;ah prosciutto crudo;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+714389;ah rauwe ham;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+70804;ah roasted kipfilet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+539355;ah rookvlees;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+10029;ah roquefort;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+629937;ah rundv slaatje 140g;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+733089;ah salade gevuld eitje;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+590163;ah salami gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+598446;ah salami milano;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+43433;ah salami minder vet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+22120;ah schar kipfil pikant mv;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+5277;ah schar kipfilet shoarma;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+603132;ah scharrel kipfilet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+670102;ah scharrel kipfilet bew;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+720526;ah schouderham;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+639403;ah schouderham gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+43772;ah smeerkaas ham 15+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+43773;ah smeerkaas jalapeno 15+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+43771;ah smeerkaas sambal 15+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+43769;ah smeerkaas sambal 48+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+657041;ah sparerib rib;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+22124;ah spianata romana;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+54187;ah strooikaas;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+47352;ah terra gr edam tuinkr;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+47344;ah terra gr sp bas cash;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+802276;ah terra pl ei salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+802274;ah terra pl farmersalade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+799982;ah terra pl grillw pikant;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+690171;ah terra pl plak mild;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+47331;ah terra pl plakken inten;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+2913;ah terra pl rasp mild;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+2912;ah terra pl rasp pizza;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+33269;ah terra pl sal sea cockt;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+673404;ah terra pl smash avocado;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+886536;ah terra pl spread papr;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+55112;ah terra plant kruidenb;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+838059;ah vrije uitloop eisalade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+38038;ah yorkham;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+43790;ah zuivelspr spinz avoc;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+565110;apetina kaasbl br 40%;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+796214;babybel mini 10 stuk;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+691150;beemster bel gvp pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+853937;beemster ex bel 48+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+853940;beemster jong 48+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+603033;beemster oud 48+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+4023;boursin garlic&herb;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+4020;boursin knoflook&kruiden;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+573761;cheez dippers naturel;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+815846;dodoni halloumi 43+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+786859;dzh belegen 30+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+793719;dzh belegen 48+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+525068;dzh j stuk 48+ gvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+524810;dzh jong 48+ stuk;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+524927;dzh jong belegen;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+786860;dzh jong belegen 30+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+741558;dzh jong belegen 48+ bl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+690714;dzh jong komijn 30+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+524855;dzh jong komijn 48+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+828399;dzh kaas jong 30+ plak;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+61654;dzh oud 48+ stuk kvp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+710483;emmi fondue original;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+802086;eru balans nat 15+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+816858;eru goudkuipje samb;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+565032;eru kids;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+815839;gerookt ontbijtspek;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+727686;heks'nkaas origineel vp;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+63414;joh groene selleriesalade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+28168;johma kip-samba sal vgn;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+19610;johma pl gevuld ei;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+802198;johma tonijn salade xl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+35848;johma vlam salade;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+819934;kaaspuntjes;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+11501;kalkoensalami;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+70989;kerry sweet pepper chili;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+715201;kips creme pate;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+616321;kips mini kipdijspi;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+21854;kips pate tuinkr&bospad;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+727681;kips vega filet americain;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+715196;kips vega mediter paté;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+637159;kroon fijne leverworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+539571;le rustique camembert 45+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+80046;maaslander jb 50+ vvp pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+723701;marhaba kipfilet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+656014;marhaba rundersalami;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+39829;marhaba rundvlees gehakt;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+520020;maza baba anoesh;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+39394;maza hoemoes less fat;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+798418;maza hoemoes rode biet;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+741820;maza hoemoes xl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+813804;maza muhammara;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+693090;milner oud 30+ plakken;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+35141;old amster orig 48+ pl;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+598631;parmaham;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+749449;paturain knoflook kruiden;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+74995;philadelphia plantaardig;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+855691;presi burger gour cheddar;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+732275;president mini brie;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+623177;président crème de brie;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+856194;vs sl petit pate;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+808268;wahid kalkoenham;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+572916;west huzar slaatje;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+26291;westland kip slaatje;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+63407;wildwl smeerkees naturel;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+789496;zandvl gelderse kookworst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+731952;zanetti parm reg dop 32+;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+715191;zv gelderse gek worst;Kaas/Vleeswaren;Kaas/Vleeswaren;Ja;1;1
+60718;ah bio mager rundergehakt;Vlees/Vis/Kip/Vega;Vlees;Ja;2744;14
+830716;ah bio rund soepballetjes;Vlees/Vis/Kip/Vega;Vlees;Ja;2744;14
+60795;ah bio runderchipolata;Vlees/Vis/Kip/Vega;Vlees;Ja;2744;14
+47231;ah bio hamburger 4st;Vlees/Vis/Kip/Vega;Vlees;Ja;2197;13
+62822;ah bio rundergehaktball;Vlees/Vis/Kip/Vega;Vlees;Ja;2197;13
+780673;ah runder duitse biefstuk;Vlees/Vis/Kip/Vega;Vlees;Ja;2197;13
+792581;ah runder gehaktballetjes;Vlees/Vis/Kip/Vega;Vlees;Ja;1728;12
+11933;ah bbq hamburger smokey;Vlees/Vis/Kip/Vega;Vlees;Ja;1331;11
+803991;ah bbq runderkebabsp vac;Vlees/Vis/Kip/Vega;Vlees;Ja;1331;11
+60731;ah bio rundertartaar;Vlees/Vis/Kip/Vega;Vlees;Ja;1331;11
+594648;ah exc biefstuk 2 st;Vlees/Vis/Kip/Vega;Vlees;Ja;1331;11
+594649;ah exc entrecote;Vlees/Vis/Kip/Vega;Vlees;Ja;1331;11
+727226;ah gehaktbal ui&jus;Vlees/Vis/Kip/Vega;Vlees;Ja;1331;11
+646774;ah rundertartaar 4 stuks;Vlees/Vis/Kip/Vega;Vlees;Ja;1331;11
+28447;ah schenkel met been;Vlees/Vis/Kip/Vega;Vlees;Ja;1331;11
+735399;ah bbq biefsp bl gar vac;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+792584;ah bbq grillburger;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+60793;ah bio duitse biefstuk;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+531521;ah bio malse biefstuk;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+647005;ah exc ossenhaas;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+594650;ah exc ribeye;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+84387;ah exc ulti beefburger;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+830739;ah runder biefstukpuntjes;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+646769;ah runder hamburger 8st;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+646767;ah rundergehakt 300gr;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+780699;ah rundervink 2st;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+792575;ah varken braadw catalaan;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+833964;ah varkens wien schnitzel;Vlees/Vis/Kip/Vega;Vlees;Ja;1000;10
+60848;ah bio hoh gehakt;Vlees/Vis/Kip/Vega;Vlees;Ja;729;9
+695300;ah exc biefstukspiesjes;Vlees/Vis/Kip/Vega;Vlees;Ja;729;9
+780707;ah grf beefburger jalapen;Vlees/Vis/Kip/Vega;Vlees;Ja;729;9
+780698;ah runder braadworst 4st;Vlees/Vis/Kip/Vega;Vlees;Ja;729;9
+830846;ah runder soepvlees;Vlees/Vis/Kip/Vega;Vlees;Ja;729;9
+830740;ah varkens nasi/bami;Vlees/Vis/Kip/Vega;Vlees;Ja;729;9
+544142;ah varkensschnitzel natrl;Vlees/Vis/Kip/Vega;Vlees;Ja;729;9
+11989;ah bbq bavette iers;Vlees/Vis/Kip/Vega;Vlees;Ja;512;8
+67069;ah bbq tomahawk sw&smok;Vlees/Vis/Kip/Vega;Vlees;Ja;512;8
+735400;ah bbq varkenshaassp;Vlees/Vis/Kip/Vega;Vlees;Ja;512;8
+47235;ah bio varkenchipolata;Vlees/Vis/Kip/Vega;Vlees;Ja;512;8
+708531;ah gemengd gehakt 500g;Vlees/Vis/Kip/Vega;Vlees;Ja;512;8
+792588;ah grf rundergehakt 300gr;Vlees/Vis/Kip/Vega;Vlees;Ja;512;8
+807535;ah runder reepjes naturel;Vlees/Vis/Kip/Vega;Vlees;Ja;512;8
+787573;ah varkens boomstammetjes;Vlees/Vis/Kip/Vega;Vlees;Ja;512;8
+780696;ah varkens verse worst;Vlees/Vis/Kip/Vega;Vlees;Ja;512;8
+822313;ah varkenshaas 2st;Vlees/Vis/Kip/Vega;Vlees;Ja;512;8
+694497;ah varkensribeye naturel;Vlees/Vis/Kip/Vega;Vlees;Ja;512;8
+11934;ah bbq hamburger spicey;Vlees/Vis/Kip/Vega;Vlees;Ja;343;7
+60708;ah bio rundertartaar;Vlees/Vis/Kip/Vega;Vlees;Ja;343;7
+842837;ah exc black angus burger;Vlees/Vis/Kip/Vega;Vlees;Ja;343;7
+47238;ah gehaktballetjes kofte;Vlees/Vis/Kip/Vega;Vlees;Ja;343;7
+780708;ah grf beefburger;Vlees/Vis/Kip/Vega;Vlees;Ja;343;7
+527528;ah grf kogelbiefstuk;Vlees/Vis/Kip/Vega;Vlees;Ja;343;7
+527531;ah grf magere runderlap;Vlees/Vis/Kip/Vega;Vlees;Ja;343;7
+646771;ah runder hamburger;Vlees/Vis/Kip/Vega;Vlees;Ja;343;7
+787893;ah varken braadw italiaan;Vlees/Vis/Kip/Vega;Vlees;Ja;343;7
+41872;ah varkenssate vac;Vlees/Vis/Kip/Vega;Vlees;Ja;343;7
+67588;ah bbq speklapjes smokey;Vlees/Vis/Kip/Vega;Vlees;Ja;216;6
+609222;ah exc biefstuk 1 st;Vlees/Vis/Kip/Vega;Vlees;Ja;216;6
+67578;ah exc diamanth chimichur;Vlees/Vis/Kip/Vega;Vlees;Ja;216;6
+738260;ah grf beefburger bacon;Vlees/Vis/Kip/Vega;Vlees;Ja;216;6
+564840;ah grf biefstuk 2 st;Vlees/Vis/Kip/Vega;Vlees;Ja;216;6
+847859;ah grf rundergehakt 500gr;Vlees/Vis/Kip/Vega;Vlees;Ja;216;6
+780706;ah mag rundergehakt 500gr;Vlees/Vis/Kip/Vega;Vlees;Ja;216;6
+633385;ah rundergehakt 1000gr;Vlees/Vis/Kip/Vega;Vlees;Ja;216;6
+738256;ah rundervink 4st;Vlees/Vis/Kip/Vega;Vlees;Ja;216;6
+738157;ah varkenshaas cul natur;Vlees/Vis/Kip/Vega;Vlees;Ja;216;6
+738270;sg stoofvlees;Vlees/Vis/Kip/Vega;Vlees;Ja;216;6
+67586;ah bbq procur biefs knofl;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+742668;ah diamanthaas;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+788063;ah gehaktschnitzel hongaa;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+55919;ah gev gehaktballen strog;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+637518;ah hertenbiefstuk;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+689643;ah oven beenham hong most;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+4811;ah oven varksh medaillons;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+572511;ah runder biefstuk 2st;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+12000;ah runder kipgehakt;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+45865;ah rundergehakt 175 gram;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+646768;ah rundergehakt 500gr;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+47227;ah vark filetlap alm nat;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+803993;ah varkens shoarma 850gr;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+28378;ah varkenshaas 1st;Vlees/Vis/Kip/Vega;Vlees;Ja;125;5
+67587;ah bbq speklap asian styl;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+695302;ah exc flat iron steak;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+55917;ah gev gehaktballen jus;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+527671;ah grf ribrunderlap iers;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+646778;ah hoh gehakt 500gr;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+780705;ah mag rundergehakt 300gr;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+695767;ah oven pulled pork;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+739636;ah oven varkensoester;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+43593;ah ribkarbonade 2 st;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+822306;ah speklap 4st;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+792578;ah varken chipolata worst;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+781314;ah varken schnitz gepan;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+780701;ah varkens slavink 2st;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+646764;ah varkensbraadworst 4st;Vlees/Vis/Kip/Vega;Vlees;Ja;64;4
+643807;ah bbq burger;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+67585;ah bbq entrecote paprika;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+67582;ah bbq partyburger;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+855883;ah bbq worst tuinkr vac;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+15524;ah bbq worst zaan jalap;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+60742;ah bio hamburger;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+60727;ah bio rundergehakt;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+60729;ah bio rundergehakt;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+47236;ah bio varkensschnitzel;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+701383;ah gekr shaslick spek vac;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+567550;ah gemengd gehakt 300g;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+780709;ah grf beefburger tomaat;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+830738;ah rund soepballetjes;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+780691;ah runder chipo worstjes;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+572516;ah runder kogelbiefst 2st;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+646773;ah runder tartaar 2st;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+647006;ah sch eendenborst;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+781315;ah schnitzel hongaars st;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+855885;ah sparerib pittig;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+855884;ah spareribs zoet;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+738255;ah varkens slavink 4st;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+99673;ah varkenshaas gekruid;Vlees/Vis/Kip/Vega;Vlees;Ja;27;3
+67562;ah bbq hamburger voorgeg;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+67592;ah bbq hotdog smokey spek;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+67584;ah bbq rundersteak smokey;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+855881;ah bbq worst naturel vac;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+61107;ah bbq worst smokey vac;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+742670;ah exc lamsfilet kruiden;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+816503;ah exc lamsrack;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+55918;ah gev gehaktballen sate;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+633454;ah knoflooksaus;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+646770;ah runder hamburger 4st;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+44143;ah schouderkarbonade;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+44711;ah speklap 2st;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+780519;ah vark gehak cordon bleu;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+803992;ah varkens shoarma 500gr;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+646765;ah varkensbraadworst 2st;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+667699;sg vv shoarmareepjes;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+716482;tillman's xxl schnitzel;Vlees/Vis/Kip/Vega;Vlees;Ja;8;2
+67593;ah bbq hotdog jalapeno;Vlees/Vis/Kip/Vega;Vlees;Ja;1;1
+67579;ah bbq lava burg jalap;Vlees/Vis/Kip/Vega;Vlees;Ja;1;1
+67580;ah bbq lava burg smokey;Vlees/Vis/Kip/Vega;Vlees;Ja;1;1
+67583;ah bbq runderst chimichur;Vlees/Vis/Kip/Vega;Vlees;Ja;1;1
+62753;ah bbq smokey hotdog vac;Vlees/Vis/Kip/Vega;Vlees;Ja;1;1
+840767;ah exc nl lamskotelet gem;Vlees/Vis/Kip/Vega;Vlees;Ja;1;1
+527675;ah grf rundersukade iers;Vlees/Vis/Kip/Vega;Vlees;Ja;1;1
+682743;ah knoflooksaus;Vlees/Vis/Kip/Vega;Vlees;Ja;1;1
+780535;ah runder gehaktbal 3st;Vlees/Vis/Kip/Vega;Vlees;Ja;1;1
+53608;ah runderhart;Vlees/Vis/Kip/Vega;Vlees;Ja;1;1
+739693;ah zalm op huid 1 st;Vlees/Vis/Kip/Vega;Vis;Ja;2744;14
+576660;ah zalmfilet op huid 2st;Vlees/Vis/Kip/Vega;Vis;Ja;2197;13
+537800;pd verse zeeuwse mosselen;Vlees/Vis/Kip/Vega;Vis;Ja;2197;13
+791961;ah bio verse zalm 175gr;Vlees/Vis/Kip/Vega;Vis;Ja;1728;12
+63312;ah gerookte zalm 30%;Vlees/Vis/Kip/Vega;Vis;Ja;1728;12
+545208;ah holl nw filet uitjes;Vlees/Vis/Kip/Vega;Vis;Ja;1728;12
+527896;ah holl nw uitjes;Vlees/Vis/Kip/Vega;Vis;Ja;1728;12
+798977;ah hollandse garnalen;Vlees/Vis/Kip/Vega;Vis;Ja;1728;12
+601246;ah kp pangasiusfil tuinkr;Vlees/Vis/Kip/Vega;Vis;Ja;1728;12
+92542;ah mosselgroenten;Vlees/Vis/Kip/Vega;Vis;Ja;1728;12
+644993;ah sushi hosomaki;Vlees/Vis/Kip/Vega;Vis;Ja;1728;12
+708533;ah bio ger zalm min zout;Vlees/Vis/Kip/Vega;Vis;Ja;1331;11
+611524;ah bio zalm op huid 175gr;Vlees/Vis/Kip/Vega;Vis;Ja;1331;11
+659186;ah garnalen;Vlees/Vis/Kip/Vega;Vis;Ja;1331;11
+686986;ah intens gerookte zalm;Vlees/Vis/Kip/Vega;Vis;Ja;1331;11
+62089;ah kabeljauwhaasje 2st;Vlees/Vis/Kip/Vega;Vis;Ja;1331;11
+686954;ah sushi edo;Vlees/Vis/Kip/Vega;Vis;Ja;1331;11
+625751;ah zeewiersalade;Vlees/Vis/Kip/Vega;Vis;Ja;1331;11
+701284;ft mosselen zeeuws;Vlees/Vis/Kip/Vega;Vis;Ja;1331;11
+99634;ah cocktail garnalen;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+686973;ah cocktailsaus;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+807063;ah ger bio zalm;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+633684;ah gerookte forelfilet;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+639312;ah gerookte sockeye zalm;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+742937;ah grote roerb garn knof;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+105582;ah holl nieuwe uitjes;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+687778;ah kabeljauw filet;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+687951;ah kabeljauwhaasje 1st;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+686936;ah sushi cali;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+686934;ah sushi sumire;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+687501;ah zalm op huid 4porties;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+530335;ah zalmfilet vvp;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+32916;ah zeebaars op huid;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+816619;fish tales sockey w zalm;Vlees/Vis/Kip/Vega;Vis;Ja;1000;10
+791962;ah bio verse zalm 275gr;Vlees/Vis/Kip/Vega;Vis;Ja;729;9
+32917;ah geelvintonijn;Vlees/Vis/Kip/Vega;Vis;Ja;729;9
+721966;ah gerookte zalm;Vlees/Vis/Kip/Vega;Vis;Ja;729;9
+52694;ah gerookte zalmforel;Vlees/Vis/Kip/Vega;Vis;Ja;729;9
+791891;ah pangasius citr/knof;Vlees/Vis/Kip/Vega;Vis;Ja;729;9
+12550;ah warmger zalmfilet;Vlees/Vis/Kip/Vega;Vis;Ja;729;9
+99631;ah zalmfilet 300gram;Vlees/Vis/Kip/Vega;Vis;Ja;729;9
+12556;ah zalmhaas gerookt;Vlees/Vis/Kip/Vega;Vis;Ja;729;9
+68653;ah ger atka makreel;Vlees/Vis/Kip/Vega;Vis;Ja;512;8
+646661;ah gerookte zalmsnippers;Vlees/Vis/Kip/Vega;Vis;Ja;512;8
+686926;ah roerbakgarnalen knof;Vlees/Vis/Kip/Vega;Vis;Ja;512;8
+686927;ah roerbakgarnalen nat;Vlees/Vis/Kip/Vega;Vis;Ja;512;8
+807059;ah sushi uramaki;Vlees/Vis/Kip/Vega;Vis;Ja;512;8
+811810;ah tonijnsteak wit;Vlees/Vis/Kip/Vega;Vis;Ja;512;8
+552022;ah zalmfilet 170gram;Vlees/Vis/Kip/Vega;Vis;Ja;512;8
+38712;ah bbq zalmspies gemarin;Vlees/Vis/Kip/Vega;Vis;Ja;343;7
+106632;ah fruits de mer;Vlees/Vis/Kip/Vega;Vis;Ja;343;7
+639705;ah gekookte mosselen;Vlees/Vis/Kip/Vega;Vis;Ja;343;7
+735995;ah gerookte zalm;Vlees/Vis/Kip/Vega;Vis;Ja;343;7
+106633;ah rivierkreeftjes;Vlees/Vis/Kip/Vega;Vis;Ja;343;7
+32907;ah roerb zalm pang gar zz;Vlees/Vis/Kip/Vega;Vis;Ja;343;7
+639249;ah surimi sticks;Vlees/Vis/Kip/Vega;Vis;Ja;343;7
+809035;ah toastzalm;Vlees/Vis/Kip/Vega;Vis;Ja;343;7
+44434;ft holl nieuwe kesb zuur;Vlees/Vis/Kip/Vega;Vis;Ja;343;7
+38495;ah bbq coquilles gemarin;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+701282;ah bbq garn spies knof;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+639238;ah bio garnalen;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+69193;ah bio roerbakgarnalen;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+802142;ah blini cocktails;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+847044;ah cocktail garnalen;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+32914;ah doradefil roy op huid;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+521417;ah ger zalm flame roasted;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+508505;ah ger zalmblokjes;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+838489;ah gravad lachs;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+12557;ah kabeljauwschnitzel;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+823989;ah ravigotesaus;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+809046;ah zalmfilet a la minute;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+539456;ah zalmhaasje;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+713846;ft gerookte zalm 100 g;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+527800;olav's ger zalmfilet;Vlees/Vis/Kip/Vega;Vis;Ja;216;6
+739635;ah gamba's gekookt;Vlees/Vis/Kip/Vega;Vis;Ja;125;5
+847043;ah grote garnalen;Vlees/Vis/Kip/Vega;Vis;Ja;125;5
+820757;ah mosselen 2 kg;Vlees/Vis/Kip/Vega;Vis;Ja;125;5
+32906;ah roerb zalm pang tuinkr;Vlees/Vis/Kip/Vega;Vis;Ja;125;5
+32912;ah sushi zalm;Vlees/Vis/Kip/Vega;Vis;Ja;125;5
+68649;zalmfilet smokey;Vlees/Vis/Kip/Vega;Vis;Ja;125;5
+32933;ah bbq zeebaarsfilet;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+33073;ah kabeljauwballetjes;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+24900;ah kabeljauwfilet provenc;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+32927;ah krokante visfilet;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+820760;ah mosseldipsaus;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+12560;ah pangasiusfilet 1st;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+12559;ah pangasiusfilet 2st;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+639234;ah surimi flakes;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+32940;ah verse kreeftenbisque;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+823337;ah warmger zalm flakes;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+32926;ah zalmburger naturel;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+625752;ah zeekraal;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+32930;prem zeel oester zilt rob;Vlees/Vis/Kip/Vega;Vis;Ja;64;4
+32935;ah bbq doradefilet royal;Vlees/Vis/Kip/Vega;Vis;Ja;27;3
+523708;ah garnalen 100gr;Vlees/Vis/Kip/Vega;Vis;Ja;27;3
+568247;ah geb kabeljauwburger;Vlees/Vis/Kip/Vega;Vis;Ja;27;3
+590209;ah gerookte zalm;Vlees/Vis/Kip/Vega;Vis;Ja;27;3
+639235;ah surimi sticks;Vlees/Vis/Kip/Vega;Vis;Ja;27;3
+772019;ah warmger zalmfilet;Vlees/Vis/Kip/Vega;Vis;Ja;27;3
+816631;ouwehand haringpart room;Vlees/Vis/Kip/Vega;Vis;Ja;27;3
+620633;ah garnalen knoflook;Vlees/Vis/Kip/Vega;Vis;Ja;8;2
+590205;ah sandwich zalmplakken;Vlees/Vis/Kip/Vega;Vis;Ja;8;2
+32911;ah zalmblok voor pokebowl;Vlees/Vis/Kip/Vega;Vis;Ja;8;2
+69905;kibbeling;Vlees/Vis/Kip/Vega;Vis;Ja;8;2
+506936;ouw rolmops;Vlees/Vis/Kip/Vega;Vis;Ja;8;2
+506935;ouw zure haring;Vlees/Vis/Kip/Vega;Vis;Ja;8;2
+791971;p&d mosselkruiden;Vlees/Vis/Kip/Vega;Vis;Ja;8;2
+38496;ah black tiger garn knofl;Vlees/Vis/Kip/Vega;Vis;Ja;1;1
+62346;ah gebakk lekkerbek;Vlees/Vis/Kip/Vega;Vis;Ja;1;1
+32928;ah krokante zalmburger;Vlees/Vis/Kip/Vega;Vis;Ja;1;1
+739692;ah pangasius mediterraans;Vlees/Vis/Kip/Vega;Vis;Ja;1;1
+32910;ah roerb visreep zz peper;Vlees/Vis/Kip/Vega;Vis;Ja;1;1
+32905;ah roerb zalmbl zz pep;Vlees/Vis/Kip/Vega;Vis;Ja;1;1
+32915;ah roodbaarsfilet op huid;Vlees/Vis/Kip/Vega;Vis;Ja;1;1
+43026;ah verse mosselen xl;Vlees/Vis/Kip/Vega;Vis;Ja;1;1
+12551;ah warmgerookt zalm peper;Vlees/Vis/Kip/Vega;Vis;Ja;1;1
+69884;ger hele haring;Vlees/Vis/Kip/Vega;Vis;Ja;1;1
+707126;p&d mosselen azijn;Vlees/Vis/Kip/Vega;Vis;Ja;1;1
+842418;ah bio kipfilet 1 st;Vlees/Vis/Kip/Vega;Kip;Ja;2744;14
+517712;ah bio kipfilet 2 st;Vlees/Vis/Kip/Vega;Kip;Ja;2744;14
+810588;ah franse kipdijfilet;Vlees/Vis/Kip/Vega;Kip;Ja;2744;14
+843852;ah franse kipfilethaasjes;Vlees/Vis/Kip/Vega;Kip;Ja;2744;14
+805051;ah sch kip roerbak 500gr;Vlees/Vis/Kip/Vega;Kip;Ja;2744;14
+35035;ah sch kipd blokjes;Vlees/Vis/Kip/Vega;Kip;Ja;2744;14
+804647;ah sch kipf blk sate;Vlees/Vis/Kip/Vega;Kip;Ja;2744;14
+731213;ah sch kipfilet ceas;Vlees/Vis/Kip/Vega;Kip;Ja;2744;14
+731212;ah sch kipflakes keb;Vlees/Vis/Kip/Vega;Kip;Ja;2744;14
+843847;ah bio gerookte kipfilet;Vlees/Vis/Kip/Vega;Kip;Ja;2197;13
+804460;ah bio kipfiletblokjes;Vlees/Vis/Kip/Vega;Kip;Ja;2197;13
+804997;ah kiphaas blokjes 300gr;Vlees/Vis/Kip/Vega;Kip;Ja;2197;13
+638199;ah sch kip;Vlees/Vis/Kip/Vega;Kip;Ja;2197;13
+701237;ah sch kipgehakt;Vlees/Vis/Kip/Vega;Kip;Ja;2197;13
+804876;ah sch krok kiphaas;Vlees/Vis/Kip/Vega;Kip;Ja;2197;13
+55855;ah kipburger minder vet;Vlees/Vis/Kip/Vega;Kip;Ja;1728;12
+803451;ah sch ger kipf plak;Vlees/Vis/Kip/Vega;Kip;Ja;1728;12
+804570;ah sch kipf blk thai;Vlees/Vis/Kip/Vega;Kip;Ja;1728;12
+35045;ah sch kipfilethaasjes;Vlees/Vis/Kip/Vega;Kip;Ja;1728;12
+35046;ah sch kipfiletreepjes;Vlees/Vis/Kip/Vega;Kip;Ja;1728;12
+731215;ah sch kipreepjes;Vlees/Vis/Kip/Vega;Kip;Ja;1728;12
+63154;sch gebr kipfil italiaans;Vlees/Vis/Kip/Vega;Kip;Ja;1728;12
+561882;ah bio kipdijfilet 320gr;Vlees/Vis/Kip/Vega;Kip;Ja;1331;11
+638198;ah sch ger kipfilet;Vlees/Vis/Kip/Vega;Kip;Ja;1331;11
+803196;ah sch kipchip gekr;Vlees/Vis/Kip/Vega;Kip;Ja;1331;11
+803091;ah sch kipdrumst 600gr;Vlees/Vis/Kip/Vega;Kip;Ja;1331;11
+35044;ah sch kipgehakt kvp;Vlees/Vis/Kip/Vega;Kip;Ja;1331;11
+803038;ah sch kipkl gem 500 gr;Vlees/Vis/Kip/Vega;Kip;Ja;1331;11
+804325;ah schkipbraadw 300 gr;Vlees/Vis/Kip/Vega;Kip;Ja;1331;11
+68666;bbq scharrel kipsha;Vlees/Vis/Kip/Vega;Kip;Ja;1331;11
+68670;ah bbq sch kipd gem;Vlees/Vis/Kip/Vega;Kip;Ja;1000;10
+68668;ah bbq sch kipfi haas sp;Vlees/Vis/Kip/Vega;Kip;Ja;1000;10
+68667;ah bbq sch kipfi sp med;Vlees/Vis/Kip/Vega;Kip;Ja;1000;10
+842419;ah bio kipdijfilet 2st;Vlees/Vis/Kip/Vega;Kip;Ja;1000;10
+731106;ah bio kro kipfiletschnit;Vlees/Vis/Kip/Vega;Kip;Ja;1000;10
+802932;ah kalkfilet schnitzel;Vlees/Vis/Kip/Vega;Kip;Ja;1000;10
+55856;ah kipgehakt minder vet;Vlees/Vis/Kip/Vega;Kip;Ja;1000;10
+804301;ah sch kip shoa 650gr;Vlees/Vis/Kip/Vega;Kip;Ja;1000;10
+683624;ah sch kipblok 300gr;Vlees/Vis/Kip/Vega;Kip;Ja;1000;10
+35041;ah sch kipburger 4st;Vlees/Vis/Kip/Vega;Kip;Ja;1000;10
+35040;ah sch kipgehakt nat;Vlees/Vis/Kip/Vega;Kip;Ja;1000;10
+803043;ah sch kipkluifjes;Vlees/Vis/Kip/Vega;Kip;Ja;1000;10
+1497;ah filet fr schar;Vlees/Vis/Kip/Vega;Kip;Ja;729;9
+616775;ah oven sch kip gr pesto;Vlees/Vis/Kip/Vega;Kip;Ja;729;9
+803056;ah sch kipborrelh;Vlees/Vis/Kip/Vega;Kip;Ja;729;9
+638194;ah sch kipfilet 1st;Vlees/Vis/Kip/Vega;Kip;Ja;729;9
+805391;ah sch kipfilet 2st;Vlees/Vis/Kip/Vega;Kip;Ja;729;9
+638200;ah sch kippenpt 2st;Vlees/Vis/Kip/Vega;Kip;Ja;729;9
+68669;ah bbq sch kipd yogh pap;Vlees/Vis/Kip/Vega;Kip;Ja;512;8
+68665;ah bbq sch kipsa sp;Vlees/Vis/Kip/Vega;Kip;Ja;512;8
+35029;ah bbq sch wings american;Vlees/Vis/Kip/Vega;Kip;Ja;512;8
+561881;ah bio kipdrumsticks;Vlees/Vis/Kip/Vega;Kip;Ja;512;8
+883181;ah bio kipgehakt;Vlees/Vis/Kip/Vega;Kip;Ja;512;8
+579436;ah sch kipblok 200gr;Vlees/Vis/Kip/Vega;Kip;Ja;512;8
+803067;ah sch kipdr gem 600 gr;Vlees/Vis/Kip/Vega;Kip;Ja;512;8
+803098;ah sch krok kip burg;Vlees/Vis/Kip/Vega;Kip;Ja;512;8
+803161;ah sch krok kipsch 2st;Vlees/Vis/Kip/Vega;Kip;Ja;512;8
+803213;ah sch krok kipsch 4st;Vlees/Vis/Kip/Vega;Kip;Ja;512;8
+803060;ah sch kipdrum gem 1kg;Vlees/Vis/Kip/Vega;Kip;Ja;343;7
+803718;ah sch kipgeh gekr;Vlees/Vis/Kip/Vega;Kip;Ja;343;7
+805259;ah sch kipkaaschnitzl 2st;Vlees/Vis/Kip/Vega;Kip;Ja;343;7
+805509;ah sch kipschnitzel 2st;Vlees/Vis/Kip/Vega;Kip;Ja;343;7
+885713;ah sch oven kipdijf sate;Vlees/Vis/Kip/Vega;Kip;Ja;343;7
+802886;ah kalkoenfilet blokjes;Vlees/Vis/Kip/Vega;Kip;Ja;216;6
+51874;ah oven kipfil kruidroom;Vlees/Vis/Kip/Vega;Kip;Ja;216;6
+804214;ah sch kip kebab;Vlees/Vis/Kip/Vega;Kip;Ja;216;6
+805501;ah sch kip shoarma 400g;Vlees/Vis/Kip/Vega;Kip;Ja;216;6
+805332;ah sch kipburger 2st;Vlees/Vis/Kip/Vega;Kip;Ja;216;6
+804298;ah sch kipd filet 770gr;Vlees/Vis/Kip/Vega;Kip;Ja;216;6
+804698;ah sch kipdij rp nat;Vlees/Vis/Kip/Vega;Kip;Ja;216;6
+805097;ah sch kipfilet 800gr;Vlees/Vis/Kip/Vega;Kip;Ja;216;6
+804063;ah sch kipblok 600gr;Vlees/Vis/Kip/Vega;Kip;Ja;125;5
+803048;ah sch kipborhap gem;Vlees/Vis/Kip/Vega;Kip;Ja;125;5
+68664;ah sch kipburger 6st;Vlees/Vis/Kip/Vega;Kip;Ja;125;5
+51876;ah oven kipdijfil korean;Vlees/Vis/Kip/Vega;Kip;Ja;64;4
+600269;ah oven sch kip sw chili;Vlees/Vis/Kip/Vega;Kip;Ja;64;4
+803397;ah sch kip cord bl 2st;Vlees/Vis/Kip/Vega;Kip;Ja;64;4
+805090;ah sch kipd fil 2st;Vlees/Vis/Kip/Vega;Kip;Ja;64;4
+793815;ah sch kipdijfilet 480g;Vlees/Vis/Kip/Vega;Kip;Ja;64;4
+59574;ah sch kipfilet 3st;Vlees/Vis/Kip/Vega;Kip;Ja;64;4
+803825;ah sch kipfileth 450gr;Vlees/Vis/Kip/Vega;Kip;Ja;64;4
+883730;ah sch oven kip piri;Vlees/Vis/Kip/Vega;Kip;Ja;64;4
+883279;ah sch oven kip tom moza;Vlees/Vis/Kip/Vega;Kip;Ja;64;4
+68660;bbq scharrel kiphot;Vlees/Vis/Kip/Vega;Kip;Ja;64;4
+805076;ah sch kip roerbak 300gr;Vlees/Vis/Kip/Vega;Kip;Ja;27;3
+803369;ah sch kipburger 2st;Vlees/Vis/Kip/Vega;Kip;Ja;27;3
+805643;ah sch kiphaasjes 300gr;Vlees/Vis/Kip/Vega;Kip;Ja;27;3
+803388;ah sch kipsateschn 2st;Vlees/Vis/Kip/Vega;Kip;Ja;27;3
+883756;ah sch oven kip tando;Vlees/Vis/Kip/Vega;Kip;Ja;27;3
+68661;bbq scharrel kip ko;Vlees/Vis/Kip/Vega;Kip;Ja;27;3
+68662;ah bbq sch kipd caj;Vlees/Vis/Kip/Vega;Kip;Ja;8;2
+803219;ah sch kipburger 4st;Vlees/Vis/Kip/Vega;Kip;Ja;8;2
+68663;ah bbq sch kipsa gv;Vlees/Vis/Kip/Vega;Kip;Ja;1;1
+51877;ah chicken tend southern;Vlees/Vis/Kip/Vega;Kip;Ja;1;1
+50967;ah chicken tend tex mex;Vlees/Vis/Kip/Vega;Kip;Ja;1;1
+810585;ah frans scharrelkipfilet;Vlees/Vis/Kip/Vega;Kip;Ja;1;1
+803088;ah sch kipdrumst 1000gr;Vlees/Vis/Kip/Vega;Kip;Ja;1;1
+582071;ah sch kipreepjes;Vlees/Vis/Kip/Vega;Kip;Ja;1;1
+23252;ah terra pl kipstukjes;Vlees/Vis/Kip/Vega;Vega;Ja;1000;10
+1200;ah terra pl krok kipschn;Vlees/Vis/Kip/Vega;Vega;Ja;512;8
+91929;beyond burger;Vlees/Vis/Kip/Vega;Vega;Ja;512;8
+23263;planted kebab original;Vlees/Vis/Kip/Vega;Vega;Ja;512;8
+23266;planted spies gekruid;Vlees/Vis/Kip/Vega;Vega;Ja;512;8
+2475;ah terra pl tempeh;Vlees/Vis/Kip/Vega;Vega;Ja;343;7
+23269;planted filetst lem&her;Vlees/Vis/Kip/Vega;Vega;Ja;343;7
+2450;ah terra bio falafel;Vlees/Vis/Kip/Vega;Vega;Ja;216;6
+48324;ah terra bio seitan bites;Vlees/Vis/Kip/Vega;Vega;Ja;216;6
+2461;ah terra pl schnitzel;Vlees/Vis/Kip/Vega;Vega;Ja;216;6
+2452;ah terra pl shoarma;Vlees/Vis/Kip/Vega;Vega;Ja;216;6
+848134;ah terra plant bal;Vlees/Vis/Kip/Vega;Vega;Ja;216;6
+855989;ah terra tempeh ketjap;Vlees/Vis/Kip/Vega;Vega;Ja;216;6
+75090;beyond meat bratwurst;Vlees/Vis/Kip/Vega;Vega;Ja;216;6
+48326;planted steak puntj;Vlees/Vis/Kip/Vega;Vega;Ja;216;6
+682003;vivera krok schnitzel;Vlees/Vis/Kip/Vega;Vega;Ja;216;6
+2470;ah terra bio fal gv;Vlees/Vis/Kip/Vega;Vega;Ja;125;5
+2448;ah terra pl balletjes ind;Vlees/Vis/Kip/Vega;Vega;Ja;125;5
+1197;ah terra pl burger;Vlees/Vis/Kip/Vega;Vega;Ja;125;5
+2463;ah terra pl chipolat wrst;Vlees/Vis/Kip/Vega;Vega;Ja;125;5
+23253;ah terra pl kipstuk gvp;Vlees/Vis/Kip/Vega;Vega;Ja;125;5
+68573;ah terra smokey worst tom;Vlees/Vis/Kip/Vega;Vega;Ja;125;5
+83455;ah vega kaasschnitzel;Vlees/Vis/Kip/Vega;Vega;Ja;125;5
+533380;ah vega kaasschntzl chili;Vlees/Vis/Kip/Vega;Vega;Ja;125;5
+68567;planted steak gekruid;Vlees/Vis/Kip/Vega;Vega;Ja;125;5
+819967;vega sl kipstuckjes;Vlees/Vis/Kip/Vega;Vega;Ja;125;5
+669782;vivera gyros;Vlees/Vis/Kip/Vega;Vega;Ja;125;5
+748537;ah kaasschnitzel;Vlees/Vis/Kip/Vega;Vega;Ja;64;4
+68572;ah terra gr onion burger;Vlees/Vis/Kip/Vega;Vega;Ja;64;4
+19601;ah terra pl falafel courg;Vlees/Vis/Kip/Vega;Vega;Ja;64;4
+2451;ah terra pl spekjes;Vlees/Vis/Kip/Vega;Vega;Ja;64;4
+32422;ah terra tempe ketjap gvp;Vlees/Vis/Kip/Vega;Vega;Ja;64;4
+748548;beyond meat beyond hack;Vlees/Vis/Kip/Vega;Vega;Ja;64;4
+9686;vega sl cordon blij;Vlees/Vis/Kip/Vega;Vega;Ja;64;4
+78813;viv plant kipstukjes gvp;Vlees/Vis/Kip/Vega;Vega;Ja;64;4
+1211;vivera crisp chick burger;Vlees/Vis/Kip/Vega;Vega;Ja;64;4
+848146;vivera krokante schnitzel;Vlees/Vis/Kip/Vega;Vega;Ja;64;4
+48330;vivera nuggets kaas;Vlees/Vis/Kip/Vega;Vega;Ja;64;4
+819570;vivera plant shoarma;Vlees/Vis/Kip/Vega;Vega;Ja;64;4
+37609;ah terra bio seitan worst;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+32423;ah terra crispy tofu;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+2464;ah terra frikandel;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+23248;ah terra pl bio seit keb;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+23249;ah terra pl bio seit rulg;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+2449;ah terra pl falaf pikant;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+2453;ah terra pl gehakt veldb;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+37607;ah terra pl kofte spies;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+2447;ah terra pl rulghkt ital;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+48322;ah terra pl runderreepjes;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+23251;ah terra pl spinazie schn;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+14134;ah terra pl tempeh gvp;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+48318;ah vega kaasbite;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+35597;beyond jalapeno burger;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+69476;beyond korean bbq burger;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+534511;valess crispy bites;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+727778;vega sl aufwiederschnitze;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+68571;vega sl grilj burger vgn;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+819968;vega sl lecker burgerlijk;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+32438;vega sl let it beef;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+817843;vega sl pluimfeest burger;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+848145;vega sl rul gehackt;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+32443;vivera gerookte tofu;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+727769;vivera kaasschnitzel;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+1212;vivera pl shoarma vp;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+748559;vivera plantaardig gehakt;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+1960;vs zweedsche gehacktbal;Vlees/Vis/Kip/Vega;Vega;Ja;27;3
+19599;ah terra pl bal ita stijl;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+14131;ah terra pl bbq jal burge;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+19602;ah terra pl falaf tom bas;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+3422;ah terra pl groenteschnit;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+2468;ah terra pl kipnugget;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+23254;ah terra pl kipst ind tan;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+14135;ah terra pl rk tofu;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+2455;ah terra pl rulgehkt;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+2454;ah terra pl rulgehkt gvp;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+1202;ah terra pl shoarma gv;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+68563;ah terra pl spinazierondo;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+48319;ah vega kaasbites jalap;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+9682;valess chik'n filet;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+676660;valess crunchy tenders;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+616423;valess gouda schnitzel;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+836321;vega sl bratwurst;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+68570;vega sl kipleck tend vgn;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+635087;vega sl little willie;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+748690;vivera chicken tenders;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+48329;vivera nuggets southern;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+718592;vivera plant spekjes;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+69493;vivera veg gouda schnitzl;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+32440;vivera zachte tofu;Vlees/Vis/Kip/Vega;Vega;Ja;8;2
+48323;ah terra bio tofu gekruid;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+48325;ah terra bio tofu gvp;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+64182;ah terra champignonburger;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+32433;ah terra gerookte tempeh;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+48321;ah terra groenbu broc pap;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+48320;ah terra groenteburg broc;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+68564;ah terra pl gril stukjes;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+2462;ah terra pl kip braadwrst;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+32421;ah terra pl smeltb goud s;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+1196;ah terra pl soepballetjes;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+2479;ah terra pl tofu bio;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+2478;ah terra pl tofu pit bio;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+2474;ah terra pl tofureep azia;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+68565;ah terra pl toscaan carre;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+32427;ah terra tofu burger spin;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+48317;ah vega kaasschn onion;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+707032;valess crispy sticks;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+582726;valess schnitzel;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+23453;vega sl rul gehackt vp;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+819573;vivera plant kipstukjes;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+748563;vivera plant kroketburger;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+9685;vivera plant kruim gehakt;Vlees/Vis/Kip/Vega;Vega;Ja;1;1
+794402;ah appel kip m;Maaltijden/Sappen;Maaltijden;Ja;2744;14
+583565;ah basis gegrilde kip l;Maaltijden/Sappen;Maaltijden;Ja;2744;14
+563913;ah caesar mix m;Maaltijden/Sappen;Maaltijden;Ja;2744;14
+583567;ah italiaanse mix m;Maaltijden/Sappen;Maaltijden;Ja;2744;14
+794494;ah pizza prosciutto;Maaltijden/Sappen;Maaltijden;Ja;2744;14
+1895;ah terra mango amandel m;Maaltijden/Sappen;Maaltijden;Ja;2744;14
+822514;ah biet geitenkaas s;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+583568;ah boeren mix m;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+22551;ah geitenkaas appel m;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+595301;ah kip caesar l;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+792696;ah kip caesar m;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+794484;ah kip marokkaans stijl l;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+843895;ah kip mexicaanse stijl l;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+46283;ah linguini carbonara;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+46324;ah maal indisch rundersto;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+72853;ah mango geitenkaas s;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+67359;ah mozzarella parelcous m;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+832128;ah pasta tonijn m;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+46450;ah pinsa pepperoni;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+820009;ah stm kip tandoori;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+820012;ah stm pasta pesto;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+843924;ah stm zalm roomsaus;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+1890;ah terra bas cousc fal l;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+728890;ah terra cousc falafel m;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+817378;ah tomaat komkommer m;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+43839;ah v pizza moz pesto;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+830631;ah v stamppot andijvie;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+803489;ah v stampppot witlof;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+46307;ah vers maal nasi kipsate;Maaltijden/Sappen;Maaltijden;Ja;2197;13
+830647;ah appel witlof m;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+46158;ah couscous hummus s;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+595402;ah gerookte zalm l;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+595406;ah grote garnalen l;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+615816;ah kip italiaanse stijl l;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+1502;ah pasta kip kebab m;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+832131;ah pasta pesto m;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+593540;ah pizza margharita;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+728827;ah pizza meatlovers;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+67350;ah saladbowl feta spinaz;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+728945;ah stm beef teriyak;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+730945;ah stm truffel tap;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+67381;ah terra baba ganoush m;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+570234;ah vers soep tomaat;Maaltijden/Sappen;Maaltijden;Ja;1728;12
+46458;ah am pizza cheese onion;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+583566;ah basis tonijn ei l;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+832145;ah blauwe kaas peer m;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+814597;ah kip ketjap l;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+46330;ah maal pasta pesto kip;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+46243;ah mihoen goreng;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+699601;ah mozzarella tomaat s;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+67360;ah noedels hoisin m;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+16031;ah pasta kip avocado m;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+832119;ah pasta tonijn xl;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+826095;ah peulvr geitenkaas s;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+46454;ah pinsa gorgonzola;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+46449;ah pinsa spek uit;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+19419;ah pizza salami pesto;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+742264;ah pizza salami pic;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+820010;ah stm kip rozemarijn;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+739412;ah stmsoep tom kha;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+46333;ah vers maal penne ricott;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+46308;ah vers maaltijd roti kip;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+46406;ah vers soep chinese toma;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+15440;ah vers soep veggie pomp;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+46448;ah verse pinsa capr;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+595405;ah walnoot geitenkaas l;Maaltijden/Sappen;Maaltijden;Ja;1331;11
+843930;ah gerookte kip appel l;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+102352;ah hachee rodekool;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+803911;ah hachee stoofpeer;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+78842;ah kip bacon l;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+39246;ah kip parelcouscous l;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+46287;ah maal butter chicken;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+22546;ah oude kaas l;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+16034;ah pasta kip bbq xl;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+39245;ah pasta pittige kip xl;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+742258;ah pizza bianca;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+582907;ah pizza funghi;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+20688;ah pizza tonno;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+67343;ah pokebowl zalm;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+67357;ah saladbowl caesar;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+99560;ah stamppot witlof ham;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+1891;ah terra quinoa noten l;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+1893;ah terra quinoa noten s;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+792694;ah tonijn m;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+46334;ah vers maal pasta carbo;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+46408;ah vers soep papr aard;Maaltijden/Sappen;Maaltijden;Ja;1000;10
+46461;ah am pizza spicy salami;Maaltijden/Sappen;Maaltijden;Ja;729;9
+513000;ah cordon bleu spinazie;Maaltijden/Sappen;Maaltijden;Ja;729;9
+851979;ah pesto parelcousc s;Maaltijden/Sappen;Maaltijden;Ja;729;9
+661642;ah pie kip ragout;Maaltijden/Sappen;Maaltijden;Ja;729;9
+67344;ah pokebowl kip teriyaki;Maaltijden/Sappen;Maaltijden;Ja;729;9
+67356;ah saladbowl geitenk spek;Maaltijden/Sappen;Maaltijden;Ja;729;9
+563815;ah stamp spin gehaktbal;Maaltijden/Sappen;Maaltijden;Ja;729;9
+1892;ah terra mango hazeln l;Maaltijden/Sappen;Maaltijden;Ja;729;9
+33254;ah tortel formag xl 555gr;Maaltijden/Sappen;Maaltijden;Ja;729;9
+46404;ah vers soep champ creme;Maaltijden/Sappen;Maaltijden;Ja;729;9
+744786;ah vers soep oosterse kip;Maaltijden/Sappen;Maaltijden;Ja;729;9
+46322;ah verse maaltijd lasagne;Maaltijden/Sappen;Maaltijden;Ja;729;9
+46459;ah am pizza bbq chicken;Maaltijden/Sappen;Maaltijden;Ja;512;8
+80240;ah flammkuchendeeg;Maaltijden/Sappen;Maaltijden;Ja;512;8
+39244;ah pasta zalm xl;Maaltijden/Sappen;Maaltijden;Ja;512;8
+584388;ah stamppot hutspot hach;Maaltijden/Sappen;Maaltijden;Ja;512;8
+67363;ah terra noedels tempeh m;Maaltijden/Sappen;Maaltijden;Ja;512;8
+623520;ah tomaat mozzarella l;Maaltijden/Sappen;Maaltijden;Ja;512;8
+46405;ah vers soep tomaat creme;Maaltijden/Sappen;Maaltijden;Ja;512;8
+849230;no fairyt wortel tortilla;Maaltijden/Sappen;Maaltijden;Ja;512;8
+46244;ah babi pangang;Maaltijden/Sappen;Maaltijden;Ja;343;7
+46235;ah babi pangang & bami;Maaltijden/Sappen;Maaltijden;Ja;343;7
+10506;ah orzo mediterraans s;Maaltijden/Sappen;Maaltijden;Ja;343;7
+67362;ah orzo witte kaas m;Maaltijden/Sappen;Maaltijden;Ja;343;7
+684454;ah pie runderstoof;Maaltijden/Sappen;Maaltijden;Ja;343;7
+594706;ah pizzadeeg tomatensaus;Maaltijden/Sappen;Maaltijden;Ja;343;7
+67358;ah saladbowl pulled kip;Maaltijden/Sappen;Maaltijden;Ja;343;7
+67383;ah terra mexicaan stijl s;Maaltijden/Sappen;Maaltijden;Ja;343;7
+22407;ah terra vers soep linzen;Maaltijden/Sappen;Maaltijden;Ja;343;7
+843913;magioni bloemkool bodem;Maaltijden/Sappen;Maaltijden;Ja;343;7
+722566;padifood chinese tomsoep;Maaltijden/Sappen;Maaltijden;Ja;343;7
+46233;ah ajam sate & bami;Maaltijden/Sappen;Maaltijden;Ja;216;6
+46242;ah foe yong hai;Maaltijden/Sappen;Maaltijden;Ja;216;6
+67361;ah kip sate m;Maaltijden/Sappen;Maaltijden;Ja;216;6
+46247;ah nasi kip sate;Maaltijden/Sappen;Maaltijden;Ja;216;6
+19347;ah quiche zalm spinazie;Maaltijden/Sappen;Maaltijden;Ja;216;6
+46254;ah vers spagh bolognese;Maaltijden/Sappen;Maaltijden;Ja;216;6
+91075;no fairyt pap chili tort;Maaltijden/Sappen;Maaltijden;Ja;216;6
+690294;ah gehaktbal rode biet;Maaltijden/Sappen;Maaltijden;Ja;125;5
+843922;ah lasagne bolognese;Maaltijden/Sappen;Maaltijden;Ja;125;5
+590323;ah pannenkoeken naturel;Maaltijden/Sappen;Maaltijden;Ja;125;5
+595336;ah stokbrood kruidenboter;Maaltijden/Sappen;Maaltijden;Ja;125;5
+888108;ah ter vers soep pompoen;Maaltijden/Sappen;Maaltijden;Ja;125;5
+46256;ah vers lasagne bolognese;Maaltijden/Sappen;Maaltijden;Ja;125;5
+62931;oma's kippensoep;Maaltijden/Sappen;Maaltijden;Ja;125;5
+594708;ah croissant;Maaltijden/Sappen;Maaltijden;Ja;64;4
+742259;ah houtoven pizzabo;Maaltijden/Sappen;Maaltijden;Ja;64;4
+46245;ah nasi;Maaltijden/Sappen;Maaltijden;Ja;64;4
+573444;ah pannenkoeken;Maaltijden/Sappen;Maaltijden;Ja;64;4
+684409;ah pie pulled pork;Maaltijden/Sappen;Maaltijden;Ja;64;4
+752309;ah poffertjes;Maaltijden/Sappen;Maaltijden;Ja;64;4
+43324;ah quiche broccoli kaas;Maaltijden/Sappen;Maaltijden;Ja;64;4
+726522;ah quiche geitenk;Maaltijden/Sappen;Maaltijden;Ja;64;4
+46252;ah vers macaroni ham kaas;Maaltijden/Sappen;Maaltijden;Ja;64;4
+47244;ah volkoren pizzabodem;Maaltijden/Sappen;Maaltijden;Ja;64;4
+46445;ah xl pizzadeeg;Maaltijden/Sappen;Maaltijden;Ja;64;4
+804096;jan pannenkoeken nat;Maaltijden/Sappen;Maaltijden;Ja;64;4
+723320;oma soep tomaat basilicum;Maaltijden/Sappen;Maaltijden;Ja;64;4
+46240;ah bami goreng;Maaltijden/Sappen;Maaltijden;Ja;27;3
+598038;ah bami goreng;Maaltijden/Sappen;Maaltijden;Ja;27;3
+850166;ah braadworst bloemkool;Maaltijden/Sappen;Maaltijden;Ja;27;3
+46241;ah chow mein;Maaltijden/Sappen;Maaltijden;Ja;27;3
+886940;ah focaccia mozzarella;Maaltijden/Sappen;Maaltijden;Ja;27;3
+803912;ah kipfilet pepersaus;Maaltijden/Sappen;Maaltijden;Ja;27;3
+887662;ah nasi goreng;Maaltijden/Sappen;Maaltijden;Ja;27;3
+29573;ah proteine pancakes ban;Maaltijden/Sappen;Maaltijden;Ja;27;3
+708127;ah proteïne pancakes;Maaltijden/Sappen;Maaltijden;Ja;27;3
+590244;ah quiche med groente;Maaltijden/Sappen;Maaltijden;Ja;27;3
+586229;ah stokbr knoflookboter;Maaltijden/Sappen;Maaltijden;Ja;27;3
+47245;ah volkoren pancakes;Maaltijden/Sappen;Maaltijden;Ja;27;3
+804098;jan poffertjes;Maaltijden/Sappen;Maaltijden;Ja;27;3
+11139;magioni pumpkin cin panc;Maaltijden/Sappen;Maaltijden;Ja;27;3
+46232;ah ajam sate & nasi;Maaltijden/Sappen;Maaltijden;Ja;8;2
+46239;ah babi pangang & nasi;Maaltijden/Sappen;Maaltijden;Ja;8;2
+843081;ah banaan spelt pancakes;Maaltijden/Sappen;Maaltijden;Ja;8;2
+825452;ah bladerdeeg op rol;Maaltijden/Sappen;Maaltijden;Ja;8;2
+66959;ah focacciadeeg;Maaltijden/Sappen;Maaltijden;Ja;8;2
+698919;ah hamchef pannenkoeken;Maaltijden/Sappen;Maaltijden;Ja;8;2
+843923;ah lasagne bolognese;Maaltijden/Sappen;Maaltijden;Ja;8;2
+828611;ah poffertjes naturel;Maaltijden/Sappen;Maaltijden;Ja;8;2
+797500;ah poffertjes naturel vvp;Maaltijden/Sappen;Maaltijden;Ja;8;2
+690398;ah quiche & taart deeg;Maaltijden/Sappen;Maaltijden;Ja;8;2
+512924;ah quiche lorraine;Maaltijden/Sappen;Maaltijden;Ja;8;2
+568872;ah stamp boerenk worst;Maaltijden/Sappen;Maaltijden;Ja;8;2
+594962;ah super croissants;Maaltijden/Sappen;Maaltijden;Ja;8;2
+92502;ah zuurkoolstamppot worst;Maaltijden/Sappen;Maaltijden;Ja;8;2
+8106;daneroll croissants;Maaltijden/Sappen;Maaltijden;Ja;8;2
+66958;jan pizzadeeg napoli;Maaltijden/Sappen;Maaltijden;Ja;8;2
+612543;ah american pancakes;Maaltijden/Sappen;Maaltijden;Ja;1;1
+886780;ah focaccia basilicum tom;Maaltijden/Sappen;Maaltijden;Ja;1;1
+886721;ah focaccia paprika olijf;Maaltijden/Sappen;Maaltijden;Ja;1;1
+96203;ah stamp and gehaktbal;Maaltijden/Sappen;Maaltijden;Ja;1;1
+74311;ah ter soep veggie boost;Maaltijden/Sappen;Maaltijden;Ja;1;1
+801203;daneroll pain choc;Maaltijden/Sappen;Maaltijden;Ja;1;1
+66957;jan pizzadeeg napoli xl;Maaltijden/Sappen;Maaltijden;Ja;1;1
+43325;jan volkoren poffertjes;Maaltijden/Sappen;Maaltijden;Ja;1;1
+11140;magioni car ban panc;Maaltijden/Sappen;Maaltijden;Ja;1;1
+43318;magioni pumpk ban pancake;Maaltijden/Sappen;Maaltijden;Ja;1;1
+70710;oayeah pancakes 4stuks;Maaltijden/Sappen;Maaltijden;Ja;1;1
+830966;ah sap sinas mango appel;Maaltijden/Sappen;Sappen;Ja;2744;14
+843782;ah sap ananas sinas;Maaltijden/Sappen;Sappen;Ja;2197;13
+526003;ah sap sin aardbei;Maaltijden/Sappen;Sappen;Ja;1728;12
+520310;ah sap sinaasappel;Maaltijden/Sappen;Sappen;Ja;1728;12
+525996;ah sap sinas kiwi;Maaltijden/Sappen;Sappen;Ja;1728;12
+42498;ah sap appel aardbei;Maaltijden/Sappen;Sappen;Ja;1331;11
+615602;ah sap appel peer framb;Maaltijden/Sappen;Sappen;Ja;1331;11
+501090;ah sap sinaasappel;Maaltijden/Sappen;Sappen;Ja;1331;11
+15939;ah sm appel aardbei;Maaltijden/Sappen;Sappen;Ja;1331;11
+535636;ah sap anan meloen;Maaltijden/Sappen;Sappen;Ja;1000;10
+813471;ah sap bl bes appel;Maaltijden/Sappen;Sappen;Ja;1000;10
+698083;ah sap sin mango ap;Maaltijden/Sappen;Sappen;Ja;1000;10
+501064;ah sap sinaasappel;Maaltijden/Sappen;Sappen;Ja;1000;10
+12761;ah terra sm ananas;Maaltijden/Sappen;Sappen;Ja;1000;10
+23965;ah bio sap ap aardb;Maaltijden/Sappen;Sappen;Ja;729;9
+23966;ah bio sap sin app;Maaltijden/Sappen;Sappen;Ja;729;9
+520312;ah sap sinas banaan;Maaltijden/Sappen;Sappen;Ja;729;9
+591487;ah sm mango maracuj;Maaltijden/Sappen;Sappen;Ja;729;9
+67169;ah sm mango perzik;Maaltijden/Sappen;Sappen;Ja;729;9
+23964;ah bio ginger mango;Maaltijden/Sappen;Sappen;Ja;512;8
+591486;ah sm aardb banaan;Maaltijden/Sappen;Sappen;Ja;512;8
+733037;ah sm mango ananas;Maaltijden/Sappen;Sappen;Ja;512;8
+12762;ah terra sm appel;Maaltijden/Sappen;Sappen;Ja;512;8
+698843;ah yog sm aardbei;Maaltijden/Sappen;Sappen;Ja;512;8
+67172;ah 75% sm biet aard;Maaltijden/Sappen;Sappen;Ja;343;7
+751764;ah lemonade citroen;Maaltijden/Sappen;Sappen;Ja;343;7
+67204;ah mockt pina colad;Maaltijden/Sappen;Sappen;Ja;343;7
+542739;ah sap app peer fra;Maaltijden/Sappen;Sappen;Ja;343;7
+67168;ah sm avocado komk;Maaltijden/Sappen;Sappen;Ja;343;7
+693837;ah sm mango banaan;Maaltijden/Sappen;Sappen;Ja;343;7
+698850;ah yog sm kokos;Maaltijden/Sappen;Sappen;Ja;343;7
+67171;ah 75% sm spin komk;Maaltijden/Sappen;Sappen;Ja;216;6
+67174;ah 80% sap biet app;Maaltijden/Sappen;Sappen;Ja;216;6
+32883;ah sap sin ap mango;Maaltijden/Sappen;Sappen;Ja;216;6
+733038;ah sm sinaas mango;Maaltijden/Sappen;Sappen;Ja;216;6
+33674;ah vitamshot vit c;Maaltijden/Sappen;Sappen;Ja;216;6
+67192;ah 50% sap gw mango;Maaltijden/Sappen;Sappen;Ja;125;5
+67173;ah 80% sap kom spin;Maaltijden/Sappen;Sappen;Ja;125;5
+33673;ah hot ginger 75%;Maaltijden/Sappen;Sappen;Ja;125;5
+736692;ah lemonade tropic;Maaltijden/Sappen;Sappen;Ja;125;5
+627916;ah sap sinas banaan;Maaltijden/Sappen;Sappen;Ja;125;5
+42502;ah sap zomerfavor;Maaltijden/Sappen;Sappen;Ja;125;5
+67167;ah sm appel aardbei;Maaltijden/Sappen;Sappen;Ja;125;5
+33675;ah vitamshot vit d;Maaltijden/Sappen;Sappen;Ja;125;5
+67190;ah 85% shot spinaz;Maaltijden/Sappen;Sappen;Ja;64;4
+86395;ah ginger power;Maaltijden/Sappen;Sappen;Ja;64;4
+37362;ah ice tea framboos;Maaltijden/Sappen;Sappen;Ja;64;4
+67198;ah mockt straw daiq;Maaltijden/Sappen;Sappen;Ja;64;4
+547654;ah sap appel peer;Maaltijden/Sappen;Sappen;Ja;64;4
+67170;ah 75% sm wort mang;Maaltijden/Sappen;Sappen;Ja;27;3
+15938;ah ginger strawberr;Maaltijden/Sappen;Sappen;Ja;27;3
+697811;ah ice tea citroen;Maaltijden/Sappen;Sappen;Ja;27;3
+67203;ah mockt pornst mar;Maaltijden/Sappen;Sappen;Ja;27;3
+539973;ah sap sin aardbei;Maaltijden/Sappen;Sappen;Ja;27;3
+33676;ah vitamshot multi;Maaltijden/Sappen;Sappen;Ja;27;3
+67191;ah 50% sap biet aar;Maaltijden/Sappen;Sappen;Ja;8;2
+67175;ah 80% sap papr wor;Maaltijden/Sappen;Sappen;Ja;8;2
+67176;ah 85% shot biet av;Maaltijden/Sappen;Sappen;Ja;8;2
+67177;ah 85% shot wortel;Maaltijden/Sappen;Sappen;Ja;8;2
+882165;ah sap appel gember;Maaltijden/Sappen;Sappen;Ja;8;2
+661974;ah sm wortel mango;Maaltijden/Sappen;Sappen;Ja;8;2
+67197;ah 50% sap wort sin;Maaltijden/Sappen;Sappen;Ja;1;1
+67842;ah basilicum;Panklaar;Panklaar;Ja;2744;14
+831597;ah bieslook;Panklaar;Panklaar;Ja;2744;14
+730437;ah bio rucola;Panklaar;Panklaar;Ja;2744;14
+828276;ah bio tauge;Panklaar;Panklaar;Ja;2744;14
+622963;ah eikenbladsla mel groot;Panklaar;Panklaar;Ja;2744;14
+558435;ah gesn kastanjechamp;Panklaar;Panklaar;Ja;2744;14
+811636;ah groene asperges;Panklaar;Panklaar;Ja;2744;14
+46987;ah ijsbergsla melange;Panklaar;Panklaar;Ja;2744;14
+47028;ah jong bladsla rucol kvp;Panklaar;Panklaar;Ja;2744;14
+576914;ah jonge bladsla rucola;Panklaar;Panklaar;Ja;2744;14
+633950;ah jonge bladsla veldsla;Panklaar;Panklaar;Ja;2744;14
+14346;ah koolmix;Panklaar;Panklaar;Ja;2744;14
+510567;ah peen julienne;Panklaar;Panklaar;Ja;2744;14
+809955;ah rauwk amsterdam ui;Panklaar;Panklaar;Ja;2744;14
+649011;ah rauwk komkommer;Panklaar;Panklaar;Ja;2744;14
+609630;ah rauwk radijs;Panklaar;Panklaar;Ja;2744;14
+781270;ah rbak mexic groente;Panklaar;Panklaar;Ja;2744;14
+555634;ah rucola;Panklaar;Panklaar;Ja;2744;14
+689621;ah slamelange rode biet;Panklaar;Panklaar;Ja;2744;14
+602895;ah bimi;Panklaar;Panklaar;Ja;2197;13
+689796;ah bio pittig kiemgroente;Panklaar;Panklaar;Ja;2197;13
+847352;ah bloemkoolroosjes;Panklaar;Panklaar;Ja;2197;13
+545342;ah botersla;Panklaar;Panklaar;Ja;2197;13
+845118;ah courgette spaghetti;Panklaar;Panklaar;Ja;2197;13
+67843;ah dille;Panklaar;Panklaar;Ja;2197;13
+738386;ah fijngesn ijsbergsla;Panklaar;Panklaar;Ja;2197;13
+563896;ah geschrapte wortelt;Panklaar;Panklaar;Ja;2197;13
+583659;ah ijsbergsla;Panklaar;Panklaar;Ja;2197;13
+47035;ah jon bladsla veld kvp;Panklaar;Panklaar;Ja;2197;13
+83750;ah kleine kastanjechamp;Panklaar;Panklaar;Ja;2197;13
+831600;ah koriander;Panklaar;Panklaar;Ja;2197;13
+831601;ah munt;Panklaar;Panklaar;Ja;2197;13
+554635;ah pastasaus tom mascarp;Panklaar;Panklaar;Ja;2197;13
+831603;ah platte peterselie;Panklaar;Panklaar;Ja;2197;13
+67854;ah platte peterselie gvp;Panklaar;Panklaar;Ja;2197;13
+502940;ah rbak provenc groente;Panklaar;Panklaar;Ja;2197;13
+847347;ah spitskool;Panklaar;Panklaar;Ja;2197;13
+831606;ah tijm;Panklaar;Panklaar;Ja;2197;13
+817384;ah babyspinazie;Panklaar;Panklaar;Ja;1728;12
+828280;ah bio spinazie;Panklaar;Panklaar;Ja;1728;12
+532495;ah bio uiensnippers;Panklaar;Panklaar;Ja;1728;12
+57884;ah bio waterkers;Panklaar;Panklaar;Ja;1728;12
+844991;ah bloemkoolrijst;Panklaar;Panklaar;Ja;1728;12
+817372;ah bloemkoolroosje kvp;Panklaar;Panklaar;Ja;1728;12
+570008;ah broc wort bloemkl;Panklaar;Panklaar;Ja;1728;12
+536500;ah eikenbladsla melange;Panklaar;Panklaar;Ja;1728;12
+538674;ah groene aspergetips;Panklaar;Panklaar;Ja;1728;12
+633946;ah ijsbergsla gvp;Panklaar;Panklaar;Ja;1728;12
+67844;ah koriander gvp;Panklaar;Panklaar;Ja;1728;12
+67845;ah munt gvp;Panklaar;Panklaar;Ja;1728;12
+849228;ah ovenfriet z aardappel;Panklaar;Panklaar;Ja;1728;12
+609632;ah rauwk paprika;Panklaar;Panklaar;Ja;1728;12
+794408;ah romaine sla;Panklaar;Panklaar;Ja;1728;12
+697601;ah slaverrijk sojabonen;Panklaar;Panklaar;Ja;1728;12
+847344;ah sperziebonen;Panklaar;Panklaar;Ja;1728;12
+847359;ah spinazie;Panklaar;Panklaar;Ja;1728;12
+732694;ah bio gesneden shiitake;Panklaar;Panklaar;Ja;1331;11
+106477;ah bio shiitake;Panklaar;Panklaar;Ja;1331;11
+627240;ah bio witte kool;Panklaar;Panklaar;Ja;1331;11
+839801;ah gesneden champignons;Panklaar;Panklaar;Ja;1331;11
+851618;ah gesneden rode ui;Panklaar;Panklaar;Ja;1331;11
+100746;ah gesneden uien gvp;Panklaar;Panklaar;Ja;1331;11
+46102;ah ijsbergsla melange;Panklaar;Panklaar;Ja;1331;11
+831599;ah ital kruidenmix;Panklaar;Panklaar;Ja;1331;11
+737559;ah kool peen;Panklaar;Panklaar;Ja;1331;11
+612266;ah krulslamelange;Panklaar;Panklaar;Ja;1331;11
+749686;ah macaroni spag groente;Panklaar;Panklaar;Ja;1331;11
+749689;ah nasi bami groente;Panklaar;Panklaar;Ja;1331;11
+845555;ah ovengr prei peen champ;Panklaar;Panklaar;Ja;1331;11
+98649;ah ovengr z aardap papr;Panklaar;Panklaar;Ja;1331;11
+689619;ah pursoep tom oregano;Panklaar;Panklaar;Ja;1331;11
+644402;ah rucola gvp;Panklaar;Panklaar;Ja;1331;11
+622946;ah snijbonen;Panklaar;Panklaar;Ja;1331;11
+817388;ah snijbonen kvp;Panklaar;Panklaar;Ja;1331;11
+817389;ah sperziebonen kvp;Panklaar;Panklaar;Ja;1331;11
+781312;ah wok jap peul kastchamp;Panklaar;Panklaar;Ja;1331;11
+55868;ah aard ovensch rozem zz;Panklaar;Panklaar;Ja;1000;10
+33720;ah basismix aziatisch;Panklaar;Panklaar;Ja;1000;10
+666778;ah bio portobello;Panklaar;Panklaar;Ja;1000;10
+627239;ah bio rode kool;Panklaar;Panklaar;Ja;1000;10
+835265;ah bloemkool broccoli kvp;Panklaar;Panklaar;Ja;1000;10
+621763;ah bloemkoolrijst kvp;Panklaar;Panklaar;Ja;1000;10
+794420;ah fijn ijsbergsla;Panklaar;Panklaar;Ja;1000;10
+839782;ah jap wokgr sojabonen;Panklaar;Panklaar;Ja;1000;10
+21025;ah maiskolven;Panklaar;Panklaar;Ja;1000;10
+749690;ah nasi groente;Panklaar;Panklaar;Ja;1000;10
+611516;ah ovengr courg papr peen;Panklaar;Panklaar;Ja;1000;10
+802195;ah paddenstoelen v pasta;Panklaar;Panklaar;Ja;1000;10
+627977;ah pestosaus groen;Panklaar;Panklaar;Ja;1000;10
+67853;ah peterselie;Panklaar;Panklaar;Ja;1000;10
+91080;ah rbak hollandse groente;Panklaar;Panklaar;Ja;1000;10
+831604;ah rozemarijn;Panklaar;Panklaar;Ja;1000;10
+526266;ah rucola slamelange;Panklaar;Panklaar;Ja;1000;10
+847346;ah spinazie kvp;Panklaar;Panklaar;Ja;1000;10
+839867;ah sugar snaps;Panklaar;Panklaar;Ja;1000;10
+817377;ah uienmix;Panklaar;Panklaar;Ja;1000;10
+21012;ah witte champignons;Panklaar;Panklaar;Ja;1000;10
+91084;ah wok chin groente;Panklaar;Panklaar;Ja;1000;10
+33721;ah wok oosters;Panklaar;Panklaar;Ja;1000;10
+57156;ah zoete aardappelblokjes;Panklaar;Panklaar;Ja;1000;10
+21033;df bio tuinkers;Panklaar;Panklaar;Ja;1000;10
+33725;ah bio oesterzwammen;Panklaar;Panklaar;Ja;729;9
+710802;ah bio oesterzwammen;Panklaar;Panklaar;Ja;729;9
+847350;ah bloemkool broccoli;Panklaar;Panklaar;Ja;729;9
+849227;ah broccoli rijst;Panklaar;Panklaar;Ja;729;9
+47261;ah jap wokgr pak shiitake;Panklaar;Panklaar;Ja;729;9
+689618;ah rbak ita groente fijng;Panklaar;Panklaar;Ja;729;9
+644400;ah rbak ita kast cham kvp;Panklaar;Panklaar;Ja;729;9
+622962;ah rucola slamelange gvp;Panklaar;Panklaar;Ja;729;9
+800468;ah salie;Panklaar;Panklaar;Ja;729;9
+67908;ah slaver spitsk wortel;Panklaar;Panklaar;Ja;729;9
+67909;ah slaver venkel courgett;Panklaar;Panklaar;Ja;729;9
+846713;ah snoepgr worteltjes;Panklaar;Panklaar;Ja;729;9
+46932;ah terra puroep broc spin;Panklaar;Panklaar;Ja;729;9
+512438;ah wok chin groente kvp;Panklaar;Panklaar;Ja;729;9
+815501;ah wortelen;Panklaar;Panklaar;Ja;729;9
+531327;ah bio kastanjechamp;Panklaar;Panklaar;Ja;512;8
+578249;ah bio milde kiemtrio;Panklaar;Panklaar;Ja;512;8
+739974;ah gele wortel nasi;Panklaar;Panklaar;Ja;512;8
+839802;ah gesn kastanjechamp;Panklaar;Panklaar;Ja;512;8
+507065;ah haricots verts;Panklaar;Panklaar;Ja;512;8
+45908;ah hf kriel rozem zeezout;Panklaar;Panklaar;Ja;512;8
+540287;ah krieltjes;Panklaar;Panklaar;Ja;512;8
+749687;ah mac spag groente kvp;Panklaar;Panklaar;Ja;512;8
+729095;ah mini krieltjes;Panklaar;Panklaar;Ja;512;8
+33724;ah paddenstoelen mix;Panklaar;Panklaar;Ja;512;8
+605569;ah rbak ita groente gvp;Panklaar;Panklaar;Ja;512;8
+67906;ah slaver bloemkool mango;Panklaar;Panklaar;Ja;512;8
+67907;ah slaver broccoli paprik;Panklaar;Panklaar;Ja;512;8
+39814;ah tauge gvp;Panklaar;Panklaar;Ja;512;8
+531033;ah terra pl pasta napol;Panklaar;Panklaar;Ja;512;8
+689649;ah terra pursoep pomp wor;Panklaar;Panklaar;Ja;512;8
+60443;ah veldsla;Panklaar;Panklaar;Ja;512;8
+535883;ah witte champignons;Panklaar;Panklaar;Ja;512;8
+644403;ah wok thai groente kvp;Panklaar;Panklaar;Ja;512;8
+98278;ah aardap partje provenc;Panklaar;Panklaar;Ja;343;7
+36099;ah basismix italiaans;Panklaar;Panklaar;Ja;343;7
+591623;ah bio alfalfa;Panklaar;Panklaar;Ja;343;7
+33723;ah bio bundelzwammen;Panklaar;Panklaar;Ja;343;7
+75574;ah broccoli roosjes kvp;Panklaar;Panklaar;Ja;343;7
+737555;ah flespompoen stukjes;Panklaar;Panklaar;Ja;343;7
+85977;ah geschoonde spruitjes;Panklaar;Panklaar;Ja;343;7
+583663;ah geschrapte wortel gvp;Panklaar;Panklaar;Ja;343;7
+617706;ah haricots verts;Panklaar;Panklaar;Ja;343;7
+809952;ah muskaat pomp stukjes;Panklaar;Panklaar;Ja;343;7
+825799;ah oregano;Panklaar;Panklaar;Ja;343;7
+721986;ah soepgr basis;Panklaar;Panklaar;Ja;343;7
+847355;ah soepgr fijne;Panklaar;Panklaar;Ja;343;7
+46946;ah wok thai groente groot;Panklaar;Panklaar;Ja;343;7
+622991;ah aardappel schijfjes;Panklaar;Panklaar;Ja;216;6
+847337;ah boerenkool kvp;Panklaar;Panklaar;Ja;216;6
+567103;ah gemengde salade gvp;Panklaar;Panklaar;Ja;216;6
+77602;ah kastanjechampignons;Panklaar;Panklaar;Ja;216;6
+583615;ah mini krieltjes;Panklaar;Panklaar;Ja;216;6
+69359;ah slaver peulvruch cajun;Panklaar;Panklaar;Ja;216;6
+581672;ah spaghetti all uovo;Panklaar;Panklaar;Ja;216;6
+74826;ah terra pursoep courg;Panklaar;Panklaar;Ja;216;6
+601049;ah verse franse friet;Panklaar;Panklaar;Ja;216;6
+797688;ah verse friet;Panklaar;Panklaar;Ja;216;6
+502942;ah wokgroente thais;Panklaar;Panklaar;Ja;216;6
+797335;bieze coleslaw;Panklaar;Panklaar;Ja;216;6
+56408;ah aard ovensch patatas b;Panklaar;Panklaar;Ja;125;5
+596472;ah aardappelpuree;Panklaar;Panklaar;Ja;125;5
+729693;ah bakaardappel papr knof;Panklaar;Panklaar;Ja;125;5
+715219;ah bio rode biet blokjes;Panklaar;Panklaar;Ja;125;5
+847353;ah broccoliroosjes;Panklaar;Panklaar;Ja;125;5
+604987;ah chin wokgroente gvp;Panklaar;Panklaar;Ja;125;5
+514236;ah fijngesn andijvie kvp;Panklaar;Panklaar;Ja;125;5
+817380;ah fijngesneden prei;Panklaar;Panklaar;Ja;125;5
+787961;ah geschilde bospeen;Panklaar;Panklaar;Ja;125;5
+84891;ah gesneden champignons;Panklaar;Panklaar;Ja;125;5
+91057;ah gesneden ui;Panklaar;Panklaar;Ja;125;5
+63444;ah groentefriet;Panklaar;Panklaar;Ja;125;5
+797847;ah klein aardap schijf kv;Panklaar;Panklaar;Ja;125;5
+581671;ah lasagne all uovo;Panklaar;Panklaar;Ja;125;5
+747629;ah mini krieltjes bistro;Panklaar;Panklaar;Ja;125;5
+45911;ah pastasaus arrabbiata;Panklaar;Panklaar;Ja;125;5
+811685;ah pastasaus pomod basil;Panklaar;Panklaar;Ja;125;5
+513034;ah ravioli formaggio pom;Panklaar;Panklaar;Ja;125;5
+91082;ah rbak ita groente;Panklaar;Panklaar;Ja;125;5
+847345;ah sperziebonen gvp;Panklaar;Panklaar;Ja;125;5
+587841;ah spinazie gvp;Panklaar;Panklaar;Ja;125;5
+657081;ah terra pl rav spinaci;Panklaar;Panklaar;Ja;125;5
+3340;ah terra pursoep pomp;Panklaar;Panklaar;Ja;125;5
+737558;ah terra pursoep zt aard;Panklaar;Panklaar;Ja;125;5
+882160;friethoes echt vers friet;Panklaar;Panklaar;Ja;125;5
+14350;friethoes franse friet;Panklaar;Panklaar;Ja;125;5
+586420;ah aardap partje toscaans;Panklaar;Panklaar;Ja;64;4
+20917;ah andijvie;Panklaar;Panklaar;Ja;64;4
+10018;ah bb kastanjechampignons;Panklaar;Panklaar;Ja;64;4
+797851;ah bbq minikriel kvp 200g;Panklaar;Panklaar;Ja;64;4
+67902;ah bbq ovensch champ papr;Panklaar;Panklaar;Ja;64;4
+689648;ah bio geraspte bietjes;Panklaar;Panklaar;Ja;64;4
+735672;ah capp prosciutto crudo;Panklaar;Panklaar;Ja;64;4
+47637;ah eiernoedels;Panklaar;Panklaar;Ja;64;4
+627245;ah fijngesn andijvie gvp;Panklaar;Panklaar;Ja;64;4
+855015;ah gnocchi;Panklaar;Panklaar;Ja;64;4
+729692;ah krieltjes kvp;Panklaar;Panklaar;Ja;64;4
+54942;ah luxe roerbk ita cavolo;Panklaar;Panklaar;Ja;64;4
+798683;ah mini krieltjes bbq;Panklaar;Panklaar;Ja;64;4
+728736;ah minikriel kruidenboter;Panklaar;Panklaar;Ja;64;4
+581673;ah pastasaus 5 kazen;Panklaar;Panklaar;Ja;64;4
+531032;ah pastasaus carbonara;Panklaar;Panklaar;Ja;64;4
+829216;ah pastasaus funghi;Panklaar;Panklaar;Ja;64;4
+839851;ah peulen;Panklaar;Panklaar;Ja;64;4
+596503;ah rbak ita kast champ;Panklaar;Panklaar;Ja;64;4
+69358;ah slaver linzen rozemar;Panklaar;Panklaar;Ja;64;4
+67913;ah slaverrijker couscous;Panklaar;Panklaar;Ja;64;4
+615835;ah tagliatel all uovo vvp;Panklaar;Panklaar;Ja;64;4
+527485;ah tagliatelle all uovo;Panklaar;Panklaar;Ja;64;4
+68087;ah tauge;Panklaar;Panklaar;Ja;64;4
+527483;ah tortel verdi ric spin;Panklaar;Panklaar;Ja;64;4
+797339;bieze 4 seizoenen rauwk;Panklaar;Panklaar;Ja;64;4
+737742;ah aardappel kruimig;Panklaar;Panklaar;Ja;27;3
+737743;ah aardappel vastkokend;Panklaar;Panklaar;Ja;27;3
+540286;ah aardappelpartjes;Panklaar;Panklaar;Ja;27;3
+797785;ah aardgratin naturel;Panklaar;Panklaar;Ja;27;3
+810984;ah bakaardappeltjes;Panklaar;Panklaar;Ja;27;3
+749688;ah bami groente;Panklaar;Panklaar;Ja;27;3
+67895;ah bbq ovensch asp venkel;Panklaar;Panklaar;Ja;27;3
+855028;ah bio tagliatel all uovo;Panklaar;Panklaar;Ja;27;3
+609635;ah fijne soepgroente gvp;Panklaar;Panklaar;Ja;27;3
+779669;ah gemengde salade;Panklaar;Panklaar;Ja;27;3
+67866;ah kastanjech knofl;Panklaar;Panklaar;Ja;27;3
+846705;ah kastanjechampignon;Panklaar;Panklaar;Ja;27;3
+658104;ah peen julienne;Panklaar;Panklaar;Ja;27;3
+847358;ah prei;Panklaar;Panklaar;Ja;27;3
+590730;ah ravioli 5 formaggi;Panklaar;Panklaar;Ja;27;3
+555434;ah ravioli ai funghi;Panklaar;Panklaar;Ja;27;3
+815503;ah salademix;Panklaar;Panklaar;Ja;27;3
+831605;ah selderij;Panklaar;Panklaar;Ja;27;3
+67867;ah shiitak teriyaki;Panklaar;Panklaar;Ja;27;3
+67868;ah shiitake spicy;Panklaar;Panklaar;Ja;27;3
+67904;ah slaver bonen aziatisch;Panklaar;Panklaar;Ja;27;3
+43828;ah soepgr boeren;Panklaar;Panklaar;Ja;27;3
+847360;ah spitskool;Panklaar;Panklaar;Ja;27;3
+27587;ah terra ter pl aardappel;Panklaar;Panklaar;Ja;27;3
+47636;ah udon noedels;Panklaar;Panklaar;Ja;27;3
+45913;ah woksaus teriyaki;Panklaar;Panklaar;Ja;27;3
+558434;ah zoete stoofpeer;Panklaar;Panklaar;Ja;27;3
+63443;ah zoetzure rode ui;Panklaar;Panklaar;Ja;27;3
+797336;bieze farmer;Panklaar;Panklaar;Ja;27;3
+797338;bieze komkommer;Panklaar;Panklaar;Ja;27;3
+55866;ah aard ovensch koreans;Panklaar;Panklaar;Ja;8;2
+797856;ah aardap partje schil kv;Panklaar;Panklaar;Ja;8;2
+42769;ah bio tagliatel volkoren;Panklaar;Panklaar;Ja;8;2
+67918;ah bio veldsla;Panklaar;Panklaar;Ja;8;2
+67876;ah bio zoetzure bietjes;Panklaar;Panklaar;Ja;8;2
+730219;ah gegrilde groentemix;Panklaar;Panklaar;Ja;8;2
+63445;ah groenteschijfjes;Panklaar;Panklaar;Ja;8;2
+65401;ah mezzelune con mozzarel;Panklaar;Panklaar;Ja;8;2
+581669;ah pappardelle all uovo;Panklaar;Panklaar;Ja;8;2
+846937;ah shanghai paksoi;Panklaar;Panklaar;Ja;8;2
+67912;ah slaver soba noedels;Panklaar;Panklaar;Ja;8;2
+67911;ah slaverr volkoren pasta;Panklaar;Panklaar;Ja;8;2
+647499;ah stamppot aardappelen;Panklaar;Panklaar;Ja;8;2
+798575;ah verse vlaamse friet;Panklaar;Panklaar;Ja;8;2
+46429;ah woksaus spicy korean;Panklaar;Panklaar;Ja;8;2
+704100;bieze witte kool rauwkost;Panklaar;Panklaar;Ja;8;2
+36109;friethoes vers kreukel fr;Panklaar;Panklaar;Ja;8;2
+67869;ah aardappelgrat asperge;Panklaar;Panklaar;Ja;1;1
+36110;ah bio kimchi;Panklaar;Panklaar;Ja;1;1
+42144;ah gegrilde paprikamix;Panklaar;Panklaar;Ja;1;1
+101008;ah hasselback;Panklaar;Panklaar;Ja;1;1
+57131;ah linguine volkoren bio;Panklaar;Panklaar;Ja;1;1
+75573;ah mezzelune ric tartufo;Panklaar;Panklaar;Ja;1;1
+36697;ah pofaardappelen;Panklaar;Panklaar;Ja;1;1
+47638;ah ramen noedels;Panklaar;Panklaar;Ja;1;1
+721313;ah ravioli brasato funghi;Panklaar;Panklaar;Ja;1;1
+67910;ah slaverrijker quinoa;Panklaar;Panklaar;Ja;1;1
+45912;ah woksaus sweet & sour;Panklaar;Panklaar;Ja;1;1
+29587;ah woksm knoflook;Panklaar;Panklaar;Ja;1;1

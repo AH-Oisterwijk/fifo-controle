@@ -1,6 +1,6 @@
 const DETAILS_SHEET_NAME = "FIFO Controle Details";
 const DATA_SHEET_NAME = "FIFO Controle Data";
-const ALLOW_WORKBOOK_SETUP = false;
+const ALLOW_WORKBOOK_SETUP = true;
 
 function main(
   workbook: ExcelScript.Workbook,
@@ -162,25 +162,33 @@ interface FifoAnalyse {
 
 
 function runDashboardSetup(workbook: ExcelScript.Workbook, password: string): void {
-  ensureDetailSheets(workbook, password);
+  resetDetailSheetsForSetup(workbook, password);
 
-  const dataSheet = getRequiredWorksheet(workbook, DATA_SHEET_NAME);
-  const dataPaused = pauseProtectionIfNeeded(dataSheet, password);
+  let workbookWasProtected = unprotectWorkbookIfNeeded(workbook, password);
 
   try {
+    const dataSheet = getRequiredWorksheet(workbook, DATA_SHEET_NAME);
+    dataSheet.setVisibility(ExcelScript.SheetVisibility.visible);
+
+    // FIFO Controle Data blijft onbeschermd. De sheet wordt verborgen en de werkboekstructuur wordt beschermd,
+    // waardoor gebruikers hem niet kunnen openen zonder werkboekwachtwoord.
     ensureHistoryHeader(dataSheet);
     refreshAvailableLists(dataSheet);
-  } finally {
-    protectOrResume(dataSheet, password, dataPaused);
-  }
 
-  const dashboardSheet = getRequiredWorksheet(workbook, DETAILS_SHEET_NAME);
-  const dashboardPaused = pauseProtectionIfNeeded(dashboardSheet, password);
+    const dashboardSheet = getRequiredWorksheet(workbook, DETAILS_SHEET_NAME);
+    const dashboardPaused = pauseProtectionIfNeeded(dashboardSheet, password);
 
-  try {
-    buildDashboardSheet(dashboardSheet, getLatestDateDisplay(dataSheet), getLatestWeekDisplay(dataSheet));
+    try {
+      buildDashboardSheet(dashboardSheet, getLatestDateDisplay(dataSheet), getLatestWeekDisplay(dataSheet));
+    } finally {
+      protectOrResume(dashboardSheet, password, dashboardPaused);
+    }
+
+    dataSheet.setVisibility(ExcelScript.SheetVisibility.hidden);
   } finally {
-    protectOrResume(dashboardSheet, password, dashboardPaused);
+    if (workbookWasProtected) {
+      workbook.getProtection().protect(password);
+    }
   }
 }
 
@@ -514,8 +522,85 @@ function registerMissingControle(workbook: ExcelScript.Workbook, password: strin
 }
 
 function ensureDetailSheets(workbook: ExcelScript.Workbook, password: string): void {
-  getRequiredWorksheet(workbook, DETAILS_SHEET_NAME);
-  getRequiredWorksheet(workbook, DATA_SHEET_NAME);
+  let workbookWasProtected = false;
+
+  if (ALLOW_WORKBOOK_SETUP) {
+    workbookWasProtected = unprotectWorkbookIfNeeded(workbook, password);
+  }
+
+  try {
+    if (ALLOW_WORKBOOK_SETUP) {
+      if (!workbook.getWorksheet(DETAILS_SHEET_NAME)) {
+        workbook.addWorksheet(DETAILS_SHEET_NAME);
+      }
+
+      if (!workbook.getWorksheet(DATA_SHEET_NAME)) {
+        workbook.addWorksheet(DATA_SHEET_NAME);
+      }
+
+      const warningSheet = workbook.getWorksheet("Lijst waarschuwingen");
+      if (warningSheet) {
+        getRequiredWorksheet(workbook, DETAILS_SHEET_NAME).setPosition(warningSheet.getPosition() + 1);
+        getRequiredWorksheet(workbook, DATA_SHEET_NAME).setPosition(getRequiredWorksheet(workbook, DETAILS_SHEET_NAME).getPosition() + 1);
+      }
+
+      getRequiredWorksheet(workbook, DETAILS_SHEET_NAME).setVisibility(ExcelScript.SheetVisibility.visible);
+      getRequiredWorksheet(workbook, DATA_SHEET_NAME).setVisibility(ExcelScript.SheetVisibility.visible);
+    } else {
+      getRequiredWorksheet(workbook, DETAILS_SHEET_NAME);
+      getRequiredWorksheet(workbook, DATA_SHEET_NAME);
+    }
+  } finally {
+    if (workbookWasProtected) {
+      workbook.getProtection().protect(password);
+    }
+  }
+}
+
+function resetDetailSheetsForSetup(workbook: ExcelScript.Workbook, password: string): void {
+  let workbookWasProtected = unprotectWorkbookIfNeeded(workbook, password);
+
+  try {
+    deleteWorksheetIfExists(workbook, DETAILS_SHEET_NAME, password);
+
+    const existingDataSheet = workbook.getWorksheet(DATA_SHEET_NAME);
+    if (!existingDataSheet) {
+      workbook.addWorksheet(DATA_SHEET_NAME);
+    }
+
+    workbook.addWorksheet(DETAILS_SHEET_NAME);
+
+    const warningSheet = workbook.getWorksheet("Lijst waarschuwingen");
+    if (warningSheet) {
+      getRequiredWorksheet(workbook, DETAILS_SHEET_NAME).setPosition(warningSheet.getPosition() + 1);
+      getRequiredWorksheet(workbook, DATA_SHEET_NAME).setPosition(getRequiredWorksheet(workbook, DETAILS_SHEET_NAME).getPosition() + 1);
+    }
+
+    getRequiredWorksheet(workbook, DETAILS_SHEET_NAME).setVisibility(ExcelScript.SheetVisibility.visible);
+    getRequiredWorksheet(workbook, DATA_SHEET_NAME).setVisibility(ExcelScript.SheetVisibility.visible);
+  } finally {
+    if (workbookWasProtected) {
+      workbook.getProtection().protect(password);
+    }
+  }
+}
+
+function deleteWorksheetIfExists(workbook: ExcelScript.Workbook, name: string, password: string): void {
+  const sheet = workbook.getWorksheet(name);
+
+  if (sheet) {
+    const protection = sheet.getProtection();
+
+    if (protection.getProtected()) {
+      if (!protection.checkPassword(password)) {
+        throw new Error(`Onjuist werkbladwachtwoord voor werkblad '${name}'.`);
+      }
+
+      protection.pauseProtection(password);
+    }
+
+    sheet.delete();
+  }
 }
 
 function buildSetupDashboard(sheet: ExcelScript.Worksheet): void {
@@ -605,7 +690,7 @@ function buildDashboardSheet(
   sheet.getRange("K5").setFormula(`=LET(w,$K$3,g,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,w,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),t,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,w,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(w="","-",IF(t=0,"-",IF(g=t,"🟩 ","🟥 ")&g&"/"&t)))`);
 
   sheet.getRange("M5").setValue("Niet uitgevoerd");
-  sheet.getRange("N5").setFormula(`=LET(w,$K$3,x,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,w,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"MISSING"),IF(w="","-",IF(x=0,"🟩 0","🟥 "&x)))`);
+  sheet.getRange("N5").setFormula(`=LET(w,$K$3,x,COUNTIF($K$9:$K$15,"*Niet uitgevoerd*"),IF(w="","-",IF(x=0,"🟩 0","🟥 "&x)))`);
 
   sheet.getRange("J5:N5").getFormat().getFont().setBold(true);
   sheet.getRange("J3:J5").getFormat().getFill().setColor("#F2F2F2");
