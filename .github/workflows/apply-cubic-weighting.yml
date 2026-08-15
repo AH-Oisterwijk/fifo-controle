@@ -1,0 +1,84 @@
+name: Apply cubic product weighting
+
+on:
+  push:
+    branches: [beta]
+    paths:
+      - '.github/workflows/apply-cubic-weighting.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: beta
+          fetch-depth: 0
+
+      - name: Convert all product weights to Kans14 cubed
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import csv
+          from pathlib import Path
+
+          csv_path = Path('data/products.csv')
+          rows = []
+          with csv_path.open('r', encoding='utf-8-sig', newline='') as f:
+              reader = csv.DictReader(f, delimiter=';')
+              expected = ['Nasa','Productnaam','Afdeling','Subafdeling','Actief','Gewicht','Kans14']
+              if reader.fieldnames != expected:
+                  raise SystemExit(f'Onverwachte CSV-kolommen: {reader.fieldnames}')
+              for row in reader:
+                  kans = max(1, min(14, int(float(row['Kans14'] or 1))))
+                  row['Kans14'] = str(kans)
+                  row['Gewicht'] = str(kans ** 3)
+                  rows.append(row)
+
+          with csv_path.open('w', encoding='utf-8', newline='') as f:
+              writer = csv.DictWriter(f, fieldnames=expected, delimiter=';', lineterminator='\n')
+              writer.writeheader()
+              writer.writerows(rows)
+
+          data_js = Path('js/data.js')
+          text = data_js.read_text(encoding='utf-8')
+          old = '(kans14 * kans14)'
+          new = '(kans14 * kans14 * kans14)'
+          if old not in text:
+              raise SystemExit('Kwadratische fallback niet gevonden in js/data.js')
+          text = text.replace(old, new)
+          data_js.write_text(text, encoding='utf-8')
+
+          readme = Path('README.md')
+          text = readme.read_text(encoding='utf-8')
+          if 'Kans14²' not in text:
+              raise SystemExit('Kans14² niet gevonden in README.md')
+          readme.write_text(text.replace('Kans14²', 'Kans14³'), encoding='utf-8')
+
+          # Validatie: iedere productregel moet exact Kans14^3 als Gewicht hebben.
+          with csv_path.open('r', encoding='utf-8', newline='') as f:
+              reader = csv.DictReader(f, delimiter=';')
+              checked = 0
+              for row in reader:
+                  kans = int(row['Kans14'])
+                  gewicht = int(row['Gewicht'])
+                  if gewicht != kans ** 3:
+                      raise SystemExit(f'Verkeerd gewicht bij NASA {row["Nasa"]}: {gewicht} != {kans ** 3}')
+                  checked += 1
+          if checked == 0:
+              raise SystemExit('Geen productregels gevonden')
+          print(f'Gevalideerd: {checked} producten gebruiken Kans14^3')
+          PY
+
+      - name: Commit cubic weighting
+        shell: bash
+        run: |
+          git config user.name 'AH-Oisterwijk'
+          git config user.email 'Bob.Schegget@ah.nl'
+          git add data/products.csv js/data.js README.md
+          git diff --cached --quiet && exit 0
+          git commit -m 'Use cubic product weighting'
+          git push origin beta
