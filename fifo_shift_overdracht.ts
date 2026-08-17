@@ -618,7 +618,7 @@ function buildDashboardSheet(
   canvas.setNumberFormatLocal("General");
 
   sheet.getRange("A1:E1").merge(false);
-  sheet.getRange("A1").setFormula(`=IF($B$3="","Controle -",LET(x,$B$3,d,IF(ISNUMBER(x),x,DATE(VALUE(LEFT(x,4)),VALUE(MID(x,6,2)),VALUE(RIGHT(x,2)))),l,IF(INT(d)=TODAY(),"VANDAAG",IF(INT(d)=TODAY()-1,"GISTEREN",IF(INT(d)=TODAY()-2,"EERGISTEREN",""))),"Controle "&TEXT(d,"yyyy-mm-dd")&IF(l="",""," ("&l&")")))`);
+  sheet.getRange("A1").setFormula(`=IF($B$3="","Controle -",LET(x,$B$3,d,IF(ISNUMBER(x),x,DATE(VALUE(LEFT(x,4)),VALUE(MID(x,6,2)),VALUE(RIGHT(x,2)))),l,IF(INT(d)=TODAY(),"VANDAAG",IF(INT(d)=TODAY()-1,"GISTEREN",IF(INT(d)=TODAY()-2,"EERGISTEREN",""))),"Controle "&YEAR(d)&"-"&RIGHT("0"&MONTH(d),2)&"-"&RIGHT("0"&DAY(d),2)&IF(l="",""," ("&l&")")))`);
   sheet.getRange("A1:E1").getFormat().getFill().setColor("#1F4E78");
   sheet.getRange("A1:E1").getFormat().getFont().setColor("#FFFFFF");
   sheet.getRange("A1:E1").getFormat().getFont().setBold(true);
@@ -631,14 +631,14 @@ function buildDashboardSheet(
   sheet.getRange("B3").getFormat().getFont().setBold(true);
 
   sheet.getRange("A5").setValue("Status");
-  sheet.getRange("B5").setFormula(`=LET(d,IF(ISNUMBER($B$3),TEXT($B$3,"yyyy-mm-dd"),$B$3),t,IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$B$2:$B$5000,d),0),IF(d="","⚪ Geen datum gekozen",IF(t=0,"⚪ Geen registratie",IFERROR(SWITCH(INDEX(FILTER('${DATA_SHEET_NAME}'!$G$2:$G$5000,('${DATA_SHEET_NAME}'!$B$2:$B$5000=d)*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)),1),"FIFO","🟩 Uitgevoerd","MISSING","🟥 Niet uitgevoerd","⚪ Onbekend"),"⚪ Geen registratie"))))`);
+  sheet.getRange("B5").setFormula(`=LET(d,IF(ISNUMBER($B$3),YEAR($B$3)&"-"&RIGHT("0"&MONTH($B$3),2)&"-"&RIGHT("0"&DAY($B$3),2),$B$3),t,IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$B$2:$B$5000,d),0),IF(d="","⚪ Geen datum gekozen",IF(t=0,"⚪ Geen registratie",IFERROR(SWITCH(INDEX(FILTER('${DATA_SHEET_NAME}'!$G$2:$G$5000,('${DATA_SHEET_NAME}'!$B$2:$B$5000=d)*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)),1),"FIFO","🟩 Uitgevoerd","MISSING","🟥 Niet uitgevoerd","⚪ Onbekend"),"⚪ Geen registratie"))))`);
   sheet.getRange("D5").setValue("Score");
-  sheet.getRange("E5").setFormula(`=LET(d,IF(ISNUMBER($B$3),TEXT($B$3,"yyyy-mm-dd"),$B$3),t,IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$B$2:$B$5000,d),0),g,COUNTIFS('${DATA_SHEET_NAME}'!$B$2:$B$5000,d,'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),n,COUNTIFS('${DATA_SHEET_NAME}'!$B$2:$B$5000,d,'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(d="","-",IF(t=0,"-",IF(n=0,"-",IF(g=n,"🟩 ","🟥 ")&g&"/"&n))))`);
+  sheet.getRange("E5").setFormula(`=LET(d,IF(ISNUMBER($B$3),YEAR($B$3)&"-"&RIGHT("0"&MONTH($B$3),2)&"-"&RIGHT("0"&DAY($B$3),2),$B$3),t,IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$B$2:$B$5000,d),0),g,COUNTIFS('${DATA_SHEET_NAME}'!$B$2:$B$5000,d,'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),n,COUNTIFS('${DATA_SHEET_NAME}'!$B$2:$B$5000,d,'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(d="","-",IF(t=0,"-",IF(n=0,"-",IF(g=n,"🟩 ","🟥 ")&g&"/"&n))))`);
 
   sheet.getRange("A6").setValue("Shiftleider");
-  sheet.getRange("B6").setFormula(`=LET(d,IF(ISNUMBER($B$3),TEXT($B$3,"yyyy-mm-dd"),$B$3),t,IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$B$2:$B$5000,d),0),raw,IF(OR(d="",t=0),"",IFERROR(INDEX(FILTER('${DATA_SHEET_NAME}'!$H$2:$H$5000,('${DATA_SHEET_NAME}'!$B$2:$B$5000=d)*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)),1),"")),s,TRIM(raw&""),IF(OR(d="",t=0,s="",s="0"),"-",s))`);
+  sheet.getRange("B6").setFormula(`=LET(d,IF(ISNUMBER($B$3),YEAR($B$3)&"-"&RIGHT("0"&MONTH($B$3),2)&"-"&RIGHT("0"&DAY($B$3),2),$B$3),t,IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$B$2:$B$5000,d),0),raw,IF(OR(d="",t=0),"",IFERROR(INDEX(FILTER('${DATA_SHEET_NAME}'!$H$2:$H$5000,('${DATA_SHEET_NAME}'!$B$2:$B$5000=d)*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)),1),"")),s,TRIM(raw&""),IF(OR(d="",t=0,s="",s="0"),"-",s))`);
   sheet.getRange("D6").setValue("Percentage");
-  sheet.getRange("E6").setFormula(`=LET(d,IF(ISNUMBER($B$3),TEXT($B$3,"yyyy-mm-dd"),$B$3),t,IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$B$2:$B$5000,d),0),g,COUNTIFS('${DATA_SHEET_NAME}'!$B$2:$B$5000,d,'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),n,COUNTIFS('${DATA_SHEET_NAME}'!$B$2:$B$5000,d,'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(d="","-",IF(t=0,"-",IF(n=0,"-",ROUND(g/n*100,0)&"%"))))`);
+  sheet.getRange("E6").setFormula(`=LET(d,IF(ISNUMBER($B$3),YEAR($B$3)&"-"&RIGHT("0"&MONTH($B$3),2)&"-"&RIGHT("0"&DAY($B$3),2),$B$3),t,IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$B$2:$B$5000,d),0),g,COUNTIFS('${DATA_SHEET_NAME}'!$B$2:$B$5000,d,'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),n,COUNTIFS('${DATA_SHEET_NAME}'!$B$2:$B$5000,d,'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(d="","-",IF(t=0,"-",IF(n=0,"-",ROUND(g/n*100,0)&"%"))))`);
 
   sheet.getRange("A5:E35").setNumberFormatLocal("General");
   sheet.getRange("B3").setNumberFormatLocal("yyyy-mm-dd");
@@ -1360,7 +1360,7 @@ function writeDayProductRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number):
 
   sheet.getRange(`A${excelRow}:E${excelRow}`).setNumberFormatLocal("General");
 
-  const selectedDateKey = `IF(ISNUMBER($B$3),TEXT($B$3,"yyyy-mm-dd"),$B$3)`;
+  const selectedDateKey = `IF(ISNUMBER($B$3),YEAR($B$3)&"-"&RIGHT("0"&MONTH($B$3),2)&"-"&RIGHT("0"&DAY($B$3),2),$B$3)`;
   const latestRunForDate = `IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$B$2:$B$5000,${selectedDateKey}),0)`;
   const condition = `('${DATA_SHEET_NAME}'!$B$2:$B$5000=${selectedDateKey})*('${DATA_SHEET_NAME}'!$P$2:$P$5000=(${latestRunForDate}))*('${DATA_SHEET_NAME}'!$I$2:$I$5000<>"")`;
 
