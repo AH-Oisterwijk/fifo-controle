@@ -11,17 +11,30 @@ function render(){
   updateProgress();
 }
 
+function itemsForDisplay(afdeling, items){
+  if(afdeling !== 'Vlees/Vis/Kip/Vega') return items;
+
+  const order = {'Vis':0, 'Kip':1, 'Vlees/Vega':2};
+  return [...items].sort((a,b) => {
+    const aOrder = order[selectionGroupForItem(a)] ?? 99;
+    const bOrder = order[selectionGroupForItem(b)] ?? 99;
+    if(aOrder !== bOrder) return aOrder - bOrder;
+    return (Number(a.Volgorde) || Number(a.Id) || 0) - (Number(b.Volgorde) || Number(b.Id) || 0);
+  });
+}
+
 function renderGroup(afdeling,items){
   const done = items.filter(x=>x.Status && x.Status !== 'Open').length;
   const groupKeys = fillGroupKeysForDepartment(afdeling);
   const controls = groupKeys.length > 1
     ? renderCombinedFillControl(afdeling, groupKeys)
     : renderFillControl(groupKeys[0], afdeling);
+  const displayItems = itemsForDisplay(afdeling, items);
 
   return `<section class="fifo-group" data-afdeling="${esc(afdeling)}">
     <div class="fifo-group-title"><h2>${esc(afdeling)}</h2><span>${done}/${items.length}</span></div>
     <div class="fifo-dept-control-list">${controls}</div>
-    <div class="fifo-grid">${items.map(item => renderCard(item, isItemNotFilledByToggle(item))).join('')}</div>
+    <div class="fifo-grid">${displayItems.map(item => renderCard(item, isItemNotFilledByToggle(item))).join('')}</div>
   </section>`;
 }
 
