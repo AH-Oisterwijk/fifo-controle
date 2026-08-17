@@ -1,0 +1,62 @@
+name: Apply mobile Excel date compatibility fix
+
+on:
+  push:
+    branches: [beta]
+    paths:
+      - '.github/workflows/apply-mobile-excel-date-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: beta
+          fetch-depth: 0
+
+      - name: Make dashboard date keys locale independent
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('fifo_shift_overdracht.ts')
+          text = path.read_text(encoding='utf-8')
+
+          old_cell_date = 'TEXT($B$3,"yyyy-mm-dd")'
+          new_cell_date = 'YEAR($B$3)&"-"&RIGHT("0"&MONTH($B$3),2)&"-"&RIGHT("0"&DAY($B$3),2)'
+          old_title_date = 'TEXT(d,"yyyy-mm-dd")'
+          new_title_date = 'YEAR(d)&"-"&RIGHT("0"&MONTH(d),2)&"-"&RIGHT("0"&DAY(d),2)'
+
+          cell_count = text.count(old_cell_date)
+          title_count = text.count(old_title_date)
+
+          if cell_count < 5:
+              raise SystemExit(f'Verwacht minimaal 5 dashboard-datumconversies, vond {cell_count}')
+          if title_count != 1:
+              raise SystemExit(f'Verwacht precies 1 titel-datumconversie, vond {title_count}')
+
+          text = text.replace(old_cell_date, new_cell_date)
+          text = text.replace(old_title_date, new_title_date)
+
+          # Voorkom dat de kwetsbare locale-afhankelijke conversie ongemerkt achterblijft.
+          if old_cell_date in text or old_title_date in text:
+              raise SystemExit('Niet alle locale-afhankelijke yyyy-mm-dd TEXT-formules zijn vervangen')
+
+          path.write_text(text, encoding='utf-8')
+          print(f'Vervangen: {cell_count} B3-datumconversies en {title_count} titelconversie')
+          PY
+
+      - name: Commit compatibility fix
+        shell: bash
+        run: |
+          git config user.name 'AH-Oisterwijk'
+          git config user.email 'Bob.Schegget@ah.nl'
+          git add fifo_shift_overdracht.ts
+          git diff --cached --quiet && exit 0
+          git commit -m 'Make FIFO dashboard dates mobile Excel compatible'
+          git push origin beta
