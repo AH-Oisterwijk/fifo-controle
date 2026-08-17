@@ -7,8 +7,8 @@ const subCounts = [
   {subafdeling:'Boter', afdeling:'Zuivel', count:1},
   {subafdeling:'Kaas/Vleeswaren', afdeling:'Kaas/Vleeswaren', count:3},
   {subafdeling:'Vis', afdeling:'Vlees/Vis/Kip/Vega', count:1},
-  {subafdeling:'Vlees/Vega', afdeling:'Vlees/Vis/Kip/Vega', count:2},
   {subafdeling:'Kip', afdeling:'Vlees/Vis/Kip/Vega', count:1},
+  {subafdeling:'Vlees/Vega', afdeling:'Vlees/Vis/Kip/Vega', count:2},
   {subafdeling:'Maaltijden', afdeling:'Maaltijden/Sappen', count:2},
   {subafdeling:'Sappen', afdeling:'Maaltijden/Sappen', count:1},
   {subafdeling:'Panklaar', afdeling:'Panklaar', count:3}
