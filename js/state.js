@@ -7,7 +7,7 @@ const departmentOrder = ['Zuivel','Kaas/Vleeswaren','Vlees/Vis/Kip/Vega','Maalti
 
 const subdepartmentFillGroups = {
   'Zuivel': ['Zuivel','Boter'],
-  'Vlees/Vis/Kip/Vega': ['Vlees','Vis','Kip','Vega'],
+  'Vlees/Vis/Kip/Vega': ['Vlees/Vega','Vis','Kip'],
   'Maaltijden/Sappen': ['Maaltijden','Sappen']
 };
 
@@ -15,9 +15,19 @@ function fillGroupKeysForDepartment(afdeling){
   return subdepartmentFillGroups[afdeling] || [afdeling];
 }
 
+function selectionGroupForItem(item){
+  const explicit = String(item && item.Selectiegroep || '').trim();
+  if(explicit) return explicit;
+
+  const subafdeling = String(item && item.Subafdeling || '').trim();
+  if(['Vlees','Vega'].some(key => norm(key) === norm(subafdeling))) return 'Vlees/Vega';
+  return subafdeling || String(item && item.Afdeling || '').trim();
+}
+
 function itemFillGroupKey(item){
   const keys = fillGroupKeysForDepartment(item.Afdeling);
-  const match = keys.find(key => norm(key) === norm(item.Subafdeling));
+  const selectionGroup = selectionGroupForItem(item);
+  const match = keys.find(key => norm(key) === norm(selectionGroup));
   return match || item.Afdeling;
 }
 
@@ -41,8 +51,19 @@ function migrateDepartmentStates(){
 
   const vleesState = departmentStates['Vlees/Vis/Kip/Vega'];
   if(vleesState === 'Niet gevuld vandaag'){
-    ['Vlees','Vis','Kip','Vega'].forEach(key => departmentStates[key] = 'Niet gevuld vandaag');
+    ['Vlees/Vega','Vis','Kip'].forEach(key => departmentStates[key] = 'Niet gevuld vandaag');
   }
+
+  if(!departmentStates['Vlees/Vega']){
+    const oudVlees = departmentStates['Vlees'];
+    const oudVega = departmentStates['Vega'];
+    departmentStates['Vlees/Vega'] =
+      oudVlees === 'Niet gevuld vandaag' && oudVega === 'Niet gevuld vandaag'
+        ? 'Niet gevuld vandaag'
+        : 'Gevuld';
+  }
+  delete departmentStates['Vlees'];
+  delete departmentStates['Vega'];
 
   const maaltijdState = departmentStates['Maaltijden/Sappen'];
   if(maaltijdState === 'Niet gevuld vandaag'){
@@ -62,10 +83,9 @@ function defaultDepartmentStates(){
     'Zuivel':'Gevuld',
     'Boter':'Gevuld',
     'Kaas/Vleeswaren':'Gevuld',
-    'Vlees':'Gevuld',
+    'Vlees/Vega':'Gevuld',
     'Vis':'Gevuld',
     'Kip':'Gevuld',
-    'Vega':'Gevuld',
     'Maaltijden':'Gevuld',
     'Sappen':'Gevuld',
     'Panklaar':'Gevuld'
@@ -123,6 +143,7 @@ function loadDay(dayKey){
       departmentStates = Object.assign(defaultDepartmentStates(), parsed.departmentStates || {});
       migrateDepartmentStates();
     }
+    migrateSelectionGroups();
     validateCurrentPools();
   }
   else {
@@ -134,9 +155,27 @@ function loadDay(dayKey){
   render();
 }
 
+function migrateSelectionGroups(){
+  selection.forEach(item => {
+    if(['Vlees','Vega'].some(key => norm(key) === norm(item.Subafdeling))){
+      item.Selectiegroep = 'Vlees/Vega';
+    }
+  });
+}
+
+function sourceSubdepartmentsForSelectionGroup(groupKey){
+  if(norm(groupKey) === norm('Vlees/Vega')) return ['Vlees','Vega'];
+  return [groupKey];
+}
+
+function productsForSelectionGroup(groupKey){
+  const sources = sourceSubdepartmentsForSelectionGroup(groupKey).map(norm);
+  return products.filter(p => p.Actief !== false && sources.includes(norm(p.Subafdeling)));
+}
+
 function validateCurrentPools(){
   subCounts.forEach(rule=>{
-    const pool = products.filter(p=>p.Actief !== false && norm(p.Subafdeling)===norm(rule.subafdeling));
+    const pool = productsForSelectionGroup(rule.subafdeling);
     if(pool.length < rule.count){
       selectionWarnings.push(`${rule.subafdeling}: ${pool.length}/${rule.count} actieve producten in products.csv`);
     }
@@ -147,12 +186,12 @@ function generateSelection(dayKey){
   let output = [], volgorde = 1;
   selectionWarnings = [];
   subCounts.forEach(rule=>{
-    const pool = products.filter(p=>p.Actief !== false && norm(p.Subafdeling)===norm(rule.subafdeling));
+    const pool = productsForSelectionGroup(rule.subafdeling);
     if(pool.length < rule.count){
       selectionWarnings.push(`${rule.subafdeling}: ${pool.length}/${rule.count} actieve producten in products.csv`);
     }
     pickWeighted(pool, rule.count, `${dayKey}-${rule.subafdeling}`).forEach(p=>{
-      output.push({Id:volgorde,DagKey:dayKey,Nasa:p.Nasa,Productnaam:p.Productnaam,Afdeling:rule.afdeling,Subafdeling:rule.subafdeling,Volgorde:volgorde++,Status:'Open',Shiftleider:'',TijdGecheckt:''});
+      output.push({Id:volgorde,DagKey:dayKey,Nasa:p.Nasa,Productnaam:p.Productnaam,Afdeling:rule.afdeling,Subafdeling:p.Subafdeling,Selectiegroep:rule.subafdeling,Volgorde:volgorde++,Status:'Open',Shiftleider:'',TijdGecheckt:''});
     });
   });
   return output;
@@ -236,7 +275,7 @@ function pickRandomReplacement(item){
     .filter(x => x.Id !== item.Id && x.Afdeling === item.Afdeling)
     .map(x => String(x.Nasa)));
 
-  let basePool = activeProductsForSubafdeling(item.Subafdeling)
+  let basePool = productsForSelectionGroup(selectionGroupForItem(item))
     .filter(p => p.Afdeling === item.Afdeling && p.Nasa !== item.Nasa && !usedInAfdeling.has(String(p.Nasa)));
 
   // Noodfallback binnen hetzelfde hoofdblok als de subafdeling te weinig alternatieven heeft.

@@ -69,7 +69,7 @@ function renderCard(item, groupNotFilled=false){
   const goedSelected = item.Status === 'Goed' ? 'fifo-action-selected' : '';
   const foutSelected = item.Status === 'Fout' ? 'fifo-action-selected' : '';
   return `<article class="fifo-product-card ${cls}" data-id="${item.Id}">
-    <div class="fifo-card-top"><span class="fifo-sub">${esc(item.Subafdeling)}</span><span class="fifo-status-pill">${esc(statusText)}</span></div>
+    <div class="fifo-card-top"><span class="fifo-sub">${esc(selectionGroupForItem(item))}</span><span class="fifo-status-pill">${esc(statusText)}</span></div>
     <h3>${esc(item.Productnaam)}</h3>
     <div class="fifo-nasa-row"><span>Nasa</span><strong>${esc(item.Nasa)}</strong></div>
     <div class="fifo-product-tools">
