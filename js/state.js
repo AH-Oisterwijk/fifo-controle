@@ -7,7 +7,7 @@ const departmentOrder = ['Zuivel','Kaas/Vleeswaren','Vlees/Vis/Kip/Vega','Maalti
 
 const subdepartmentFillGroups = {
   'Zuivel': ['Zuivel','Boter'],
-  'Vlees/Vis/Kip/Vega': ['Vlees/Vega','Vis','Kip'],
+  'Vlees/Vis/Kip/Vega': ['Vis','Kip','Vlees/Vega'],
   'Maaltijden/Sappen': ['Maaltijden','Sappen']
 };
 
