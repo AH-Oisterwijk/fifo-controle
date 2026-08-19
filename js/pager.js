@@ -133,7 +133,6 @@ function fifoRenderGroup(afdeling, items){
     <div class="fifo-dept-control-list">${controls}</div>
     ${productNav}
     <div class="fifo-grid fifo-single-product-grid">${productsHtml}</div>
-    ${visibleItems.length > 1 ? productNav : ''}
   </section>`;
 }
 
