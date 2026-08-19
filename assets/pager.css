@@ -1,6 +1,6 @@
-/* Beta-experiment: navigatie per hoofdafdeling. */
+/* Beta-experiment: één hoofdafdeling en één product tegelijk. */
 .fifo-department-pager{margin:18px 0 26px}
-.fifo-pager-stage{scroll-margin-top:12px}
+.fifo-pager-stage{scroll-margin-top:8px}
 .fifo-pager-nav{display:grid;grid-template-columns:minmax(110px,1fr) minmax(180px,2fr) minmax(110px,1fr);align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow);margin:10px 0}
 .fifo-pager-btn{border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;border-radius:12px;padding:12px 10px;font-size:14px;font-weight:900;cursor:pointer}
 .fifo-pager-next{background:#2563eb;color:#fff;border-color:#2563eb}
@@ -8,12 +8,28 @@
 .fifo-pager-position{text-align:center;display:grid;gap:2px;min-width:0}
 .fifo-pager-position strong{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fifo-pager-position span{font-size:12px;color:#64748b;font-weight:700}
-.fifo-department-pager .fifo-group{margin:14px 0}
-.fifo-no-products{grid-column:1/-1;border:1px dashed #cbd5e1;background:#f8fafc;color:#475569;border-radius:16px;padding:22px 16px;text-align:center;font-size:14px;font-weight:700}
+.fifo-department-pager .fifo-group{margin:12px 0}
+.fifo-product-nav{max-width:620px;margin:10px auto 12px}
+.fifo-product-position{max-width:620px;margin:8px auto 10px;text-align:center;color:#475569;font-size:13px}
+.fifo-single-product-grid{display:block!important}
+.fifo-single-product{max-width:620px;margin:0 auto}
+.fifo-single-product .fifo-product-card{width:100%;margin:0}
+.fifo-no-products{max-width:620px;margin:0 auto;border:1px dashed #cbd5e1;background:#f8fafc;color:#475569;border-radius:16px;padding:22px 16px;text-align:center;font-size:14px;font-weight:700}
 
 @media(max-width:640px){
-  .fifo-pager-nav{grid-template-columns:1fr 1fr;gap:8px;padding:8px}
-  .fifo-pager-position{grid-column:1/-1;grid-row:1;padding:3px 0 5px}
-  .fifo-pager-btn{grid-row:2;padding:14px 8px;font-size:14px}
-  .fifo-department-pager .fifo-group-title{margin-top:2px}
+  .fifo-department-pager{margin:10px 0 18px}
+  .fifo-pager-nav{grid-template-columns:1fr 1fr;gap:7px;padding:8px;margin:8px 0}
+  .fifo-pager-position{grid-column:1/-1;grid-row:1;padding:1px 0 3px}
+  .fifo-pager-btn{grid-row:2;padding:12px 6px;font-size:13px;line-height:1.2}
+  .fifo-department-pager .fifo-group-title{margin-top:0}
+  .fifo-department-pager .fifo-group{margin-top:8px}
+  .fifo-product-nav{margin:7px 0 9px}
+  .fifo-single-product{width:100%}
+  .fifo-single-product .fifo-product-card{padding:12px;border-radius:16px}
+  .fifo-single-product .fifo-product-card h3{min-height:0;margin:9px 0}
+  .fifo-single-product .fifo-qr{margin:6px auto 8px}
+  .fifo-single-product .fifo-qr svg{width:155px;height:155px}
+  .fifo-single-product .fifo-nasa-row{margin:6px 0 8px}
+  .fifo-single-product .fifo-product-tools{margin:-1px 0 8px}
+  .fifo-single-product .fifo-actions button{padding:12px 4px}
 }
