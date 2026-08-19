@@ -1,0 +1,188 @@
+name: Apply beta department pager experiment
+
+on:
+  push:
+    branches: [beta]
+    paths:
+      - '.github/workflows/apply-beta-department-pager.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: beta
+          fetch-depth: 0
+
+      - name: Add department pager and hide not-filled product cards
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          ui = Path('js/ui.js')
+          text = ui.read_text(encoding='utf-8')
+
+          old_render = '''function render(){
+  const groups = departmentOrder.map(a=>({afdeling:a,items:selection.filter(x=>x.Afdeling===a)})).filter(g=>g.items.length);
+  const warningHtml = selectionWarnings.length ? `<section class="fifo-message fifo-error"><strong>Let op:</strong> ${selectionWarnings.map(esc).join(' · ')}</section>` : '';
+  document.getElementById('content').innerHTML = warningHtml + groups.map(g=>renderGroup(g.afdeling,g.items)).join('');
+  document.querySelectorAll('.fifo-product-card button').forEach(btn=>btn.addEventListener('click',handleClick));
+  document.querySelectorAll('.fifo-warning-check').forEach(el=>el.addEventListener('change',handleWarningChange));
+  document.querySelectorAll('.fifo-medewerker-select').forEach(el=>el.addEventListener('change',handleWarningChange));
+  document.querySelectorAll('.fifo-dept-toggle').forEach(el=>el.addEventListener('change',handleDepartmentToggle));
+  updateProgress();
+}
+'''
+
+          new_render = '''let activeDepartmentIndex = 0;
+
+function render(){
+  const groups = departmentOrder.map(a=>({afdeling:a,items:selection.filter(x=>x.Afdeling===a)})).filter(g=>g.items.length);
+  if(activeDepartmentIndex < 0) activeDepartmentIndex = 0;
+  if(activeDepartmentIndex >= groups.length) activeDepartmentIndex = Math.max(0, groups.length - 1);
+
+  const warningHtml = selectionWarnings.length ? `<section class="fifo-message fifo-error"><strong>Let op:</strong> ${selectionWarnings.map(esc).join(' · ')}</section>` : '';
+  document.getElementById('content').innerHTML = warningHtml + renderDepartmentPager(groups);
+  document.querySelectorAll('.fifo-product-card button').forEach(btn=>btn.addEventListener('click',handleClick));
+  document.querySelectorAll('.fifo-warning-check').forEach(el=>el.addEventListener('change',handleWarningChange));
+  document.querySelectorAll('.fifo-medewerker-select').forEach(el=>el.addEventListener('change',handleWarningChange));
+  document.querySelectorAll('.fifo-dept-toggle').forEach(el=>el.addEventListener('change',handleDepartmentToggle));
+  document.querySelectorAll('.fifo-pager-btn').forEach(el=>el.addEventListener('click',handlePagerNavigation));
+  updateProgress();
+}
+
+function renderDepartmentPager(groups){
+  if(!groups.length){
+    return `<section class="fifo-message">Geen afdelingen beschikbaar.</section>`;
+  }
+
+  const group = groups[activeDepartmentIndex];
+  const nav = renderPagerNav(groups, activeDepartmentIndex);
+  return `<section class="fifo-department-pager">
+    ${nav}
+    <div class="fifo-pager-stage">${renderGroup(group.afdeling, group.items)}</div>
+    ${nav}
+  </section>`;
+}
+
+function renderPagerNav(groups, index){
+  const current = groups[index];
+  const previousDisabled = index <= 0 ? 'disabled' : '';
+  const nextDisabled = index >= groups.length - 1 ? 'disabled' : '';
+  return `<nav class="fifo-pager-nav" aria-label="Navigatie tussen afdelingen">
+    <button class="fifo-pager-btn" type="button" data-direction="previous" ${previousDisabled}>← Vorige</button>
+    <div class="fifo-pager-position">
+      <strong>${esc(current.afdeling)}</strong>
+      <span>Afdeling ${index + 1} van ${groups.length}</span>
+    </div>
+    <button class="fifo-pager-btn fifo-pager-next" type="button" data-direction="next" ${nextDisabled}>Volgende →</button>
+  </nav>`;
+}
+
+function handlePagerNavigation(e){
+  const direction = e.currentTarget.dataset.direction;
+  if(direction === 'previous') activeDepartmentIndex--;
+  if(direction === 'next') activeDepartmentIndex++;
+  render();
+  requestAnimationFrame(() => {
+    const pager = document.querySelector('.fifo-department-pager');
+    if(pager) pager.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+}
+'''
+
+          if old_render not in text:
+              raise SystemExit('render()-blok niet gevonden')
+          text = text.replace(old_render, new_render, 1)
+
+          old_group = '''function renderGroup(afdeling,items){
+  const done = items.filter(x=>x.Status && x.Status !== 'Open').length;
+  const groupKeys = fillGroupKeysForDepartment(afdeling);
+  const controls = groupKeys.length > 1
+    ? renderCombinedFillControl(afdeling, groupKeys)
+    : renderFillControl(groupKeys[0], afdeling);
+  const displayItems = itemsForDisplay(afdeling, items);
+
+  return `<section class="fifo-group" data-afdeling="${esc(afdeling)}">
+    <div class="fifo-group-title"><h2>${esc(afdeling)}</h2><span>${done}/${items.length}</span></div>
+    <div class="fifo-dept-control-list">${controls}</div>
+    <div class="fifo-grid">${displayItems.map(item => renderCard(item, isItemNotFilledByToggle(item))).join('')}</div>
+  </section>`;
+}
+'''
+
+          new_group = '''function renderGroup(afdeling,items){
+  const done = items.filter(x=>x.Status && x.Status !== 'Open').length;
+  const groupKeys = fillGroupKeysForDepartment(afdeling);
+  const controls = groupKeys.length > 1
+    ? renderCombinedFillControl(afdeling, groupKeys)
+    : renderFillControl(groupKeys[0], afdeling);
+  const displayItems = itemsForDisplay(afdeling, items);
+  const visibleItems = displayItems.filter(item => !isItemNotFilledByToggle(item));
+  const productsHtml = visibleItems.length
+    ? visibleItems.map(item => renderCard(item, false)).join('')
+    : `<div class="fifo-no-products">Geen producten om te controleren. Zet een groep hierboven weer op gevuld om de producten terug te tonen.</div>`;
+
+  return `<section class="fifo-group" data-afdeling="${esc(afdeling)}">
+    <div class="fifo-group-title"><h2>${esc(afdeling)}</h2><span>${done}/${items.length}</span></div>
+    <div class="fifo-dept-control-list">${controls}</div>
+    <div class="fifo-grid">${productsHtml}</div>
+  </section>`;
+}
+'''
+
+          if old_group not in text:
+              raise SystemExit('renderGroup()-blok niet gevonden')
+          text = text.replace(old_group, new_group, 1)
+
+          ui.write_text(text, encoding='utf-8')
+
+          css = Path('assets/styles.css')
+          css_text = css.read_text(encoding='utf-8')
+          marker = '/* Beta experiment: afdeling-pager */'
+          if marker not in css_text:
+              css_text += '''\n\n/* Beta experiment: afdeling-pager */
+.fifo-department-pager{margin:18px 0 26px}
+.fifo-pager-stage{scroll-margin-top:12px}
+.fifo-pager-nav{display:grid;grid-template-columns:minmax(110px,1fr) minmax(180px,2fr) minmax(110px,1fr);align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow);margin:10px 0}
+.fifo-pager-btn{border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;border-radius:12px;padding:12px 10px;font-size:14px;font-weight:900;cursor:pointer}
+.fifo-pager-next{background:#2563eb;color:#fff;border-color:#2563eb}
+.fifo-pager-btn:disabled{opacity:.35;cursor:not-allowed}
+.fifo-pager-position{text-align:center;display:grid;gap:2px;min-width:0}
+.fifo-pager-position strong{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fifo-pager-position span{font-size:12px;color:#64748b;font-weight:700}
+.fifo-department-pager .fifo-group{margin:14px 0}
+.fifo-no-products{grid-column:1/-1;border:1px dashed #cbd5e1;background:#f8fafc;color:#475569;border-radius:16px;padding:22px 16px;text-align:center;font-size:14px;font-weight:700}
+@media(max-width:640px){
+  .fifo-pager-nav{grid-template-columns:1fr 1fr;gap:8px;padding:8px}
+  .fifo-pager-position{grid-column:1/-1;grid-row:1;padding:3px 0 5px}
+  .fifo-pager-btn{grid-row:2;padding:14px 8px;font-size:14px}
+  .fifo-department-pager .fifo-group-title{margin-top:2px}
+}
+'''
+          css.write_text(css_text, encoding='utf-8')
+
+          # Basale validatie.
+          final_ui = ui.read_text(encoding='utf-8')
+          if 'renderDepartmentPager(groups)' not in final_ui:
+              raise SystemExit('Pager-render ontbreekt')
+          if 'filter(item => !isItemNotFilledByToggle(item))' not in final_ui:
+              raise SystemExit('Niet-gevulde productfilter ontbreekt')
+          if 'fifo-pager-btn' not in css.read_text(encoding='utf-8'):
+              raise SystemExit('Pager CSS ontbreekt')
+          PY
+
+      - name: Commit beta pager experiment
+        shell: bash
+        run: |
+          git config user.name 'AH-Oisterwijk'
+          git config user.email 'Bob.Schegget@ah.nl'
+          git add js/ui.js assets/styles.css
+          git diff --cached --quiet && exit 0
+          git commit -m 'Experiment with department pager on beta'
+          git push origin beta
