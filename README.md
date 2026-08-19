@@ -66,9 +66,8 @@ Zuivel               3
 Boter                 1
 Kaas/Vleeswaren       3
 Vis                    1
-Vlees                  1
+Vlees/Vega             2
 Kip                    1
-Vega                   1
 Maaltijden             2
 Sappen                 1
 Panklaar               3
@@ -84,7 +83,7 @@ Maaltijden/Sappen
 Panklaar
 ```
 
-Vlees, Vis, Kip en Vega kunnen afzonderlijk als gevuld/niet gevuld worden gemarkeerd. Hetzelfde geldt voor Maaltijden en Sappen en voor Zuivel en Boter.
+Vlees en Vega vormen in de webapp samen de selectiegroep `Vlees/Vega` met twee controles per dag. Vis en Kip blijven aparte groepen. In `data/products.csv` blijven `Vlees` en `Vega` bewust als afzonderlijke subafdelingen opgeslagen, zodat die scheiding later eenvoudig kan worden teruggebracht. Maaltijden/Sappen en Zuivel/Boter blijven eveneens als afzonderlijke gevuld/niet-gevuld-groepen werken.
 
 ## `data/products.csv`
 
@@ -99,7 +98,7 @@ Betekenis:
 - `Nasa`: NASA-/artikelnummer.
 - `Productnaam`: naam die in de controle wordt getoond.
 - `Afdeling`: hoofdafdeling voor scoring en rapportage.
-- `Subafdeling`: selectie- en gevuld/niet-gevuld-groep.
+- `Subafdeling`: oorspronkelijke productsubafdeling. `Vlees` en `Vega` blijven hier bewust apart; de webapp combineert ze tijdens selectie tot `Vlees/Vega`.
 - `Actief`: `Ja` voor producten die geselecteerd mogen worden.
 - `Kans14`: op hoeveel van de 14 geanalyseerde dagen het product binnenkwam, van 1 t/m 14.
 - `Gewicht`: selectieweging. De huidige productdata gebruikt in principe `Kans14³`, zodat frequent binnenkomende producten duidelijk vaker worden geselecteerd.

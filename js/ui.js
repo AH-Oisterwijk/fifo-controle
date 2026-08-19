@@ -11,17 +11,30 @@ function render(){
   updateProgress();
 }
 
+function itemsForDisplay(afdeling, items){
+  if(afdeling !== 'Vlees/Vis/Kip/Vega') return items;
+
+  const order = {'Vis':0, 'Kip':1, 'Vlees/Vega':2};
+  return [...items].sort((a,b) => {
+    const aOrder = order[selectionGroupForItem(a)] ?? 99;
+    const bOrder = order[selectionGroupForItem(b)] ?? 99;
+    if(aOrder !== bOrder) return aOrder - bOrder;
+    return (Number(a.Volgorde) || Number(a.Id) || 0) - (Number(b.Volgorde) || Number(b.Id) || 0);
+  });
+}
+
 function renderGroup(afdeling,items){
   const done = items.filter(x=>x.Status && x.Status !== 'Open').length;
   const groupKeys = fillGroupKeysForDepartment(afdeling);
   const controls = groupKeys.length > 1
     ? renderCombinedFillControl(afdeling, groupKeys)
     : renderFillControl(groupKeys[0], afdeling);
+  const displayItems = itemsForDisplay(afdeling, items);
 
   return `<section class="fifo-group" data-afdeling="${esc(afdeling)}">
     <div class="fifo-group-title"><h2>${esc(afdeling)}</h2><span>${done}/${items.length}</span></div>
     <div class="fifo-dept-control-list">${controls}</div>
-    <div class="fifo-grid">${items.map(item => renderCard(item, isItemNotFilledByToggle(item))).join('')}</div>
+    <div class="fifo-grid">${displayItems.map(item => renderCard(item, isItemNotFilledByToggle(item))).join('')}</div>
   </section>`;
 }
 
@@ -69,7 +82,7 @@ function renderCard(item, groupNotFilled=false){
   const goedSelected = item.Status === 'Goed' ? 'fifo-action-selected' : '';
   const foutSelected = item.Status === 'Fout' ? 'fifo-action-selected' : '';
   return `<article class="fifo-product-card ${cls}" data-id="${item.Id}">
-    <div class="fifo-card-top"><span class="fifo-sub">${esc(item.Subafdeling)}</span><span class="fifo-status-pill">${esc(statusText)}</span></div>
+    <div class="fifo-card-top"><span class="fifo-sub">${esc(selectionGroupForItem(item))}</span><span class="fifo-status-pill">${esc(statusText)}</span></div>
     <h3>${esc(item.Productnaam)}</h3>
     <div class="fifo-nasa-row"><span>Nasa</span><strong>${esc(item.Nasa)}</strong></div>
     <div class="fifo-product-tools">
