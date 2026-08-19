@@ -1,0 +1,19 @@
+/* Beta-experiment: navigatie per hoofdafdeling. */
+.fifo-department-pager{margin:18px 0 26px}
+.fifo-pager-stage{scroll-margin-top:12px}
+.fifo-pager-nav{display:grid;grid-template-columns:minmax(110px,1fr) minmax(180px,2fr) minmax(110px,1fr);align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow);margin:10px 0}
+.fifo-pager-btn{border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;border-radius:12px;padding:12px 10px;font-size:14px;font-weight:900;cursor:pointer}
+.fifo-pager-next{background:#2563eb;color:#fff;border-color:#2563eb}
+.fifo-pager-btn:disabled{opacity:.35;cursor:not-allowed}
+.fifo-pager-position{text-align:center;display:grid;gap:2px;min-width:0}
+.fifo-pager-position strong{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fifo-pager-position span{font-size:12px;color:#64748b;font-weight:700}
+.fifo-department-pager .fifo-group{margin:14px 0}
+.fifo-no-products{grid-column:1/-1;border:1px dashed #cbd5e1;background:#f8fafc;color:#475569;border-radius:16px;padding:22px 16px;text-align:center;font-size:14px;font-weight:700}
+
+@media(max-width:640px){
+  .fifo-pager-nav{grid-template-columns:1fr 1fr;gap:8px;padding:8px}
+  .fifo-pager-position{grid-column:1/-1;grid-row:1;padding:3px 0 5px}
+  .fifo-pager-btn{grid-row:2;padding:14px 8px;font-size:14px}
+  .fifo-department-pager .fifo-group-title{margin-top:2px}
+}
