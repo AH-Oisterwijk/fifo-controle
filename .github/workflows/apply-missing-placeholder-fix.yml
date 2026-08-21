@@ -1,0 +1,84 @@
+name: Apply missing FIFO placeholder fix
+
+on:
+  push:
+    branches: [beta]
+    paths:
+      - '.github/workflows/apply-missing-placeholder-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: beta
+          fetch-depth: 0
+
+      - name: Fix missing FIFO placeholder handling
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('fifo_shift_overdracht.ts')
+          text = path.read_text(encoding='utf-8')
+
+          old = '''    if (cleanMode === "missing") {
+      const currentValue = String(range.getValue() ?? "").trim();
+
+      if (currentValue === "") {
+        range.setValue("Niet uitgevoerd 🙁");
+        registerMissingControle(workbook, password, dateKey);
+      }
+
+      return `OK missing-check: ${sheetName}!${targetCell}`;
+    }
+'''
+
+          new = '''    if (cleanMode === "missing") {
+      const currentValue = String(range.getValue() ?? "").trim();
+      const currentNormalized = normalize(currentValue);
+      const isFifoPlaceholder =
+        currentValue === "" ||
+        currentNormalized.startsWith(normalize("Klik hier om naar de FIFO controle te gaan"));
+
+      if (isFifoPlaceholder) {
+        range.setValue("FIFO niet gecontroleerd");
+        range.getFormat().getFont().setColor("#000000");
+        registerMissingControle(workbook, password, dateKey);
+      }
+
+      return `OK missing-check: ${sheetName}!${targetCell}`;
+    }
+'''
+
+          if old not in text:
+              raise SystemExit('Verwachte missing-block niet gevonden; niets gewijzigd.')
+
+          text = text.replace(old, new, 1)
+
+          # Houd ook de historie-regel consistent met de tekst op het weekblad.
+          text = text.replace('    "Niet uitgevoerd 🙁",\n', '    "FIFO niet gecontroleerd",\n', 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate fix
+        shell: bash
+        run: |
+          grep -F 'currentNormalized.startsWith(normalize("Klik hier om naar de FIFO controle te gaan"))' fifo_shift_overdracht.ts
+          grep -F 'range.setValue("FIFO niet gecontroleerd")' fifo_shift_overdracht.ts
+
+      - name: Commit fix
+        shell: bash
+        run: |
+          git config user.name 'AH-Oisterwijk'
+          git config user.email 'Bob.Schegget@ah.nl'
+          git add fifo_shift_overdracht.ts
+          git diff --cached --quiet && exit 0
+          git commit -m 'Allow missing check to replace FIFO placeholder link'
+          git push origin beta
