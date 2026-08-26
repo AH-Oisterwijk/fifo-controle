@@ -18,477 +18,137 @@ jobs:
           ref: beta
           fetch-depth: 0
 
-      - name: Patch dynamic Excel dashboard and Forms URL budget
+      - name: Patch dynamic Excel dashboard
         shell: bash
         run: |
           python3 <<'PY'
           from pathlib import Path
 
-          ts_path = Path('fifo_shift_overdracht.ts')
-          text = ts_path.read_text(encoding='utf-8')
+          path = Path('fifo_shift_overdracht.ts')
+          text = path.read_text(encoding='utf-8')
 
-          def replace_once(source, old, new, label):
+          def once(source, old, new, label):
               count = source.count(old)
               if count != 1:
-                  raise SystemExit(f"{label}: expected exactly 1 match, found {count}")
+                  raise SystemExit(f'{label}: expected 1 match, found {count}')
               return source.replace(old, new, 1)
 
-          text = replace_once(
+          text = once(
               text,
               'const ALLOW_WORKBOOK_SETUP = true;\n',
-              'const ALLOW_WORKBOOK_SETUP = true;\n'
-              'const DASHBOARD_DETAIL_FIRST_ROW = 9;\n'
-              'const DASHBOARD_MIN_DETAIL_ROWS = 7;\n',
-              'dashboard constants'
+              'const ALLOW_WORKBOOK_SETUP = true;\nconst DASHBOARD_DETAIL_FIRST_ROW = 9;\nconst DASHBOARD_MIN_DETAIL_ROWS = 7;\n',
+              'constants'
           )
 
-          text = replace_once(
+          text = once(
               text,
               'function runDashboardSetup(workbook: ExcelScript.Workbook, password: string): void {\n  resetDetailSheetsForSetup(workbook, password);',
-              'function runDashboardSetup(workbook: ExcelScript.Workbook, password: string): void {\n'
-              '  const existingDataSheet = workbook.getWorksheet(DATA_SHEET_NAME);\n'
-              '  const storedHistoryRowsBefore = existingDataSheet ? countStoredHistoryRows(existingDataSheet) : 0;\n\n'
-              '  resetDetailSheetsForSetup(workbook, password);',
-              'setup preservation precheck'
+              'function runDashboardSetup(workbook: ExcelScript.Workbook, password: string): void {\n  const existingDataSheet = workbook.getWorksheet(DATA_SHEET_NAME);\n  const storedHistoryRowsBefore = existingDataSheet ? countStoredHistoryRows(existingDataSheet) : 0;\n\n  resetDetailSheetsForSetup(workbook, password);',
+              'setup precheck'
           )
 
-          setup_start = text.index('function runDashboardSetup(')
-          setup_end = text.index('\nfunction parseControleData(', setup_start)
-          setup = text[setup_start:setup_end]
-          setup = replace_once(
-              setup,
+          start = text.index('function runDashboardSetup(')
+          end = text.index('\nfunction parseControleData(', start)
+          block = text[start:end]
+          block = once(
+              block,
               '    const dataSheet = getRequiredWorksheet(workbook, DATA_SHEET_NAME);\n    dataSheet.setVisibility(ExcelScript.SheetVisibility.visible);\n',
-              '    const dataSheet = getRequiredWorksheet(workbook, DATA_SHEET_NAME);\n'
-              '    dataSheet.setVisibility(ExcelScript.SheetVisibility.visible);\n\n'
-              '    const storedHistoryRowsAfterReset = countStoredHistoryRows(dataSheet);\n'
-              '    if (storedHistoryRowsAfterReset < storedHistoryRowsBefore) {\n'
-              '      throw new Error(`Setup afgebroken: FIFO Controle Data bevat na de dashboard-reset minder historische regels (${storedHistoryRowsAfterReset}) dan ervoor (${storedHistoryRowsBefore}).`);\n'
-              '    }\n',
-              'setup preservation reset guard'
+              '    const dataSheet = getRequiredWorksheet(workbook, DATA_SHEET_NAME);\n    dataSheet.setVisibility(ExcelScript.SheetVisibility.visible);\n\n    const storedHistoryRowsAfterReset = countStoredHistoryRows(dataSheet);\n    if (storedHistoryRowsAfterReset < storedHistoryRowsBefore) {\n      throw new Error(`Setup afgebroken: FIFO Controle Data bevat na de dashboard-reset minder historische regels (${storedHistoryRowsAfterReset}) dan ervoor (${storedHistoryRowsBefore}).`);\n    }\n',
+              'reset guard'
           )
-          setup = replace_once(
-              setup,
+          block = once(
+              block,
               '    ensureHistoryHeader(dataSheet);\n    refreshAvailableLists(dataSheet);\n',
-              '    ensureHistoryHeader(dataSheet);\n'
-              '    refreshAvailableLists(dataSheet);\n\n'
-              '    const storedHistoryRowsAfterRefresh = countStoredHistoryRows(dataSheet);\n'
-              '    if (storedHistoryRowsAfterRefresh < storedHistoryRowsBefore) {\n'
-              '      throw new Error(`Setup afgebroken: FIFO Controle Data verloor tijdens het vernieuwen historische regels (${storedHistoryRowsAfterRefresh}/${storedHistoryRowsBefore}).`);\n'
-              '    }\n',
-              'setup preservation refresh guard'
+              '    ensureHistoryHeader(dataSheet);\n    refreshAvailableLists(dataSheet);\n\n    const storedHistoryRowsAfterRefresh = countStoredHistoryRows(dataSheet);\n    if (storedHistoryRowsAfterRefresh < storedHistoryRowsBefore) {\n      throw new Error(`Setup afgebroken: FIFO Controle Data verloor tijdens het vernieuwen historische regels (${storedHistoryRowsAfterRefresh}/${storedHistoryRowsBefore}).`);\n    }\n',
+              'refresh guard'
           )
-          setup = replace_once(
-              setup,
+          block = once(
+              block,
               '      buildDashboardSheet(dashboardSheet, getLatestDateDisplay(dataSheet), getLatestWeekDisplay(dataSheet));',
-              '      buildDashboardSheet(\n'
-              '        dashboardSheet,\n'
-              '        getLatestDateDisplay(dataSheet),\n'
-              '        getLatestWeekDisplay(dataSheet),\n'
-              '        getDashboardDetailRowCount(dataSheet),\n'
-              '        getDashboardDataLastRow(dataSheet)\n'
-              '      );',
-              'setup dynamic dashboard call'
+              '      buildDashboardSheet(\n        dashboardSheet,\n        getLatestDateDisplay(dataSheet),\n        getLatestWeekDisplay(dataSheet),\n        getDashboardDetailRowCount(dataSheet),\n        getDashboardDataLastRow(dataSheet)\n      );',
+              'setup dashboard call'
           )
-          text = text[:setup_start] + setup + text[setup_end:]
+          text = text[:start] + block + text[end:]
 
-          text = replace_once(
+          text = once(
               text,
               '      buildDashboardSheet(dashboardSheet, analyse.DatumKey, getWeekDisplayForDateKey(analyse.DatumKey));',
-              '      buildDashboardSheet(\n'
-              '        dashboardSheet,\n'
-              '        analyse.DatumKey,\n'
-              '        getWeekDisplayForDateKey(analyse.DatumKey),\n'
-              '        getDashboardDetailRowCount(dataSheet),\n'
-              '        getDashboardDataLastRow(dataSheet)\n'
-              '      );',
-              'fifo dynamic dashboard call'
+              '      buildDashboardSheet(\n        dashboardSheet,\n        analyse.DatumKey,\n        getWeekDisplayForDateKey(analyse.DatumKey),\n        getDashboardDetailRowCount(dataSheet),\n        getDashboardDataLastRow(dataSheet)\n      );',
+              'fifo dashboard call'
           )
-
-          text = replace_once(
+          text = once(
               text,
               '      buildDashboardSheet(dashboardSheet, dateKey, getWeekDisplayForDateKey(dateKey));',
-              '      buildDashboardSheet(\n'
-              '        dashboardSheet,\n'
-              '        dateKey,\n'
-              '        getWeekDisplayForDateKey(dateKey),\n'
-              '        getDashboardDetailRowCount(dataSheet),\n'
-              '        getDashboardDataLastRow(dataSheet)\n'
-              '      );',
-              'missing dynamic dashboard call'
+              '      buildDashboardSheet(\n        dashboardSheet,\n        dateKey,\n        getWeekDisplayForDateKey(dateKey),\n        getDashboardDetailRowCount(dataSheet),\n        getDashboardDataLastRow(dataSheet)\n      );',
+              'missing dashboard call'
           )
 
-          text = replace_once(
+          text = once(
               text,
               'function buildDashboardSheet(\n  sheet: ExcelScript.Worksheet,\n  selectedDateKey: string,\n  selectedWeekDisplay: string\n): void {\n  const canvas = sheet.getRange("A1:Q80");',
-              'function buildDashboardSheet(\n'
-              '  sheet: ExcelScript.Worksheet,\n'
-              '  selectedDateKey: string,\n'
-              '  selectedWeekDisplay: string,\n'
-              '  detailRowCount: number = DASHBOARD_MIN_DETAIL_ROWS,\n'
-              '  dataLastRow: number = 2\n'
-              '): void {\n'
-              '  const safeDetailRows = Math.max(DASHBOARD_MIN_DETAIL_ROWS, Math.floor(detailRowCount || 0));\n'
-              '  const detailEndRow = DASHBOARD_DETAIL_FIRST_ROW + safeDetailRows - 1;\n'
-              '  const canvasLastRow = Math.max(60, detailEndRow + 4);\n'
-              '  const safeDataLastRow = Math.max(2, Math.floor(dataLastRow || 2));\n'
-              '  const canvas = sheet.getRange(`A1:Q${canvasLastRow}`);',
-              'dashboard signature and dynamic bounds'
+              'function buildDashboardSheet(\n  sheet: ExcelScript.Worksheet,\n  selectedDateKey: string,\n  selectedWeekDisplay: string,\n  detailRowCount: number = DASHBOARD_MIN_DETAIL_ROWS,\n  dataLastRow: number = 2\n): void {\n  const safeDetailRows = Math.max(DASHBOARD_MIN_DETAIL_ROWS, Math.floor(detailRowCount || 0));\n  const detailEndRow = DASHBOARD_DETAIL_FIRST_ROW + safeDetailRows - 1;\n  const canvasLastRow = Math.max(60, detailEndRow + 4);\n  const safeDataLastRow = Math.max(2, Math.floor(dataLastRow || 2));\n  const canvas = sheet.getRange(`A1:Q${canvasLastRow}`);',
+              'dashboard signature'
           )
 
-          build_start = text.index('function buildDashboardSheet(')
-          build_end = text.index('\nfunction detailRowsForDashboard(', build_start)
-          build = text[build_start:build_end]
-          build = build.replace('$5000', '$${safeDataLastRow}')
-          replacements = {
-              'sheet.getRange("A5:E35").setNumberFormatLocal("General");': 'sheet.getRange(`A5:E${detailEndRow}`).setNumberFormatLocal("General");',
-              'sheet.getRange("A9:F35").clear(ExcelScript.ClearApplyTo.contents);': 'sheet.getRange(`A${DASHBOARD_DETAIL_FIRST_ROW}:F${detailEndRow}`).clear(ExcelScript.ClearApplyTo.contents);',
-              'sheet.getRange("A9:F35").setNumberFormatLocal("General");': 'sheet.getRange(`A${DASHBOARD_DETAIL_FIRST_ROW}:F${detailEndRow}`).setNumberFormatLocal("General");',
-              'sheet.getRange("A9:F35").getFormat().getFill().setColor("#FFFFFF");': 'sheet.getRange(`A${DASHBOARD_DETAIL_FIRST_ROW}:F${detailEndRow}`).getFormat().getFill().setColor("#FFFFFF");',
-              'setThinBorders(sheet.getRange("A8:E35"));': 'setThinBorders(sheet.getRange(`A8:E${detailEndRow}`));',
-              'for (let row = 8; row <= 34; row++) {\n    writeDayProductRow(sheet, row);\n  }': 'for (let row = DASHBOARD_DETAIL_FIRST_ROW - 1; row < detailEndRow; row++) {\n    writeDayProductRow(sheet, row, safeDataLastRow);\n  }',
-              'sheet.getRange("I1:I60").getFormat().getFill().setColor("#404040");': 'sheet.getRange(`I1:I${canvasLastRow}`).getFormat().getFill().setColor("#404040");',
-              'writeWeekDagRow(sheet, 8 + i, dagen[i]);': 'writeWeekDagRow(sheet, 8 + i, dagen[i], safeDataLastRow);',
-              'sheet.getRange("A8:N35").getFormat().setRowHeight(18);': 'sheet.getRange(`A8:N${detailEndRow}`).getFormat().setRowHeight(18);',
-              'sheet.getRange("A1:Q60").getFormat().getProtection().setLocked(true);': 'sheet.getRange(`A1:Q${canvasLastRow}`).getFormat().getProtection().setLocked(true);'
-          }
-          for old, new in replacements.items():
-              build = replace_once(build, old, new, f'dashboard range: {old[:35]}')
-          text = text[:build_start] + build + text[build_end:]
+          start = text.index('function buildDashboardSheet(')
+          end = text.index('\nfunction detailRowsForDashboard(', start)
+          block = text[start:end]
+          block = block.replace('$5000', '$${safeDataLastRow}')
+          pairs = [
+              ('sheet.getRange("A5:E35").setNumberFormatLocal("General");', 'sheet.getRange(`A5:E${detailEndRow}`).setNumberFormatLocal("General");'),
+              ('sheet.getRange("A9:F35").clear(ExcelScript.ClearApplyTo.contents);', 'sheet.getRange(`A${DASHBOARD_DETAIL_FIRST_ROW}:F${detailEndRow}`).clear(ExcelScript.ClearApplyTo.contents);'),
+              ('sheet.getRange("A9:F35").setNumberFormatLocal("General");', 'sheet.getRange(`A${DASHBOARD_DETAIL_FIRST_ROW}:F${detailEndRow}`).setNumberFormatLocal("General");'),
+              ('sheet.getRange("A9:F35").getFormat().getFill().setColor("#FFFFFF");', 'sheet.getRange(`A${DASHBOARD_DETAIL_FIRST_ROW}:F${detailEndRow}`).getFormat().getFill().setColor("#FFFFFF");'),
+              ('setThinBorders(sheet.getRange("A8:E35"));', 'setThinBorders(sheet.getRange(`A8:E${detailEndRow}`));'),
+              ('for (let row = 8; row <= 34; row++) {\n    writeDayProductRow(sheet, row);\n  }', 'for (let row = DASHBOARD_DETAIL_FIRST_ROW - 1; row < detailEndRow; row++) {\n    writeDayProductRow(sheet, row, safeDataLastRow);\n  }'),
+              ('sheet.getRange("I1:I60").getFormat().getFill().setColor("#404040");', 'sheet.getRange(`I1:I${canvasLastRow}`).getFormat().getFill().setColor("#404040");'),
+              ('writeWeekDagRow(sheet, 8 + i, dagen[i]);', 'writeWeekDagRow(sheet, 8 + i, dagen[i], safeDataLastRow);'),
+              ('sheet.getRange("A8:N35").getFormat().setRowHeight(18);', 'sheet.getRange(`A8:N${detailEndRow}`).getFormat().setRowHeight(18);'),
+              ('sheet.getRange("A1:Q60").getFormat().getProtection().setLocked(true);', 'sheet.getRange(`A1:Q${canvasLastRow}`).getFormat().getProtection().setLocked(true);')
+          ]
+          for old, new in pairs:
+              block = once(block, old, new, old[:28])
+          text = text[:start] + block + text[end:]
 
-          helpers = r'''
-function countStoredHistoryRows(sheet: ExcelScript.Worksheet): number {
-  const used = sheet.getUsedRange();
-  const rowCount = used ? used.getRowCount() : 0;
+          helpers = '''function countStoredHistoryRows(sheet: ExcelScript.Worksheet): number {\n  const used = sheet.getUsedRange();\n  const rowCount = used ? used.getRowCount() : 0;\n  if (rowCount <= 1) return 0;\n\n  const values = sheet.getRangeByIndexes(1, 0, rowCount - 1, 16).getValues();\n  let count = 0;\n  for (const row of values) {\n    if (row.some(value => String(value ?? "").trim() !== "")) count++;\n  }\n  return count;\n}\n\nfunction getDashboardDataLastRow(sheet: ExcelScript.Worksheet): number {\n  const used = sheet.getUsedRange();\n  const rowCount = used ? used.getRowCount() : 0;\n  if (rowCount <= 1) return 2;\n\n  const values = sheet.getRangeByIndexes(1, 0, rowCount - 1, 16).getValues();\n  for (let row = values.length - 1; row >= 0; row--) {\n    if (values[row].some(value => String(value ?? "").trim() !== "")) return row + 2;\n  }\n  return 2;\n}\n\nfunction getDashboardDetailRowCount(sheet: ExcelScript.Worksheet): number {\n  const dataLastRow = getDashboardDataLastRow(sheet);\n  const values = sheet.getRangeByIndexes(1, 0, Math.max(dataLastRow - 1, 1), 16).getValues();\n  const runCounts: { [key: string]: number } = {};\n  let maxRows = 0;\n\n  for (const row of values) {\n    if (normalize(String(row[6] ?? "")) !== normalize("FIFO")) continue;\n    const runTimestamp = String(row[15] ?? "").trim();\n    const dateKey = String(row[1] ?? "").trim();\n    const runDisplay = String(row[0] ?? "").trim();\n    const key = runTimestamp ? `timestamp:${runTimestamp}` : `legacy:${dateKey}|${runDisplay}`;\n    runCounts[key] = (runCounts[key] || 0) + 1;\n    maxRows = Math.max(maxRows, runCounts[key]);\n  }\n\n  return Math.max(DASHBOARD_MIN_DETAIL_ROWS, maxRows);\n}\n\n'''
+          text = once(text, 'function historyHeaders(): string[] {', helpers + 'function historyHeaders(): string[] {', 'helpers')
 
-  if (rowCount <= 1) {
-    return 0;
-  }
-
-  const values = sheet.getRangeByIndexes(1, 0, rowCount - 1, 16).getValues();
-  let count = 0;
-
-  for (const row of values) {
-    if (row.some(value => String(value ?? "").trim() !== "")) {
-      count++;
-    }
-  }
-
-  return count;
-}
-
-function getDashboardDataLastRow(sheet: ExcelScript.Worksheet): number {
-  const used = sheet.getUsedRange();
-  const rowCount = used ? used.getRowCount() : 0;
-
-  if (rowCount <= 1) {
-    return 2;
-  }
-
-  const values = sheet.getRangeByIndexes(1, 0, rowCount - 1, 16).getValues();
-
-  for (let row = values.length - 1; row >= 0; row--) {
-    if (values[row].some(value => String(value ?? "").trim() !== "")) {
-      return row + 2;
-    }
-  }
-
-  return 2;
-}
-
-function getDashboardDetailRowCount(sheet: ExcelScript.Worksheet): number {
-  const dataLastRow = getDashboardDataLastRow(sheet);
-
-  if (dataLastRow < 2) {
-    return DASHBOARD_MIN_DETAIL_ROWS;
-  }
-
-  const values = sheet.getRangeByIndexes(1, 0, dataLastRow - 1, 16).getValues();
-  const runCounts: { [key: string]: number } = {};
-  let maxRows = 0;
-
-  for (const row of values) {
-    if (normalize(String(row[6] ?? "")) !== normalize("FIFO")) {
-      continue;
-    }
-
-    const runTimestamp = String(row[15] ?? "").trim();
-    const dateKey = String(row[1] ?? "").trim();
-    const runDisplay = String(row[0] ?? "").trim();
-    const key = runTimestamp ? `timestamp:${runTimestamp}` : `legacy:${dateKey}|${runDisplay}`;
-
-    runCounts[key] = (runCounts[key] || 0) + 1;
-    maxRows = Math.max(maxRows, runCounts[key]);
-  }
-
-  return Math.max(DASHBOARD_MIN_DETAIL_ROWS, maxRows);
-}
-
-'''
-          text = replace_once(text, 'function historyHeaders(): string[] {', helpers + 'function historyHeaders(): string[] {', 'dashboard helper insertion')
-
-          direct_start = text.index('function writeDirectDayDetail(')
-          direct_end = text.index('\nfunction writeDepartmentSummaryRow(', direct_start)
-          direct = text[direct_start:direct_end]
-          direct = replace_once(
-              direct,
+          start = text.index('function writeDirectDayDetail(')
+          end = text.index('\nfunction writeDepartmentSummaryRow(', start)
+          block = text[start:end]
+          block = once(
+              block,
               '  const clearRange = sheet.getRange("A9:E35");',
-              '  const directDetailRows = Math.max(\n'
-              '    DASHBOARD_MIN_DETAIL_ROWS,\n'
-              '    analyse.Details.length + analyse.Samenvatting.length + 2\n'
-              '  );\n'
-              '  const directEndRow = DASHBOARD_DETAIL_FIRST_ROW + directDetailRows - 1;\n'
-              '  const clearRange = sheet.getRange(`A${DASHBOARD_DETAIL_FIRST_ROW}:E${directEndRow}`);',
-              'direct detail dynamic clear range'
+              '  const directDetailRows = Math.max(\n    DASHBOARD_MIN_DETAIL_ROWS,\n    analyse.Details.length + analyse.Samenvatting.length + 2\n  );\n  const directEndRow = DASHBOARD_DETAIL_FIRST_ROW + directDetailRows - 1;\n  const clearRange = sheet.getRange(`A${DASHBOARD_DETAIL_FIRST_ROW}:E${directEndRow}`);',
+              'direct detail range'
           )
-          text = text[:direct_start] + direct + text[direct_end:]
+          text = text[:start] + block + text[end:]
 
-          day_start = text.index('function writeDayProductRow(')
-          day_end = text.index('\nfunction writeWeekDagRow(', day_start)
-          day = text[day_start:day_end]
-          day = replace_once(
-              day,
-              'function writeDayProductRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number): void {',
-              'function writeDayProductRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number, dataLastRow: number): void {',
-              'day row signature'
-          )
-          day = day.replace('$5000', '$${dataLastRow}')
-          text = text[:day_start] + day + text[day_end:]
+          start = text.index('function writeDayProductRow(')
+          end = text.index('\nfunction writeWeekDagRow(', start)
+          block = text[start:end]
+          block = once(block, 'function writeDayProductRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number): void {', 'function writeDayProductRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number, dataLastRow: number): void {', 'day signature')
+          block = block.replace('$5000', '$${dataLastRow}')
+          text = text[:start] + block + text[end:]
 
-          week_start = text.index('function writeWeekDagRow(')
-          week_end = text.index('\nfunction formatDateDisplay(', week_start)
-          week = text[week_start:week_end]
-          week = replace_once(
-              week,
-              'function writeWeekDagRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number, dagNaam: string): void {',
-              'function writeWeekDagRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number, dagNaam: string, dataLastRow: number): void {',
-              'week row signature'
-          )
-          week = week.replace('$5000', '$${dataLastRow}')
-          text = text[:week_start] + week + text[week_end:]
+          start = text.index('function writeWeekDagRow(')
+          end = text.index('\nfunction formatDateDisplay(', start)
+          block = text[start:end]
+          block = once(block, 'function writeWeekDagRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number, dagNaam: string): void {', 'function writeWeekDagRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number, dagNaam: string, dataLastRow: number): void {', 'week signature')
+          block = block.replace('$5000', '$${dataLastRow}')
+          text = text[:start] + block + text[end:]
 
-          # Safety assertions: data sheet is never deleted in setup; old fixed dashboard ceilings are gone.
           if 'deleteWorksheetIfExists(workbook, DATA_SHEET_NAME' in text:
               raise SystemExit('Unsafe setup: data sheet deletion detected')
           for forbidden in ['A9:E35', 'A9:F35', 'A8:E35', 'row <= 34', '$5000']:
               if forbidden in text:
-                  raise SystemExit(f'Old fixed dashboard limit still present: {forbidden}')
+                  raise SystemExit(f'Old fixed limit still present: {forbidden}')
 
-          ts_path.write_text(text, encoding='utf-8')
-
-          Path('js/beta-limits.js').write_text(r'''\'use strict\';
-
-// Microsoft publiceert geen Forms-specifieke harde maximumlengte voor prefilled links.
-// De oude beta gebruikte 7600 tekens. Deze versie begrenst op de werkelijk encoded URL
-// en houdt daar bewust marge onder: 6000 hard, plus 1200 extra reserve in de setup voor
-// namen/waarschuwingen die pas tijdens de controle kunnen ontstaan.
-const FIFO_FORMS_URL_HARD_LIMIT = 6000;
-const FIFO_FORMS_URL_SETUP_RESERVE = 1200;
-const FIFO_FORMS_URL_SETUP_LIMIT = FIFO_FORMS_URL_HARD_LIMIT - FIFO_FORMS_URL_SETUP_RESERVE;
-
-function fifoConfiguredProductRows(overrides){
-  const replacement = overrides || {};
-  return subCounts.reduce((sum, rule) => {
-    const configured = Object.prototype.hasOwnProperty.call(replacement, rule.subafdeling)
-      ? Number(replacement[rule.subafdeling])
-      : Number(fifoFlow.counts[rule.subafdeling]);
-    const count = fifoFlow.useStandardCounts
-      ? rule.count
-      : Math.max(rule.count, configured || rule.count);
-    return sum + count;
-  }, 0);
-}
-
-fifoMaxForGroup = function(groupKey){
-  const rule = subCounts.find(item => norm(item.subafdeling) === norm(groupKey));
-  const minimum = rule ? rule.count : 1;
-  const poolSize = productsForSelectionGroup(groupKey).length;
-  return Math.max(minimum, poolSize);
-};
-
-function fifoEstimatedFormsUrlLength(overrides){
-  if(typeof configuredFormsUrl !== 'function' || typeof makeFormsUrl !== 'function') return 0;
-  if(!configuredFormsUrl()) return 0;
-
-  const replacement = overrides || {};
-  const dayKey = document.getElementById('dateInput').value || todayKey();
-  const leader = (document.getElementById('leader').value || 'Shiftleider').trim();
-  const products = [];
-  const scores = {};
-  const statuses = {};
-
-  departmentOrder.forEach(afdeling => {
-    scores[afdeling] = '0/0';
-    statuses[afdeling] = {Status:'Gevuld', Score:'0/0'};
-  });
-
-  subCounts.forEach(rule => {
-    const configured = Object.prototype.hasOwnProperty.call(replacement, rule.subafdeling)
-      ? Number(replacement[rule.subafdeling])
-      : Number(fifoFlow.counts[rule.subafdeling]);
-    const count = fifoFlow.useStandardCounts
-      ? rule.count
-      : Math.max(rule.count, configured || rule.count);
-    const notFilled = !!fifoFlow.pendingNotFilled[rule.subafdeling];
-
-    for(let i = 0; i < count; i++){
-      products.push({
-        Afdeling: rule.afdeling,
-        Nasa: '999999',
-        Status: notFilled ? 'Niet gevuld' : 'Goed',
-        MedewerkerNaam: '',
-        AfdelingNietGevuld: notFilled
-      });
-    }
-  });
-
-  const record = {
-    DatumTijd: '26/08/2026 20:12',
-    DagKey: dayKey,
-    Shiftleider: leader,
-    Scores: scores,
-    AfdelingStatussen: statuses,
-    AfdelingenNietGevuld: [],
-    Producten: products,
-    Waarschuwingen: []
-  };
-
-  return makeFormsUrl(record).length;
-}
-
-function fifoProjectedCountForGroup(groupKey, nextCount){
-  const overrides = {};
-  overrides[groupKey] = nextCount;
-  return fifoEstimatedFormsUrlLength(overrides);
-}
-
-function fifoFitsSetupUrlBudget(groupKey, nextCount){
-  const estimated = fifoProjectedCountForGroup(groupKey, nextCount);
-  return estimated === 0 || estimated <= FIFO_FORMS_URL_SETUP_LIMIT;
-}
-
-// De eerder gekozen aangepaste aantallen blijven bewaard als Standaard tijdelijk wordt aangezet.
-fifoHandleStandardToggle = function(e){
-  fifoFlow.useStandardCounts = !!e.currentTarget.checked;
-  fifoSaveFlowState();
-  fifoRenderSetup();
-};
-
-fifoHandleCountButton = function(e){
-  if(fifoFlow.useStandardCounts) return;
-  const groupKey = e.currentTarget.dataset.group;
-  if(fifoFlow.pendingNotFilled[groupKey]) return;
-
-  const rule = subCounts.find(r => norm(r.subafdeling) === norm(groupKey));
-  if(!rule) return;
-
-  const min = rule.count;
-  const max = fifoMaxForGroup(groupKey);
-  let count = Math.max(min, Number(fifoFlow.counts[groupKey]) || min);
-  const action = e.currentTarget.dataset.action;
-
-  if(action === 'minus') count--;
-  if(action === 'plus'){
-    const nextCount = Math.min(max, count + 1);
-    if(!fifoFitsSetupUrlBudget(groupKey, nextCount)) return;
-    count = nextCount;
-  }
-
-  fifoFlow.counts[groupKey] = Math.max(min, Math.min(max, count));
-  fifoSaveFlowState();
-  fifoRenderSetup();
-};
-
-const fifoBaseRenderSetupForLimits = fifoRenderSetup;
-fifoRenderSetup = function(){
-  fifoBaseRenderSetupForLimits();
-
-  const total = fifoConfiguredProductRows();
-  const estimated = fifoEstimatedFormsUrlLength();
-  const toggle = document.querySelector('.fifo-standard-toggle small');
-  if(toggle){
-    toggle.textContent = estimated > 0
-      ? `Uitvinken om per subafdeling extra producten toe te voegen. ${total} producten · geschatte Forms-link ${estimated}/${FIFO_FORMS_URL_SETUP_LIMIT} tekens (+${FIFO_FORMS_URL_SETUP_RESERVE} reserve).`
-      : `Uitvinken om per subafdeling extra producten toe te voegen. ${total} producten. De Forms-lengte wordt bij opslaan gecontroleerd.`;
-  }
-
-  document.querySelectorAll('.fifo-count-btn[data-action="plus"]').forEach(btn => {
-    if(btn.disabled) return;
-    const groupKey = btn.dataset.group;
-    const rule = subCounts.find(r => norm(r.subafdeling) === norm(groupKey));
-    if(!rule) return;
-    const current = Math.max(rule.count, Number(fifoFlow.counts[groupKey]) || rule.count);
-    if(!fifoFitsSetupUrlBudget(groupKey, current + 1)) btn.disabled = true;
-  });
-};
-
-const fifoBaseStartControlForLimits = fifoStartControl;
-fifoStartControl = function(){
-  const estimated = fifoEstimatedFormsUrlLength();
-  if(estimated > FIFO_FORMS_URL_SETUP_LIMIT){
-    alert(`Deze instelling maakt de geschatte Microsoft Forms-link te lang (${estimated} tekens). Houd maximaal ${FIFO_FORMS_URL_SETUP_LIMIT} tekens aan; zo blijft ${FIFO_FORMS_URL_SETUP_RESERVE} tekens reserve voor namen en waarschuwingen.`);
-    return;
-  }
-  fifoBaseStartControlForLimits();
-};
-'''.replace("\\'", "'"), encoding='utf-8')
-
-          Path('js/beta-forms-guard.js').write_text(r'''\'use strict\';
-
-// Laatste controle gebruikt de werkelijk opgebouwde, URL-encoded Microsoft Forms-link.
-// 6000 is bewust lager dan de oude beta-grens van 7600 om een operationele veiligheidsmarge te houden.
-logToForms = function(){
-  const leader = document.getElementById('leader').value;
-  if(!leader){
-    alert('Kies eerst je naam.');
-    return;
-  }
-
-  const missingWarningNames = selection.filter(
-    item => item.Status === 'Fout' && item.MedewerkerAanspreken && !item.MedewerkerNaam
-  );
-  if(missingWarningNames.length){
-    alert('Kies eerst een medewerker bij elke aangevinkte optie "Medewerker aanspreken".');
-    return;
-  }
-
-  const open = selection.filter(
-    item => (!item.Status || item.Status === 'Open') && !isItemNotFilledByToggle(item)
-  ).length;
-  if(open){
-    alert(`Er staan nog ${open} ${open === 1 ? 'product' : 'producten'} open. Rond eerst de volledige controle af voordat je opslaat.`);
-    return;
-  }
-
-  const record = buildLogRecord();
-  const template = configuredFormsUrl();
-  if(!template){
-    prepareSubmitPage(
-      record,
-      '',
-      'De Microsoft Forms-koppeling ontbreekt nog. Plak eerst de prefilled Forms-link in config.js en upload die opnieuw.'
-    );
-    return;
-  }
-
-  const url = makeFormsUrl(record);
-  if(url.length > FIFO_FORMS_URL_HARD_LIMIT){
-    alert(`De Microsoft Forms-link wordt te lang (${url.length} tekens; veilige grens ${FIFO_FORMS_URL_HARD_LIMIT}). Verlaag het aantal producten of het aantal waarschuwingen en probeer opnieuw.`);
-    return;
-  }
-
-  prepareSubmitPage(record, url, '');
-  window.location.href = url;
-};
-'''.replace("\\'", "'"), encoding='utf-8')
+          path.write_text(text, encoding='utf-8')
           PY
-
-          node --check js/beta-limits.js
-          node --check js/beta-forms-guard.js
 
           grep -q 'getDashboardDetailRowCount(dataSheet)' fifo_shift_overdracht.ts
           grep -q 'storedHistoryRowsBefore' fifo_shift_overdracht.ts
-          ! grep -q 'FIFO_SAFE_MAX_PRODUCTS' js/beta-limits.js
-          ! grep -q '7600' js/beta-limits.js
           ! grep -q 'A9:F35' fifo_shift_overdracht.ts
           ! grep -q '\$5000' fifo_shift_overdracht.ts
 
@@ -501,6 +161,6 @@ logToForms = function(){
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add fifo_shift_overdracht.ts js/beta-limits.js js/beta-forms-guard.js
-          git commit -m 'Make beta FIFO counts URL-bound and Excel dashboard dynamic'
+          git add fifo_shift_overdracht.ts
+          git commit -m 'Make FIFO Excel dashboard dynamic and setup data-safe'
           git push origin HEAD:beta
