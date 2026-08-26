@@ -295,7 +295,10 @@ function logToForms(){
   }
 
   const open = selection.filter(x=>(!x.Status || x.Status==='Open') && !isItemNotFilledByToggle(x)).length;
-  if(open && !confirm(`Er staan nog ${open} producten open. Toch opslaan?`)) return;
+  if(open){
+    alert(`Er staan nog ${open} ${open === 1 ? 'product' : 'producten'} open. Rond eerst de volledige controle af voordat je opslaat.`);
+    return;
+  }
 
   const record = buildLogRecord();
   const template = configuredFormsUrl();
