@@ -22,6 +22,13 @@ fifoMaxForGroup = function(groupKey){
   return Math.max(minimum, Math.min(poolSize, Math.min(FIFO_SAFE_MAX_PER_GROUP, minimum + 3)));
 };
 
+// De eerder gekozen aangepaste aantallen blijven bewaard als Standaard tijdelijk wordt aangezet.
+fifoHandleStandardToggle = function(e){
+  fifoFlow.useStandardCounts = !!e.currentTarget.checked;
+  fifoSaveFlowState();
+  fifoRenderSetup();
+};
+
 fifoHandleCountButton = function(e){
   if(fifoFlow.useStandardCounts) return;
   const groupKey = e.currentTarget.dataset.group;
@@ -53,7 +60,7 @@ fifoRenderSetup = function(){
   const total = fifoConfiguredProductRows();
   const toggle = document.querySelector('.fifo-standard-toggle small');
   if(toggle){
-    toggle.textContent = `Uitvinken om per subafdeling extra producten toe te voegen. ${total}/${FIFO_SAFE_MAX_PRODUCTS} productregels.`;
+    toggle.textContent = `Uitvinken om per subafdeling extra producten toe te voegen. ${total}/${FIFO_SAFE_MAX_PRODUCTS} producten.`;
   }
 
   if(total >= FIFO_SAFE_MAX_PRODUCTS){
