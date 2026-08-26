@@ -1,9 +1,7 @@
 'use strict';
 
-// Vaste bovengrens voor één controle. De technische Forms-limiet blijft verborgen voor eindgebruikers.
+// Vaste bovengrens voor één controle.
 const FIFO_MAX_TOTAL_PRODUCTS = 20;
-// Alleen gebruikt voor de laatste technische opslagcheck; nooit tonen in de UI.
-const FIFO_FORMS_URL_HARD_LIMIT = 1750;
 
 function fifoConfiguredProductRows(overrides){
   const replacement = overrides || {};
