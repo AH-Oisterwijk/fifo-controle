@@ -1,0 +1,191 @@
+name: One-shot static FIFO details migration
+
+on:
+  push:
+    branches: [beta]
+    paths:
+      - '.github/workflows/one-shot-static-details.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: beta
+          fetch-depth: 0
+
+      - name: Patch FIFO Office Script lifecycle
+        shell: bash
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('fifo_shift_overdracht.ts')
+          text = path.read_text(encoding='utf-8')
+
+          def replace_once(old, new, label):
+              global text
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected 1 match, found {count}')
+              text = text.replace(old, new, 1)
+
+          replace_once(
+              'const DASHBOARD_MIN_DETAIL_ROWS = 7;\n',
+              'const DASHBOARD_DETAIL_ROWS = 120; // Ruimer dan praktisch mogelijk binnen het huidige Forms-URL-budget.\n',
+              'detail rows constant'
+          )
+
+          old_setup = '''      buildDashboardSheet(
+        dashboardSheet,
+        getLatestDateDisplay(dataSheet),
+        getLatestWeekDisplay(dataSheet),
+        getDashboardDetailRowCount(dataSheet),
+        getDashboardDataLastRow(dataSheet)
+      );'''
+          new_setup = '''      buildDashboardSheet(
+        dashboardSheet,
+        getLatestDateDisplay(dataSheet),
+        getLatestWeekDisplay(dataSheet)
+      );'''
+          replace_once(old_setup, new_setup, 'setup dashboard call')
+
+          update_pattern = re.compile(r'function updateFifoDetails\(workbook: ExcelScript\.Workbook, password: string, analyse: FifoAnalyse\): void \{.*?\n\}\n\nfunction registerMissingControle', re.S)
+          update_replacement = '''function updateFifoDetails(workbook: ExcelScript.Workbook, password: string, analyse: FifoAnalyse): void {
+  ensureDetailSheets(workbook, password);
+
+  let workbookWasProtected = unprotectWorkbookIfNeeded(workbook, password);
+
+  try {
+    const dataSheet = getRequiredWorksheet(workbook, DATA_SHEET_NAME);
+    dataSheet.setVisibility(ExcelScript.SheetVisibility.visible);
+
+    // Runtime doet alleen data-opslag en keuzelijsten. Het dashboard zelf is eenmalig door setup gebouwd.
+    appendHistorieData(dataSheet, analyse);
+    refreshAvailableLists(dataSheet);
+
+    // B3 (dag) en K3 (week) blijven bewust onaangeraakt. De permanente formules rekenen automatisch door.
+    dataSheet.setVisibility(ExcelScript.SheetVisibility.hidden);
+  } finally {
+    if (workbookWasProtected) {
+      workbook.getProtection().protect(password);
+    }
+  }
+}
+
+function registerMissingControle'''
+          text, count = update_pattern.subn(update_replacement, text, count=1)
+          if count != 1:
+              raise SystemExit(f'updateFifoDetails block: expected 1 match, found {count}')
+
+          missing_pattern = re.compile(r'function registerMissingControle\(workbook: ExcelScript\.Workbook, password: string, dateKey: string\): void \{.*?\n\}\n\nfunction ensureDetailSheets', re.S)
+          missing_replacement = '''function registerMissingControle(workbook: ExcelScript.Workbook, password: string, dateKey: string): void {
+  ensureDetailSheets(workbook, password);
+
+  let workbookWasProtected = unprotectWorkbookIfNeeded(workbook, password);
+
+  try {
+    const dataSheet = getRequiredWorksheet(workbook, DATA_SHEET_NAME);
+    dataSheet.setVisibility(ExcelScript.SheetVisibility.visible);
+
+    // Runtime doet alleen data-opslag en keuzelijsten. De gekozen dag/week in Details blijven staan.
+    appendMissingData(dataSheet, dateKey);
+    refreshAvailableLists(dataSheet);
+
+    dataSheet.setVisibility(ExcelScript.SheetVisibility.hidden);
+  } finally {
+    if (workbookWasProtected) {
+      workbook.getProtection().protect(password);
+    }
+  }
+}
+
+function ensureDetailSheets'''
+          text, count = missing_pattern.subn(missing_replacement, text, count=1)
+          if count != 1:
+              raise SystemExit(f'registerMissingControle block: expected 1 match, found {count}')
+
+          ensure_pattern = re.compile(r'function ensureDetailSheets\(workbook: ExcelScript\.Workbook, password: string\): void \{.*?\n\}\n\nfunction resetDetailSheetsForSetup', re.S)
+          ensure_replacement = '''function ensureDetailSheets(workbook: ExcelScript.Workbook, password: string): void {
+  // setup is de enige modus die sheets aanmaakt. Runtime mag een ontbrekende setup niet stilzwijgend repareren.
+  getRequiredWorksheet(workbook, DETAILS_SHEET_NAME);
+  getRequiredWorksheet(workbook, DATA_SHEET_NAME);
+}
+
+function resetDetailSheetsForSetup'''
+          text, count = ensure_pattern.subn(ensure_replacement, text, count=1)
+          if count != 1:
+              raise SystemExit(f'ensureDetailSheets block: expected 1 match, found {count}')
+
+          old_signature = '''function buildDashboardSheet(
+  sheet: ExcelScript.Worksheet,
+  selectedDateKey: string,
+  selectedWeekDisplay: string,
+  detailRowCount: number = DASHBOARD_MIN_DETAIL_ROWS,
+  dataLastRow: number = 2
+): void {
+  const safeDetailRows = Math.max(DASHBOARD_MIN_DETAIL_ROWS, Math.floor(detailRowCount || 0));
+  const detailEndRow = DASHBOARD_DETAIL_FIRST_ROW + safeDetailRows - 1;
+  const canvasLastRow = Math.max(60, detailEndRow + 4);
+  const safeDataLastRow = Math.max(2, Math.floor(dataLastRow || 2));'''
+          new_signature = '''function buildDashboardSheet(
+  sheet: ExcelScript.Worksheet,
+  selectedDateKey: string,
+  selectedWeekDisplay: string
+): void {
+  const detailEndRow = DASHBOARD_DETAIL_FIRST_ROW + DASHBOARD_DETAIL_ROWS - 1;
+  const canvasLastRow = Math.max(60, detailEndRow + 4);'''
+          replace_once(old_signature, new_signature, 'buildDashboardSheet signature')
+
+          replace_once(
+              '  canvas.setNumberFormatLocal("General");\n',
+              '''  canvas.setNumberFormatLocal("General");
+
+  // Eén dynamische helper bepaalt de laatste opgeslagen datarij. Alle permanente dashboardformules
+  // gebruiken INDEX(...,$Q$1), zodat nieuwe fifo/missing-runs zichtbaar worden zonder dashboard-rebuild.
+  sheet.getRange("Q1").setFormula(`=MAX(2,LOOKUP(2,1/('${DATA_SHEET_NAME}'!$P:$P<>""),ROW('${DATA_SHEET_NAME}'!$P:$P)))`);
+  sheet.getRange("Q:Q").getFormat().setColumnWidth(2);
+  sheet.getRange("Q:Q").getFormat().getFont().setColor("#FFFFFF");
+''',
+              'dynamic last-row helper'
+          )
+
+          # Alle dashboardgegevens lopen vanaf rij 2 tot de dynamische laatste rij in Q1.
+          for marker in ('safeDataLastRow', 'dataLastRow'):
+              for col in 'BEFGHIJKLMNP':
+                  old = "'${DATA_SHEET_NAME}'!$" + col + "$2:$" + col + "$${" + marker + "}"
+                  new = "'${DATA_SHEET_NAME}'!$" + col + "$2:INDEX('${DATA_SHEET_NAME}'!$" + col + ":$" + col + ",$Q$1)"
+                  text = text.replace(old, new)
+
+          text = text.replace('writeDayProductRow(sheet, row, safeDataLastRow);', 'writeDayProductRow(sheet, row);')
+          text = text.replace('writeWeekDagRow(sheet, 8 + i, dagen[i], safeDataLastRow);', 'writeWeekDagRow(sheet, 8 + i, dagen[i]);')
+          text = text.replace('function writeDayProductRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number, dataLastRow: number): void {', 'function writeDayProductRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number): void {')
+          text = text.replace('function writeWeekDagRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number, dagNaam: string, dataLastRow: number): void {', 'function writeWeekDagRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number, dagNaam: string): void {')
+          text = text.replace('Math.max(\n    DASHBOARD_MIN_DETAIL_ROWS,', 'Math.max(\n    DASHBOARD_DETAIL_ROWS,')
+
+          helper_pattern = re.compile(r'\nfunction getDashboardDataLastRow\(sheet: ExcelScript\.Worksheet\): number \{.*?\n\}\n\nfunction getDashboardDetailRowCount\(sheet: ExcelScript\.Worksheet\): number \{.*?\n\}\n', re.S)
+          text, count = helper_pattern.subn('\n', text, count=1)
+          if count != 1:
+              raise SystemExit(f'obsolete dashboard helpers: expected 1 match, found {count}')
+
+          if 'safeDataLastRow' in text or '${dataLastRow}' in text or 'getDashboardDetailRowCount' in text or 'getDashboardDataLastRow' in text:
+              raise SystemExit('obsolete dynamic-rebuild references remain')
+          if 'DASHBOARD_MIN_DETAIL_ROWS' in text:
+              raise SystemExit('old detail-row constant remains')
+          if text.count('buildDashboardSheet(') != 2:
+              raise SystemExit(f'expected only setup/buildSetupDashboard calls, found {text.count("buildDashboardSheet(")}')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fifo_shift_overdracht.ts
+          git diff --cached --quiet && exit 0
+          git commit -m 'Keep FIFO details static after one-time setup'
+          git push origin HEAD:beta
