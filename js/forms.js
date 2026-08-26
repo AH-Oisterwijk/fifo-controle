@@ -147,15 +147,18 @@ function buildFormsRecord(record){
   ]);
 
   const compact = {
-    v: 4,
+    v: 3,
     d: record.DagKey,
     dt: record.DatumTijd,
     s: record.Shiftleider,
     ng: (record.AfdelingenNietGevuld || []).map(encodeAfdelingCode),
     p: productRows,
-    // Medewerker + volledige producttekst staan alleen hier; geen dubbele medewerkernaam meer in p.
+    // Datum en shiftleider staan al bovenin; null laat het Office Script daarop terugvallen.
+    // De medewerkernaam staat alleen in w, niet dubbel in iedere productregel.
     w: (record.Waarschuwingen || []).map(w => [
+      null,
       w.NaamMedewerker || '',
+      null,
       w.Opmerkingen || ''
     ])
   };
