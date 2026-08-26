@@ -1,0 +1,43 @@
+name: Apply beta open-product save guard
+
+on:
+  push:
+    branches: [beta]
+    paths:
+      - '.github/workflows/apply-beta-no-open-save.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: beta
+          fetch-depth: 0
+
+      - name: Block saving while products are open
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('js/forms.js')
+          text = path.read_text(encoding='utf-8')
+          old = """  const open = selection.filter(x=>(!x.Status || x.Status==='Open') && !isItemNotFilledByToggle(x)).length;\n  if(open && !confirm(`Er staan nog ${open} producten open. Toch opslaan?`)) return;"""
+          new = """  const open = selection.filter(x=>(!x.Status || x.Status==='Open') && !isItemNotFilledByToggle(x)).length;\n  if(open){\n    alert(`Er staan nog ${open} ${open === 1 ? 'product' : 'producten'} open. Rond eerst de volledige controle af voordat je opslaat.`);\n    return;\n  }"""
+          if old not in text:
+              raise SystemExit('Bestaande open-product bevestiging niet gevonden')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Commit save guard
+        shell: bash
+        run: |
+          git config user.name 'AH-Oisterwijk'
+          git config user.email 'Bob.Schegget@ah.nl'
+          git add js/forms.js
+          git diff --cached --quiet && exit 0
+          git commit -m 'Block Forms save while products are open'
+          git push origin beta
