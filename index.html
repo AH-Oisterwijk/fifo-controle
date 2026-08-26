@@ -10,19 +10,33 @@
 </head>
 <body>
   <div class="fifo-app fifo-flow-app" id="controlPage">
-    <header id="fifoTopbar" class="fifo-beta-topbar"></header>
-
-    <section id="fifoCompactProgress" class="fifo-compact-progress fifo-hidden">
-      <div class="fifo-compact-progress-row">
-        <div class="fifo-progress"><div id="progressBar"></div></div>
-        <strong id="progressText">0/0</strong>
+    <header class="fifo-flow-setup-header" id="setupHeader">
+      <div>
+        <h1>FIFO Controle</h1>
+        <p id="dateLabel"></p>
       </div>
-      <div id="stats" class="fifo-hidden"></div>
+    </header>
+
+    <section class="fifo-flow-leader" id="setupLeaderCard">
+      <label for="leader">Naam shiftleider / manager</label>
+      <select id="leader">
+        <option value="">Shiftleiders worden geladen...</option>
+      </select>
     </section>
 
-    <select id="leader" class="fifo-hidden" aria-hidden="true"><option value="">Shiftleiders worden geladen...</option></select>
-    <input id="dateInput" type="hidden">
+    <header class="fifo-control-topbar fifo-hidden" id="controlTopbar">
+      <button type="button" class="fifo-top-action" id="fifoSettingsBtn">← Instellingen</button>
+      <div class="fifo-compact-progress">
+        <div class="fifo-compact-progress-line">
+          <span>Voortgang</span><strong id="progressText">0/0</strong>
+        </div>
+        <div class="fifo-progress"><div id="progressBar"></div></div>
+      </div>
+      <button type="button" class="fifo-top-action fifo-top-reset" id="fifoResetBtn">Reset</button>
+    </header>
 
+    <input id="dateInput" type="hidden">
+    <div id="stats" class="fifo-hidden"></div>
     <main id="content" class="fifo-flow-content"></main>
   </div>
 
