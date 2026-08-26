@@ -1,0 +1,543 @@
+name: Apply beta configurable flow v4
+
+on:
+  push:
+    branches: [beta]
+    paths:
+      - '.github/workflows/apply-beta-configurable-flow-v4.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: beta
+          fetch-depth: 0
+
+      - name: Patch beta web flow and Excel parser
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          # ---------------- pager.js ----------------
+          path = Path('js/pager.js')
+          text = path.read_text(encoding='utf-8')
+
+          text = text.replace(
+              "const FIFO_FLOW_SCHEMA = 2;\n",
+              "const FIFO_FLOW_SCHEMA = 2;\nconst FIFO_MAX_PRODUCTS = 28;\nconst FIFO_MAX_PER_GROUP = 6;\n",
+              1
+          )
+
+          old = """  if(fifoFlow.useStandardCounts){
+    fifoFlow.counts = fifoMinimumCounts();
+  }
+}
+"""
+          if old not in text:
+              raise SystemExit('pager: standaard-reset bij laden niet gevonden')
+          text = text.replace(old, "}\n", 1)
+
+          old = """function fifoMaxForGroup(groupKey){
+  const rule = subCounts.find(item => norm(item.subafdeling) === norm(groupKey));
+  return Math.max(rule ? rule.count : 1, productsForSelectionGroup(groupKey).length);
+}
+"""
+          new = """function fifoMaxForGroup(groupKey){
+  const rule = subCounts.find(item => norm(item.subafdeling) === norm(groupKey));
+  const minimum = rule ? rule.count : 1;
+  const poolSize = productsForSelectionGroup(groupKey).length;
+  return Math.max(minimum, Math.min(poolSize, Math.min(FIFO_MAX_PER_GROUP, minimum + 3)));
+}
+
+function fifoConfiguredTotal(){
+  return subCounts.reduce((sum, rule) => {
+    if(fifoFlow.pendingNotFilled[rule.subafdeling]) return sum;
+    const count = fifoFlow.useStandardCounts
+      ? rule.count
+      : Math.max(rule.count, Number(fifoFlow.counts[rule.subafdeling]) || rule.count);
+    return sum + count;
+  }, 0);
+}
+"""
+          if old not in text:
+              raise SystemExit('pager: fifoMaxForGroup niet gevonden')
+          text = text.replace(old, new, 1)
+
+          old = """  const minimums = fifoMinimumCounts();
+  const standardChecked = fifoFlow.useStandardCounts ? 'checked' : '';
+  const rows = subCounts.map(rule => {
+"""
+          new = """  const minimums = fifoMinimumCounts();
+  const standardChecked = fifoFlow.useStandardCounts ? 'checked' : '';
+  const configuredTotal = fifoConfiguredTotal();
+  const rows = subCounts.map(rule => {
+"""
+          if old not in text:
+              raise SystemExit('pager: setup total invoegpunt niet gevonden')
+          text = text.replace(old, new, 1)
+
+          old = """        <button type=\"button\" class=\"fifo-count-btn\" data-action=\"plus\" data-group=\"${esc(groupKey)}\" ${countDisabled || count >= max ? 'disabled' : ''}>+</button>
+"""
+          new = """        <button type=\"button\" class=\"fifo-count-btn\" data-action=\"plus\" data-group=\"${esc(groupKey)}\" ${countDisabled || count >= max || configuredTotal >= FIFO_MAX_PRODUCTS ? 'disabled' : ''}>+</button>
+"""
+          if old not in text:
+              raise SystemExit('pager: plusknop niet gevonden')
+          text = text.replace(old, new, 1)
+
+          old = """          <small>Uitvinken om per subafdeling extra producten toe te voegen.</small>
+"""
+          new = """          <small>Uitvinken om per subafdeling extra producten toe te voegen. ${configuredTotal}/${FIFO_MAX_PRODUCTS} geselecteerd.</small>
+"""
+          if old not in text:
+              raise SystemExit('pager: standaardtekst niet gevonden')
+          text = text.replace(old, new, 1)
+
+          old = """function fifoHandleStandardToggle(e){
+  fifoFlow.useStandardCounts = !!e.currentTarget.checked;
+  if(fifoFlow.useStandardCounts){
+    fifoFlow.counts = fifoMinimumCounts();
+  }
+  fifoSaveFlowState();
+  fifoRenderSetup();
+}
+"""
+          new = """function fifoHandleStandardToggle(e){
+  fifoFlow.useStandardCounts = !!e.currentTarget.checked;
+  fifoSaveFlowState();
+  fifoRenderSetup();
+}
+"""
+          if old not in text:
+              raise SystemExit('pager: standaardtoggle niet gevonden')
+          text = text.replace(old, new, 1)
+
+          old = """  if(e.currentTarget.dataset.action === 'minus') count--;
+  if(e.currentTarget.dataset.action === 'plus') count++;
+
+  fifoFlow.counts[groupKey] = Math.max(min, Math.min(max, count));
+"""
+          new = """  if(e.currentTarget.dataset.action === 'minus') count--;
+  if(e.currentTarget.dataset.action === 'plus'){
+    if(fifoConfiguredTotal() >= FIFO_MAX_PRODUCTS) return;
+    count++;
+  }
+
+  fifoFlow.counts[groupKey] = Math.max(min, Math.min(max, count));
+"""
+          if old not in text:
+              raise SystemExit('pager: count handler niet gevonden')
+          text = text.replace(old, new, 1)
+
+          old = """  const removedCompleted = fifoCountCompletedThatWouldBeLost();
+"""
+          new = """  const configuredTotal = fifoConfiguredTotal();
+  if(configuredTotal > FIFO_MAX_PRODUCTS){
+    alert(`Kies maximaal ${FIFO_MAX_PRODUCTS} producten per controle. Verlaag eerst één of meer aantallen.`);
+    return;
+  }
+
+  const removedCompleted = fifoCountCompletedThatWouldBeLost();
+"""
+          if old not in text:
+              raise SystemExit('pager: startvalidatie invoegpunt niet gevonden')
+          text = text.replace(old, new, 1)
+
+          # Bewaar aangepaste aantallen wanneer standaard tijdelijk wordt aangezet.
+          old = """  if(fifoFlow.useStandardCounts){
+    fifoFlow.counts = fifoMinimumCounts();
+  }
+
+  if(!fifoReconcileSelectionToSettings()) return;
+"""
+          if old not in text:
+              raise SystemExit('pager: standaard-reset bij start niet gevonden')
+          text = text.replace(old, "  if(!fifoReconcileSelectionToSettings()) return;\n", 1)
+
+          # Niet-gevulde groepen krijgen echt 0 productregels in de huidige selectie.
+          old = """    const desired = fifoFlow.useStandardCounts ? rule.count : Math.max(rule.count, Number(fifoFlow.counts[groupKey]) || rule.count);
+    let groupItems = fifoSelectionItemsForGroup(groupKey);
+"""
+          new = """    const desired = fifoFlow.pendingNotFilled[groupKey]
+      ? 0
+      : (fifoFlow.useStandardCounts ? rule.count : Math.max(rule.count, Number(fifoFlow.counts[groupKey]) || rule.count));
+    let groupItems = fifoSelectionItemsForGroup(groupKey);
+"""
+          if old not in text:
+              raise SystemExit('pager: reconcile desired niet gevonden')
+          text = text.replace(old, new, 1)
+
+          # Ook reset bewaart custom aantallen; selectie/statussen worden wel volledig opnieuw opgebouwd.
+          old = """  if(fifoFlow.useStandardCounts){
+    fifoFlow.counts = fifoMinimumCounts();
+  }
+
+  if(!fifoReconcileSelectionToSettings()) return;
+"""
+          if old in text:
+              text = text.replace(old, "  if(!fifoReconcileSelectionToSettings()) return;\n", 1)
+
+          if 'const FIFO_MAX_PRODUCTS = 28;' not in text or 'fifoConfiguredTotal' not in text:
+              raise SystemExit('pager: max-beveiliging ontbreekt na patch')
+          path.write_text(text, encoding='utf-8')
+
+          # ---------------- forms.js ----------------
+          path = Path('js/forms.js')
+          text = path.read_text(encoding='utf-8')
+
+          insert_after = """function formatDateTime(d){
+  return d.toLocaleString('nl-NL',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+}
+"""
+          helper = """
+
+function activeSelectionForLog(){
+  if(typeof fifoActiveItems === 'function') return fifoActiveItems();
+  return selection.filter(item => !isItemNotFilledByToggle(item));
+}
+"""
+          if helper.strip() not in text:
+              if insert_after not in text:
+                  raise SystemExit('forms: helper invoegpunt niet gevonden')
+              text = text.replace(insert_after, insert_after + helper, 1)
+
+          text = text.replace(
+              "  const items = selection.filter(p => p.Afdeling === afdeling);",
+              "  const items = activeSelectionForLog().filter(p => p.Afdeling === afdeling);",
+              1
+          )
+
+          text = text.replace(
+              "  selection\n    .filter(x => x.Status === 'Fout' && x.MedewerkerAanspreken && x.MedewerkerNaam)",
+              "  activeSelectionForLog()\n    .filter(x => x.Status === 'Fout' && x.MedewerkerAanspreken && x.MedewerkerNaam)",
+              1
+          )
+
+          old = """  const leader = document.getElementById('leader').value || '';
+  const dayKey = document.getElementById('dateInput').value || todayKey();
+  const done = selection.filter(x=>x.Status && x.Status!=='Open').length;
+  const goed = selection.filter(x=>x.Status==='Goed').length;
+  const fout = selection.filter(x=>x.Status==='Fout').length;
+  const niet = selection.filter(x=>x.Status==='Niet gevuld').length;
+"""
+          new = """  const leader = document.getElementById('leader').value || '';
+  const dayKey = document.getElementById('dateInput').value || todayKey();
+  const activeSelection = activeSelectionForLog();
+  const done = activeSelection.filter(x=>x.Status && x.Status!=='Open').length;
+  const goed = activeSelection.filter(x=>x.Status==='Goed').length;
+  const fout = activeSelection.filter(x=>x.Status==='Fout').length;
+  const niet = 0;
+"""
+          if old not in text:
+              raise SystemExit('forms: buildLogRecord tellerblok niet gevonden')
+          text = text.replace(old, new, 1)
+          text = text.replace('    AantalTotaal: selection.length,', '    AantalTotaal: activeSelection.length,', 1)
+          text = text.replace('    Producten: selection.map(x=>({', '    Producten: activeSelection.map(x=>({', 1)
+
+          encode_insert = """function encodeStatusCode(status, afdelingNietGevuld){
+"""
+          encode_helper = """function encodeSubafdelingCode(subafdeling){
+  const value = String(subafdeling || '');
+  if(value === 'Zuivel') return 'Z';
+  if(value === 'Boter') return 'B';
+  if(value === 'Kaas/Vleeswaren') return 'K';
+  if(value === 'Vis') return 'I';
+  if(value === 'Kip') return 'C';
+  if(value === 'Vlees/Vega') return 'V';
+  if(value === 'Vlees' || value === 'Vega') return 'V';
+  if(value === 'Maaltijden') return 'M';
+  if(value === 'Sappen') return 'S';
+  if(value === 'Panklaar') return 'P';
+  return value;
+}
+
+"""
+          if 'function encodeSubafdelingCode' not in text:
+              if encode_insert not in text:
+                  raise SystemExit('forms: subgroup encoder invoegpunt niet gevonden')
+              text = text.replace(encode_insert, encode_helper + encode_insert, 1)
+
+          old = """    v: 3,
+    d: record.DagKey,
+    dt: record.DatumTijd,
+    s: record.Shiftleider,
+    sc: compactScores(record.Scores),
+    st: compactAfdelingStatussen(record.AfdelingStatussen),
+    ng: (record.AfdelingenNietGevuld || []).map(encodeAfdelingCode),
+    p: (record.Producten || []).map(p => [
+      encodeAfdelingCode(p.Afdeling),
+      p.Nasa || '',
+      encodeStatusCode(p.Status, !!p.AfdelingNietGevuld),
+      p.MedewerkerNaam || '',
+      p.AfdelingNietGevuld ? 1 : 0
+    ]),
+"""
+          new = """    v: 4,
+    d: record.DagKey,
+    dt: record.DatumTijd,
+    s: record.Shiftleider,
+    sc: compactScores(record.Scores),
+    st: compactAfdelingStatussen(record.AfdelingStatussen),
+    ng: (record.AfdelingenNietGevuld || []).map(encodeAfdelingCode),
+    nf: (record.NietGevuldGroepen || []).map(encodeSubafdelingCode),
+    p: (record.Producten || []).map(p => [
+      encodeAfdelingCode(p.Afdeling),
+      p.Nasa || '',
+      encodeStatusCode(p.Status, false),
+      p.MedewerkerNaam || '',
+      0,
+      encodeSubafdelingCode(p.Subafdeling)
+    ]),
+"""
+          if old not in text:
+              raise SystemExit('forms: compact v3 blok niet gevonden')
+          text = text.replace(old, new, 1)
+
+          text = text.replace(
+              "  const missingWarningNames = selection.filter(x => x.Status === 'Fout' && x.MedewerkerAanspreken && !x.MedewerkerNaam);",
+              "  const missingWarningNames = activeSelectionForLog().filter(x => x.Status === 'Fout' && x.MedewerkerAanspreken && !x.MedewerkerNaam);",
+              1
+          )
+          text = text.replace(
+              "  const open = selection.filter(x=>(!x.Status || x.Status==='Open') && !isItemNotFilledByToggle(x)).length;",
+              "  const open = activeSelectionForLog().filter(x=>(!x.Status || x.Status==='Open')).length;",
+              1
+          )
+
+          old = """  const url = makeFormsUrl(record);
+  prepareSubmitPage(record, url, '');
+  window.location.href = url;
+"""
+          new = """  const url = makeFormsUrl(record);
+  if(url.length > 7600){
+    alert(`De Microsoft Forms-link wordt te lang (${url.length} tekens). Verlaag het aantal producten of maak eventuele waarschuwing-opmerkingen korter.`);
+    return;
+  }
+  prepareSubmitPage(record, url, '');
+  window.location.href = url;
+"""
+          if old not in text:
+              raise SystemExit('forms: URL submitblok niet gevonden')
+          text = text.replace(old, new, 1)
+
+          if 'v: 4' not in text or 'nf:' not in text or '7600' not in text:
+              raise SystemExit('forms: v4/max URL patch incompleet')
+          path.write_text(text, encoding='utf-8')
+
+          # ---------------- fifo_shift_overdracht.ts ----------------
+          path = Path('fifo_shift_overdracht.ts')
+          text = path.read_text(encoding='utf-8')
+
+          text = text.replace(
+              '  AfdelingenNietGevuld?: string[];\n  Producten?: ProductRegel[];',
+              '  AfdelingenNietGevuld?: string[];\n  NietGevuldGroepen?: string[];\n  Producten?: ProductRegel[];',
+              1
+          )
+          text = text.replace(
+              '  ng?: string[];\n  p?: (string | number | boolean)[][];',
+              '  ng?: string[];\n  nf?: string[];\n  p?: (string | number | boolean)[][];',
+              1
+          )
+          old = '  const isCompact = payload.v === 3 || Boolean(payload.d || payload.dt || payload.s || payload.sc || payload.st || payload.ng || payload.p || payload.w);'
+          new = '  const isCompact = payload.v === 3 || payload.v === 4 || Boolean(payload.d || payload.dt || payload.s || payload.sc || payload.st || payload.ng || payload.nf || payload.p || payload.w);'
+          if old not in text:
+              raise SystemExit('excel: isCompact niet gevonden')
+          text = text.replace(old, new, 1)
+
+          text = text.replace(
+              '  const afdelingenNietGevuld: string[] = payload.AfdelingenNietGevuld || [];\n  const producten:',
+              '  const afdelingenNietGevuld: string[] = payload.AfdelingenNietGevuld || [];\n  const nietGevuldGroepen: string[] = payload.NietGevuldGroepen || [];\n  const producten:',
+              1
+          )
+
+          marker = """  if (payload.p) {
+"""
+          nf_block = """  if (payload.nf) {
+    for (const code of payload.nf) {
+      const subafdeling = decodeSubafdelingCode(String(code || ""));
+      if (subafdeling && !nietGevuldGroepen.some(x => normalize(x) === normalize(subafdeling))) {
+        nietGevuldGroepen.push(subafdeling);
+      }
+    }
+  }
+
+"""
+          if nf_block.strip() not in text:
+              if marker not in text:
+                  raise SystemExit('excel: payload.p marker niet gevonden')
+              text = text.replace(marker, nf_block + marker, 1)
+
+          text = text.replace(
+              '        Subafdeling: "",\n        Nasa: nasa,',
+              '        Subafdeling: decodeSubafdelingCode(String(row[5] ?? "")),\n        Nasa: nasa,',
+              1
+          )
+
+          text = text.replace(
+              '    AfdelingenNietGevuld: afdelingenNietGevuld,\n    Producten: producten,',
+              '    AfdelingenNietGevuld: afdelingenNietGevuld,\n    NietGevuldGroepen: nietGevuldGroepen,\n    Producten: producten,',
+              1
+          )
+
+          decode_marker = """function decodeStatusCode(code: string): string {
+"""
+          decode_helpers = """function decodeSubafdelingCode(code: string): string {
+  const clean = String(code || "").trim();
+  if (clean === "Z") return "Zuivel";
+  if (clean === "B") return "Boter";
+  if (clean === "K") return "Kaas/Vleeswaren";
+  if (clean === "I") return "Vis";
+  if (clean === "C") return "Kip";
+  if (clean === "V") return "Vlees/Vega";
+  if (clean === "M") return "Maaltijden";
+  if (clean === "S") return "Sappen";
+  if (clean === "P") return "Panklaar";
+  return clean;
+}
+
+function afdelingForSubafdeling(subafdeling: string): string {
+  const clean = normalize(subafdeling);
+  if (clean === normalize("Zuivel") || clean === normalize("Boter")) return "Zuivel";
+  if (clean === normalize("Kaas/Vleeswaren")) return "Kaas/Vleeswaren";
+  if (clean === normalize("Vis") || clean === normalize("Kip") || clean === normalize("Vlees/Vega") || clean === normalize("Vlees") || clean === normalize("Vega")) return "Vlees/Vis/Kip/Vega";
+  if (clean === normalize("Maaltijden") || clean === normalize("Sappen")) return "Maaltijden/Sappen";
+  if (clean === normalize("Panklaar")) return "Panklaar";
+  return "";
+}
+
+"""
+          if 'function decodeSubafdelingCode' not in text:
+              if decode_marker not in text:
+                  raise SystemExit('excel: decoder invoegpunt niet gevonden')
+              text = text.replace(decode_marker, decode_helpers + decode_marker, 1)
+
+          detail_end = """    details.push({
+      DatumKey: datumKey,
+      DatumTijd: datumTijd,
+      Shiftleider: shiftleider,
+      Afdeling: afdeling,
+      Subafdeling: productText(p, "Subafdeling", "S"),
+      Nasa: productText(p, "Nasa", "N"),
+      Productnaam: productText(p, "Productnaam", "P"),
+      Status: status,
+      Medewerker: productText(p, "MedewerkerNaam", "M"),
+      TeltMee: teltMee,
+      Correct: correct
+    });
+  }
+
+  const samenvatting: AfdelingSamenvatting[] = [];
+"""
+          detail_new = """    details.push({
+      DatumKey: datumKey,
+      DatumTijd: datumTijd,
+      Shiftleider: shiftleider,
+      Afdeling: afdeling,
+      Subafdeling: productText(p, "Subafdeling", "S"),
+      Nasa: productText(p, "Nasa", "N"),
+      Productnaam: productText(p, "Productnaam", "P"),
+      Status: status,
+      Medewerker: productText(p, "MedewerkerNaam", "M"),
+      TeltMee: teltMee,
+      Correct: correct
+    });
+  }
+
+  for (const subafdeling of payload.NietGevuldGroepen || []) {
+    const afdeling = afdelingForSubafdeling(subafdeling);
+    if (!afdeling) continue;
+    details.push({
+      DatumKey: datumKey,
+      DatumTijd: datumTijd,
+      Shiftleider: shiftleider,
+      Afdeling: afdeling,
+      Subafdeling: subafdeling,
+      Nasa: "",
+      Productnaam: "",
+      Status: "Afdeling niet gevuld",
+      Medewerker: "",
+      TeltMee: false,
+      Correct: false
+    });
+  }
+
+  const samenvatting: AfdelingSamenvatting[] = [];
+"""
+          if detail_end not in text:
+              raise SystemExit('excel: detail invoegpunt niet gevonden')
+          text = text.replace(detail_end, detail_new, 1)
+          text = text.replace('    ProductDetailsAanwezig: producten.length > 0', '    ProductDetailsAanwezig: details.length > 0', 1)
+
+          # Meer dashboardregels voor maximaal 28 producten + niet-gevulde groepsregels.
+          replacements = {
+              'A5:E35': 'A5:E48',
+              'A9:F35': 'A9:F48',
+              'A8:E35': 'A8:E48',
+              'for (let row = 8; row <= 34; row++)': 'for (let row = 8; row <= 47; row++)',
+              'A8:N35': 'A8:N48'
+          }
+          for old_s, new_s in replacements.items():
+              text = text.replace(old_s, new_s)
+          text = text.replace('    "NASA",\n    "Resultaat",', '    "NASA / groep",\n    "Resultaat",', 1)
+
+          old_formula = """  sheet.getRangeByIndexes(zeroBasedRow, 1, 1, 1).setFormula(`=IFERROR(INDEX(FILTER('${DATA_SHEET_NAME}'!$J$2:$J$5000,${condition}),${index}),"")`);
+"""
+          new_formula = """  sheet.getRangeByIndexes(zeroBasedRow, 1, 1, 1).setFormula(`=LET(n,IFERROR(INDEX(FILTER('${DATA_SHEET_NAME}'!$J$2:$J$5000,${condition}),${index}),""),g,IFERROR(INDEX(FILTER('${DATA_SHEET_NAME}'!$Q$2:$Q$5000,${condition}),${index}),""),IF(n<>"",n,g))`);
+"""
+          if old_formula not in text:
+              raise SystemExit('excel: NASA dashboardformule niet gevonden')
+          text = text.replace(old_formula, new_formula, 1)
+
+          # Voeg Subafdeling als nieuwe kolom Q toe; bestaande A:P-data blijft op exact dezelfde plek staan.
+          old_headers = '    "Controle percentage",\n    "Run timestamp"\n  ];'
+          new_headers = '    "Controle percentage",\n    "Run timestamp",\n    "Subafdeling"\n  ];'
+          if old_headers not in text:
+              raise SystemExit('excel: historyHeaders niet gevonden')
+          text = text.replace(old_headers, new_headers, 1)
+
+          row_pattern = '        analyse.PercentageTekst,\n        runTimestamp\n      ]);'
+          if text.count(row_pattern) < 2:
+              raise SystemExit('excel: historie-rijpatroon onvoldoende gevonden')
+          text = text.replace(row_pattern, '        analyse.PercentageTekst,\n        runTimestamp,\n        r.Subafdeling\n      ]);', 1)
+          text = text.replace(row_pattern, '        analyse.PercentageTekst,\n        runTimestamp,\n        ""\n      ]);', 1)
+
+          missing_pattern = '    "-",\n    now.getTime()\n  ]]);'
+          if missing_pattern not in text:
+              raise SystemExit('excel: missing-rij niet gevonden')
+          text = text.replace(missing_pattern, '    "-",\n    now.getTime(),\n    ""\n  ]]);', 1)
+
+          text = text.replace(
+              '  sheet.getRange("P:P").setNumberFormatLocal("0");',
+              '  sheet.getRange("P:P").setNumberFormatLocal("0");\n  sheet.getRange("Q:Q").setNumberFormatLocal("@");'
+          )
+
+          # In directe detailweergave: toon subafdeling bij een synthetische niet-gevuld-regel.
+          text = text.replace('    detail.Nasa,\n    directStatusText(detail.Status),', '    detail.Nasa || detail.Subafdeling,\n    directStatusText(detail.Status),', 1)
+
+          if 'NietGevuldGroepen?: string[]' not in text or '"Subafdeling"' not in text or 'A9:F48' not in text:
+              raise SystemExit('excel: compatibiliteitspatch incompleet')
+          path.write_text(text, encoding='utf-8')
+
+          # Laat de tijdelijke workflow niet in de uiteindelijke beta staan.
+          Path('.github/workflows/apply-beta-configurable-flow-v4.yml').unlink()
+          PY
+
+      - name: Validate JavaScript syntax
+        shell: bash
+        run: |
+          node --check js/pager.js
+          node --check js/forms.js
+
+      - name: Commit beta configurable flow
+        shell: bash
+        run: |
+          git config user.name 'AH-Oisterwijk'
+          git config user.email 'Bob.Schegget@ah.nl'
+          git add js/pager.js js/forms.js fifo_shift_overdracht.ts .github/workflows/apply-beta-configurable-flow-v4.yml
+          git commit -m 'Add configurable single-product beta flow with Excel v4 logging'
+          git push origin beta
