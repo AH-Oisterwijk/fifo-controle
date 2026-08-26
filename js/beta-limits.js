@@ -52,11 +52,13 @@ function fifoEstimatedFormsUrlLength(overrides){
       ? rule.count
       : Math.max(rule.count, configured || rule.count);
     const notFilled = !!fifoFlow.pendingNotFilled[rule.subafdeling];
+    const pool = productsForSelectionGroup(rule.subafdeling);
 
     for(let i = 0; i < count; i++){
+      const source = pool[i] || {};
       products.push({
         Afdeling: rule.afdeling,
-        Nasa: '999999',
+        Nasa: String(source.Nasa || ''),
         Status: notFilled ? 'Niet gevuld' : 'Goed',
         MedewerkerNaam: '',
         AfdelingNietGevuld: notFilled
@@ -65,7 +67,7 @@ function fifoEstimatedFormsUrlLength(overrides){
   });
 
   const record = {
-    DatumTijd: '26/08/2026 20:12',
+    DatumTijd: typeof formatDateTime === 'function' ? formatDateTime(new Date()) : new Date().toISOString(),
     DagKey: dayKey,
     Shiftleider: leader,
     Scores: scores,
