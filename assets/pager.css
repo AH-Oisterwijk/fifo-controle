@@ -1,35 +1,126 @@
-/* Beta-experiment: één hoofdafdeling en één product tegelijk. */
-.fifo-department-pager{margin:18px 0 26px}
-.fifo-pager-stage{scroll-margin-top:8px}
-.fifo-pager-nav{display:grid;grid-template-columns:minmax(110px,1fr) minmax(180px,2fr) minmax(110px,1fr);align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow);margin:10px 0}
-.fifo-pager-btn{border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;border-radius:12px;padding:12px 10px;font-size:14px;font-weight:900;cursor:pointer}
-.fifo-pager-next{background:#2563eb;color:#fff;border-color:#2563eb}
-.fifo-pager-btn:disabled{opacity:.35;cursor:not-allowed}
-.fifo-pager-position{text-align:center;display:grid;gap:2px;min-width:0}
-.fifo-pager-position strong{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fifo-pager-position span{font-size:12px;color:#64748b;font-weight:700}
-.fifo-department-pager .fifo-group{margin:12px 0}
-.fifo-product-nav{max-width:620px;margin:10px auto 12px}
-.fifo-product-position{max-width:620px;margin:8px auto 10px;text-align:center;color:#475569;font-size:13px}
-.fifo-single-product-grid{display:block!important}
-.fifo-single-product{max-width:620px;margin:0 auto}
-.fifo-single-product .fifo-product-card{width:100%;margin:0}
-.fifo-no-products{max-width:620px;margin:0 auto;border:1px dashed #cbd5e1;background:#f8fafc;color:#475569;border-radius:16px;padding:22px 16px;text-align:center;font-size:14px;font-weight:700}
+/* Beta UX: startinstellingen + één product per scherm. */
+html,body{height:100%}
+body.fifo-flow-running,body.fifo-flow-setup{overflow:hidden}
+.fifo-flow-app{height:100dvh;max-width:760px;padding:8px 10px;display:flex;flex-direction:column;overflow:hidden}
+.fifo-flow-content{flex:1;min-height:0;display:flex;flex-direction:column}
 
-@media(max-width:640px){
-  .fifo-department-pager{margin:10px 0 18px}
-  .fifo-pager-nav{grid-template-columns:1fr 1fr;gap:7px;padding:8px;margin:8px 0}
-  .fifo-pager-position{grid-column:1/-1;grid-row:1;padding:1px 0 3px}
-  .fifo-pager-btn{grid-row:2;padding:12px 6px;font-size:13px;line-height:1.2}
-  .fifo-department-pager .fifo-group-title{margin-top:0}
-  .fifo-department-pager .fifo-group{margin-top:8px}
-  .fifo-product-nav{margin:7px 0 9px}
-  .fifo-single-product{width:100%}
-  .fifo-single-product .fifo-product-card{padding:12px;border-radius:16px}
-  .fifo-single-product .fifo-product-card h3{min-height:0;margin:9px 0}
-  .fifo-single-product .fifo-qr{margin:6px auto 8px}
-  .fifo-single-product .fifo-qr svg{width:155px;height:155px}
-  .fifo-single-product .fifo-nasa-row{margin:6px 0 8px}
-  .fifo-single-product .fifo-product-tools{margin:-1px 0 8px}
-  .fifo-single-product .fifo-actions button{padding:12px 4px}
+/* Startscherm */
+.fifo-flow-setup-header{display:flex;align-items:center;min-height:48px;padding:2px 2px 5px}
+.fifo-flow-setup-header h1{font-size:24px;line-height:1;margin:0 0 3px;font-weight:850}
+.fifo-flow-setup-header p{margin:0;color:#64748b;font-size:12px}
+.fifo-flow-leader{display:grid;grid-template-columns:minmax(120px,.8fr) minmax(180px,1.2fr);align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:7px 9px;margin-bottom:7px}
+.fifo-flow-leader label{font-size:12px;font-weight:850;color:#334155}
+.fifo-flow-leader select{width:100%;min-width:0;border:1px solid var(--line);border-radius:10px;padding:8px 9px;font-size:14px;background:#fff}
+.fifo-setup-panel{height:100%;min-height:0;display:flex;flex-direction:column;gap:7px}
+.fifo-standard-toggle{display:flex;align-items:center;gap:9px;background:#eef6ff;border:1px solid #bfdbfe;border-radius:13px;padding:8px 10px;cursor:pointer}
+.fifo-standard-toggle input{width:19px;height:19px;accent-color:#2563eb;flex:0 0 auto}
+.fifo-standard-toggle span{min-width:0}
+.fifo-standard-toggle strong{display:block;font-size:13px;color:#1e3a8a}
+.fifo-standard-toggle small{display:block;font-size:10px;line-height:1.15;color:#64748b;margin-top:1px}
+.fifo-setup-grid{flex:1;min-height:0;display:grid;grid-template-columns:1fr;gap:4px;align-content:stretch}
+.fifo-setup-row{min-height:40px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;background:#fff;border:1px solid #dbe3ef;border-radius:11px;padding:4px 6px 4px 9px}
+.fifo-setup-row-notfilled{background:#f4f5f7;border-color:#d1d5db}
+.fifo-setup-row-name{display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0}
+.fifo-setup-row-name>strong{font-size:12px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fifo-setup-filled{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:850;color:#166534;white-space:nowrap;cursor:pointer}
+.fifo-setup-filled input{width:16px;height:16px;accent-color:#16a34a;margin:0}
+.fifo-setup-row-notfilled .fifo-setup-filled{color:#b91c1c}
+.fifo-count-control{display:grid;grid-template-columns:30px 28px 30px;align-items:center;gap:3px}
+.fifo-count-btn{width:30px;height:30px;border:1px solid #bfdbfe;border-radius:9px;background:#eff6ff;color:#1d4ed8;font-size:20px;font-weight:900;line-height:1;cursor:pointer;padding:0}
+.fifo-count-btn:disabled{opacity:.28;cursor:not-allowed}
+.fifo-count-value{text-align:center;font-size:14px;font-weight:900;color:#172033}
+.fifo-count-disabled{opacity:.48}
+.fifo-start-btn{height:48px;flex:0 0 48px;border:0;border-radius:13px;background:#2563eb;color:#fff;font-size:17px;font-weight:900;cursor:pointer}
+
+/* Bovenbalk na Start */
+.fifo-control-topbar{height:54px;flex:0 0 54px;display:grid;grid-template-columns:minmax(92px,1fr) minmax(120px,1.3fr) minmax(72px,.7fr);align-items:center;gap:7px;margin-bottom:5px}
+.fifo-top-action{height:43px;border:1px solid #cbd5e1;border-radius:11px;background:#fff;color:#334155;font-size:12px;font-weight:900;padding:0 7px;cursor:pointer}
+.fifo-top-reset{border-color:#fecaca;background:#fff7f7;color:#991b1b}
+.fifo-compact-progress{min-width:0}
+.fifo-compact-progress-line{display:flex;justify-content:space-between;gap:6px;font-size:10px;color:#64748b;font-weight:800;margin-bottom:3px}
+.fifo-compact-progress-line strong{font-size:11px;color:#334155}
+.fifo-compact-progress .fifo-progress{height:7px}
+
+/* Eén product */
+.fifo-flow-control{height:100%;min-height:0;display:flex;flex-direction:column;gap:5px}
+.fifo-flow-inline-warning{font-size:10px;color:#991b1b;background:#fff1f2;border:1px solid #fecdd3;border-radius:8px;padding:4px 7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fifo-current-meta{height:25px;flex:0 0 25px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 3px;color:#475569}
+.fifo-current-meta strong{font-size:13px;text-transform:uppercase;letter-spacing:.03em}
+.fifo-current-meta span{font-size:12px;font-weight:900;background:#eef2ff;border-radius:999px;padding:3px 8px}
+.fifo-flow-product{flex:1;min-height:0;display:flex;align-items:stretch;justify-content:center}
+.fifo-flow-product .fifo-product-card{width:100%;max-width:540px;height:100%;min-height:0;display:flex;flex-direction:column;padding:10px 12px;border-radius:16px;overflow:hidden}
+.fifo-flow-product .fifo-card-top{flex:0 0 auto}
+.fifo-flow-product .fifo-product-card h3{font-size:15px;line-height:1.15;min-height:0;margin:7px 0 5px}
+.fifo-flow-product .fifo-nasa-row{margin:3px 0 5px;padding:5px 8px;border-radius:9px}
+.fifo-flow-product .fifo-nasa-row strong{font-size:22px}
+.fifo-flow-product .fifo-product-tools{grid-template-columns:1fr 1fr;gap:6px;margin:0 0 5px}
+.fifo-flow-product .fifo-product-tools button{padding:7px 5px;font-size:11px;border-radius:9px}
+.fifo-flow-product .fifo-nasa-edit{margin:4px 0 5px;padding:7px}
+.fifo-flow-product .fifo-nasa-edit input{padding:7px 8px;font-size:17px}
+.fifo-flow-product .fifo-nasa-edit-actions{margin-top:5px;gap:5px}
+.fifo-flow-product .fifo-nasa-edit-actions button{padding:7px 5px}
+.fifo-flow-product .fifo-qr{flex:1;min-height:72px;margin:2px auto 5px;display:flex;align-items:center;justify-content:center}
+.fifo-flow-product .fifo-qr svg{width:min(116px,18vh);height:min(116px,18vh);border-width:5px}
+.fifo-flow-product .fifo-actions{gap:7px;flex:0 0 auto}
+.fifo-flow-product .fifo-actions button{min-height:45px;padding:8px 5px;font-size:15px;border-radius:11px}
+.fifo-flow-product .fifo-warning-panel{flex:0 0 auto;margin:5px 0 0;padding:6px 8px;border-radius:10px}
+.fifo-flow-product .fifo-warning-panel label{font-size:12px}
+.fifo-flow-product .fifo-warning-panel input[type='checkbox']{width:16px;height:16px}
+.fifo-flow-product .fifo-warning-panel select{margin-top:5px;padding:7px 8px;font-size:12px}
+.fifo-flow-product .fifo-warning-note{font-size:9px;margin-top:4px}
+.fifo-flow-nav{height:58px;flex:0 0 58px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fifo-flow-nav button{border:0;border-radius:13px;font-size:17px;font-weight:950;cursor:pointer;background:#e2e8f0;color:#334155}
+.fifo-flow-nav button:last-child{background:#2563eb;color:#fff}
+.fifo-flow-nav button:disabled{opacity:.3;cursor:not-allowed}
+
+/* Compacte eindpagina */
+.fifo-flow-summary{height:100%;min-height:0;display:flex;flex-direction:column;gap:8px;padding:2px 0 1px}
+.fifo-summary-score{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;flex:0 0 auto}
+.fifo-summary-score>div{border-radius:11px;padding:7px 5px;text-align:center;border:1px solid #e2e8f0;background:#fff}
+.fifo-summary-score strong{display:block;font-size:21px;line-height:1}
+.fifo-summary-score span{display:block;font-size:9px;font-weight:850;text-transform:uppercase;margin-top:3px;color:#64748b}
+.fifo-summary-good-box{background:#f0fdf4!important;border-color:#bbf7d0!important}.fifo-summary-good-box strong{color:#15803d}
+.fifo-summary-bad-box{background:#fef2f2!important;border-color:#fecaca!important}.fifo-summary-bad-box strong{color:#b91c1c}
+.fifo-summary-open-box{background:#fff7ed!important;border-color:#fed7aa!important}.fifo-summary-open-box strong{color:#c2410c}
+.fifo-summary-ready-box{background:#eff6ff!important;border-color:#bfdbfe!important}.fifo-summary-ready-box strong{color:#1d4ed8}
+.fifo-summary-dots{flex:1;min-height:50px;display:flex;align-content:flex-start;justify-content:center;flex-wrap:wrap;gap:5px;overflow:hidden;background:#fff;border:1px solid #e2e8f0;border-radius:13px;padding:9px}
+.fifo-summary-dot{width:15px;height:15px;border-radius:4px;background:#cbd5e1;border:1px solid rgba(15,23,42,.12)}
+.fifo-summary-good{background:#22c55e}.fifo-summary-bad{background:#ef4444}.fifo-summary-open{background:#f59e0b}
+.fifo-summary-empty{font-size:12px;color:#64748b;margin:auto}
+.fifo-summary-notfilled{display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:10px;color:#64748b;flex:0 0 auto}
+.fifo-summary-notfilled strong{color:#334155}.fifo-summary-notfilled span{background:#f1f5f9;border-radius:999px;padding:3px 6px;font-weight:800}
+.fifo-summary-blocked{flex:0 0 auto;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:7px 9px;color:#9a3412;font-size:11px;font-weight:800;text-align:center}
+.fifo-summary-actions{height:58px;flex:0 0 58px;display:grid;grid-template-columns:.8fr 1.2fr;gap:8px}
+.fifo-summary-actions button{border:0;border-radius:13px;font-weight:900;font-size:13px;cursor:pointer}
+.fifo-summary-back{background:#e2e8f0;color:#334155}
+.fifo-summary-save{background:#2563eb;color:#fff}
+.fifo-summary-save:disabled{opacity:.35;cursor:not-allowed}
+
+@media(min-width:700px){
+  .fifo-setup-grid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-height:700px){
+  .fifo-flow-app{padding-top:5px;padding-bottom:5px}
+  .fifo-flow-setup-header{min-height:42px}.fifo-flow-setup-header h1{font-size:21px}
+  .fifo-flow-leader{padding:5px 7px;margin-bottom:5px}
+  .fifo-standard-toggle{padding:6px 8px}
+  .fifo-setup-panel{gap:5px}.fifo-setup-grid{gap:3px}.fifo-setup-row{min-height:35px;padding-top:2px;padding-bottom:2px}
+  .fifo-count-btn{width:27px;height:27px}.fifo-count-control{grid-template-columns:27px 26px 27px}
+  .fifo-start-btn{height:43px;flex-basis:43px}
+  .fifo-control-topbar{height:48px;flex-basis:48px}.fifo-top-action{height:38px}
+  .fifo-flow-nav{height:52px;flex-basis:52px}.fifo-flow-nav button{font-size:15px}
+  .fifo-flow-product .fifo-qr svg{width:min(92px,14vh);height:min(92px,14vh)}
+  .fifo-flow-product .fifo-actions button{min-height:40px}
+}
+
+@media(max-width:380px){
+  .fifo-flow-app{padding-left:6px;padding-right:6px}
+  .fifo-flow-leader{grid-template-columns:1fr 1.25fr}
+  .fifo-flow-leader label{font-size:11px}
+  .fifo-setup-row-name>strong{font-size:11px}
+  .fifo-setup-filled{font-size:9px}
+  .fifo-control-topbar{grid-template-columns:90px 1fr 62px;gap:5px}
+  .fifo-top-action{font-size:10px;padding:0 4px}
+  .fifo-flow-product .fifo-product-card{padding:8px 9px}
 }
