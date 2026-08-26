@@ -1,7 +1,6 @@
 'use strict';
 
-// Laatste controle gebruikt de werkelijk opgebouwde, URL-encoded Microsoft Forms-link.
-// De grens hieronder is bewust conservatief omdat Microsoft geen Forms-specifiek maximum publiceert.
+// Laatste controle gebruikt de werkelijk opgebouwde, URL-encoded opslaglink.
 logToForms = function(){
   const leader = document.getElementById('leader').value;
   if(!leader){
@@ -31,14 +30,14 @@ logToForms = function(){
     prepareSubmitPage(
       record,
       '',
-      'De Microsoft Forms-koppeling ontbreekt nog. Plak eerst de prefilled Forms-link in config.js en upload die opnieuw.'
+      'De opslagkoppeling ontbreekt. Neem contact op met de beheerder.'
     );
     return;
   }
 
   const url = makeFormsUrl(record);
   if(url.length > FIFO_FORMS_URL_HARD_LIMIT){
-    alert(`De Microsoft Forms-link wordt te lang (${url.length} tekens; veilige grens ${FIFO_FORMS_URL_HARD_LIMIT}). Verlaag het aantal producten of het aantal waarschuwingen en probeer opnieuw.`);
+    alert('Deze controle bevat te veel gegevens om betrouwbaar op te slaan. Verlaag het aantal extra producten of het aantal aangesproken medewerkers en probeer opnieuw.');
     return;
   }
 
