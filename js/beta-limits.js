@@ -1,12 +1,10 @@
 'use strict';
 
-// Microsoft publiceert geen Forms-specifieke harde maximumlengte voor prefilled links.
-// Daarom controleert deze versie de werkelijk encoded URL en gebruikt hij een conservatief
-// operationeel budget: 6000 als harde grens, plus 1200 extra reserve tijdens de setup voor
-// namen/waarschuwingen die pas tijdens de controle kunnen ontstaan.
-const FIFO_FORMS_URL_HARD_LIMIT = 6000;
-const FIFO_FORMS_URL_SETUP_RESERVE = 1200;
-const FIFO_FORMS_URL_SETUP_LIMIT = FIFO_FORMS_URL_HARD_LIMIT - FIFO_FORMS_URL_SETUP_RESERVE;
+// De complete encoded opslag-URL blijft bewust ruim onder de praktische ~2000-tekengrens.
+// Tijdens de setup rekenen we bovendien alvast met drie ongunstige waarschuwingen:
+// lange productnamen + lange, verschillende medewerker-namen.
+const FIFO_FORMS_URL_HARD_LIMIT = 1750;
+const FIFO_WARNING_RESERVE_PRODUCTS = 3;
 
 function fifoConfiguredProductRows(overrides){
   const replacement = overrides || {};
@@ -28,21 +26,25 @@ fifoMaxForGroup = function(groupKey){
   return Math.max(minimum, poolSize);
 };
 
-function fifoEstimatedFormsUrlLength(overrides){
-  if(typeof configuredFormsUrl !== 'function' || typeof makeFormsUrl !== 'function') return 0;
-  if(!configuredFormsUrl()) return 0;
+function fifoEncodedLength(value){
+  return encodeURIComponent(String(value || '')).length;
+}
 
+function fifoLongestNames(values, count){
+  return (values || [])
+    .map(value => String(value || '').trim())
+    .filter(Boolean)
+    .sort((a,b) => fifoEncodedLength(b) - fifoEncodedLength(a))
+    .slice(0, count);
+}
+
+function fifoWarningProductLength(product){
+  return fifoEncodedLength(`${product && product.Productnaam ? product.Productnaam : 'Onbekend product'} (${product && product.Nasa ? product.Nasa : '-'})`);
+}
+
+function fifoProjectedProducts(overrides){
   const replacement = overrides || {};
-  const dayKey = document.getElementById('dateInput').value || todayKey();
-  const leader = (document.getElementById('leader').value || 'Shiftleider').trim();
-  const products = [];
-  const scores = {};
-  const statuses = {};
-
-  departmentOrder.forEach(afdeling => {
-    scores[afdeling] = '0/0';
-    statuses[afdeling] = {Status:'Gevuld', Score:'0/0'};
-  });
+  const projected = [];
 
   subCounts.forEach(rule => {
     const configured = Object.prototype.hasOwnProperty.call(replacement, rule.subafdeling)
@@ -52,18 +54,79 @@ function fifoEstimatedFormsUrlLength(overrides){
       ? rule.count
       : Math.max(rule.count, configured || rule.count);
     const notFilled = !!fifoFlow.pendingNotFilled[rule.subafdeling];
-    const pool = productsForSelectionGroup(rule.subafdeling);
+
+    // Voor de veiligheidsberekening nemen we binnen elke groep juist de langste productteksten.
+    const pool = productsForSelectionGroup(rule.subafdeling)
+      .slice()
+      .sort((a,b) => fifoWarningProductLength(b) - fifoWarningProductLength(a));
 
     for(let i = 0; i < count; i++){
       const source = pool[i] || {};
-      products.push({
+      projected.push({
         Afdeling: rule.afdeling,
         Nasa: String(source.Nasa || ''),
+        Productnaam: String(source.Productnaam || ''),
         Status: notFilled ? 'Niet gevuld' : 'Goed',
         MedewerkerNaam: '',
         AfdelingNietGevuld: notFilled
       });
     }
+  });
+
+  return projected;
+}
+
+function fifoAddWarningSafetyReserve(record){
+  const candidates = (record.Producten || [])
+    .map((product, index) => ({product, index}))
+    .filter(item => !item.product.AfdelingNietGevuld)
+    .sort((a,b) => fifoWarningProductLength(b.product) - fifoWarningProductLength(a.product));
+
+  const fallbackNames = [
+    'Medewerker met lange achternaam',
+    'Medewerker met dubbele achternaam',
+    'Medewerker met extra lange naam'
+  ];
+  const employeeNames = fifoLongestNames(typeof medewerkers !== 'undefined' ? medewerkers : [], FIFO_WARNING_RESERVE_PRODUCTS);
+  while(employeeNames.length < FIFO_WARNING_RESERVE_PRODUCTS){
+    employeeNames.push(fallbackNames[employeeNames.length]);
+  }
+
+  const reserveCount = Math.min(FIFO_WARNING_RESERVE_PRODUCTS, candidates.length);
+  for(let i = 0; i < reserveCount; i++){
+    const candidate = candidates[i];
+    const product = candidate.product;
+    const employeeName = employeeNames[i];
+
+    product.Status = 'Fout';
+    product.MedewerkerNaam = employeeName;
+
+    record.Waarschuwingen.push({
+      DatumGegeven: record.DagKey,
+      NaamMedewerker: employeeName,
+      Reden: 'Niet FIFO',
+      Officieel: 'Nee',
+      ShiftleiderManager: record.Shiftleider,
+      Opmerkingen: `${product.Productnaam || 'Onbekend product'} (${product.Nasa || '-'})`
+    });
+  }
+}
+
+function fifoEstimatedFormsUrlLength(overrides){
+  if(typeof configuredFormsUrl !== 'function' || typeof makeFormsUrl !== 'function') return 0;
+  if(!configuredFormsUrl()) return 0;
+
+  const dayKey = document.getElementById('dateInput').value || todayKey();
+  const selectedLeader = (document.getElementById('leader').value || '').trim();
+  const longestLeader = fifoLongestNames(typeof leaders !== 'undefined' ? leaders : [], 1)[0] || 'Shiftleider / Manager';
+  const leader = selectedLeader || longestLeader;
+  const products = fifoProjectedProducts(overrides);
+  const scores = {};
+  const statuses = {};
+
+  departmentOrder.forEach(afdeling => {
+    scores[afdeling] = '0/0';
+    statuses[afdeling] = {Status:'Gevuld', Score:'0/0'};
   });
 
   const record = {
@@ -77,6 +140,7 @@ function fifoEstimatedFormsUrlLength(overrides){
     Waarschuwingen: []
   };
 
+  fifoAddWarningSafetyReserve(record);
   return makeFormsUrl(record).length;
 }
 
@@ -88,7 +152,7 @@ function fifoProjectedCountForGroup(groupKey, nextCount){
 
 function fifoFitsSetupUrlBudget(groupKey, nextCount){
   const estimated = fifoProjectedCountForGroup(groupKey, nextCount);
-  return estimated === 0 || estimated <= FIFO_FORMS_URL_SETUP_LIMIT;
+  return estimated === 0 || estimated <= FIFO_FORMS_URL_HARD_LIMIT;
 }
 
 // Eerder gekozen aangepaste aantallen blijven bewaard wanneer Standaard tijdelijk wordt aangezet.
@@ -127,15 +191,7 @@ const fifoBaseRenderSetupForLimits = fifoRenderSetup;
 fifoRenderSetup = function(){
   fifoBaseRenderSetupForLimits();
 
-  const total = fifoConfiguredProductRows();
-  const estimated = fifoEstimatedFormsUrlLength();
-  const toggle = document.querySelector('.fifo-standard-toggle small');
-  if(toggle){
-    toggle.textContent = estimated > 0
-      ? `Uitvinken om per subafdeling extra producten toe te voegen. ${total} producten · geschatte Forms-link ${estimated}/${FIFO_FORMS_URL_SETUP_LIMIT} tekens (+${FIFO_FORMS_URL_SETUP_RESERVE} reserve).`
-      : `Uitvinken om per subafdeling extra producten toe te voegen. ${total} producten. De Forms-lengte wordt bij opslaan gecontroleerd.`;
-  }
-
+  // Geen technische limiettekst in de eindgebruikers-UI: alleen onveilige '+'-stappen blokkeren.
   document.querySelectorAll('.fifo-count-btn[data-action="plus"]').forEach(btn => {
     if(btn.disabled) return;
     const groupKey = btn.dataset.group;
@@ -149,8 +205,8 @@ fifoRenderSetup = function(){
 const fifoBaseStartControlForLimits = fifoStartControl;
 fifoStartControl = function(){
   const estimated = fifoEstimatedFormsUrlLength();
-  if(estimated > FIFO_FORMS_URL_SETUP_LIMIT){
-    alert(`Deze instelling maakt de geschatte Microsoft Forms-link te lang (${estimated} tekens). Houd maximaal ${FIFO_FORMS_URL_SETUP_LIMIT} tekens aan; zo blijft ${FIFO_FORMS_URL_SETUP_RESERVE} tekens reserve voor namen en waarschuwingen.`);
+  if(estimated > FIFO_FORMS_URL_HARD_LIMIT){
+    alert('Deze controle bevat te veel extra producten om betrouwbaar op te slaan. Verlaag het aantal extra producten en probeer opnieuw.');
     return;
   }
   fifoBaseStartControlForLimits();
