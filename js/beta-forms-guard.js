@@ -1,8 +1,7 @@
 'use strict';
 
-// Beta-only extra beveiliging: geen onvolledige controle opslaan en geen te lange prefilled Forms-link openen.
-const FIFO_SAFE_FORMS_URL_LENGTH = 7600;
-
+// Laatste controle gebruikt de werkelijk opgebouwde, URL-encoded Microsoft Forms-link.
+// 6000 is bewust lager dan de oude beta-grens van 7600 om operationele veiligheidsmarge te houden.
 logToForms = function(){
   const leader = document.getElementById('leader').value;
   if(!leader){
@@ -38,8 +37,8 @@ logToForms = function(){
   }
 
   const url = makeFormsUrl(record);
-  if(url.length > FIFO_SAFE_FORMS_URL_LENGTH){
-    alert(`De Microsoft Forms-link wordt te lang (${url.length} tekens). Verlaag het aantal producten en probeer opnieuw.`);
+  if(url.length > FIFO_FORMS_URL_HARD_LIMIT){
+    alert(`De Microsoft Forms-link wordt te lang (${url.length} tekens; veilige grens ${FIFO_FORMS_URL_HARD_LIMIT}). Verlaag het aantal producten of het aantal waarschuwingen en probeer opnieuw.`);
     return;
   }
 
