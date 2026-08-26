@@ -9,42 +9,35 @@
   <script src="config.js"></script>
 </head>
 <body>
-  <div class="fifo-app" id="controlPage">
-    <section class="fifo-header">
+  <div class="fifo-app fifo-flow-app" id="controlPage">
+    <header class="fifo-flow-setup-header" id="setupHeader">
       <div>
         <h1>FIFO Controle</h1>
         <p id="dateLabel"></p>
       </div>
-      <div class="fifo-header-actions"><button class="fifo-refresh" id="refreshBtn" title="Ververs">↻</button></div>
-    </section>
-    <section class="fifo-card fifo-control">
-      <label for="leader">Shiftleider / Manager</label>
+    </header>
+
+    <section class="fifo-flow-leader" id="setupLeaderCard">
+      <label for="leader">Naam shiftleider / manager</label>
       <select id="leader">
         <option value="">Shiftleiders worden geladen...</option>
       </select>
     </section>
 
-    <input id="dateInput" type="hidden">
-
-    <section class="fifo-card">
-      <div class="fifo-progress-row">
-        <strong>Voortgang</strong>
-        <span id="progressText">0/17</span>
+    <header class="fifo-control-topbar fifo-hidden" id="controlTopbar">
+      <button type="button" class="fifo-top-action" id="fifoSettingsBtn">← Instellingen</button>
+      <div class="fifo-compact-progress">
+        <div class="fifo-compact-progress-line">
+          <span>Voortgang</span><strong id="progressText">0/0</strong>
+        </div>
+        <div class="fifo-progress"><div id="progressBar"></div></div>
       </div>
-      <div class="fifo-progress"><div id="progressBar"></div></div>
-      <div class="fifo-mini-stats" id="stats"></div>
-    </section>
-    <section class="fifo-card fifo-submit-card">
-      <button class="toolbtn primary formsLogBtn">Naar Microsoft Forms om op te slaan</button>
-      <button class="fifo-reset resetBtn" title="Reset controle">Reset controle</button>
-    </section>
+      <button type="button" class="fifo-top-action fifo-top-reset" id="fifoResetBtn">Reset</button>
+    </header>
 
-    <section id="content"></section>
-
-    <section class="fifo-card fifo-bottom-submit">
-      <button class="toolbtn primary formsLogBtn">Naar Microsoft Forms om op te slaan</button>
-      <button class="fifo-reset resetBtn" title="Reset controle">Reset controle</button>
-    </section>
+    <input id="dateInput" type="hidden">
+    <div id="stats" class="fifo-hidden"></div>
+    <main id="content" class="fifo-flow-content"></main>
   </div>
 
   <div class="fifo-submit-page fifo-hidden" id="submitPage">
