@@ -1,6 +1,5 @@
 'use strict';
 
-// Laatste controle gebruikt de werkelijk opgebouwde, URL-encoded opslaglink.
 logToForms = function(){
   const leader = document.getElementById('leader').value;
   if(!leader){
@@ -36,11 +35,6 @@ logToForms = function(){
   }
 
   const url = makeFormsUrl(record);
-  if(url.length > FIFO_FORMS_URL_HARD_LIMIT){
-    alert('Deze controle bevat te veel gegevens om betrouwbaar op te slaan. Verlaag het aantal extra producten of het aantal aangesproken medewerkers en probeer opnieuw.');
-    return;
-  }
-
   prepareSubmitPage(record, url, '');
   window.location.href = url;
 };
