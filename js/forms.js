@@ -143,28 +143,23 @@ function buildFormsRecord(record){
   const productRows = (record.Producten || []).map(p => [
     encodeAfdelingCode(p.Afdeling),
     p.Nasa || '',
-    encodeStatusCode(p.Status, !!p.AfdelingNietGevuld),
-    p.MedewerkerNaam || ''
+    encodeStatusCode(p.Status, !!p.AfdelingNietGevuld)
   ]);
 
   const compact = {
-    v: 3,
+    v: 4,
     d: record.DagKey,
     dt: record.DatumTijd,
     s: record.Shiftleider,
     ng: (record.AfdelingenNietGevuld || []).map(encodeAfdelingCode),
     p: productRows,
-    // Datum en shiftleider staan al bovenin de payload. null laat het Office Script daarop terugvallen.
+    // Medewerker + volledige producttekst staan alleen hier; geen dubbele medewerkernaam meer in p.
     w: (record.Waarschuwingen || []).map(w => [
-      null,
       w.NaamMedewerker || '',
-      null,
       w.Opmerkingen || ''
     ])
   };
 
-  // Alleen nodig als er uitzonderlijk geen productregels zijn.
-  // Bij normale FIFO-runs berekent het Office Script de scores uit p.
   if(!productRows.length){
     compact.sc = compactScores(record.Scores);
   }

@@ -303,21 +303,46 @@ function expandCompactControlePayload(payload: ControlePayload & CompactControle
   }
 
   if (payload.w) {
+    const compactVersion = Number(payload.v || 0);
+
     for (const row of payload.w) {
-      const naamMedewerker = String(row[1] ?? "").trim();
+      const naamMedewerker = compactVersion >= 4
+        ? String(row[0] ?? "").trim()
+        : String(row[1] ?? "").trim();
 
       if (!naamMedewerker) {
         continue;
       }
 
       waarschuwingen.push({
-        DatumGegeven: String(row[0] ?? payload.d ?? "").trim(),
+        DatumGegeven: compactVersion >= 4
+          ? String(payload.d ?? "").trim()
+          : String(row[0] ?? payload.d ?? "").trim(),
         NaamMedewerker: naamMedewerker,
         Reden: "Niet FIFO",
         Officieel: "Nee",
-        ShiftleiderManager: String(row[2] ?? payload.s ?? "").trim(),
-        Opmerkingen: String(row[3] ?? "").trim()
+        ShiftleiderManager: compactVersion >= 4
+          ? String(payload.s ?? "").trim()
+          : String(row[2] ?? payload.s ?? "").trim(),
+        Opmerkingen: compactVersion >= 4
+          ? String(row[1] ?? "").trim()
+          : String(row[3] ?? "").trim()
       });
+    }
+
+    // In v4 wordt de medewerkernaam niet dubbel per product verstuurd. Koppel hem terug via NASA
+    // uit de waarschuwingstekst, zodat 'Fout door ...' in FIFO Controle Details intact blijft.
+    if (compactVersion >= 4 && waarschuwingen.length > 0) {
+      for (const product of producten) {
+        if (String(product.MedewerkerNaam || "").trim() !== "") continue;
+        if (normalize(String(product.Status || "")) !== normalize("Fout")) continue;
+
+        const nasa = String(product.Nasa || "").trim();
+        if (!nasa) continue;
+        const marker = `(${nasa})`;
+        const warning = waarschuwingen.find(item => String(item.Opmerkingen || "").indexOf(marker) >= 0);
+        if (warning) product.MedewerkerNaam = warning.NaamMedewerker || "";
+      }
     }
   }
 
