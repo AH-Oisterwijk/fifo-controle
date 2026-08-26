@@ -1,7 +1,7 @@
 'use strict';
 
 // Laatste controle gebruikt de werkelijk opgebouwde, URL-encoded Microsoft Forms-link.
-// 6000 is bewust lager dan de oude beta-grens van 7600 om operationele veiligheidsmarge te houden.
+// De grens hieronder is bewust conservatief omdat Microsoft geen Forms-specifiek maximum publiceert.
 logToForms = function(){
   const leader = document.getElementById('leader').value;
   if(!leader){
