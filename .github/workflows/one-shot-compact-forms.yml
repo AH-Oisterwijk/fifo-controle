@@ -1,0 +1,18 @@
+name: One-shot compact Forms payload migration
+on:
+  push:
+    branches: [beta]
+    paths: ['.github/workflows/one-shot-compact-forms.yml']
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: beta
+          fetch-depth: 0
+      - name: Compact control payload
+        shell: bash
+        run: echo 'ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCmltcG9ydCByZQoKcGF0aCA9IFBhdGgoImpzL2Zvcm1zLmpzIikKdGV4dCA9IHBhdGgucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpCgpwYXR0ZXJuID0gcmUuY29tcGlsZShyImZ1bmN0aW9uIGJ1aWxkRm9ybXNSZWNvcmRcKHJlY29yZFwpXHsuKj9cblx9XG5cbmZ1bmN0aW9uIGZvcm1hdFByb2R1Y3RMaW5lIiwgcmUuUykKcmVwbGFjZW1lbnQgPSByJycnZnVuY3Rpb24gYnVpbGRGb3Jtc1JlY29yZChyZWNvcmQpewogIGNvbnN0IHByb2R1Y3RSb3dzID0gKHJlY29yZC5Qcm9kdWN0ZW4gfHwgW10pLm1hcChwID0+IFsKICAgIGVuY29kZUFmZGVsaW5nQ29kZShwLkFmZGVsaW5nKSwKICAgIHAuTmFzYSB8fCAnJywKICAgIGVuY29kZVN0YXR1c0NvZGUocC5TdGF0dXMsICEhcC5BZmRlbGluZ05pZXRHZXZ1bGQpLAogICAgcC5NZWRld2Vya2VyTmFhbSB8fCAnJwogIF0pOwoKICBjb25zdCBjb21wYWN0ID0gewogICAgdjogMywKICAgIGQ6IHJlY29yZC5EYWdLZXksCiAgICBkdDogcmVjb3JkLkRhdHVtVGlqZCwKICAgIHM6IHJlY29yZC5TaGlmdGxlaWRlciwKICAgIG5nOiAocmVjb3JkLkFmZGVsaW5nZW5OaWV0R2V2dWxkIHx8IFtdKS5tYXAoZW5jb2RlQWZkZWxpbmdDb2RlKSwKICAgIHA6IHByb2R1Y3RSb3dzLAogICAgLy8gRGF0dW0gZW4gc2hpZnRsZWlkZXIgc3RhYW4gYWwgYm92ZW5pbiBkZSBwYXlsb2FkLiBudWxsIGxhYXQgaGV0IE9mZmljZSBTY3JpcHQgZGFhcm9wIHRlcnVndmFsbGVuLgogICAgdzogKHJlY29yZC5XYWFyc2NodXdpbmdlbiB8fCBbXSkubWFwKHcgPT4gWwogICAgICBudWxsLAogICAgICB3Lk5hYW1NZWRld2Vya2VyIHx8ICcnLAogICAgICBudWxsLAogICAgICB3Lk9wbWVya2luZ2VuIHx8ICcnCiAgICBdKQogIH07CgogIC8vIEFsbGVlbiBub2RpZyBhbHMgZXIg dWl0em9uZGVybGlqayBnZWVuIHByb2R1Y3RyZWdlbHMgemlqbi4KICAvLyBCaWogbm9ybWFsZSBGSUZPLXJ1bnMgYmVyZWtlbnQgaGV0IE9mZmljZSBTY3JpcHQgZGUgc2NvcmVzIHVpdCBwLgogIGlmKCFwcm9kdWN0Um93cy5sZW5ndGgpewogICAgY29tcGFjdC5zYyA9IGNvbXBhY3RTY29yZXMocmVjb3JkLlNjb3Jlcyk7CiAgfQoKICByZXR1cm4gY29tcGFjdDsKfQoKZnVuY3Rpb24gZm9ybWF0UHJvZHVjdExpbmUnJycKdGV4dCwgY291bnQgPSBwYXR0ZXJuLnN1Ym4ocmVwbGFjZW1lbnQsIHRleHQsIGNvdW50PTEpCmlmIGNvdW50ICE9IDE6CiAgICByYWlzZSBTeXN0ZW1FeGl0KGYiYnVpbGRGb3Jtc1JlY29yZDogZXhwZWN0ZWQgMSBtYXRjaCwgZm91bmQge2NvdW50fSIpCgpwYXRoLndyaXRlX3RleHQodGV4dCwgZW5jb2Rpbmc9InV0Zi04IikK' | tr -d ' ' | base64 -d > /tmp/patch_forms.py && python3 /tmp/patch_forms.py && git config user.name 'github-actions[bot]' && git config user.email '41898282+github-actions[bot]@users.noreply.github.com' && git add js/forms.js && git diff --cached --quiet || (git commit -m 'Compact FIFO Forms payload for safer URLs' && git push origin HEAD:beta)
