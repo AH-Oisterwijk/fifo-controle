@@ -1,9 +1,9 @@
 'use strict';
 
 // Microsoft publiceert geen Forms-specifieke harde maximumlengte voor prefilled links.
-// De oude beta gebruikte 7600 tekens. Deze versie controleert de werkelijk encoded URL
-// en houdt bewust marge: 6000 als harde operationele grens, plus 1200 extra reserve
-// tijdens de setup voor namen/waarschuwingen die pas tijdens de controle kunnen ontstaan.
+// Daarom controleert deze versie de werkelijk encoded URL en gebruikt hij een conservatief
+// operationeel budget: 6000 als harde grens, plus 1200 extra reserve tijdens de setup voor
+// namen/waarschuwingen die pas tijdens de controle kunnen ontstaan.
 const FIFO_FORMS_URL_HARD_LIMIT = 6000;
 const FIFO_FORMS_URL_SETUP_RESERVE = 1200;
 const FIFO_FORMS_URL_SETUP_LIMIT = FIFO_FORMS_URL_HARD_LIMIT - FIFO_FORMS_URL_SETUP_RESERVE;
