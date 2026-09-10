@@ -209,7 +209,7 @@ Het dashboard bevat een dagselectie en weekselectie. Formules reageren op de gek
 
 Bij een nieuwe `fifo`-run wordt de dashboardselectie automatisch op de datum en week van die nieuwe run gezet.
 
-Zonder FIFO-registratie toont het dashboard vóór 21:15 `Niet geregistreerd` en na 21:15 `Vergeten FIFO controle`. Bestaande historische `MISSING`-regels blijven als vergeten controle zichtbaar.
+Zonder FIFO-registratie toont `FIFO Controle Details` vóór 21:15 `Niet geregistreerd` en na 21:15 `Niet uitgevoerd`. Bestaande historische `MISSING`-regels blijven als `Niet uitgevoerd` zichtbaar.
 
 ## Shift Overdracht
 
@@ -240,7 +240,7 @@ De huidige opzet gebruikt twee flows:
 1. Forms-inzending verwerken (`mode = fifo`).
 2. Medewerkers en shiftleiders vanuit Excel naar GitHub exporteren.
 
-Een aparte scheduled flow voor vergeten FIFO-controles is niet meer nodig. `FIFO Controle Details` bepaalt de status formulematig op basis van 21:15.
+Een aparte scheduled flow voor niet-uitgevoerde FIFO-controles is niet meer nodig. `FIFO Controle Details` bepaalt de status formulematig op basis van 21:15. De afzonderlijke weekbladen kunnen dezelfde status rechtstreeks uit `FIFO Controle Data` afleiden.
 
 De concrete acties en parameters staan in `POWER_AUTOMATE_SETUP.md`.
 
