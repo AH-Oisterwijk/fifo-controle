@@ -1,0 +1,95 @@
+name: Sync personenlijsten
+
+on:
+  repository_dispatch:
+    types: [sync-personen]
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: sync-personen
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Maak CSV bestanden uit payload
+        env:
+          PAYLOAD: ${{ toJSON(github.event.client_payload) }}
+        run: |
+          node <<'NODE'
+          const fs = require("fs");
+
+          const payload = JSON.parse(process.env.PAYLOAD || "{}");
+
+          function cleanCsv(value, name) {
+            if (typeof value !== "string" || !value.trim()) {
+              throw new Error(`${name} ontbreekt of is leeg`);
+            }
+
+            let text = value
+              .replace(/\r\n/g, "\n")
+              .replace(/\r/g, "\n");
+
+            if (!text.endsWith("\n")) {
+              text += "\n";
+            }
+
+            return text;
+          }
+
+          fs.writeFileSync(
+            "/tmp/medewerkers.csv",
+            cleanCsv(payload.medewerkersCsv, "medewerkersCsv"),
+            "utf8"
+          );
+
+          fs.writeFileSync(
+            "/tmp/shiftleiders.csv",
+            cleanCsv(payload.shiftleidersCsv, "shiftleidersCsv"),
+            "utf8"
+          );
+          NODE
+
+      - name: Werk main en beta bij
+        id: update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          changed_any=0
+
+          for branch in main beta; do
+            git fetch origin "$branch"
+            git checkout -B "$branch" "origin/$branch"
+
+            cp /tmp/medewerkers.csv data/medewerkers.csv
+            cp /tmp/shiftleiders.csv data/shiftleiders.csv
+
+            if ! git diff --quiet -- data/medewerkers.csv data/shiftleiders.csv; then
+              git add data/medewerkers.csv data/shiftleiders.csv
+              git commit -m "Sync personenlijsten vanuit Excel"
+              git push origin "HEAD:$branch"
+              changed_any=1
+            else
+              echo "Geen wijzigingen op $branch"
+            fi
+          done
+
+          echo "changed=$changed_any" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy GitHub Pages
+        if: steps.update.outputs.changed == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run pages.yml --ref main
