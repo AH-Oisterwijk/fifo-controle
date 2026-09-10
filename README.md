@@ -189,13 +189,6 @@ Ondersteunde modes:
 
 Verwerkt een Forms-inzending, schrijft de uitslag naar de juiste week/dagcel, voegt de historische regels toe aan `FIFO Controle Data`, vernieuwt `FIFO Controle Details` en schrijft eventuele waarschuwingen.
 
-### `missing`
-
-Registreert een niet-uitgevoerde controle als de betreffende dagcel nog leeg is:
-
-```text
-Niet uitgevoerd 🙁
-```
 
 ### `setup`
 
@@ -214,9 +207,9 @@ Als één van beide ontbreekt, wordt het ontbrekende blad automatisch aangemaakt
 
 Het dashboard bevat een dagselectie en weekselectie. Formules reageren op de gekozen datum/week en blijven dus niet op de laatst uitgevoerde controle hangen.
 
-Bij een nieuwe `fifo`- of `missing`-run wordt de dashboardselectie automatisch op de datum en week van die nieuwe run gezet.
+Bij een nieuwe `fifo`-run wordt de dashboardselectie automatisch op de datum en week van die nieuwe run gezet.
 
-De weekwaarde `Niet uitgevoerd` telt de zichtbare dagen met status `Niet uitgevoerd`; dubbele ruwe `MISSING`-regels tellen daardoor niet meerdere keren mee.
+Zonder FIFO-registratie toont het dashboard vóór 21:15 `Niet geregistreerd` en na 21:15 `Vergeten FIFO controle`. Bestaande historische `MISSING`-regels blijven als vergeten controle zichtbaar.
 
 ## Shift Overdracht
 
@@ -242,11 +235,12 @@ De tekst in de dagcel linkt naar `FIFO Controle Details`.
 
 ## Power Automate
 
-De huidige opzet gebruikt drie flows:
+De huidige opzet gebruikt twee flows:
 
 1. Forms-inzending verwerken (`mode = fifo`).
-2. Niet-uitgevoerde controle registreren (`mode = missing`).
-3. Medewerkers en shiftleiders vanuit Excel naar GitHub exporteren.
+2. Medewerkers en shiftleiders vanuit Excel naar GitHub exporteren.
+
+Een aparte scheduled flow voor vergeten FIFO-controles is niet meer nodig. `FIFO Controle Details` bepaalt de status formulematig op basis van 21:15.
 
 De concrete acties en parameters staan in `POWER_AUTOMATE_SETUP.md`.
 

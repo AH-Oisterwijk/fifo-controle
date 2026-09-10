@@ -20,6 +20,10 @@ function main(
     return `OK setup: '${DETAILS_SHEET_NAME}' en '${DATA_SHEET_NAME}' zijn aangemaakt/bijgewerkt en beveiligd.`;
   }
 
+  if (cleanMode !== "fifo") {
+    throw new Error(`Onbekende mode: ${mode}`);
+  }
+
   const parsedDate = parseDateKey(dateKey);
   const week = getIsoWeekAndYear(parsedDate);
   const sheetName = `WK${week.week}-${week.year}`;
@@ -35,20 +39,6 @@ function main(
   try {
     const range = sheet.getRange(targetCell);
 
-    if (cleanMode === "missing") {
-      const currentValue = String(range.getValue() ?? "").trim();
-
-      if (currentValue === "") {
-        range.setValue("Niet uitgevoerd 🙁");
-        registerMissingControle(workbook, password, dateKey);
-      }
-
-      return `OK missing-check: ${sheetName}!${targetCell}`;
-    }
-
-    if (cleanMode !== "fifo") {
-      throw new Error(`Onbekende mode: ${mode}`);
-    }
 
     const payload = parseControleData(controleData);
     const analyse = analyseFifoControle(payload, dateKey);
@@ -302,6 +292,18 @@ function expandCompactControlePayload(payload: ControlePayload & CompactControle
     }
   }
 
+  if (payload.p && waarschuwingen.length > 0) {
+    for (const product of producten) {
+      if (String(product.MedewerkerNaam || "").trim() !== "") continue;
+      if (normalize(String(product.Status || "")) !== normalize("Fout")) continue;
+      const nasa = String(product.Nasa || "").trim();
+      if (!nasa) continue;
+      const marker = `(${nasa})`;
+      const warning = waarschuwingen.find(item => String(item.Opmerkingen || "").indexOf(marker) >= 0);
+      if (warning) product.MedewerkerNaam = warning.NaamMedewerker || "";
+    }
+  }
+
   return {
     DatumTijd: String(payload.dt || payload.DatumTijd || "").trim(),
     DagKey: String(payload.d || payload.DagKey || "").trim(),
@@ -491,36 +493,6 @@ function updateFifoDetails(workbook: ExcelScript.Workbook, password: string, ana
   }
 }
 
-function registerMissingControle(workbook: ExcelScript.Workbook, password: string, dateKey: string): void {
-  ensureDetailSheets(workbook, password);
-
-  let workbookWasProtected = unprotectWorkbookIfNeeded(workbook, password);
-
-  try {
-    const dataSheet = getRequiredWorksheet(workbook, DATA_SHEET_NAME);
-    dataSheet.setVisibility(ExcelScript.SheetVisibility.visible);
-
-    // Niet beschermen: Power Automate/Office Scripts geeft anders soms Forbidden op setValues.
-    appendMissingData(dataSheet, dateKey);
-    refreshAvailableLists(dataSheet);
-
-    const dashboardSheet = getRequiredWorksheet(workbook, DETAILS_SHEET_NAME);
-    const dashboardPaused = pauseProtectionIfNeeded(dashboardSheet, password);
-
-    try {
-      buildDashboardSheet(dashboardSheet, dateKey, getWeekDisplayForDateKey(dateKey));
-    } finally {
-      protectOrResume(dashboardSheet, password, dashboardPaused);
-    }
-
-    dataSheet.setVisibility(ExcelScript.SheetVisibility.hidden);
-  } finally {
-    if (workbookWasProtected) {
-      workbook.getProtection().protect(password);
-    }
-  }
-}
-
 function ensureDetailSheets(workbook: ExcelScript.Workbook, password: string): void {
   let workbookWasProtected = false;
 
@@ -631,7 +603,7 @@ function buildDashboardSheet(
   sheet.getRange("B3").getFormat().getFont().setBold(true);
 
   sheet.getRange("A5").setValue("Status");
-  sheet.getRange("B5").setFormula(`=LET(d,IF(ISNUMBER($B$3),YEAR($B$3)&"-"&RIGHT("0"&MONTH($B$3),2)&"-"&RIGHT("0"&DAY($B$3),2),$B$3),t,IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$B$2:$B$5000,d),0),IF(d="","⚪ Geen datum gekozen",IF(t=0,"⚪ Geen registratie",IFERROR(SWITCH(INDEX(FILTER('${DATA_SHEET_NAME}'!$G$2:$G$5000,('${DATA_SHEET_NAME}'!$B$2:$B$5000=d)*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)),1),"FIFO","🟩 Uitgevoerd","MISSING","🟥 Niet uitgevoerd","⚪ Onbekend"),"⚪ Geen registratie"))))`);
+  sheet.getRange("B5").setFormula(`=LET(x,$B$3,d,IF(ISNUMBER(x),YEAR(x)&"-"&RIGHT("0"&MONTH(x),2)&"-"&RIGHT("0"&DAY(x),2),x),ds,IF(d="",0,DATE(VALUE(LEFT(d,4)),VALUE(MID(d,6,2)),VALUE(RIGHT(d,2)))),t,IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$B$2:$B$5000,d),0),late,AND(ds>0,NOW()>=ds+TIME(21,15,0)),IF(d="","⚪ Geen datum gekozen",IF(t=0,IF(late,"🟥 Vergeten FIFO controle 🙁","⚪ Niet geregistreerd"),IFERROR(SWITCH(INDEX(FILTER('${DATA_SHEET_NAME}'!$G$2:$G$5000,('${DATA_SHEET_NAME}'!$B$2:$B$5000=d)*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)),1),"FIFO","🟩 Uitgevoerd","MISSING","🟥 Vergeten FIFO controle 🙁","⚪ Onbekend"),"⚪ Niet geregistreerd"))))`);
   sheet.getRange("D5").setValue("Score");
   sheet.getRange("E5").setFormula(`=LET(d,IF(ISNUMBER($B$3),YEAR($B$3)&"-"&RIGHT("0"&MONTH($B$3),2)&"-"&RIGHT("0"&DAY($B$3),2),$B$3),t,IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$B$2:$B$5000,d),0),g,COUNTIFS('${DATA_SHEET_NAME}'!$B$2:$B$5000,d,'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),n,COUNTIFS('${DATA_SHEET_NAME}'!$B$2:$B$5000,d,'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(d="","-",IF(t=0,"-",IF(n=0,"-",IF(g=n,"🟩 ","🟥 ")&g&"/"&n))))`);
 
@@ -689,8 +661,8 @@ function buildDashboardSheet(
   sheet.getRange("J5").setValue("Weekscore");
   sheet.getRange("K5").setFormula(`=LET(w,$K$3,g,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,w,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),t,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,w,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(w="","-",IF(t=0,"-",IF(g=t,"🟩 ","🟥 ")&g&"/"&t)))`);
 
-  sheet.getRange("M5").setValue("Niet uitgevoerd");
-  sheet.getRange("N5").setFormula(`=LET(w,$K$3,x,COUNTIF($K$9:$K$15,"*Niet uitgevoerd*"),IF(w="","-",IF(x=0,"🟩 0","🟥 "&x)))`);
+  sheet.getRange("M5").setValue("Vergeten");
+  sheet.getRange("N5").setFormula(`=LET(w,$K$3,x,COUNTIF($K$9:$K$15,"*Vergeten FIFO controle*"),IF(w="","-",IF(x=0,"🟩 0","🟥 "&x)))`);
 
   sheet.getRange("J5:N5").getFormat().getFont().setBold(true);
   sheet.getRange("J3:J5").getFormat().getFill().setColor("#F2F2F2");
@@ -851,37 +823,6 @@ function appendHistorieData(sheet: ExcelScript.Worksheet, analyse: FifoAnalyse):
     targetRange.setValues(rows);
     sheet.getRangeByIndexes(nextRow, 15, rows.length, 1).setNumberFormatLocal("0");
   }
-}
-
-function appendMissingData(sheet: ExcelScript.Worksheet, dateKey: string): void {
-  const headers = historyHeaders();
-  const nextRow = ensureHistoryHeader(sheet);
-  const parsedDate = parseDateKey(dateKey);
-  const week = getIsoWeekAndYear(parsedDate);
-  const weekKey = `${week.year}-W${twoDigit(week.week)}`;
-  const now = new Date();
-
-  const targetRange = sheet.getRangeByIndexes(nextRow, 0, 1, headers.length);
-  targetRange.setNumberFormatLocal("@");
-  targetRange.setValues([[
-    formatDateTimeDisplay(now),
-    dateKey,
-    formatDateDisplay(dateKey),
-    weekKey,
-    `WK${week.week}-${week.year}`,
-    getDayName(parsedDate),
-    "MISSING",
-    "",
-    "",
-    "",
-    "Niet uitgevoerd 🙁",
-    "",
-    "Nee",
-    "Nee",
-    "-",
-    now.getTime()
-  ]]);
-  sheet.getRangeByIndexes(nextRow, 15, 1, 1).setNumberFormatLocal("0");
 }
 
 function ensureHistoryHeader(sheet: ExcelScript.Worksheet): number {
@@ -1378,7 +1319,7 @@ function writeWeekDagRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number, dag
 
   const latestRunForDay = `IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$E$2:$E$5000,$K$3,'${DATA_SHEET_NAME}'!$F$2:$F$5000,J${excelRow}),0)`;
 
-  sheet.getRangeByIndexes(zeroBasedRow, 10, 1, 1).setFormula(`=LET(t,${latestRunForDay},IF(t=0,"⚪ Geen registratie",IFERROR(SWITCH(INDEX(FILTER('${DATA_SHEET_NAME}'!$G$2:$G$5000,('${DATA_SHEET_NAME}'!$E$2:$E$5000=$K$3)*('${DATA_SHEET_NAME}'!$F$2:$F$5000=J${excelRow})*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)),1),"FIFO","🟩 Uitgevoerd","MISSING","🟥 Niet uitgevoerd","⚪ Onbekend"),"⚪ Geen registratie")))`);
+  sheet.getRangeByIndexes(zeroBasedRow, 10, 1, 1).setFormula(`=LET(w,$K$3,t,${latestRunForDay},yr,IFERROR(VALUE(RIGHT(w,4)),0),wn,IFERROR(VALUE(MID(w,3,FIND("-",w)-3)),0),jan4,IF(yr=0,0,DATE(yr,1,4)),mon,IF(yr=0,0,jan4-WEEKDAY(jan4,2)+1+(wn-1)*7),di,SWITCH(J${excelRow},"Maandag",0,"Dinsdag",1,"Woensdag",2,"Donderdag",3,"Vrijdag",4,"Zaterdag",5,"Zondag",6,0),d,mon+di,late,AND(w<>"",yr>0,NOW()>=d+TIME(21,15,0)),IF(t=0,IF(late,"🟥 Vergeten FIFO controle 🙁","⚪ Niet geregistreerd"),IFERROR(SWITCH(INDEX(FILTER('${DATA_SHEET_NAME}'!$G$2:$G$5000,('${DATA_SHEET_NAME}'!$E$2:$E$5000=$K$3)*('${DATA_SHEET_NAME}'!$F$2:$F$5000=J${excelRow})*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)),1),"FIFO","🟩 Uitgevoerd","MISSING","🟥 Vergeten FIFO controle 🙁","⚪ Onbekend"),"⚪ Niet geregistreerd")))`);
 
   sheet.getRangeByIndexes(zeroBasedRow, 11, 1, 1).setFormula(`=LET(t,${latestRunForDay},g,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,$K$3,'${DATA_SHEET_NAME}'!$F$2:$F$5000,J${excelRow},'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),n,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,$K$3,'${DATA_SHEET_NAME}'!$F$2:$F$5000,J${excelRow},'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(t=0,"-",IF(n=0,"-",IF(g=n,"🟩 ","🟥 ")&g&"/"&n)))`);
 

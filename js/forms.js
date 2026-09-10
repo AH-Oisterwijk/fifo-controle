@@ -140,28 +140,32 @@ function compactAfdelingStatussen(statussen){
 }
 
 function buildFormsRecord(record){
-  return {
+  const productRows = (record.Producten || []).map(p => [
+    encodeAfdelingCode(p.Afdeling),
+    p.Nasa || '',
+    encodeStatusCode(p.Status, !!p.AfdelingNietGevuld)
+  ]);
+
+  const compact = {
     v: 3,
     d: record.DagKey,
     dt: record.DatumTijd,
     s: record.Shiftleider,
-    sc: compactScores(record.Scores),
-    st: compactAfdelingStatussen(record.AfdelingStatussen),
     ng: (record.AfdelingenNietGevuld || []).map(encodeAfdelingCode),
-    p: (record.Producten || []).map(p => [
-      encodeAfdelingCode(p.Afdeling),
-      p.Nasa || '',
-      encodeStatusCode(p.Status, !!p.AfdelingNietGevuld),
-      p.MedewerkerNaam || '',
-      p.AfdelingNietGevuld ? 1 : 0
-    ]),
+    p: productRows,
     w: (record.Waarschuwingen || []).map(w => [
-      w.DatumGegeven || record.DagKey || '',
+      null,
       w.NaamMedewerker || '',
-      w.ShiftleiderManager || record.Shiftleider || '',
+      null,
       w.Opmerkingen || ''
     ])
   };
+
+  if(!productRows.length){
+    compact.sc = compactScores(record.Scores);
+  }
+
+  return compact;
 }
 
 function formatProductLine(p){

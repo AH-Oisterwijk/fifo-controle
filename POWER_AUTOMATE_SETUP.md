@@ -2,12 +2,11 @@
 
 ## Overzicht
 
-Er zijn drie flows:
+Er zijn twee flows:
 
 ```text
 1. Forms-inzending verwerken
-2. Niet-uitgevoerde FIFO controleren
-3. Personenlijsten exporteren naar GitHub
+2. Personenlijsten exporteren naar GitHub
 ```
 
 ## Microsoft Forms
@@ -90,44 +89,7 @@ Het script schrijft de FIFO-status in de juiste dagcel en voegt eventuele waarsc
 
 ---
 
-# Flow 2 - Niet-uitgevoerde FIFO controleren
-
-Maak een scheduled cloud flow, bijvoorbeeld dagelijks om 22:30.
-
-## Compose
-
-Gebruik deze expression:
-
-```text
-formatDateTime(convertTimeZone(utcNow(),'UTC','W. Europe Standard Time'),'yyyy-MM-dd')
-```
-
-## Run script
-
-Gebruik script:
-
-```text
-fifo_shift_overdracht.ts
-```
-
-Parameters:
-
-```text
-mode = missing
-password = jouw bladwachtwoord
-dateKey = Outputs van Compose
-controleData = leeg
-```
-
-Het script schrijft alleen als de dagcel nog leeg is:
-
-```text
-Niet uitgevoerd 🙁
-```
-
----
-
-# Flow 3 - Personenlijsten exporteren naar GitHub
+# Flow 2 - Personenlijsten exporteren naar GitHub
 
 Deze flow werkt `data/medewerkers.csv` en `data/shiftleiders.csv` automatisch bij vanuit `Shift Overdracht.xlsx`.
 
