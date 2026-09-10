@@ -615,60 +615,58 @@ function buildDashboardSheet(
     writeDayProductRow(sheet, row);
   }
 
-  sheet.getRange("F:F").getFormat().setColumnWidth(2);
-  sheet.getRange("F:F").getFormat().getFont().setColor("#FFFFFF");
+  // Zwarte scheidingslijn direct naast het daggedeelte; geen lege tussenkolommen.
+  sheet.getRange("F1:F60").getFormat().getFill().setColor("#404040");
+  sheet.getRange("F:F").getFormat().setColumnWidth(3);
 
-  sheet.getRange("I1:I60").getFormat().getFill().setColor("#404040");
-  sheet.getRange("I:I").getFormat().setColumnWidth(3);
+  sheet.getRange("G1:K1").merge(false);
+  sheet.getRange("G1").setFormula(`=IF($H$3="","Controles week -","Controles week "&IFERROR(IF(LEFT($H$3,2)="WK",MID($H$3,3,FIND("-",$H$3)-3),$H$3),$H$3))`);
+  sheet.getRange("G1:K1").getFormat().getFill().setColor("#7030A0");
+  sheet.getRange("G1:K1").getFormat().getFont().setColor("#FFFFFF");
+  sheet.getRange("G1:K1").getFormat().getFont().setBold(true);
+  sheet.getRange("G1").getFormat().getFont().setSize(16);
 
-  sheet.getRange("J1:N1").merge(false);
-  sheet.getRange("J1").setFormula(`=IF($K$3="","Controles week -","Controles week "&IFERROR(IF(LEFT($K$3,2)="WK",MID($K$3,3,FIND("-",$K$3)-3),$K$3),$K$3))`);
-  sheet.getRange("J1:N1").getFormat().getFill().setColor("#7030A0");
-  sheet.getRange("J1:N1").getFormat().getFont().setColor("#FFFFFF");
-  sheet.getRange("J1:N1").getFormat().getFont().setBold(true);
-  sheet.getRange("J1").getFormat().getFont().setSize(16);
+  sheet.getRange("G3").setValue("Week");
+  sheet.getRange("H3").setNumberFormatLocal("@");
+  sheet.getRange("H3").setValue(selectedWeekDisplay);
+  sheet.getRange("H3").getFormat().getFill().setColor("#FFF2CC");
+  sheet.getRange("H3").getFormat().getFont().setBold(true);
 
-  sheet.getRange("J3").setValue("Week");
-  sheet.getRange("K3").setNumberFormatLocal("@");
-  sheet.getRange("K3").setValue(selectedWeekDisplay);
-  sheet.getRange("K3").getFormat().getFill().setColor("#FFF2CC");
-  sheet.getRange("K3").getFormat().getFont().setBold(true);
+  sheet.getRange("G5").setValue("Weekscore");
+  sheet.getRange("H5").setFormula(`=LET(w,$H$3,g,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,w,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),t,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,w,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(w="","-",IF(t=0,"-",IF(g=t,"🟩 ","🟥 ")&g&"/"&t)))`);
 
-  sheet.getRange("J5").setValue("Weekscore");
-  sheet.getRange("K5").setFormula(`=LET(w,$K$3,g,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,w,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),t,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,w,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(w="","-",IF(t=0,"-",IF(g=t,"🟩 ","🟥 ")&g&"/"&t)))`);
+  sheet.getRange("J5").setValue("Niet uitgevoerd");
+  sheet.getRange("K5").setFormula(`=LET(w,$H$3,x,COUNTIF($H$9:$H$15,"*Niet uitgevoerd*"),IF(w="","-",IF(x=0,"🟩 0","🟥 "&x)))`);
 
-  sheet.getRange("M5").setValue("Niet uitgevoerd");
-  sheet.getRange("N5").setFormula(`=LET(w,$K$3,x,COUNTIF($K$9:$K$15,"*Niet uitgevoerd*"),IF(w="","-",IF(x=0,"🟩 0","🟥 "&x)))`);
+  sheet.getRange("G5:K5").getFormat().getFont().setBold(true);
+  sheet.getRange("G3:G5").getFormat().getFill().setColor("#F2F2F2");
+  sheet.getRange("J5:J5").getFormat().getFill().setColor("#F2F2F2");
+  sheet.getRange("H5:I5").getFormat().getFill().setColor("#FFFFFF");
+  sheet.getRange("K5").getFormat().getFill().setColor("#FFFFFF");
+  setThinBorders(sheet.getRange("G5:K5"));
 
-  sheet.getRange("J5:N5").getFormat().getFont().setBold(true);
-  sheet.getRange("J3:J5").getFormat().getFill().setColor("#F2F2F2");
-  sheet.getRange("M5:M5").getFormat().getFill().setColor("#F2F2F2");
-  sheet.getRange("K5:L5").getFormat().getFill().setColor("#FFFFFF");
-  sheet.getRange("N5").getFormat().getFill().setColor("#FFFFFF");
-  setThinBorders(sheet.getRange("J5:N5"));
-
-  sheet.getRange("J8:N8").setValues([[
+  sheet.getRange("G8:K8").setValues([[
     "Dag",
     "Status",
     "Score",
-    "Niet-FIFO afdelingen",
+    "Niet FIFO door:",
     "Shiftleider"
   ]]);
-  formatPurpleHeader(sheet.getRange("J8:N8"));
+  formatPurpleHeader(sheet.getRange("G8:K8"));
 
   const dagen = ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"];
   for (let i = 0; i < dagen.length; i++) {
     writeWeekDagRow(sheet, 8 + i, dagen[i]);
   }
 
-  sheet.getRange("J9:N15").getFormat().getFill().setColor("#FFFFFF");
-  setThinBorders(sheet.getRange("J8:N15"));
+  sheet.getRange("G9:K15").getFormat().getFill().setColor("#FFFFFF");
+  setThinBorders(sheet.getRange("G8:K15"));
 
   sheet.getRange("B3").getDataValidation().setRule({
     list: { inCellDropDown: true, source: `='${DATA_SHEET_NAME}'!$R$2:$R$1000` }
   });
 
-  sheet.getRange("K3").getDataValidation().setRule({
+  sheet.getRange("H3").getDataValidation().setRule({
     list: { inCellDropDown: true, source: `='${DATA_SHEET_NAME}'!$T$2:$T$1000` }
   });
 
@@ -678,19 +676,19 @@ function buildDashboardSheet(
   sheet.getRange("D:D").getFormat().setColumnWidth(115);
   sheet.getRange("E:E").getFormat().setColumnWidth(82);
 
-  sheet.getRange("J:J").getFormat().setColumnWidth(82);
-  sheet.getRange("K:K").getFormat().setColumnWidth(115);
-  sheet.getRange("L:L").getFormat().setColumnWidth(82);
-  sheet.getRange("M:M").getFormat().setColumnWidth(150);
-  sheet.getRange("N:N").getFormat().setColumnWidth(110);
+  sheet.getRange("G:G").getFormat().setColumnWidth(82);
+  sheet.getRange("H:H").getFormat().setColumnWidth(115);
+  sheet.getRange("I:I").getFormat().setColumnWidth(82);
+  sheet.getRange("J:J").getFormat().setColumnWidth(150);
+  sheet.getRange("K:K").getFormat().setColumnWidth(110);
 
-  sheet.getRange("A:N").getFormat().setWrapText(true);
-  sheet.getRange("A:N").getFormat().getFont().setSize(9);
-  sheet.getRange("A1:N1").getFormat().getFont().setSize(16);
+  sheet.getRange("A:K").getFormat().setWrapText(true);
+  sheet.getRange("A:K").getFormat().getFont().setSize(9);
+  sheet.getRange("A1:K1").getFormat().getFont().setSize(16);
 
-  sheet.getRange("A1:N1").getFormat().setRowHeight(22);
-  sheet.getRange("A2:N7").getFormat().setRowHeight(18);
-  sheet.getRange("A8:N35").getFormat().setRowHeight(18);
+  sheet.getRange("A1:K1").getFormat().setRowHeight(22);
+  sheet.getRange("A2:K7").getFormat().setRowHeight(18);
+  sheet.getRange("A8:K35").getFormat().setRowHeight(18);
 
   const all = sheet.getUsedRange();
   if (all) {
@@ -699,7 +697,7 @@ function buildDashboardSheet(
 
   sheet.getRange("A1:Q60").getFormat().getProtection().setLocked(true);
   sheet.getRange("B3").getFormat().getProtection().setLocked(false);
-  sheet.getRange("K3").getFormat().getProtection().setLocked(false);
+  sheet.getRange("H3").getFormat().getProtection().setLocked(false);
 }
 
 function detailRowsForDashboard(analyse: FifoAnalyse): (string | number | boolean)[][] {
@@ -1291,17 +1289,17 @@ function writeDayProductRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number):
 function writeWeekDagRow(sheet: ExcelScript.Worksheet, zeroBasedRow: number, dagNaam: string): void {
   const excelRow = zeroBasedRow + 1;
 
-  sheet.getRangeByIndexes(zeroBasedRow, 9, 1, 1).setValue(dagNaam);
+  sheet.getRangeByIndexes(zeroBasedRow, 6, 1, 1).setValue(dagNaam);
 
-  const latestRunForDay = `IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$E$2:$E$5000,$K$3,'${DATA_SHEET_NAME}'!$F$2:$F$5000,J${excelRow}),0)`;
+  const latestRunForDay = `IFERROR(MAXIFS('${DATA_SHEET_NAME}'!$P$2:$P$5000,'${DATA_SHEET_NAME}'!$E$2:$E$5000,$H$3,'${DATA_SHEET_NAME}'!$F$2:$F$5000,G${excelRow}),0)`;
 
-  sheet.getRangeByIndexes(zeroBasedRow, 10, 1, 1).setFormula(`=LET(w,$K$3,t,${latestRunForDay},yr,IFERROR(VALUE(RIGHT(w,4)),0),wn,IFERROR(VALUE(MID(w,3,FIND("-",w)-3)),0),isoAnchor,IF(yr=0,0,DATE(yr,1,4)),mon,IF(yr=0,0,isoAnchor-WEEKDAY(isoAnchor,2)+1+(wn-1)*7),di,SWITCH(J${excelRow},"Maandag",0,"Dinsdag",1,"Woensdag",2,"Donderdag",3,"Vrijdag",4,"Zaterdag",5,"Zondag",6,0),d,mon+di,late,AND(w<>"",yr>0,NOW()>=d+TIME(21,15,0)),IF(t=0,IF(late,"🟥 Niet uitgevoerd","⚪ Niet geregistreerd"),IFERROR(SWITCH(INDEX(FILTER('${DATA_SHEET_NAME}'!$G$2:$G$5000,('${DATA_SHEET_NAME}'!$E$2:$E$5000=$K$3)*('${DATA_SHEET_NAME}'!$F$2:$F$5000=J${excelRow})*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)),1),"FIFO","🟩 Uitgevoerd","MISSING","🟥 Niet uitgevoerd","⚪ Onbekend"),"⚪ Niet geregistreerd")))`);
+  sheet.getRangeByIndexes(zeroBasedRow, 7, 1, 1).setFormula(`=LET(w,$H$3,t,${latestRunForDay},yr,IFERROR(VALUE(RIGHT(w,4)),0),wn,IFERROR(VALUE(MID(w,3,FIND("-",w)-3)),0),isoAnchor,IF(yr=0,0,DATE(yr,1,4)),mon,IF(yr=0,0,isoAnchor-WEEKDAY(isoAnchor,2)+1+(wn-1)*7),di,SWITCH(G${excelRow},"Maandag",0,"Dinsdag",1,"Woensdag",2,"Donderdag",3,"Vrijdag",4,"Zaterdag",5,"Zondag",6,0),d,mon+di,late,AND(w<>"",yr>0,NOW()>=d+TIME(21,15,0)),IF(t=0,IF(late,"🟥 Niet uitgevoerd","⚪ Niet geregistreerd"),IFERROR(SWITCH(INDEX(FILTER('${DATA_SHEET_NAME}'!$G$2:$G$5000,('${DATA_SHEET_NAME}'!$E$2:$E$5000=$H$3)*('${DATA_SHEET_NAME}'!$F$2:$F$5000=G${excelRow})*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)),1),"FIFO","🟩 Uitgevoerd","MISSING","🟥 Niet uitgevoerd","⚪ Onbekend"),"⚪ Niet geregistreerd")))`);
 
-  sheet.getRangeByIndexes(zeroBasedRow, 11, 1, 1).setFormula(`=LET(t,${latestRunForDay},g,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,$K$3,'${DATA_SHEET_NAME}'!$F$2:$F$5000,J${excelRow},'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),n,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,$K$3,'${DATA_SHEET_NAME}'!$F$2:$F$5000,J${excelRow},'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(t=0,"-",IF(n=0,"-",IF(g=n,"🟩 ","🟥 ")&g&"/"&n)))`);
+  sheet.getRangeByIndexes(zeroBasedRow, 8, 1, 1).setFormula(`=LET(t,${latestRunForDay},g,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,$H$3,'${DATA_SHEET_NAME}'!$F$2:$F$5000,G${excelRow},'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja",'${DATA_SHEET_NAME}'!$N$2:$N$5000,"Ja"),n,COUNTIFS('${DATA_SHEET_NAME}'!$E$2:$E$5000,$H$3,'${DATA_SHEET_NAME}'!$F$2:$F$5000,G${excelRow},'${DATA_SHEET_NAME}'!$P$2:$P$5000,t,'${DATA_SHEET_NAME}'!$G$2:$G$5000,"FIFO",'${DATA_SHEET_NAME}'!$M$2:$M$5000,"Ja"),IF(t=0,"-",IF(n=0,"-",IF(g=n,"🟩 ","🟥 ")&g&"/"&n)))`);
 
-  sheet.getRangeByIndexes(zeroBasedRow, 12, 1, 1).setFormula(`=LET(t,${latestRunForDay},IF(t=0,"-",IFERROR(TEXTJOIN(", ",TRUE,UNIQUE(FILTER('${DATA_SHEET_NAME}'!$I$2:$I$5000,('${DATA_SHEET_NAME}'!$E$2:$E$5000=$K$3)*('${DATA_SHEET_NAME}'!$F$2:$F$5000=J${excelRow})*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)*('${DATA_SHEET_NAME}'!$G$2:$G$5000="FIFO")*('${DATA_SHEET_NAME}'!$M$2:$M$5000="Ja")*('${DATA_SHEET_NAME}'!$N$2:$N$5000<>"Ja")))),"-")))`);
+  sheet.getRangeByIndexes(zeroBasedRow, 9, 1, 1).setFormula(`=LET(t,${latestRunForDay},IF(t=0,"-",IFERROR(TEXTJOIN(", ",TRUE,UNIQUE(FILTER('${DATA_SHEET_NAME}'!$L$2:$L$5000,('${DATA_SHEET_NAME}'!$E$2:$E$5000=$H$3)*('${DATA_SHEET_NAME}'!$F$2:$F$5000=G${excelRow})*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)*('${DATA_SHEET_NAME}'!$G$2:$G$5000="FIFO")*('${DATA_SHEET_NAME}'!$M$2:$M$5000="Ja")*('${DATA_SHEET_NAME}'!$N$2:$N$5000<>"Ja")*('${DATA_SHEET_NAME}'!$L$2:$L$5000<>"")))),"-")))`);
 
-  sheet.getRangeByIndexes(zeroBasedRow, 13, 1, 1).setFormula(`=LET(t,${latestRunForDay},raw,IF(t=0,"",IFERROR(INDEX(FILTER('${DATA_SHEET_NAME}'!$H$2:$H$5000,('${DATA_SHEET_NAME}'!$E$2:$E$5000=$K$3)*('${DATA_SHEET_NAME}'!$F$2:$F$5000=J${excelRow})*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)),1),"")),s,TRIM(raw&""),IF(OR(t=0,s="",s="0"),"-",s))`);
+  sheet.getRangeByIndexes(zeroBasedRow, 10, 1, 1).setFormula(`=LET(t,${latestRunForDay},raw,IF(t=0,"",IFERROR(INDEX(FILTER('${DATA_SHEET_NAME}'!$H$2:$H$5000,('${DATA_SHEET_NAME}'!$E$2:$E$5000=$H$3)*('${DATA_SHEET_NAME}'!$F$2:$F$5000=G${excelRow})*('${DATA_SHEET_NAME}'!$P$2:$P$5000=t)),1),"")),s,TRIM(raw&""),IF(OR(t=0,s="",s="0"),"-",s))`);
 }
 
 function formatDateDisplay(dateKey: string): string {
