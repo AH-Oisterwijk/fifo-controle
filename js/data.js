@@ -2,6 +2,18 @@
 
 let leaders = [];
 let medewerkers = [];
+
+const agfSubdepartments = [
+  'Aardappelen',
+  'Fruit tafel',
+  'Gekoeld fruit',
+  'Groenten tafel',
+  'Healthy snacking',
+  'Verspakketten gekoeld',
+  'Verspakketten ongekoeld',
+  'Uien en smaakmakers'
+];
+
 const subCounts = [
   {subafdeling:'Zuivel', afdeling:'Zuivel', count:3},
   {subafdeling:'Boter', afdeling:'Zuivel', count:1},
@@ -11,7 +23,9 @@ const subCounts = [
   {subafdeling:'Vlees/Vega', afdeling:'Vlees/Vis/Kip/Vega', count:2},
   {subafdeling:'Maaltijden', afdeling:'Maaltijden/Sappen', count:2},
   {subafdeling:'Sappen', afdeling:'Maaltijden/Sappen', count:1},
-  {subafdeling:'Panklaar', afdeling:'Panklaar', count:3}
+  {subafdeling:'Panklaar', afdeling:'Panklaar', count:3},
+  // AGF is één gezamenlijke gewogen pool: 3 producten totaal, ongeacht subafdeling.
+  {subafdeling:'AGF', afdeling:'AGF', count:3}
 ];
 let products = [];
 let productsVersion = 'no-products';

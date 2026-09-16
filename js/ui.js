@@ -23,6 +23,13 @@ function itemsForDisplay(afdeling, items){
   });
 }
 
+function displaySubdepartmentForItem(item){
+  if(item && item.Afdeling === 'AGF' && item.Subafdeling){
+    return item.Subafdeling;
+  }
+  return selectionGroupForItem(item);
+}
+
 function renderGroup(afdeling,items){
   const done = items.filter(x=>x.Status && x.Status !== 'Open').length;
   const groupKeys = fillGroupKeysForDepartment(afdeling);
@@ -82,7 +89,7 @@ function renderCard(item, groupNotFilled=false){
   const goedSelected = item.Status === 'Goed' ? 'fifo-action-selected' : '';
   const foutSelected = item.Status === 'Fout' ? 'fifo-action-selected' : '';
   return `<article class="fifo-product-card ${cls}" data-id="${item.Id}">
-    <div class="fifo-card-top"><span class="fifo-sub">${esc(selectionGroupForItem(item))}</span><span class="fifo-status-pill">${esc(statusText)}</span></div>
+    <div class="fifo-card-top"><span class="fifo-sub">${esc(displaySubdepartmentForItem(item))}</span><span class="fifo-status-pill">${esc(statusText)}</span></div>
     <h3>${esc(item.Productnaam)}</h3>
     <div class="fifo-nasa-row"><span>Nasa</span><strong>${esc(item.Nasa)}</strong></div>
     <div class="fifo-product-tools">
@@ -238,7 +245,7 @@ function handleDepartmentToggle(e){
 }
 
 function updateProgress(){
-  const total=selection.length||17, done=selection.filter(x=>x.Status && x.Status!=='Open').length;
+  const total=selection.length||20, done=selection.filter(x=>x.Status && x.Status!=='Open').length;
   document.getElementById('progressText').textContent=`${done}/${total}`;
   document.getElementById('progressBar').style.width=`${Math.round(done/total*100)}%`;
   const goed=selection.filter(x=>x.Status==='Goed').length, fout=selection.filter(x=>x.Status==='Fout').length, niet=selection.filter(x=>x.Status==='Niet gevuld').length;

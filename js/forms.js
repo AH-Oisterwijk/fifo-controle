@@ -82,7 +82,8 @@ function buildLogRecord(){
       'Kaas/Vleeswaren': buildScoreFromSelection('Kaas/Vleeswaren'),
       'Vlees/Vis/Kip/Vega': buildScoreFromSelection('Vlees/Vis/Kip/Vega'),
       'Maaltijden/Sappen': buildScoreFromSelection('Maaltijden/Sappen'),
-      'Panklaar': buildScoreFromSelection('Panklaar')
+      'Panklaar': buildScoreFromSelection('Panklaar'),
+      'AGF': buildScoreFromSelection('AGF')
     },
     AfdelingStatussen: buildAfdelingStatussen(),
     AfdelingenNietGevuld: departmentOrder.filter(isDepartmentNotFilled),
@@ -111,6 +112,7 @@ function encodeAfdelingCode(afdeling){
   if(value === 'Vlees/Vis/Kip/Vega') return 'V';
   if(value === 'Maaltijden/Sappen') return 'M';
   if(value === 'Panklaar') return 'P';
+  if(value === 'AGF') return 'A';
   return value;
 }
 
@@ -273,6 +275,7 @@ function prepareSubmitPage(record, formsUrl, errorMessage){
   summaryLines.push(buildDepartmentText(record, 'Vlees/Vis/Kip/Vega').split('\n')[0]);
   summaryLines.push(buildDepartmentText(record, 'Maaltijden/Sappen').split('\n')[0]);
   summaryLines.push(buildDepartmentText(record, 'Panklaar').split('\n')[0]);
+  summaryLines.push(buildDepartmentText(record, 'AGF').split('\n')[0]);
   document.getElementById('submitSummary').textContent = summaryLines.join('\n');
 
   const err = document.getElementById('submitError');

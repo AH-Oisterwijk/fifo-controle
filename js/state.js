@@ -3,7 +3,7 @@
 let selection = [];
 let departmentStates = defaultDepartmentStates();
 let selectionWarnings = [];
-const departmentOrder = ['Zuivel','Kaas/Vleeswaren','Vlees/Vis/Kip/Vega','Maaltijden/Sappen','Panklaar'];
+const departmentOrder = ['Zuivel','Kaas/Vleeswaren','Vlees/Vis/Kip/Vega','Maaltijden/Sappen','Panklaar','AGF'];
 
 const subdepartmentFillGroups = {
   'Zuivel': ['Zuivel','Boter'],
@@ -88,7 +88,8 @@ function defaultDepartmentStates(){
     'Kip':'Gevuld',
     'Maaltijden':'Gevuld',
     'Sappen':'Gevuld',
-    'Panklaar':'Gevuld'
+    'Panklaar':'Gevuld',
+    'AGF':'Gevuld'
   };
 }
 
@@ -165,6 +166,7 @@ function migrateSelectionGroups(){
 
 function sourceSubdepartmentsForSelectionGroup(groupKey){
   if(norm(groupKey) === norm('Vlees/Vega')) return ['Vlees','Vega'];
+  if(norm(groupKey) === norm('AGF')) return agfSubdepartments.slice();
   return [groupKey];
 }
 

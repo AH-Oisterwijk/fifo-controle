@@ -59,7 +59,7 @@ Deze opsplitsing is bewust zonder build-tool of framework gehouden: GitHub Pages
 
 ## Productselectie
 
-De webapp selecteert per dag 17 productregels:
+De webapp selecteert per dag 20 productregels:
 
 ```text
 Zuivel               3
@@ -71,6 +71,7 @@ Kip                    1
 Maaltijden             2
 Sappen                 1
 Panklaar               3
+AGF                     3
 ```
 
 De hoofdafdelingen blijven:
@@ -81,9 +82,12 @@ Kaas/Vleeswaren
 Vlees/Vis/Kip/Vega
 Maaltijden/Sappen
 Panklaar
+AGF
 ```
 
 Vlees en Vega vormen in de webapp samen de selectiegroep `Vlees/Vega` met twee controles per dag. Vis en Kip blijven aparte groepen. In `data/products.csv` blijven `Vlees` en `Vega` bewust als afzonderlijke subafdelingen opgeslagen, zodat die scheiding later eenvoudig kan worden teruggebracht. Maaltijden/Sappen en Zuivel/Boter blijven eveneens als afzonderlijke gevuld/niet-gevuld-groepen werken.
+
+AGF vormt één gezamenlijke selectiegroep met drie controles per dag. De drie producten worden gewogen gekozen uit alle AGF-subafdelingen samen; er is dus geen vast aantal per subafdeling. De subafdeling blijft per product zichtbaar in de kaart. De AGF-subafdelingen zijn: Aardappelen, Fruit tafel, Gekoeld fruit, Groenten tafel, Healthy snacking, Verspakketten gekoeld, Verspakketten ongekoeld en Uien en smaakmakers. Voor AGF wordt dezelfde `Kans14³`-weging gebruikt als voor de bestaande productdata.
 
 ## `data/products.csv`
 

@@ -300,6 +300,7 @@ function decodeAfdelingCode(code: string): string {
   if (clean === "V") return "Vlees/Vis/Kip/Vega";
   if (clean === "M") return "Maaltijden/Sappen";
   if (clean === "P") return "Panklaar";
+  if (clean === "A") return "AGF";
 
   return clean;
 }
@@ -332,7 +333,8 @@ function analyseFifoControle(payload: ControlePayload, fallbackDateKey: string):
     "Kaas/Vleeswaren",
     "Vlees/Vis/Kip/Vega",
     "Maaltijden/Sappen",
-    "Panklaar"
+    "Panklaar",
+    "AGF"
   ];
 
   const producten = payload.Producten || [];
@@ -1104,7 +1106,8 @@ function writeDirectDayDetail(sheet: ExcelScript.Worksheet, analyse: FifoAnalyse
     "Kaas/Vleeswaren",
     "Vlees/Vis/Kip/Vega",
     "Maaltijden/Sappen",
-    "Panklaar"
+    "Panklaar",
+    "AGF"
   ];
 
   const summaryByAfdeling: { [key: string]: AfdelingSamenvatting } = {};
