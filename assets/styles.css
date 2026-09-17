@@ -101,3 +101,12 @@
     .fifo-group.fifo-dept-notfilled .fifo-grid{opacity:1;filter:none}
 
     @media(max-width:640px){.fifo-app{padding:8px}.fifo-header h1{font-size:24px}.fifo-card{padding:13px;border-radius:16px}.fifo-grid{grid-template-columns:1fr}.fifo-qr svg{width:190px;height:190px}.fifo-nasa-row strong{font-size:30px}.fifo-actions button{font-size:13px;padding:14px 4px}.fifo-control select,.fifo-control input{max-width:none;width:100%}}
+
+
+    /* Beta experiment: zachte product-snap op mobiel.
+       Langzaam scrollen landt op een product; snelle swipes blijven vrij scrollen. */
+    @media(max-width:700px) and (pointer:coarse){
+      html{scroll-snap-type:y proximity;scroll-padding-block:10vh}
+      .fifo-grid{gap:24px}
+      .fifo-product-card{scroll-snap-align:center;scroll-snap-stop:normal;scroll-margin-block:12px}
+    }

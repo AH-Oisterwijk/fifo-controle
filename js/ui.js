@@ -9,6 +9,7 @@ function render(){
   document.querySelectorAll('.fifo-medewerker-select').forEach(el=>el.addEventListener('change',handleWarningChange));
   document.querySelectorAll('.fifo-dept-toggle').forEach(el=>el.addEventListener('change',handleDepartmentToggle));
   updateProgress();
+  initProductSnapGestures();
 }
 
 function itemsForDisplay(afdeling, items){
@@ -242,6 +243,76 @@ function handleDepartmentToggle(e){
     }
   }
   setDepartmentNotFilled(groupKey, notFilled);
+}
+
+let fifoSnapGestureBound = false;
+let fifoTouchStart = null;
+
+function initProductSnapGestures(){
+  if(fifoSnapGestureBound) return;
+  if(!window.matchMedia('(max-width: 700px) and (pointer: coarse)').matches) return;
+
+  fifoSnapGestureBound = true;
+
+  document.addEventListener('touchstart', e => {
+    if(e.touches.length !== 1){
+      fifoTouchStart = null;
+      return;
+    }
+
+    const target = e.target;
+    if(!(target instanceof Element)){
+      fifoTouchStart = null;
+      return;
+    }
+
+    if(target.closest('button,input,select,label,a')){
+      fifoTouchStart = null;
+      return;
+    }
+
+    const card = target.closest('.fifo-product-card');
+    if(!card){
+      fifoTouchStart = null;
+      return;
+    }
+
+    const touch = e.touches[0];
+    fifoTouchStart = {
+      card,
+      y: touch.clientY,
+      time: performance.now()
+    };
+  }, {passive:true});
+
+  document.addEventListener('touchend', e => {
+    if(!fifoTouchStart || e.changedTouches.length !== 1) return;
+
+    const start = fifoTouchStart;
+    fifoTouchStart = null;
+
+    const touch = e.changedTouches[0];
+    const distanceY = touch.clientY - start.y;
+    const distance = Math.abs(distanceY);
+    const duration = Math.max(1, performance.now() - start.time);
+    const velocity = distance / duration;
+
+    // Een korte, rustige veeg gaat precies één kaart vooruit/terug.
+    // Een snelle veeg blijft gewone vrije browser-scroll.
+    if(distance < 30 || distance > 150 || duration > 600 || velocity > 0.8) return;
+
+    const cards = Array.from(document.querySelectorAll('.fifo-product-card'));
+    const currentIndex = cards.indexOf(start.card);
+    if(currentIndex < 0) return;
+
+    const nextIndex = distanceY < 0 ? currentIndex + 1 : currentIndex - 1;
+    const nextCard = cards[nextIndex];
+    if(!nextCard) return;
+
+    requestAnimationFrame(() => {
+      nextCard.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+  }, {passive:true});
 }
 
 function updateProgress(){
