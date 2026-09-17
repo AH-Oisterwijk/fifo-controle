@@ -52,7 +52,7 @@ function renderFillControl(groupKey, afdeling){
   return `<div class="fifo-fillbar fifo-fillbar-single">
     <div>
       <strong>${esc(afdeling)} gevuld?</strong>
-      <small>Vink aan als dit vandaag gevuld is.</small>
+      <small>Vink uit als deze afdeling vandaag niet gevuld is.</small>
     </div>
     <div class="fifo-check-options">
       <label class="fifo-check-option" title="Vink aan als ${esc(groupKey)} vandaag gevuld is">
@@ -76,7 +76,7 @@ function renderCombinedFillControl(afdeling, groupKeys){
   return `<div class="fifo-fillbar">
     <div>
       <strong>${esc(afdeling)} gevuld?</strong>
-      <small>Vink de subafdelingen aan die vandaag gevuld zijn.</small>
+      <small>Vink een subafdeling uit als die vandaag niet gevuld is.</small>
     </div>
     <div class="fifo-check-options">${options}</div>
   </div>`;
